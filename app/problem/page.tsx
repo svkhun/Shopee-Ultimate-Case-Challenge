@@ -44,7 +44,7 @@ export default function ProblemPage() {
               Where The Problem <span className="font-semibold text-[#ee4d2d]">Really Is</span>
             </h1>
             <p className="mt-4 text-base sm:text-lg text-slate-300 font-light leading-relaxed">
-              Three key metrics reveal where the failed delivery problem is concentrated. แทนที่จะมองว่าเป็นปัญหาขนส่งทั่วไประบบ ข้อมูลชี้ชัดว่าความเสียหายกว่า 85% เกิดขึ้นที่คำสั่งซื้อแบบเก็บเงินปลายทาง (COD)
+              Three key metrics reveal where the failed delivery problem is concentrated. Rather than treating delivery failure as a generic system-wide logistics flaw, empirical data proves that over 85% of losses stem strictly from Cash on Delivery (COD) transactions.
             </p>
           </div>
 
@@ -63,7 +63,7 @@ export default function ProblemPage() {
                   Higher COD Risk
                 </h2>
                 <p className="text-xs text-slate-300 font-light leading-relaxed mb-6">
-                  อัตราจัดส่งไม่สำเร็จของ COD สูงถึง <strong className="text-amber-300 font-semibold">2.61%</strong> เทียบกับพรีเพดเพียง <strong className="text-emerald-400 font-semibold">0.25%</strong> — แตกต่างกันมากกว่า 10.6 เท่า
+                  COD delivery failure rate reaches <strong className="text-amber-300 font-semibold">2.61%</strong> compared to only <strong className="text-emerald-400 font-semibold">0.25%</strong> for prepaid methods — an overwhelming 10.6× disparity.
                 </p>
               </div>
 
@@ -99,7 +99,7 @@ export default function ProblemPage() {
                   Share of Total Orders
                 </h2>
                 <p className="text-xs text-slate-300 font-light leading-relaxed mb-6">
-                  มากกว่า <strong className="text-[#ff7a59] font-semibold">1 ใน 3</strong> ของคำสั่งซื้อทั้งหมดบน Shopee เป็น COD ส่งผลให้ผลกระทบจากความล้มเหลวขยายตัวเป็นวงกว้าง
+                  More than <strong className="text-[#ff7a59] font-semibold">1 in 3</strong> platform orders on Shopee are fulfilled via COD, exponentially amplifying return logistics costs across regional logistics hubs.
                 </p>
               </div>
 
@@ -133,7 +133,7 @@ export default function ProblemPage() {
                   Of Failed Deliveries
                 </h2>
                 <p className="text-xs text-slate-300 font-light leading-relaxed mb-6">
-                  สัดส่วนความล้มเหลวในการจัดส่งทั้งหมดถึง <strong className="text-rose-400 font-semibold">85%</strong> มีต้นเหตุมาจากออเดอร์ COD โดยคำนวณจากสัดส่วนออเดอร์และอัตราล้มเหลว
+                  Approximately <strong className="text-rose-400 font-semibold">85%</strong> of all failed deliveries platform-wide are concentrated in COD orders, calculated from volume mix and respective failure probability.
                 </p>
               </div>
 
@@ -148,7 +148,7 @@ export default function ProblemPage() {
                   <div className="h-full bg-slate-700" style={{ width: "15%" }} />
                 </div>
                 <p className="text-[10px] text-slate-400">
-                  การแก้ปัญหาพัสดุตีกลับของ COD จะตัดยอดจัดส่งล้มเหลวได้ถึง 85%
+                  Solving COD return rates effectively eradicates up to 85% of total platform failed deliveries.
                 </p>
               </div>
             </div>
@@ -165,7 +165,7 @@ export default function ProblemPage() {
                   Monthly Shopee Volume &amp; Cost-to-Serve Impact
                 </h2>
                 <p className="text-xs text-slate-400 mt-1">
-                  เลื่อนปรับจำนวนออเดอร์รายเดือนของ Shopee เพื่อคำนวณจำนวนพัสดุและค่าใช้จ่ายตีกลับ
+                  Adjust Shopee&apos;s monthly order volume to calculate parcel flows and reverse logistics cost waste.
                 </p>
               </div>
 
@@ -199,7 +199,7 @@ export default function ProblemPage() {
                 <div className="text-xl font-semibold text-white font-mono">
                   {(codOrders / 1_000_000).toFixed(2)}M
                 </div>
-                <span className="text-[10px] text-slate-400">พัสดุ COD ต่อเดือน</span>
+                <span className="text-[10px] text-slate-400">Monthly COD parcels</span>
               </div>
 
               <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80">
@@ -207,7 +207,7 @@ export default function ProblemPage() {
                 <div className="text-xl font-semibold text-rose-400 font-mono">
                   {Math.round(codFailedOrders).toLocaleString()}
                 </div>
-                <span className="text-[10px] text-slate-400">ครั้งที่จัดส่งไม่สำเร็จ @ 2.61%</span>
+                <span className="text-[10px] text-slate-400">Failed deliveries @ 2.61%</span>
               </div>
 
               <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80">
@@ -215,7 +215,7 @@ export default function ProblemPage() {
                 <div className="text-xl font-semibold text-amber-400 font-mono">
                   ฿{(monthlyCostWasteTHB / 1_000_000).toFixed(2)}M
                 </div>
-                <span className="text-[10px] text-slate-400">ค่าขนส่งและจัดการพัสดุตีกลับ</span>
+                <span className="text-[10px] text-slate-400">Reverse transport &amp; handling waste</span>
               </div>
 
               <div className="p-4 rounded-xl bg-[#ee4d2d]/10 border border-[#ee4d2d]/30">
@@ -223,7 +223,7 @@ export default function ProblemPage() {
                 <div className="text-xl font-semibold text-white font-mono">
                   ฿{(potentialSavingsTHB / 1_000_000).toFixed(2)}M
                 </div>
-                <span className="text-[10px] text-[#ff7a59]">ประหยัดได้ต่อเดือน (~52% reduction)</span>
+                <span className="text-[10px] text-[#ff7a59]">Monthly savings (~52% target reduction)</span>
               </div>
             </div>
           </div>

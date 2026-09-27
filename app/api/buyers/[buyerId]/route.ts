@@ -20,7 +20,7 @@ export async function GET(
           success: false,
           error: {
             code: "BUYER_NOT_FOUND",
-            message: `ไม่พบข้อมูลผู้ซื้อรหัส ${buyerId}`,
+            message: `Buyer profile with ID ${buyerId} not found`,
           },
         },
         { status: 404 }

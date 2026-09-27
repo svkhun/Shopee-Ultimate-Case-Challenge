@@ -24,7 +24,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm font-light">
-              กรอบการทำงานเชิงกลยุทธ์แก้ปัญหาวิกฤตพัสดุเก็บเงินปลายทาง (COD) ตีกลับ ด้วยระบบคะแนนความน่าเชื่อถือและการนัดหมายเวลาส่งสินค้า
+              Strategic framework for solving the Cash on Delivery (COD) return crisis through dynamic reliability scoring and delivery window optimization.
             </p>
             <div className="mt-3 flex items-center gap-2 text-[11px] text-slate-400">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />

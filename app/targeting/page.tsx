@@ -17,7 +17,7 @@ import {
 interface RiskTier {
   id: string;
   name: string;
-  nameTh: string;
+  subtitle: string;
   badge: string;
   borderColor: string;
   textColor: string;
@@ -41,108 +41,108 @@ export default function TargetingPage() {
     {
       id: "low",
       name: "Low-Risk Buyers",
-      nameTh: "ผู้ซื้อความเสี่ยงต่ำ (ลูกค้าชั้นดี 90%+)",
+      subtitle: "Verified Low Risk (90%+ of Buyers)",
       badge: "Score > 80",
       borderColor: "border-emerald-500/30",
       textColor: "text-emerald-400",
       badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
       icon: <CheckCircle className="w-5 h-5 text-emerald-400" />,
       characteristics: [
-        "ประวัติรับสินค้าสำเร็จสม่ำเสมอ (>95%)",
-        "สั่งซื้อต่อเนื่องและพร้อมรับสายพนักงานขนส่ง",
-        "ไม่เคยปฏิเสธพัสดุโดยไม่มีเหตุจำเป็น"
+        "Consistent delivery success rate (>95%)",
+        "Regular purchase history; answers courier calls promptly",
+        "Zero frivolous or bad-faith delivery refusals"
       ],
       systemAction: [
-        "ใช้งาน COD ได้อย่างราบรื่นตามปกติ (Zero Friction)",
-        "ไม่มีขั้นตอนยืนยันตัวตนหรือเก็บเงินมัดจำเพิ่มเติม",
-        "ได้รับสิทธิประโยชน์และคูปองตามปกติ"
+        "Unrestricted COD checkout experience (Zero Friction)",
+        "No mandatory OTP verification or upfront deposit requirements",
+        "Full eligibility for platform vouchers and coin discounts"
       ],
       checkoutExperience: {
         badgeText: "Verified Trustworthy Buyer",
         warningTitle: "Standard 1-Click COD Checkout",
-        warningDesc: "ไม่มีการแจ้งเตือนหรือรหัสยืนยัน พัสดุถูกจัดส่งและชำระเงินสดปลายทางตามขั้นตอนปกติ",
-        paymentOptions: "เปิดทุกช่องทางการชำระเงิน (COD, ShopeePay, SPayLater)",
+        warningDesc: "No confirmation hurdles. The parcel is dispatched with standard cash collection at the doorstep upon arrival.",
+        paymentOptions: "All payment channels unlocked (COD, ShopeePay, SPayLater)",
         frictionLevel: "Zero Friction"
       }
     },
     {
       id: "medium",
       name: "Medium-Risk Buyers",
-      nameTh: "ผู้ซื้อความเสี่ยงปานกลาง",
+      subtitle: "Watchlist / Occasional Delays",
       badge: "Score 50 - 79",
       borderColor: "border-amber-500/30",
       textColor: "text-amber-400",
       badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/20",
       icon: <Bell className="w-5 h-5 text-amber-400" />,
       characteristics: [
-        "เคยมีพัสดุส่งไม่สำเร็จหรือเลื่อนรับในรอบ 6 เดือน",
-        "บางครั้งติดต่อไม่ได้ในวันจัดส่ง",
-        "ผู้ซื้อบัญชีใหม่ที่ยังไม่มีประวัติชัดเจน"
+        "1-2 missed or rescheduled delivery attempts in the past 6 months",
+        "Occasional unreachable phone status during daytime courier hours",
+        "New buyer profile with insufficient historical completion data"
       ],
       systemAction: [
-        "ส่งข้อความแจ้งเตือนอัตโนมัติก่อนเริ่มรอบจัดส่ง",
-        "ให้กดปุ่มยืนยันความพร้อมรับสินค้าผ่านแอป / SMS",
-        "สามารถเลือกช่วงเวลาจัดส่งที่ตนเองอยู่บ้านได้"
+        "Automated pre-dispatch notification dispatched before delivery run",
+        "In-app / SMS prompt to confirm recipient availability",
+        "Encouraged to select preferred delivery time slot"
       ],
       checkoutExperience: {
         badgeText: "Delivery Reminder Enabled",
         warningTitle: "Availability Check Notification",
-        warningDesc: "ก่อนพนักงานขนส่งเริ่มออกเดินทาง ผู้ซื้อจะได้รับการแจ้งเตือนยืนยันเวลารับพัสดุผ่านแอป Shopee",
-        paymentOptions: "เปิด COD พร้อมลิงก์เลือกเวลารับพัสดุ",
+        warningDesc: "Prior to courier departure, you will receive a push notification to confirm readiness and exact delivery address.",
+        paymentOptions: "COD enabled with preferred delivery time slot selection",
         frictionLevel: "Gentle Nudge"
       }
     },
     {
       id: "high",
       name: "High-Risk Buyers",
-      nameTh: "ผู้ซื้อความเสี่ยงสูง",
+      subtitle: "Elevated Risk / Frequent Refusal",
       badge: "Score 30 - 49",
       borderColor: "border-[#ee4d2d]/40",
       textColor: "text-[#ff6f52]",
       badgeColor: "bg-[#ee4d2d]/10 text-[#ff6f52] border-[#ee4d2d]/25",
       icon: <AlertTriangle className="w-5 h-5 text-[#ff6f52]" />,
       characteristics: [
-        "พัสดุตีกลับหรือปฏิเสธรับสินค้าหน้าบ้านบ่อยครั้ง",
-        "กดยกเลิกออเดอร์ระหว่างคนขับกำลังไปส่ง",
-        "พฤติกรรมสั่งของตามอารมณ์แล้วไม่ยอมจ่ายเงิน"
+        "Multiple repeated parcel refusals without legitimate cause",
+        "Order cancellations initiated while courier is actively out for delivery",
+        "Impulsive order placement patterns without sufficient cash on hand"
       ],
       systemAction: [
-        "แสดงแบนเนอร์แจ้งเตือนเข้มงวดในหน้าสั่งซื้อ",
-        "บังคับกดยืนยันการสั่งซื้อ (Mandatory Confirmation)",
-        "แจ้งเตือนว่าหากปฏิเสธซ้ำจะถูกระงับสิทธิ์ COD"
+        "High-visibility warning banner rendered on checkout screen",
+        "Mandatory OTP confirmation required prior to dispatch",
+        "Explicit warning that continued refusal will trigger COD suspension"
       ],
       checkoutExperience: {
         badgeText: "Action Required Before Dispatch",
-        warningTitle: "Mandatory Confirmation Modal",
-        warningDesc: "ต้องยืนยันว่าจะชำระเงินสดปลายทางจำนวนเต็ม หากปฏิเสธการรับสินค้า บัญชีอาจถูกระงับสิทธิ์ COD",
-        paymentOptions: "COD ต้องกดยืนยันผ่าน OTP ภายใน 2 ชั่วโมง",
+        warningTitle: "Mandatory OTP Confirmation Modal",
+        warningDesc: "You must authenticate an SMS OTP verifying intent to accept delivery and prepare exact cash. Refusal will suspend COD privileges.",
+        paymentOptions: "COD locked until OTP confirmed within 2 hours",
         frictionLevel: "Active Confirmation"
       }
     },
     {
       id: "repeated",
       name: "Repeated High-Risk",
-      nameTh: "ผู้ซื้อความเสี่ยงสูงซ้ำซ้อน",
+      subtitle: "Chronic Repeated High Risk",
       badge: "Score < 30",
       borderColor: "border-rose-500/30",
       textColor: "text-rose-400",
       badgeColor: "bg-rose-500/10 text-rose-400 border-rose-500/20",
       icon: <Lock className="w-5 h-5 text-rose-400" />,
       characteristics: [
-        "มีประวัติพัสดุตีกลับซ้ำซากต่อเนื่อง 3 ครั้งขึ้นไป",
-        "สร้างภาระต้นทุนขนส่งตีกลับ (RTO) สูง",
-        "มีสัญญาณของบัญชีแกล้งสั่งหรือที่อยู่ปลอม"
+        "3+ consecutive returned-to-origin (RTO) parcel failures",
+        "Disproportionate reverse logistics cost burden imposed on sellers",
+        "Behavioral indicators of fake addresses or prank orders"
       ],
       systemAction: [
-        "เรียกเก็บเงินมัดจำค่าจัดส่งล่วงหน้า (฿40)",
-        "ส่งเสริมให้เปลี่ยนไปชำระผ่าน ShopeePay / QR PromptPay",
-        "ระงับ COD ชั่วคราว จนกว่าจะสร้างประวัติรับของสำเร็จใหม่"
+        "Mandatory upfront shipping deposit requirement (฿40)",
+        "Strong nudge towards prepaid digital payments (ShopeePay / PromptPay)",
+        "Temporary COD freeze until reliability history is restored"
       ],
       checkoutExperience: {
         badgeText: "COD Protection Policy Applied",
-        warningTitle: "Deposit / Prepaid Conversion",
-        warningDesc: "เพื่อยืนยันออเดอร์ COD นี้ กรุณาชำระมัดจำค่าส่ง ฿40 หรือเปลี่ยนไปจ่ายด้วย ShopeePay เพื่อรับส่วนลด ฿20",
-        paymentOptions: "จำเป็นต้องวางมัดจำหรือจ่ายล่วงหน้าเต็มจำนวน",
+        warningTitle: "Upfront Deposit / Prepaid Conversion",
+        warningDesc: "To confirm this COD shipment, please deposit ฿40 shipping coverage or switch to ShopeePay for an instant ฿20 discount.",
+        paymentOptions: "Requires ฿40 deposit or 100% upfront digital payment",
         frictionLevel: "Deposit Required"
       }
     }
@@ -166,7 +166,7 @@ export default function TargetingPage() {
               Who Should Shopee <span className="font-semibold text-[#ee4d2d]">Target?</span>
             </h1>
             <p className="mt-4 text-base sm:text-lg text-slate-300 font-light leading-relaxed">
-              Instead of treating every COD buyer the same, segment buyers by delivery reliability. การแบน COD ทั่วทั้งระบบจะส่งผลเสียต่อยอดขายรวม (GMV) กลยุทธ์ที่ถูกต้องคือการคัดกรองเฉพาะกลุ่มเสี่ยง
+              Instead of treating every COD buyer the same, segment buyers by delivery reliability. Blanket bans on COD severely damage gross merchandise value (GMV). The optimal strategic solution targets only high-risk profiles.
             </p>
           </div>
 
@@ -198,13 +198,13 @@ export default function TargetingPage() {
                       {tier.name}
                     </h2>
                     <div className="text-[11px] text-slate-400 mb-4">
-                      {tier.nameTh}
+                      {tier.subtitle}
                     </div>
 
                     <div className="space-y-3 pt-3 border-t border-slate-800/80 text-xs">
                       <div>
                         <span className="text-[11px] text-slate-400 block mb-1 font-mono uppercase">
-                          ลักษณะผู้ซื้อ:
+                          Buyer Characteristics:
                         </span>
                         <ul className="space-y-1 text-slate-300 text-[11px] font-light">
                           {tier.characteristics.map((c, i) => (
@@ -218,7 +218,7 @@ export default function TargetingPage() {
 
                       <div className="pt-2">
                         <span className="text-[11px] text-slate-400 block mb-1 font-mono uppercase">
-                          มาตรการ Shopee:
+                          Shopee Policy:
                         </span>
                         <ul className="space-y-1 text-[11px] font-light">
                           {tier.systemAction.map((a, i) => (
@@ -251,7 +251,7 @@ export default function TargetingPage() {
                   Live UI Simulator
                 </span>
                 <h2 className="text-lg font-medium text-white mt-0.5">
-                  จำลองหน้าจอ Shopee Checkout สำหรับ: <span className={currentTier.textColor}>{currentTier.name}</span>
+                  Simulating Shopee Checkout for: <span className={currentTier.textColor}>{currentTier.name}</span>
                 </h2>
               </div>
               <div className="flex gap-1.5 text-xs">
@@ -303,7 +303,7 @@ export default function TargetingPage() {
                     <span className="px-1.5 py-0.5 rounded bg-[#ee4d2d]/20 text-[#ff6f52] font-mono font-bold text-[10px]">
                       COD
                     </span>
-                    <span className="text-white text-[11px]">ชำระเงินปลายทาง (Cash on Delivery)</span>
+                    <span className="text-white text-[11px]">Cash on Delivery (COD)</span>
                   </div>
                   <span className="text-[10px] text-slate-400 font-mono">
                     {currentTier.checkoutExperience.frictionLevel}
@@ -315,17 +315,17 @@ export default function TargetingPage() {
               <div className="p-5 rounded-xl bg-slate-950/40 border border-slate-800 flex flex-col justify-between text-xs">
                 <div>
                   <span className="text-slate-400 font-mono text-[10px] uppercase block mb-1">
-                    เหตุผลเชิงกลยุทธ์
+                    Strategic Rationale
                   </span>
                   <h3 className="font-medium text-white mb-2">
-                    รักษาผู้ซื้อที่ดี คัดกรองเฉพาะกลุ่มเสี่ยง
+                    Protect Reliable Buyers, Screen Out Toxic Risks
                   </h3>
                   <p className="text-slate-300 font-light text-[11px] leading-relaxed">
-                    การกำหนดมาตรการตามคะแนนประวัติรับสินค้า ช่วยให้ลูกค้ากว่า 90% ไม่รู้สึกถูกรบกวน ในขณะที่ผู้ซื้อที่ตีกลับซ้ำซากจะถูกควบคุมอย่างเป็นขั้นตอน
+                    Segmenting policy enforcement according to verified delivery history ensures that over 90% of customers experience completely frictionless shopping, while chronic abusers are systematically controlled.
                   </p>
                 </div>
                 <div className="pt-3 border-t border-slate-800/80 text-[10px] text-slate-400">
-                  หลักการสำคัญ: <span className="text-emerald-400 font-medium">ไม่มีอุปสรรคกับลูกค้าที่ดี</span>
+                  Core Principle: <span className="text-emerald-400 font-medium">Zero friction for trustworthy shoppers</span>
                 </div>
               </div>
             </div>

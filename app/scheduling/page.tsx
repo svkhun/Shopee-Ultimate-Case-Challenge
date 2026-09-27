@@ -23,29 +23,29 @@ export default function SchedulingPage() {
     {
       id: "morning",
       time: "09:00 - 12:00",
-      label: "Morning Window (ช่วงเช้า)",
-      subtext: "เหมาะสำหรับจัดส่งที่บ้านหรือวันหยุด",
+      label: "Morning Window",
+      subtext: "Ideal for residential addresses and morning availability",
       badge: "Standard",
     },
     {
       id: "afternoon",
       time: "13:00 - 17:00",
-      label: "Afternoon Window (ช่วงบ่าย)",
-      subtext: "เหมาะสำหรับที่อยู่ออฟฟิศและที่ทำงาน",
+      label: "Afternoon Window",
+      subtext: "Optimal for workplace, office, and business hours",
       badge: "Popular",
     },
     {
       id: "evening",
       time: "17:00 - 20:00",
-      label: "Evening Window (ช่วงค่ำ)",
-      subtext: "เวลาหลังเลิกงาน อัตราจัดส่งสำเร็จสูงสุด",
+      label: "Evening Window",
+      subtext: "After-work arrival; yields highest completion rate",
       badge: "Recommended",
     },
     {
       id: "weekend",
       time: "Saturday 10:00 - 16:00",
-      label: "Weekend Preferred (วันหยุดสุดสัปดาห์)",
-      subtext: "เลือกส่งเฉพาะวันเสาร์หรือวันอาทิตย์",
+      label: "Weekend Preferred",
+      subtext: "Dedicated fulfillment on non-working days",
       badge: "Flexible",
     },
   ];
@@ -66,7 +66,7 @@ export default function SchedulingPage() {
               Delivery Scheduling <span className="font-semibold text-[#ee4d2d]">Optimization</span>
             </h1>
             <p className="mt-4 text-base sm:text-lg text-slate-300 font-light leading-relaxed">
-              สาเหตุสำคัญที่พัสดุ COD ส่งไม่สำเร็จคือผู้ซื้อไม่อยู่บ้านหรือไม่ได้เตรียมเงินสดไว้ การเปิดให้ผู้ซื้อเลือกช่วงเวลาที่สะดวกและส่งแจ้งเตือนล่วงหน้าจะช่วยแก้ปัญหาที่ต้นตอ
+              A primary root cause of failed COD deliveries is buyers being away from home or lacking cash on hand. Allowing buyers to select preferred delivery windows alongside proactive pre-dispatch SMS alerts directly solves this bottleneck.
             </p>
           </div>
 
@@ -81,7 +81,7 @@ export default function SchedulingPage() {
                 Buyer Selects Window
               </h2>
               <p className="text-xs text-slate-300 font-light leading-relaxed">
-                ผู้ซื้อเลือกช่วงเวลาที่ตนเองหรือคนในบ้านสะดวกรับสายและจ่ายเงินสดที่หน้า Checkout
+                Buyers choose a convenient delivery window at checkout when they or family members are available with cash.
               </p>
             </div>
 
@@ -91,10 +91,10 @@ export default function SchedulingPage() {
               </div>
               <span className="text-[10px] font-mono text-blue-400 uppercase block mb-1">Step 2</span>
               <h2 className="text-sm font-semibold text-white mb-1.5">
-                Courier Schedules
+                Courier Route Scheduling
               </h2>
               <p className="text-xs text-slate-300 font-light leading-relaxed">
-                ระบบขนส่งจัดเส้นทางและจัดกลุ่มพัสดุตามโซนและช่วงเวลา เพื่อเพิ่มความคุ้มค่ารอบวิ่ง
+                Logistics systems cluster parcels by delivery window and zone, optimizing vehicle routing density.
               </p>
             </div>
 
@@ -104,10 +104,10 @@ export default function SchedulingPage() {
               </div>
               <span className="text-[10px] font-mono text-amber-400 uppercase block mb-1">Step 3</span>
               <h2 className="text-sm font-semibold text-white mb-1.5">
-                Reminder Sent Before
+                Proactive Pre-Dispatch Alert
               </h2>
               <p className="text-xs text-slate-300 font-light leading-relaxed">
-                ส่งการแจ้งเตือนล่วงหน้า 2-3 ชั่วโมง ระบุชื่อคนขับและยอดเงินสดที่ต้องเตรียมพร้อม
+                Automated SMS alerts are sent 2-3 hours in advance, detailing driver info and exact cash needed.
               </p>
             </div>
 
@@ -117,10 +117,10 @@ export default function SchedulingPage() {
               </div>
               <span className="text-[10px] font-mono text-emerald-400 uppercase block mb-1">Step 4</span>
               <h2 className="text-sm font-semibold text-white mb-1.5">
-                Higher Success Rate
+                First-Attempt Success
               </h2>
               <p className="text-xs text-slate-300 font-light leading-relaxed">
-                ส่งของและรับเงินได้ทันทีในครั้งแรก ลดการไปส่งซ้ำและลดอัตราพัสดุตีกลับได้อย่างชัดเจน
+                Cash collection succeeds on the first attempt, dramatically cutting re-delivery costs and returns.
               </p>
             </div>
           </div>
@@ -132,10 +132,10 @@ export default function SchedulingPage() {
                 Interactive Checkout Feature
               </span>
               <h2 className="text-lg font-medium text-white mt-1">
-                ทดลองเลือกช่วงเวลาจัดส่ง (Shopee Preferred Delivery Window)
+                Shopee Preferred Delivery Window Simulator
               </h2>
               <p className="text-xs text-slate-400 mt-1">
-                คลิกเลือกช่วงเวลาที่คุณสะดวกรับพัสดุเพื่อดูการจำลองการจัดส่ง
+                Select your preferred delivery window to preview how Shopee Xpress schedules fulfillment.
               </p>
             </div>
 
@@ -184,10 +184,10 @@ export default function SchedulingPage() {
                   </div>
                   <div>
                     <span className="font-semibold text-white block">
-                      ยืนยันช่วงเวลาจัดส่ง: {deliverySlots.find((s) => s.id === selectedSlot)?.time}
+                      Confirmed Window: {deliverySlots.find((s) => s.id === selectedSlot)?.time}
                     </span>
                     <span className="text-slate-400 text-[11px]">
-                      พนักงาน Shopee Xpress จะนำส่งตามเวลานี้ พร้อมส่ง SMS ยืนยันยอดเงินสด ฿389 ล่วงหน้า 2 ชม.
+                      Shopee Xpress will deliver during this window. An SMS confirming the cash collection of ฿389 will be sent 2 hours prior.
                     </span>
                   </div>
                 </div>
@@ -208,7 +208,7 @@ export default function SchedulingPage() {
                 </div>
                 <div>
                   <h3 className="text-base font-semibold text-white">Benefits For Buyers</h3>
-                  <span className="text-[11px] text-slate-400">ประโยชน์สำหรับผู้ซื้อ</span>
+                  <span className="text-[11px] text-slate-400">Empowering recipient convenience</span>
                 </div>
               </div>
               <ul className="space-y-3 text-xs text-slate-300 font-light leading-relaxed">
@@ -216,21 +216,21 @@ export default function SchedulingPage() {
                   <CheckCircle2 className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
                   <div>
                     <strong className="text-white font-medium block">Greater delivery convenience</strong>
-                    เลือกเวลารับพัสดุตามชีวิตประจำวัน ไม่ต้องกังวลว่าคนขับจะมาตอนไม่อยู่
+                    Schedule deliveries around daily routines without worrying about couriers arriving while away.
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
                   <div>
                     <strong className="text-white font-medium block">Fewer missed deliveries</strong>
-                    ลดปัญหาการโทรหาไม่ติด หรือพลาดการส่งจนต้องรอรอบวันถัดไป
+                    Eliminate unreachable phone scenarios and inconvenient multi-day delivery postponements.
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
                   <div>
                     <strong className="text-white font-medium block">More control over delivery timing</strong>
-                    ทราบเวลาและเตรียมเงินสดล่วงหน้าได้อย่างสบายใจ
+                    Accurate arrival transparency gives buyers peace of mind to prepare exact cash in advance.
                   </div>
                 </li>
               </ul>
@@ -244,7 +244,7 @@ export default function SchedulingPage() {
                 </div>
                 <div>
                   <h3 className="text-base font-semibold text-white">Benefits For Shopee &amp; Sellers</h3>
-                  <span className="text-[11px] text-slate-400">ประโยชน์สำหรับ Shopee และผู้ขาย</span>
+                  <span className="text-[11px] text-slate-400">Operational &amp; financial advantages</span>
                 </div>
               </div>
               <ul className="space-y-3 text-xs text-slate-300 font-light leading-relaxed">
@@ -252,21 +252,21 @@ export default function SchedulingPage() {
                   <CheckCircle2 className="w-4 h-4 text-[#ff6f52] mt-0.5 shrink-0" />
                   <div>
                     <strong className="text-white font-medium block">Higher first-attempt delivery success</strong>
-                    คนขับส่งของถึงมือลูกค้าสำเร็จตั้งแต่รอบแรก ไม่ต้องวิ่งวนซ้ำ
+                    Couriers fulfill parcels on the first run, optimizing fleet mileage and delivery capacity.
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#ff6f52] mt-0.5 shrink-0" />
                   <div>
                     <strong className="text-white font-medium block">Lower re-delivery and return costs</strong>
-                    ลดต้นทุน Reverse Logistics และสินค้าไม่ค้างคลังผู้ขายนานเกินไป
+                    Drastically curtails reverse logistics overhead and prevents seller inventory lockup.
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#ff6f52] mt-0.5 shrink-0" />
                   <div>
                     <strong className="text-white font-medium block">Increased customer satisfaction</strong>
-                    สร้างความประทับใจ เพิ่มโอกาสการกลับมาซื้อซ้ำในแพลตฟอร์ม
+                    Strengthens buyer loyalty, encouraging repeated platform purchases and higher lifetime value.
                   </div>
                 </li>
               </ul>

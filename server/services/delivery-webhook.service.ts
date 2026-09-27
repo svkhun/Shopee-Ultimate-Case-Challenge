@@ -30,7 +30,7 @@ export class DeliveryWebhookService {
     // 1. Fetch Order by Reference
     const order = await db.findOrderByIdOrNumber(payload.orderNumber);
     if (!order) {
-      throw new Error(`ไม่พบคำสั่งซื้อหมายเลข ${payload.orderNumber}`);
+      throw new Error(`Order with reference ${payload.orderNumber} not found`);
     }
 
     // 2. Idempotency Check: Prevent duplicate status processing
@@ -41,14 +41,14 @@ export class DeliveryWebhookService {
         previousStatus: order.status,
         newStatus: order.status,
         scoreAdjustment: null,
-        notes: "Webhook idempotent: ออเดอร์นี้ได้รับสถานะสิ้นสุดแล้ว ระบบข้ามการปรับคะแนนซ้ำ",
+        notes: "Webhook idempotent: Order already in terminal status. Skipped duplicate score adjustment.",
       };
     }
 
     // 3. Fetch Buyer
     const buyer = await db.findBuyerByIdOrExternal(order.buyerId);
     if (!buyer) {
-      throw new Error(`ไม่พบข้อมูลผู้ซื้อของออเดอร์ ${order.orderNumber}`);
+      throw new Error(`Buyer profile for order ${order.orderNumber} not found`);
     }
 
     const previousStatus = order.status;
@@ -90,11 +90,11 @@ export class DeliveryWebhookService {
         scoreDelta: delta,
         previousTier,
         newTier: updatedTier,
-        reason: `จัดส่งพัสดุสำเร็จและชำระเงินเรียบร้อย (Courier: ${payload.courierCode}, Tracking: ${payload.trackingNumber})`,
+        reason: `Delivered and collected payment successfully (Courier: ${payload.courierCode}, Tracking: ${payload.trackingNumber})`,
         metadata: { courier: payload.courierCode, tracking: payload.trackingNumber },
       });
 
-      notes = `จัดส่งสำเร็จ: คะแนนผู้ซื้อเพิ่มขึ้น +${delta} คะแนน (${previousScore} -> ${updatedScore})`;
+      notes = `Delivered successfully: Buyer score increased by +${delta} points (${previousScore} -> ${updatedScore})`;
     } else if (payload.deliveryStatus === "RETURNED_TO_ORIGIN") {
       newStatus = OrderStatus.RETURNED_TO_ORIGIN;
       const evaluation = evaluateScoreAdjustment(previousScore, "RETURNED_TO_ORIGIN");
@@ -121,7 +121,7 @@ export class DeliveryWebhookService {
         scoreDelta: delta,
         previousTier,
         newTier: updatedTier,
-        reason: `พัสดุตีกลับ/ปฏิเสธรับสินค้า (Reason: ${payload.failureReasonCode || "UNKNOWN"}, Courier: ${payload.courierCode})`,
+        reason: `Returned to origin / Package refused (Reason: ${payload.failureReasonCode || "UNKNOWN"}, Courier: ${payload.courierCode})`,
         metadata: {
           courier: payload.courierCode,
           tracking: payload.trackingNumber,
@@ -129,10 +129,10 @@ export class DeliveryWebhookService {
         },
       });
 
-      notes = `พัสดุตีกลับ: คะแนนผู้ซื้อลดลง ${delta} คะแนน (${previousScore} -> ${updatedScore}), สะสมล้มเหลว ${buyer.consecutiveFailedCodCount} ครั้ง`;
+      notes = `Returned to origin: Buyer score deducted by ${delta} points (${previousScore} -> ${updatedScore}), total streak ${buyer.consecutiveFailedCodCount} failures`;
     } else if (payload.deliveryStatus === "FAILED_ATTEMPT") {
       // First attempt failed (e.g. buyer not at home), no score penalty yet
-      notes = `พยายามจัดส่งครั้งแรกไม่สำเร็จ (เหตุผล: ${payload.failureReasonCode || "ไม่อยู่บ้าน"}), ยังไม่หักคะแนน ระบบส่งแจ้งเตือนนัดหมายใหม่`;
+      notes = `First delivery attempt failed (Reason: ${payload.failureReasonCode || "Customer not at home"}); no penalty applied, rescheduling alert sent`;
     }
 
     // 5. Update Order

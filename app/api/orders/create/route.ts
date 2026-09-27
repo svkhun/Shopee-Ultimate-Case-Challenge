@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
           success: false,
           error: {
             code: "VALIDATION_ERROR",
-            message: "ข้อมูลคำสั่งซื้อไม่ถูกต้อง",
+            message: "Invalid order creation request payload",
             details: error.issues,
           },
         },

@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
           success: false,
           error: {
             code: "WEBHOOK_VALIDATION_ERROR",
-            message: "ข้อมูล Webhook ไม่ถูกต้อง",
+            message: "Invalid webhook payload schema",
             details: error.issues,
           },
         },

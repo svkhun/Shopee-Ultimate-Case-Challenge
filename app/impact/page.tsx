@@ -32,7 +32,7 @@ export default function ImpactPage() {
               Expected Impact &amp; <span className="font-semibold text-[#ee4d2d]">Feasibility</span>
             </h1>
             <p className="mt-4 text-base sm:text-lg text-slate-300 font-light leading-relaxed">
-              กรอบการทำงานที่ออกแบบมาเพื่อลดความสูญเสียจากพัสดุตีกลับอย่างมีนัยสำคัญ ควบคู่กับการปกป้องยอดขายรวม (GMV) และประสบการณ์ของลูกค้าประจำ
+              A strategic system architecture engineered to radically curtail reverse logistics losses while preserving platform GMV and safeguarding trustworthy buyer experience.
             </p>
           </div>
 
@@ -47,7 +47,7 @@ export default function ImpactPage() {
                   </div>
                   <div>
                     <h2 className="text-base font-semibold text-white">Why Our Solution Works</h2>
-                    <span className="text-[11px] text-slate-400">3 เสาหลักทางสถาปัตยกรรมระบบ</span>
+                    <span className="text-[11px] text-slate-400">Three core architectural principles</span>
                   </div>
                 </div>
 
@@ -58,10 +58,10 @@ export default function ImpactPage() {
                       <h3 className="font-semibold text-white">Targeted</h3>
                     </div>
                     <p className="text-slate-300 font-light leading-relaxed">
-                      เข้าแทรกแซงเฉพาะเมื่อมีความเสี่ยงสูงเท่านั้น
+                      Intervenes only when delivery failure risk is objectively elevated.
                     </p>
                     <p className="text-emerald-400 text-[11px] font-medium mt-1">
-                      → ลูกค้าชั้นดีกว่า 90% ยังได้รับประสบการณ์ที่สะดวก ไร้อุปสรรค 100%
+                      → Over 90% of buyers enjoy an uninterrupted, 100% frictionless checkout flow.
                     </p>
                   </div>
 
@@ -71,10 +71,10 @@ export default function ImpactPage() {
                       <h3 className="font-semibold text-white">Progressive</h3>
                     </div>
                     <p className="text-slate-300 font-light leading-relaxed">
-                      มาตรการเป็นขั้นบันได: แจ้งเตือน → บังคับยืนยัน → วางมัดจำ
+                      Stepwise escalation: Reminder → Mandatory OTP → Upfront Deposit.
                     </p>
                     <p className="text-amber-300 text-[11px] font-medium mt-1">
-                      → เพิ่มความรับผิดชอบอย่างค่อยเป็นค่อยไป โดยไม่ต้องแบน COD
+                      → Enforces accountability gradually without blanket COD bans.
                     </p>
                   </div>
 
@@ -84,10 +84,10 @@ export default function ImpactPage() {
                       <h3 className="font-semibold text-white">Recoverable</h3>
                     </div>
                     <p className="text-slate-300 font-light leading-relaxed">
-                      ประวัติการรับสินค้าสำเร็จจะช่วยกู้คืนคะแนนได้อย่างรวดเร็ว
+                      Successful delivery completions rapidly rehabilitate customer scores.
                     </p>
                     <p className="text-blue-300 text-[11px] font-medium mt-1">
-                      → การจำกัดสิทธิ์เป็นเพียงชั่วคราว เปิดโอกาสให้ผู้ซื้อปรับพฤติกรรม
+                      → Friction is strictly temporary, incentivizing positive long-term buyer habits.
                     </p>
                   </div>
                 </div>
@@ -103,7 +103,7 @@ export default function ImpactPage() {
                   </div>
                   <div>
                     <h2 className="text-base font-semibold text-white">Why It Is Feasible</h2>
-                    <span className="text-[11px] text-slate-400">ความเป็นไปได้และสามารถเริ่มใช้งานได้ทันที</span>
+                    <span className="text-[11px] text-slate-400">Zero-friction technical rollout feasibility</span>
                   </div>
                 </div>
 
@@ -113,9 +113,9 @@ export default function ImpactPage() {
                       <Database className="w-4 h-4" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-white">ใช้ฐานข้อมูลที่มีอยู่แล้ว</h3>
+                      <h3 className="font-semibold text-white">Leverages Existing Platform Data</h3>
                       <p className="text-slate-300 font-light text-[11px] mt-1 leading-relaxed">
-                        ไม่ต้องสร้างระบบเก็บข้อมูลใหม่ Shopee บันทึกสถานะการจัดส่งสำเร็จ/ตีกลับในประวัติคำสั่งซื้ออยู่แล้ว
+                        Requires no separate data pipeline. Shopee already records delivery completion and return-to-origin statuses on every order.
                       </p>
                     </div>
                   </div>
@@ -125,9 +125,9 @@ export default function ImpactPage() {
                       <SlidersHorizontal className="w-4 h-4" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-white">ใช้กฎเกณฑ์ที่ชัดเจน ตรวจสอบได้</h3>
+                      <h3 className="font-semibold text-white">Rule-Based, Auditable &amp; Predictable</h3>
                       <p className="text-slate-300 font-light text-[11px] mt-1 leading-relaxed">
-                        เกณฑ์คะแนน (80, 50, 30) มีความโปร่งใส คาดเดาได้ และง่ายต่อการทดสอบ A/B Testing ในแต่ละประเทศ
+                        Thresholds (80, 50, 30) are transparent, deterministic, and readily adaptable for regional market A/B testing.
                       </p>
                     </div>
                   </div>
@@ -137,9 +137,9 @@ export default function ImpactPage() {
                       <BrainCircuit className="w-4 h-4" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-white">ใช้ AI เฉพาะจุดที่คุ้มค่าจริง</h3>
+                      <h3 className="font-semibold text-white">Focused AI Where ROI Is Proven</h3>
                       <p className="text-slate-300 font-light text-[11px] mt-1 leading-relaxed">
-                        นำ AI มาใช้สกัดขบวนการสแปมที่อยู่ปลอมและการจัดเส้นทางขนส่ง ไม่ได้ใช้ประเมินสินเชื่อแบบสุ่มเสี่ยง
+                        Applies machine learning specifically to fraudulent address pattern detection and delivery routing, avoiding high-risk blackbox credit scoring.
                       </p>
                     </div>
                   </div>
@@ -155,7 +155,7 @@ export default function ImpactPage() {
                 Measurable Outcomes
               </span>
               <h2 className="text-lg font-medium text-white mt-1">
-                ตัวชี้วัดความสำเร็จ (KPIs) และแนวทางคุ้มครองผู้ซื้อ (Guardrails)
+                Measurable Outcomes (KPIs) &amp; Platform Guardrails
               </h2>
             </div>
 
@@ -173,7 +173,7 @@ export default function ImpactPage() {
                   <div className="p-3 rounded-lg bg-slate-900/60 flex items-center justify-between">
                     <div>
                       <span className="font-medium text-white block">COD Failed Delivery Rate</span>
-                      <span className="text-[10px] text-slate-400">จาก 2.61% ลดลงสู่เป้าหมาย &lt;1.10%</span>
+                      <span className="text-[10px] text-slate-400">Reduced from 2.61% to target &lt;1.10%</span>
                     </div>
                     <span className="text-emerald-400 font-mono font-semibold text-sm">↓ 58%</span>
                   </div>
@@ -181,7 +181,7 @@ export default function ImpactPage() {
                   <div className="p-3 rounded-lg bg-slate-900/60 flex items-center justify-between">
                     <div>
                       <span className="font-medium text-white block">First-Attempt Success Rate</span>
-                      <span className="text-[10px] text-slate-400">ด้วยระบบนัดหมายเวลาจัดส่ง</span>
+                      <span className="text-[10px] text-slate-400">Boosted via delivery window scheduling</span>
                     </div>
                     <span className="text-emerald-400 font-mono font-semibold text-sm">↑ 24%</span>
                   </div>
@@ -189,7 +189,7 @@ export default function ImpactPage() {
                   <div className="p-3 rounded-lg bg-slate-900/60 flex items-center justify-between">
                     <div>
                       <span className="font-medium text-white block">Repeat Failure Rate</span>
-                      <span className="text-[10px] text-slate-400">ลดการตีกลับซ้ำซากด้วยระบบมัดจำ</span>
+                      <span className="text-[10px] text-slate-400">Chronic refusal suppressed via deposit gating</span>
                     </div>
                     <span className="text-emerald-400 font-mono font-semibold text-sm">↓ 72%</span>
                   </div>
@@ -209,7 +209,7 @@ export default function ImpactPage() {
                   <div className="p-3 rounded-lg bg-slate-900/60 flex items-center justify-between">
                     <div>
                       <span className="font-medium text-white block">Conversion Rate</span>
-                      <span className="text-[10px] text-slate-400">ไม่สร้างอุปสรรคกับลูกค้าดี 90%+</span>
+                      <span className="text-[10px] text-slate-400">Zero friction for 90%+ trustworthy buyers</span>
                     </div>
                     <span className="text-blue-400 font-mono font-semibold text-xs bg-blue-500/10 px-2 py-0.5 rounded">
                       Maintained (≥99.4%)
@@ -219,7 +219,7 @@ export default function ImpactPage() {
                   <div className="p-3 rounded-lg bg-slate-900/60 flex items-center justify-between">
                     <div>
                       <span className="font-medium text-white block">Order Volume (GMV)</span>
-                      <span className="text-[10px] text-slate-400">รักษาสภาพคล่องและยอดขายรวม</span>
+                      <span className="text-[10px] text-slate-400">Preserving GMV liquidity with no drop-off</span>
                     </div>
                     <span className="text-blue-400 font-mono font-semibold text-xs bg-blue-500/10 px-2 py-0.5 rounded">
                       Maintained (100%)
@@ -229,7 +229,7 @@ export default function ImpactPage() {
                   <div className="p-3 rounded-lg bg-slate-900/60 flex items-center justify-between">
                     <div>
                       <span className="font-medium text-white block">Buyer Complaint Rate</span>
-                      <span className="text-[10px] text-slate-400">การแจ้งเตือนโปร่งใสและกู้สิทธิ์ได้</span>
+                      <span className="text-[10px] text-slate-400">Transparent alerts &amp; recoverable scoring</span>
                     </div>
                     <span className="text-emerald-400 font-mono font-semibold text-xs bg-emerald-500/10 px-2 py-0.5 rounded">
                       Controlled (&lt;0.05%)

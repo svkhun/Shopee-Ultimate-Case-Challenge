@@ -37,7 +37,7 @@ export class OrderService {
 
     if (!policy.isEligible) {
       throw new Error(
-        `คำสั่งซื้อถูกปฏิเสธ: บัญชีของคุณมีประวัติพัสดุตีกลับซ้ำซาก (${buyer.consecutiveFailedCodCount} ครั้ง) ไม่สามารถใช้ COD ได้ กรุณาเลือกชำระล่วงหน้าผ่าน ShopeePay หรือ PromptPay`
+        `Order rejected: This account exhibits chronic delivery refusal history (${buyer.consecutiveFailedCodCount} consecutive times) and COD is currently suspended. Please select ShopeePay or PromptPay.`
       );
     }
 
@@ -47,7 +47,7 @@ export class OrderService {
 
     if (policy.requiresOtp) {
       if (!request.otpCode || request.otpCode.length !== 6) {
-        throw new Error("คำสั่งซื้อนี้ต้องการรหัสยืนยัน OTP 6 หลัก เพื่อยืนยันการรับพัสดุ COD");
+        throw new Error("This order requires a 6-digit SMS OTP verification code to confirm COD acceptance.");
       }
       isOtpVerified = true;
     }
@@ -81,14 +81,14 @@ export class OrderService {
       buyerTierAtCheckout: buyer.riskTier,
     });
 
-    let message = "คำสั่งซื้อได้รับการยืนยันเรียบร้อยแล้ว";
+    let message = "Order confirmed successfully.";
     let nextAction = null;
 
     if (policy.requiresDeposit && !depositPaid) {
-      message = `กรุณาชำระมัดจำค่าจัดส่ง ฿${policy.depositAmount} เพื่อให้ผู้ขายจัดส่งพัสดุ`;
+      message = `Please pay the shipping deposit of ฿${policy.depositAmount} to dispatch this order.`;
       nextAction = "PROCEED_TO_DEPOSIT_GATEWAY";
     } else if (request.paymentMethod === PaymentMethod.COD) {
-      message = `คำสั่งซื้อ COD ได้รับการยืนยัน พร้อมจัดส่งตามช่วงเวลา: ${request.preferredDeliveryWindow}`;
+      message = `COD order confirmed and scheduled for delivery during: ${request.preferredDeliveryWindow}`;
       nextAction = "AWAIT_COURIER_SCHEDULE";
     }
 

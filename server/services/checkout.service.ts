@@ -56,25 +56,25 @@ export class CheckoutService {
       {
         slot: PreferredDeliveryWindow.MORNING,
         time: "09:00 - 12:00",
-        label: "ช่วงเช้า (Morning)",
+        label: "Morning Window (09:00 - 12:00)",
         isRecommended: false,
       },
       {
         slot: PreferredDeliveryWindow.AFTERNOON,
         time: "13:00 - 17:00",
-        label: "ช่วงบ่าย (Afternoon)",
+        label: "Afternoon Window (13:00 - 17:00)",
         isRecommended: false,
       },
       {
         slot: PreferredDeliveryWindow.EVENING,
         time: "17:00 - 20:00",
-        label: "ช่วงค่ำ (Evening - เลิกงาน)",
+        label: "Evening Window (17:00 - 20:00 - Highest Success Rate)",
         isRecommended: true, // highest first-attempt rate
       },
       {
         slot: PreferredDeliveryWindow.WEEKEND,
-        time: "เสาร์-อาทิตย์ (10:00 - 16:00)",
-        label: "วันหยุดสุดสัปดาห์ (Weekend)",
+        time: "Saturday - Sunday (10:00 - 16:00)",
+        label: "Weekend Preferred (Flexible)",
         isRecommended: false,
       },
     ];

@@ -5,6 +5,7 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -15,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Shopee Ultimate Case Challenge | Smart COD Reliability System",
   description:
-    "Strategy & system design for solving the Cash on Delivery (COD) failed delivery challenge through dynamic reliability scoring and delivery window optimization.",
+    "Executive strategy & system architecture for solving the Cash on Delivery (COD) failed delivery challenge through dynamic reliability scoring and delivery window optimization.",
 };
 
 export default function RootLayout({
@@ -25,10 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="th"
+      lang="en"
       className={`${geistSans.variable} ${geistMono.variable} dark`}
     >
-      <body className="min-h-screen bg-[#090d16] text-slate-100 antialiased selection:bg-[#ee4d2d] selection:text-white">
+      <body className="min-h-screen bg-[#090d16] text-slate-100 font-sans antialiased selection:bg-[#ee4d2d] selection:text-white">
         {children}
       </body>
     </html>

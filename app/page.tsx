@@ -22,8 +22,8 @@ export default function Home() {
     {
       num: 1,
       title: "Where The Problem Really Is",
-      titleTh: "ต้นตอที่แท้จริงของปัญหาพัสดุตีกลับ",
-      desc: "COD มีอัตราจัดส่งไม่สำเร็จสูงกว่าพรีเพดถึง 10.6 เท่า และเป็นต้นเหตุของพัสดุตีกลับกว่า 85% ทั่วทั้งแพลตฟอร์ม",
+      subtitle: "Root Cause & Concentration Analysis",
+      desc: "COD exhibits a 10.6× higher failed delivery rate than prepaid methods and accounts for over 85% of all return parcel volume platform-wide.",
       href: "/problem",
       tag: "Slide 1 • Problem Analysis",
       stat: "10.6x Risk",
@@ -33,8 +33,8 @@ export default function Home() {
     {
       num: 2,
       title: "Who Should Shopee Target?",
-      titleTh: "การแบ่งกลุ่มผู้ซื้อตามความน่าเชื่อถือ",
-      desc: "แทนที่จะแบน COD ทั้งหมด ให้แยกผู้ซื้อเป็น 4 ระดับความเสี่ยงเพื่อคงประสบการณ์ที่ดีสำหรับลูกค้า 90%+",
+      subtitle: "Dynamic Reliability Segmentation",
+      desc: "Instead of indiscriminately restricting COD, segment buyers into 4 distinct risk tiers to preserve zero-friction checkout for 90%+ of buyers.",
       href: "/targeting",
       tag: "Slide 2 • Buyer Segmentation",
       stat: "4 Risk Tiers",
@@ -44,8 +44,8 @@ export default function Home() {
     {
       num: 3,
       title: "Smart COD Reliability System",
-      titleTh: "ระบบคะแนนความน่าเชื่อถือแบบไดนามิก",
-      desc: "อัปเดต Reliability Score หลังส่งทุกครั้ง (+8 สำเร็จ, -25 ไม่สำเร็จ) ควบคู่กับระบบ EasySell สกัดสแปม 84%",
+      subtitle: "Dynamic Scoring Engine & Feedback Loop",
+      desc: "Real-time score recalculation post-delivery (+8 delivered, -25 refused/RTO) combined with pre-shipment risk checks blocking 84% of fake orders.",
       href: "/reliability-system",
       tag: "Slide 3 • System Engine",
       stat: "Dynamic Score",
@@ -55,8 +55,8 @@ export default function Home() {
     {
       num: 4,
       title: "Delivery Scheduling Optimization",
-      titleTh: "ระบบนัดหมายช่วงเวลาจัดส่งตามใจผู้ซื้อ",
-      desc: "เปิดให้เลือกช่วงเวลารับของล่วงหน้า (เช้า/บ่าย/เย็น) และแจ้งเตือนก่อนส่ง เพิ่มอัตราสำเร็จในรอบแรก",
+      subtitle: "Preferred Delivery Window Selection",
+      desc: "Empowering buyers to select preferred delivery time slots (Morning, Afternoon, Evening, Weekend) with proactive pre-dispatch SMS notifications.",
       href: "/scheduling",
       tag: "Slide 4 • Window Optimization",
       stat: "+24% 1st Attempt",
@@ -66,8 +66,8 @@ export default function Home() {
     {
       num: 5,
       title: "Expected Impact & Feasibility",
-      titleTh: "ผลลัพธ์และความเป็นไปได้ในการดำเนินงาน",
-      desc: "หลักการ Targeted, Progressive, Recoverable ช่วยลด COD ตีกลับลง 58% โดยไม่สูญเสียยอดขายรวม",
+      subtitle: "Strategic Pillars & Measurable KPIs",
+      desc: "Targeted, Progressive, and Recoverable architecture delivers an estimated 58% reduction in COD failure rate with 100% GMV preserved.",
       href: "/impact",
       tag: "Slide 5 • Impact & KPI",
       stat: "58% Reduction",
@@ -106,7 +106,7 @@ export default function Home() {
                     Smart COD Delivery Optimization &amp; Reliability System
                   </h2>
                   <p className="text-xs sm:text-sm text-slate-300 font-light mt-2 max-w-2xl leading-relaxed">
-                    ยกระดับการจัดการพัสดุเก็บเงินปลายทาง แก้ปัญหาการจัดส่งล้มเหลวที่สูงถึง 10.6 เท่า ด้วยระบบคะแนนความน่าเชื่อถือของผู้ซื้อและการนัดหมายเวลาส่งสินค้า
+                    Elevating Cash on Delivery operations and resolving the 10.6× delivery failure risk through dynamic buyer reliability scoring and delivery window optimization.
                   </p>
                 </div>
 
@@ -115,7 +115,7 @@ export default function Home() {
                     href="/problem"
                     className="px-5 py-2.5 rounded-xl bg-[#ee4d2d] hover:bg-[#ff5722] text-white text-xs sm:text-sm font-semibold shadow-md transition-all flex items-center gap-2"
                   >
-                    <span>เปิดสไลด์ที่ 1</span>
+                    <span>Explore Slide 1</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link
@@ -133,22 +133,22 @@ export default function Home() {
                 <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80">
                   <span className="text-[11px] font-mono text-slate-400 block mb-1">COD Failed Risk</span>
                   <div className="text-2xl sm:text-3xl font-light text-amber-400">10.6×</div>
-                  <span className="text-[10px] text-slate-400 font-light">สูงกว่าพรีเพด (2.61% vs 0.25%)</span>
+                  <span className="text-[10px] text-slate-400 font-light">Higher than prepaid (2.61% vs 0.25%)</span>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80">
                   <span className="text-[11px] font-mono text-slate-400 block mb-1">Total Order Mix</span>
                   <div className="text-2xl sm:text-3xl font-light text-[#ee4d2d]">35%</div>
-                  <span className="text-[10px] text-slate-400 font-light">ของคำสั่งซื้อทั้งหมดเป็น COD</span>
+                  <span className="text-[10px] text-slate-400 font-light">Of total platform orders are COD</span>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80">
                   <span className="text-[11px] font-mono text-slate-400 block mb-1">Failed Delivery Share</span>
                   <div className="text-2xl sm:text-3xl font-light text-rose-400">85%</div>
-                  <span className="text-[10px] text-slate-400 font-light">ของพัสดุตีกลับเกิดจาก COD</span>
+                  <span className="text-[10px] text-slate-400 font-light">Of all return parcels stem from COD</span>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80">
                   <span className="text-[11px] font-mono text-slate-400 block mb-1">Target Reduction</span>
                   <div className="text-2xl sm:text-3xl font-light text-emerald-400">-58%</div>
-                  <span className="text-[10px] text-slate-400 font-light">ลดความเสียหายโดยไม่เสีย GMV</span>
+                  <span className="text-[10px] text-slate-400 font-light">Target reduction with 0% GMV loss</span>
                 </div>
               </div>
             </div>
@@ -161,11 +161,11 @@ export default function Home() {
                     Presentation Directory
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-light text-white tracking-tight mt-1">
-                    เนื้อหาการนำเสนอทั้ง 5 ส่วน (Multi-Page Deck)
+                    Presentation Slides (5-Part Multi-Page Deck)
                   </h2>
                 </div>
                 <p className="text-xs text-slate-400 max-w-xs font-light">
-                  คลิกเพื่อเข้าชมการวิเคราะห์ข้อมูลและแบบจำลองจำลองในแต่ละสไลด์
+                  Explore empirical root-cause analysis, system policies, and interactive simulations across each deck slide.
                 </p>
               </div>
 
@@ -193,7 +193,7 @@ export default function Home() {
                         {s.title}
                       </h3>
                       <div className="text-xs text-slate-400 mb-3 font-normal">
-                        {s.titleTh}
+                        {s.subtitle}
                       </div>
                       <p className="text-xs text-slate-300 font-light leading-relaxed">
                         {s.desc}
@@ -201,7 +201,7 @@ export default function Home() {
                     </div>
 
                     <div className="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-400 group-hover:text-white">
-                      <span>เปิดสไลด์</span>
+                      <span>View Slide</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </Link>
@@ -218,7 +218,7 @@ export default function Home() {
                       Zero Friction for the 90%+
                     </h3>
                     <p className="text-xs text-slate-300 font-light leading-relaxed">
-                      โซลูชันนี้ไม่แบนหรือยกเลิก COD แต่ใช้การคัดกรองแบบเป็นขั้นบันได (Reminder → Warning → Deposit) เพื่อรักษาอัตราการสั่งซื้อของลูกค้าดีไว้ได้ 100%
+                      This framework never bans COD outright. It uses progressive barriers (Reminder → OTP Verification → ฿40 Deposit) to preserve 100% checkout conversion for reliable buyers.
                     </p>
                   </div>
 
@@ -227,7 +227,7 @@ export default function Home() {
                       href="/impact"
                       className="text-xs text-[#ff7a59] hover:underline font-medium flex items-center gap-1"
                     >
-                      <span>ดูรายละเอียดผลลัพธ์ (Impact &amp; KPI)</span>
+                      <span>Explore Projected Impact &amp; KPIs</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>

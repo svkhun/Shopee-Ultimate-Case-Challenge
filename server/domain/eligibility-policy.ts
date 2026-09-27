@@ -89,7 +89,7 @@ export function validateCheckoutEligibility(
         depositAmount: 0.0,
         noticeBanner: {
           title: "Pre-delivery Notification Active",
-          description: "ระบบจะส่งข้อความแจ้งเตือน 2-3 ชั่วโมงก่อนพนักงานขนส่งออกนำจ่าย เพื่อให้ท่านเตรียมเงินสดพร้อมรับสินค้า",
+          description: "An automated reminder will be dispatched 2-3 hours prior to delivery so you can have exact cash ready at your doorstep.",
           level: "INFO",
         },
         incentiveOffer: null,
@@ -107,12 +107,12 @@ export function validateCheckoutEligibility(
         requiresDeposit: false,
         depositAmount: 0.0,
         noticeBanner: {
-          title: "คำสั่งซื้อต้องยืนยันตัวตนด้วยรหัส OTP",
-          description: `พบประวัติพัสดุตีกลับ กรุณายืนยันรหัส OTP เพื่อรับรองการรับพัสดุและเตรียมเงินสด ฿${orderTotal.toLocaleString()} ในวันส่งมอบ หากปฏิเสธการรับสินค้า สิทธิ์ COD จะถูกระงับทันที`,
+          title: "Order Requires Mandatory OTP Authentication",
+          description: `Delivery refusal history detected. Please authenticate via SMS OTP confirming intent to accept delivery and prepare ฿${orderTotal.toLocaleString()} cash. Continued refusal will permanently suspend COD privileges.`,
           level: "WARNING",
         },
         incentiveOffer: {
-          title: "เปลี่ยนมาจ่ายผ่าน ShopeePay ตอนนี้ รับส่วนลดทันที ฿20",
+          title: "Switch to ShopeePay now and save ฿20 instantly",
           voucherDiscount: DEPOSIT_CONFIG.PROMPTPAY_CONVERSION_DISCOUNT_THB,
           recommendedMethod: PaymentMethod.SHOPEEPAY,
         },
@@ -135,12 +135,12 @@ export function validateCheckoutEligibility(
         requiresDeposit: true,
         depositAmount: deposit,
         noticeBanner: {
-          title: "จำเป็นต้องวางมัดจำค่าจัดส่ง (COD Protection Policy)",
-          description: `เนื่องจากมีประวัติพัสดุตีกลับซ้ำซากต่อเนื่อง (${consecutiveFailures} ครั้ง) กรุณาชำระมัดจำค่าส่ง ฿${deposit} ก่อนจัดส่ง หรือเปลี่ยนช่องทางชำระเงินเต็มจำนวน`,
+          title: "Shipping Deposit Required (COD Protection Policy)",
+          description: `Due to chronic repeated delivery failures (${consecutiveFailures} consecutive times), an upfront shipping deposit of ฿${deposit} is required prior to dispatch, or pay in full online.`,
           level: "CRITICAL",
         },
         incentiveOffer: {
-          title: "เปลี่ยนเป็นชำระเงินล่วงหน้า (ShopeePay / PromptPay) ไม่ต้องวางมัดจำ พร้อมรับส่วนลด ฿20",
+          title: "Switch to upfront digital payment (ShopeePay / PromptPay) with zero deposit and get ฿20 off",
           voucherDiscount: DEPOSIT_CONFIG.PROMPTPAY_CONVERSION_DISCOUNT_THB,
           recommendedMethod: PaymentMethod.SHOPEEPAY,
         },

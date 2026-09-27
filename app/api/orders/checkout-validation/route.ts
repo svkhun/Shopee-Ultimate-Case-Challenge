@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
           success: false,
           error: {
             code: "VALIDATION_ERROR",
-            message: "ข้อมูลที่ส่งมาไม่ถูกต้องตามข้อกำหนด",
+            message: "Invalid checkout validation request payload",
             details: error.issues,
           },
         },
