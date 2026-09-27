@@ -2,8 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Navbar from "@/components/Navbar";
+import ImageHero from "@/components/ImageHero";
 import Footer from "@/components/Footer";
 import { 
   ArrowRight, 
@@ -12,7 +12,6 @@ import {
   Cpu, 
   Clock, 
   Award, 
-  Sliders, 
   ShieldCheck
 } from "lucide-react";
 
@@ -80,82 +79,11 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-1">
-        {/* Minimal Hero Section with authentic Shopee Delivery Logistics Imagery */}
-        <section className="relative overflow-hidden border-b border-slate-800/80 py-20 lg:py-28">
-          {/* Subtle background image overlay */}
-          <div className="absolute inset-0 z-0 opacity-20 mix-blend-luminosity">
-            <Image
-              src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1920&auto=format&fit=crop"
-              alt="Shopee Express Logistics Fulfillment Hub"
-              fill
-              className="object-cover object-center"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#090d16] via-[#090d16]/80 to-[#090d16]" />
-          </div>
-
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            {/* Header pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ee4d2d]/10 border border-[#ee4d2d]/25 text-[#ff6f52] text-xs font-semibold uppercase tracking-wider mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ee4d2d]" />
-              Shopee Ultimate Case Challenge (SUCC)
-            </div>
-
-            {/* Title & Slender typography */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white max-w-4xl leading-[1.15]">
-              Smart COD <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#ee4d2d] to-[#ff7a59]">Reliability</span> &amp; Delivery Optimization
-            </h1>
-
-            <p className="mt-6 text-base sm:text-lg text-slate-300 font-light max-w-2xl leading-relaxed">
-              โซลูชันเชิงกลยุทธ์แก้ปัญหาวิกฤตพัสดุเก็บเงินปลายทาง (COD) ตีกลับสูงกว่าปกติ 10.6 เท่า ด้วยระบบจัดกลุ่มความเสี่ยงแบบไดนามิก และระบบนัดหมายเวลาจัดส่ง โดยไม่กระทบยอดขายของแพลตฟอร์ม
-            </p>
-
-            {/* Quick Metrics Bar */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 my-10 pt-4 border-t border-slate-800/80">
-              <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
-                <span className="text-xs text-slate-400 font-normal">ความเสี่ยง COD</span>
-                <div className="text-2xl sm:text-3xl font-semibold text-amber-400 mt-1">10.6×</div>
-                <span className="text-[11px] text-slate-400">สูงกว่าพรีเพด (2.61% vs 0.25%)</span>
-              </div>
-              <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
-                <span className="text-xs text-slate-400 font-normal">สัดส่วนออเดอร์</span>
-                <div className="text-2xl sm:text-3xl font-semibold text-[#ee4d2d] mt-1">35%</div>
-                <span className="text-[11px] text-slate-400">ของธุรกรรมทั้งหมดบน Shopee</span>
-              </div>
-              <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
-                <span className="text-xs text-slate-400 font-normal">สัดส่วนพัสดุตีกลับ</span>
-                <div className="text-2xl sm:text-3xl font-semibold text-rose-400 mt-1">85%</div>
-                <span className="text-[11px] text-slate-400">ของพัสดุที่ส่งไม่สำเร็จมาจาก COD</span>
-              </div>
-              <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
-                <span className="text-xs text-slate-400 font-normal">เป้าหมายลดความสูญเสีย</span>
-                <div className="text-2xl sm:text-3xl font-semibold text-emerald-400 mt-1">-58%</div>
-                <span className="text-[11px] text-slate-400">อัตราจัดส่ง COD ล้มเหลว</span>
-              </div>
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href="/problem"
-                className="px-6 py-3 rounded-xl bg-[#ee4d2d] hover:bg-[#ff5722] text-white text-sm font-semibold shadow-sm transition-all flex items-center gap-2 group"
-              >
-                <span>เริ่มดูสไลด์ที่ 1: วิเคราะห์ปัญหา</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                href="/reliability-system#simulator"
-                className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 hover:text-white text-sm font-medium transition-all flex items-center gap-2"
-              >
-                <Sliders className="w-4 h-4 text-[#ff6f52]" />
-                <span>เปิดตัวจำลองคะแนนผู้ซื้อ (Simulator)</span>
-              </Link>
-            </div>
-          </div>
-        </section>
+        {/* Dedicated Image Hero Section with authentic Shopee Logistics imagery (no video) */}
+        <ImageHero />
 
         {/* Presentation Index (The 5 Slides in Minimalist Cards) */}
-        <section className="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-16 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
               <span className="text-xs font-mono font-medium text-[#ff6f52] uppercase tracking-wider">
@@ -165,7 +93,7 @@ export default function Home() {
                 โครงสร้างการนำเสนอทั้ง 5 ส่วน (Multi-Page Deck)
               </h2>
             </div>
-            <p className="text-xs text-slate-400 max-w-xs">
+            <p className="text-xs text-slate-400 max-w-xs font-light">
               คลิกเพื่อเข้าชมการวิเคราะห์ข้อมูลและแบบจำลองจำลองในแต่ละสไลด์
             </p>
           </div>
