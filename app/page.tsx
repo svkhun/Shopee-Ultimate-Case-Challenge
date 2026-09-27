@@ -1,246 +1,242 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
-import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
-import ProblemSection from "@/components/sections/ProblemSection";
-import TargetingSection from "@/components/sections/TargetingSection";
-import ReliabilitySystemSection from "@/components/sections/ReliabilitySystemSection";
-import SchedulingSection from "@/components/sections/SchedulingSection";
-import ImpactSection from "@/components/sections/ImpactSection";
 import Footer from "@/components/Footer";
-import Demo from "@/components/ui/demo";
 import { 
-  Sparkles, 
-  ArrowDown, 
-  Clock, 
+  ArrowRight, 
+  BarChart3, 
   Users, 
-  BarChart3,
-  Video,
-  Image as ImageIcon
+  Cpu, 
+  Clock, 
+  Award, 
+  Sliders, 
+  ShieldCheck
 } from "lucide-react";
 
 export default function Home() {
-  const [activeView, setActiveView] = useState<"case" | "demo">("case");
-  const [heroMediaType, setHeroMediaType] = useState<"video" | "image">("video");
-
-  // Media assets for the case hero
-  const caseMedia: Record<
-    "video" | "image",
+  const slides = [
     {
-      src: string;
-      poster?: string;
-      bg: string;
-      title: string;
-      subtitle: string;
-      prompt: string;
-    }
-  > = {
-    video: {
-      src: "https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1",
-      poster: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1280&auto=format&fit=crop",
-      bg: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1920&auto=format&fit=crop",
-      title: "SHOPEE COD OPTIMIZATION",
-      subtitle: "Ultimate Case Challenge",
-      prompt: "Scroll Down or Click to Unveil Strategy ↓",
+      num: 1,
+      title: "Where The Problem Really Is",
+      titleTh: "ต้นตอที่แท้จริงของปัญหาพัสดุตีกลับ",
+      desc: "COD มีอัตราจัดส่งไม่สำเร็จสูงกว่าพรีเพดถึง 10.6 เท่า และเป็นต้นเหตุของพัสดุตีกลับกว่า 85% ทั่วทั้งแพลตฟอร์ม",
+      href: "/problem",
+      tag: "Slide 1 • Problem Analysis",
+      stat: "10.6x Risk",
+      icon: <BarChart3 className="w-5 h-5 text-amber-400" />,
+      accent: "border-amber-500/30 hover:border-amber-500/50",
     },
-    image: {
-      src: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1280&auto=format&fit=crop",
-      bg: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1920&auto=format&fit=crop",
-      title: "SMART COD RELIABILITY",
-      subtitle: "Shopee Logistics Innovation",
-      prompt: "Scroll Down or Click to Unveil Strategy ↓",
+    {
+      num: 2,
+      title: "Who Should Shopee Target?",
+      titleTh: "การแบ่งกลุ่มผู้ซื้อตามความน่าเชื่อถือ",
+      desc: "แทนที่จะแบน COD ทั้งหมด ให้แยกผู้ซื้อเป็น 4 ระดับความเสี่ยงเพื่อคงประสบการณ์ที่ดีสำหรับลูกค้า 90%+",
+      href: "/targeting",
+      tag: "Slide 2 • Buyer Segmentation",
+      stat: "4 Risk Tiers",
+      icon: <Users className="w-5 h-5 text-blue-400" />,
+      accent: "border-blue-500/30 hover:border-blue-500/50",
     },
-  };
-
-  const currentMedia = caseMedia[heroMediaType];
-
-  if (activeView === "demo") {
-    return (
-      <div className="min-h-screen bg-black text-white">
-        <Navbar activeView={activeView} setActiveView={setActiveView} />
-        <div className="pt-16">
-          <Demo />
-        </div>
-      </div>
-    );
-  }
+    {
+      num: 3,
+      title: "Smart COD Reliability System",
+      titleTh: "ระบบคะแนนความน่าเชื่อถือแบบไดนามิก",
+      desc: "อัปเดต Reliability Score หลังส่งทุกครั้ง (+8 สำเร็จ, -25 ไม่สำเร็จ) ควบคู่กับระบบ EasySell สกัดสแปม 84%",
+      href: "/reliability-system",
+      tag: "Slide 3 • System Engine",
+      stat: "Dynamic Score",
+      icon: <Cpu className="w-5 h-5 text-[#ff6f52]" />,
+      accent: "border-[#ee4d2d]/30 hover:border-[#ee4d2d]/50",
+    },
+    {
+      num: 4,
+      title: "Delivery Scheduling Optimization",
+      titleTh: "ระบบนัดหมายช่วงเวลาจัดส่งตามใจผู้ซื้อ",
+      desc: "เปิดให้เลือกช่วงเวลารับของล่วงหน้า (เช้า/บ่าย/เย็น) และแจ้งเตือนก่อนส่ง เพิ่มอัตราสำเร็จในรอบแรก",
+      href: "/scheduling",
+      tag: "Slide 4 • Window Optimization",
+      stat: "+24% 1st Attempt",
+      icon: <Clock className="w-5 h-5 text-emerald-400" />,
+      accent: "border-emerald-500/30 hover:border-emerald-500/50",
+    },
+    {
+      num: 5,
+      title: "Expected Impact & Feasibility",
+      titleTh: "ผลลัพธ์และความเป็นไปได้ในการดำเนินงาน",
+      desc: "หลักการ Targeted, Progressive, Recoverable ช่วยลด COD ตีกลับลง 58% โดยไม่สูญเสียยอดขายรวม",
+      href: "/impact",
+      tag: "Slide 5 • Impact & KPI",
+      stat: "58% Reduction",
+      icon: <Award className="w-5 h-5 text-purple-400" />,
+      accent: "border-purple-500/30 hover:border-purple-500/50",
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-[#090d16] text-slate-100 flex flex-col selection:bg-[#ee4d2d] selection:text-white">
-      {/* Sticky Navigation Bar */}
-      <Navbar activeView={activeView} setActiveView={setActiveView} />
+    <div className="min-h-screen bg-[#090d16] text-slate-100 flex flex-col">
+      <Navbar />
 
-      {/* Hero Media Expansion Section */}
-      <div className="relative">
-        {/* Toggle between Video and Image hero mode */}
-        <div className="fixed top-20 right-4 sm:right-8 z-40 flex items-center gap-1.5 p-1 rounded-xl bg-slate-900/80 backdrop-blur-md border border-slate-800 shadow-xl">
-          <button
-            onClick={() => setHeroMediaType("video")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-              heroMediaType === "video"
-                ? "bg-[#ee4d2d] text-white shadow-md shadow-[#ee4d2d]/30"
-                : "text-slate-400 hover:text-white"
-            }`}
-          >
-            <Video className="w-3.5 h-3.5" />
-            Video Hero
-          </button>
-          <button
-            onClick={() => setHeroMediaType("image")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-              heroMediaType === "image"
-                ? "bg-[#ee4d2d] text-white shadow-md shadow-[#ee4d2d]/30"
-                : "text-slate-400 hover:text-white"
-            }`}
-          >
-            <ImageIcon className="w-3.5 h-3.5" />
-            Image Hero
-          </button>
-        </div>
+      <main className="flex-1">
+        {/* Minimal Hero Section with authentic Shopee Delivery Logistics Imagery */}
+        <section className="relative overflow-hidden border-b border-slate-800/80 py-20 lg:py-28">
+          {/* Subtle background image overlay */}
+          <div className="absolute inset-0 z-0 opacity-20 mix-blend-luminosity">
+            <Image
+              src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1920&auto=format&fit=crop"
+              alt="Shopee Express Logistics Fulfillment Hub"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#090d16] via-[#090d16]/80 to-[#090d16]" />
+          </div>
 
-        {/* ScrollExpandMedia Component from 21st.dev */}
-        <ScrollExpandMedia
-          mediaType={heroMediaType}
-          mediaSrc={currentMedia.src}
-          posterSrc={heroMediaType === "video" ? currentMedia.poster : undefined}
-          bgImageSrc={currentMedia.bg}
-          title={currentMedia.title}
-          date={currentMedia.subtitle}
-          scrollToExpand={currentMedia.prompt}
-          textBlend={true}
-        >
-          {/* Executive Overview banner rendered inside expanded hero content */}
-          <div className="max-w-5xl mx-auto w-full">
-            <div className="p-8 sm:p-10 rounded-3xl bg-slate-900/90 backdrop-blur-xl border border-slate-700/80 shadow-2xl relative overflow-hidden">
-              {/* Shopee accent banner */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#ee4d2d] via-[#ff7a59] to-amber-500" />
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Header pill */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ee4d2d]/10 border border-[#ee4d2d]/25 text-[#ff6f52] text-xs font-semibold uppercase tracking-wider mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ee4d2d]" />
+              Shopee Ultimate Case Challenge (SUCC)
+            </div>
 
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-800">
+            {/* Title & Slender typography */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white max-w-4xl leading-[1.15]">
+              Smart COD <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#ee4d2d] to-[#ff7a59]">Reliability</span> &amp; Delivery Optimization
+            </h1>
+
+            <p className="mt-6 text-base sm:text-lg text-slate-300 font-light max-w-2xl leading-relaxed">
+              โซลูชันเชิงกลยุทธ์แก้ปัญหาวิกฤตพัสดุเก็บเงินปลายทาง (COD) ตีกลับสูงกว่าปกติ 10.6 เท่า ด้วยระบบจัดกลุ่มความเสี่ยงแบบไดนามิก และระบบนัดหมายเวลาจัดส่ง โดยไม่กระทบยอดขายของแพลตฟอร์ม
+            </p>
+
+            {/* Quick Metrics Bar */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 my-10 pt-4 border-t border-slate-800/80">
+              <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
+                <span className="text-xs text-slate-400 font-normal">ความเสี่ยง COD</span>
+                <div className="text-2xl sm:text-3xl font-semibold text-amber-400 mt-1">10.6×</div>
+                <span className="text-[11px] text-slate-400">สูงกว่าพรีเพด (2.61% vs 0.25%)</span>
+              </div>
+              <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
+                <span className="text-xs text-slate-400 font-normal">สัดส่วนออเดอร์</span>
+                <div className="text-2xl sm:text-3xl font-semibold text-[#ee4d2d] mt-1">35%</div>
+                <span className="text-[11px] text-slate-400">ของธุรกรรมทั้งหมดบน Shopee</span>
+              </div>
+              <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
+                <span className="text-xs text-slate-400 font-normal">สัดส่วนพัสดุตีกลับ</span>
+                <div className="text-2xl sm:text-3xl font-semibold text-rose-400 mt-1">85%</div>
+                <span className="text-[11px] text-slate-400">ของพัสดุที่ส่งไม่สำเร็จมาจาก COD</span>
+              </div>
+              <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800">
+                <span className="text-xs text-slate-400 font-normal">เป้าหมายลดความสูญเสีย</span>
+                <div className="text-2xl sm:text-3xl font-semibold text-emerald-400 mt-1">-58%</div>
+                <span className="text-[11px] text-slate-400">อัตราจัดส่ง COD ล้มเหลว</span>
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-4">
+              <Link
+                href="/problem"
+                className="px-6 py-3 rounded-xl bg-[#ee4d2d] hover:bg-[#ff5722] text-white text-sm font-semibold shadow-sm transition-all flex items-center gap-2 group"
+              >
+                <span>เริ่มดูสไลด์ที่ 1: วิเคราะห์ปัญหา</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/reliability-system#simulator"
+                className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 hover:text-white text-sm font-medium transition-all flex items-center gap-2"
+              >
+                <Sliders className="w-4 h-4 text-[#ff6f52]" />
+                <span>เปิดตัวจำลองคะแนนผู้ซื้อ (Simulator)</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Presentation Index (The 5 Slides in Minimalist Cards) */}
+        <section className="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+              <span className="text-xs font-mono font-medium text-[#ff6f52] uppercase tracking-wider">
+                Table of Contents
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-light text-white tracking-tight mt-1">
+                โครงสร้างการนำเสนอทั้ง 5 ส่วน (Multi-Page Deck)
+              </h2>
+            </div>
+            <p className="text-xs text-slate-400 max-w-xs">
+              คลิกเพื่อเข้าชมการวิเคราะห์ข้อมูลและแบบจำลองจำลองในแต่ละสไลด์
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {slides.map((s) => (
+              <Link
+                key={s.num}
+                href={s.href}
+                className={`group p-6 rounded-2xl bg-slate-900/40 border border-slate-800/80 hover:bg-slate-900/80 transition-all duration-200 flex flex-col justify-between ${s.accent}`}
+              >
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ee4d2d]/20 text-[#ff6f52] text-xs font-bold uppercase tracking-wider mb-2">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    Shopee Ultimate Case Challenge (SUCC)
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-2 rounded-lg bg-slate-950/80 border border-slate-800">
+                      {s.icon}
+                    </div>
+                    <span className="text-xs font-mono font-medium text-slate-400 px-2 py-0.5 rounded bg-slate-950/60 border border-slate-800">
+                      {s.stat}
+                    </span>
                   </div>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
-                    Smart COD Delivery Optimization &amp; Reliability System
-                  </h1>
+
+                  <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block mb-1">
+                    {s.tag}
+                  </span>
+                  <h3 className="text-base font-medium text-white group-hover:text-[#ff7a59] transition-colors mb-1">
+                    {s.title}
+                  </h3>
+                  <div className="text-xs text-slate-400 mb-3 font-normal">
+                    {s.titleTh}
+                  </div>
+                  <p className="text-xs text-slate-300 font-light leading-relaxed">
+                    {s.desc}
+                  </p>
                 </div>
 
-                <div className="shrink-0 flex items-center gap-2">
-                  <a
-                    href="#problem"
-                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#ee4d2d] to-[#ff5722] hover:from-[#d73211] hover:to-[#ee4d2d] text-white text-xs sm:text-sm font-bold shadow-lg shadow-[#ee4d2d]/30 transition-all flex items-center gap-2"
-                  >
-                    <span>Start Presentation</span>
-                    <ArrowDown className="w-4 h-4" />
-                  </a>
+                <div className="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-400 group-hover:text-white">
+                  <span>เปิดสไลด์</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
+              </Link>
+            ))}
+
+            {/* Quick Strategy Card */}
+            <div className="p-6 rounded-2xl bg-gradient-to-br from-[#ee4d2d]/10 via-slate-900/40 to-slate-900/60 border border-[#ee4d2d]/25 flex flex-col justify-between">
+              <div>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#ee4d2d]/20 text-[#ff7a59] text-[11px] font-mono font-medium mb-4">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  Key Takeaway
+                </div>
+                <h3 className="text-base font-semibold text-white mb-2">
+                  Zero Friction for the 90%+
+                </h3>
+                <p className="text-xs text-slate-300 font-light leading-relaxed">
+                  โซลูชันนี้ไม่แบนหรือยกเลิก COD แต่ใช้การคัดกรองแบบเป็นขั้นบันได (Reminder → Warning → Deposit) เพื่อรักษาอัตราการสั่งซื้อของลูกค้าดีไว้ได้ 100%
+                </p>
               </div>
 
-              {/* Core Case Highlights */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6">
-                <div className="flex items-start gap-3">
-                  <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 shrink-0">
-                    <BarChart3 className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h2 className="text-sm font-bold text-white">The Root Cause</h2>
-                    <p className="text-xs text-slate-300 mt-1">
-                      COD has a <strong>10.6× higher failed delivery rate</strong> than prepaid, causing ~85% of all Shopee delivery failures.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="p-2 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0">
-                    <Users className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h2 className="text-sm font-bold text-white">Targeted Segmentation</h2>
-                    <p className="text-xs text-slate-300 mt-1">
-                      Dynamic scoring isolates risky repeated-failure profiles while keeping 90%+ honest buyers completely frictionless.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
-                    <Clock className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h2 className="text-sm font-bold text-white">Window Scheduling</h2>
-                    <p className="text-xs text-slate-300 mt-1">
-                      Preferred delivery windows guarantee buyer presence, maximizing first-attempt delivery success and seller profitability.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Jump Navigation */}
-              <div className="mt-8 pt-6 border-t border-slate-800 flex flex-wrap items-center gap-2 text-xs">
-                <span className="text-slate-400 font-medium">Quick Slide Links:</span>
-                <a
-                  href="#problem"
-                  className="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
+              <div className="mt-6 pt-4 border-t border-slate-800/80">
+                <Link
+                  href="/impact"
+                  className="text-xs text-[#ff7a59] hover:underline font-medium flex items-center gap-1"
                 >
-                  Slide 1: Problem Analysis
-                </a>
-                <a
-                  href="#targeting"
-                  className="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
-                >
-                  Slide 2: Buyer Targeting
-                </a>
-                <a
-                  href="#reliability-system"
-                  className="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
-                >
-                  Slide 3: Reliability System
-                </a>
-                <a
-                  href="#scheduling"
-                  className="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
-                >
-                  Slide 4: Window Scheduling
-                </a>
-                <a
-                  href="#impact"
-                  className="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
-                >
-                  Slide 5: Expected Impact
-                </a>
-                <a
-                  href="#simulator"
-                  className="px-3 py-1 rounded-lg bg-[#ee4d2d]/20 text-[#ff6f52] border border-[#ee4d2d]/30 font-semibold hover:bg-[#ee4d2d]/30 transition-colors"
-                >
-                  Live Simulator →
-                </a>
+                  <span>ดูรายละเอียดผลลัพธ์ (Impact &amp; KPI)</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             </div>
           </div>
-        </ScrollExpandMedia>
-      </div>
-
-      {/* Main Presentation Slides */}
-      <main className="flex-1 flex flex-col">
-        {/* Slide 1: Where the Problem Really Is */}
-        <ProblemSection />
-
-        {/* Slide 2: Who Should Shopee Target? */}
-        <TargetingSection />
-
-        {/* Slide 3: Smart COD Reliability System */}
-        <ReliabilitySystemSection />
-
-        {/* Slide 4: Delivery Scheduling Optimization */}
-        <SchedulingSection />
-
-        {/* Slide 5: Expected Impact & Feasibility */}
-        <ImpactSection />
+        </section>
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
