@@ -112,7 +112,7 @@ def predict_cod_risk(req: RiskPredictionRequest):
 @app.post("/api/orders/simulate-feedback")
 def simulate_order_feedback(req: DeliveryFeedbackRequest):
     """
-    Simulates dynamic scoring feedback loop (+8 for DELIVERED, -25 for RETURNED_TO_ORIGIN).
+    Simulates dynamic scoring feedback loop (+8 for DELIVERED, -20 for RETURNED_TO_ORIGIN).
     Demonstrates self-correcting buyer credit tier transitions.
     """
     return RiskPolicyEngine.apply_delivery_feedback(

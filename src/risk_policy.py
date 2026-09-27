@@ -2,7 +2,7 @@
 Domain Risk Policy & Dynamic Feedback Engine
 Implements the rules from the Shopee Ultimate Case Challenge (SUCC) PDF:
 - Slide 2: 4-Tier Buyer Risk Intervention Policy
-- Slide 3: Dynamic Score Feedback Loop (+8 Delivered, -25 RTO) & EasySell Fraud Shield
+- Slide 3: Dynamic Score Feedback Loop (+8 Delivered, -20 RTO) & EasySell Fraud Shield
 - Slide 4: Preferred Delivery Window Boost (+24% first-attempt success)
 - Slide 5: Strategic Pillars (Targeted, Progressive, Recoverable) & Reverse Logistics Shield
 """
@@ -21,7 +21,7 @@ class RiskPolicyEngine:
         """
         Dynamic Feedback Loop:
         - Successful delivery: +8 score points, resets consecutive failures to 0
-        - Failed / Returned To Origin (RTO): -25 score points, increments consecutive failures +1
+        - Failed / Returned To Origin (RTO): -20 score points, increments consecutive failures +1
         """
         old_score = current_score
         old_consecutive = current_consecutive_failed
@@ -34,11 +34,11 @@ class RiskPolicyEngine:
             event_type = "DELIVERED_SUCCESS"
             event_message = "Parcel successfully accepted and collected by buyer. Awarded +8 Reliability Score points."
         elif delivery_event.upper() in ["FAILED", "RETURNED_TO_ORIGIN", "RTO", "BUYER_REJECTED"]:
-            score_delta = -25.0
+            score_delta = -20.0
             new_score = max(0.0, old_score + score_delta)
             new_consecutive = old_consecutive + 1
             event_type = "RETURNED_TO_ORIGIN"
-            event_message = f"Parcel delivery failed ({reason}). Deducted -25 Reliability Score points. Consecutive failures: {new_consecutive}."
+            event_message = f"Parcel delivery failed ({reason}). Deducted -20 Reliability Score points. Consecutive failures: {new_consecutive}."
         else:
             score_delta = 0.0
             new_score = old_score

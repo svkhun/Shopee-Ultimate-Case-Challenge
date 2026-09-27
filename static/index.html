@@ -38,15 +38,9 @@
       <button class="nav-tab-btn" data-target="slide3" onclick="switchTab('slide3')">3. Score & EasySell</button>
       <button class="nav-tab-btn" data-target="slide4" onclick="switchTab('slide4')">4. Preferred Window</button>
       <button class="nav-tab-btn" data-target="slide5" onclick="switchTab('slide5')">5. Financial Impact</button>
-      <button class="nav-tab-btn" data-target="simulator" onclick="switchTab('simulator')" style="color:var(--shopee-orange); font-weight:600;">Live App Simulator</button>
+      <button class="nav-tab-btn nav-tab-btn--simulator" data-target="simulator" onclick="switchTab('simulator')">Live App Simulator</button>
       <button class="nav-tab-btn" data-target="dataset" onclick="switchTab('dataset')">Dataset</button>
     </nav>
-
-    <!-- Model Status Badge -->
-    <div class="status-pill">
-      <div class="pulsing-dot"></div>
-      <span id="header-model-status">Python 3.13 ML Active (AUC: 0.86)</span>
-    </div>
   </header>
 
   <!-- Main Content Container -->
@@ -76,24 +70,6 @@
             <button class="btn-secondary" onclick="switchTab('slide1')">
               Explore 5 Case Slides
             </button>
-          </div>
-        </div>
-
-        <div class="hero-media-card">
-          <img src="/static/assets/shopee_hero.jpg" alt="Shopee Express Logistics Operations" class="hero-image">
-          <div class="hero-media-overlay">
-            <div class="overlay-metric">
-              <span class="val">50,000</span>
-              <span class="lbl">Simulated Orders (CSV)</span>
-            </div>
-            <div class="overlay-metric">
-              <span class="val" id="hero-auc-display">0.8629</span>
-              <span class="lbl">Calibrated ROC-AUC</span>
-            </div>
-            <div class="overlay-metric">
-              <span class="val" style="color:var(--emerald);">฿3.74M</span>
-              <span class="lbl">Est. Monthly Savings</span>
-            </div>
           </div>
         </div>
       </div>
@@ -166,7 +142,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
             Recoverable Feedback Loop
           </div>
-          <p class="card-subtitle">+8 Delivered / -25 RTO rehabilitation</p>
+          <p class="card-subtitle">+8 Delivered / -20 RTO rehabilitation</p>
           <p style="font-size:0.86rem; color:var(--text-secondary);">
             Buyers are never permanently penalized. Every successful delivery restores reliability score, enabling reformed buyers to regain instant 1-click COD privileges.
           </p>
@@ -216,7 +192,7 @@
             </tbody>
           </table>
 
-          <div style="background:rgba(0,0,0,0.3); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem; font-size:0.86rem;">
+          <div style="background:#faf4e9; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem; font-size:0.86rem;">
             <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
               <span style="color:var(--text-secondary);">Relative Risk Ratio:</span>
               <strong class="mono" style="color:var(--shopee-orange);" id="eda-stat-ratio">11.3× (PDF target: 10.6×)</strong>
@@ -242,7 +218,7 @@
           
           <div style="display:flex; flex-direction:column; gap:1.25rem;">
             <div style="display:flex; gap:0.85rem;">
-              <div style="background:var(--rose-bg); color:var(--rose); padding:0.5rem; border-radius:8px; height:fit-content; font-weight:700;">01</div>
+              <div style="background:var(--rose-bg); color:var(--rose); padding:0.5rem; border-radius:var(--radius-sm); height:fit-content; font-weight:700;">01</div>
               <div>
                 <strong style="font-size:0.92rem; display:block; margin-bottom:0.25rem;">Zero Financial Commitment at Checkout</strong>
                 <p style="font-size:0.84rem; color:var(--text-secondary);">
@@ -252,7 +228,7 @@
             </div>
 
             <div style="display:flex; gap:0.85rem;">
-              <div style="background:var(--amber-bg); color:var(--amber); padding:0.5rem; border-radius:8px; height:fit-content; font-weight:700;">02</div>
+              <div style="background:var(--amber-bg); color:var(--amber); padding:0.5rem; border-radius:var(--radius-sm); height:fit-content; font-weight:700;">02</div>
               <div>
                 <strong style="font-size:0.92rem; display:block; margin-bottom:0.25rem;">Unsynchronized Delivery Timing</strong>
                 <p style="font-size:0.84rem; color:var(--text-secondary);">
@@ -262,7 +238,7 @@
             </div>
 
             <div style="display:flex; gap:0.85rem;">
-              <div style="background:var(--cyan-bg); color:var(--cyan); padding:0.5rem; border-radius:8px; height:fit-content; font-weight:700;">03</div>
+              <div style="background:var(--cyan-bg); color:var(--cyan); padding:0.5rem; border-radius:var(--radius-sm); height:fit-content; font-weight:700;">03</div>
               <div>
                 <strong style="font-size:0.92rem; display:block; margin-bottom:0.25rem;">Disproportionate Reverse Logistics Waste</strong>
                 <p style="font-size:0.84rem; color:var(--text-secondary);">
@@ -370,7 +346,7 @@
         <span class="section-tag">Adaptive Buyer Credit & Security</span>
         <h2 class="section-h2">Slide 3: Dynamic Feedback Loop & EasySell Shield</h2>
         <p class="section-p">
-          A self-correcting feedback mechanism incentivizes good buyer behavior: scores increase by +8 for completed deliveries and decline by -25 for failed deliveries. EasySell protects sellers from malicious addresses.
+          A self-correcting feedback mechanism incentivizes good buyer behavior: scores increase by +8 for completed deliveries and decline by -20 for failed deliveries. EasySell protects sellers from malicious addresses.
         </p>
       </div>
 
@@ -380,7 +356,7 @@
           <div class="card-title">Live Score Transition Simulator</div>
           <p class="card-subtitle">Experience how real-time order outcomes alter buyer credit standing</p>
 
-          <div style="background:#090d16; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1.25rem; margin-bottom:1.25rem;">
+          <div style="background:var(--bg-input); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1.25rem; margin-bottom:1.25rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
               <div>
                 <span style="font-size:0.8rem; color:var(--text-secondary); display:block;">Current Simulated Score:</span>
@@ -392,24 +368,24 @@
               </div>
             </div>
 
-            <div style="display:flex; justify-content:space-between; font-size:0.82rem; color:var(--text-muted); border-top:1px solid rgba(255,255,255,0.06); padding-top:0.75rem;">
-              <span>Consecutive Failed CODs: <strong id="sim-consec-fails" class="mono" style="color:#fff;">0</strong></span>
+            <div style="display:flex; justify-content:space-between; font-size:0.82rem; color:var(--text-muted); border-top:1px solid var(--border-subtle); padding-top:0.75rem;">
+              <span>Consecutive Failed CODs: <strong id="sim-consec-fails" class="mono" style="color:var(--text-primary);">0</strong></span>
               <span>Next Threshold: <span class="mono">&lt; 50 (High Risk) | ≥ 80 (Low)</span></span>
             </div>
           </div>
 
           <div style="display:flex; gap:0.75rem; margin:1.25rem 0;">
-            <button class="btn-primary" style="flex:1; justify-content:center; background:#10b981;" onclick="handleDeliveryFeedback('DELIVERED')">
+            <button class="btn-primary" data-feedback-control style="flex:1; justify-content:center; background:#10b981;" onclick="handleDeliveryFeedback('DELIVERED')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
               Parcel Delivered (+8 Pts)
             </button>
-            <button class="btn-primary" style="flex:1; justify-content:center; background:#ef4444;" onclick="handleDeliveryFeedback('RETURNED_TO_ORIGIN')">
+            <button class="btn-primary" data-feedback-control style="flex:1; justify-content:center; background:#ef4444;" onclick="handleDeliveryFeedback('RETURNED_TO_ORIGIN')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-              Delivery Failed / RTO (-25 Pts)
+              Delivery Failed / RTO (-20 Pts)
             </button>
           </div>
 
-          <div id="sim-feedback-log" style="font-size:0.84rem; padding:0.85rem; border-radius:var(--radius-sm); background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); color:var(--text-secondary);">
+          <div id="sim-feedback-log" style="font-size:0.84rem; padding:0.85rem; border-radius:var(--radius-sm); background:#fffaf3; border:1px solid var(--border-subtle); color:var(--text-secondary);">
             Ready. Click an outcome button to trigger the dynamic scoring feedback API.
           </div>
         </div>
@@ -483,7 +459,7 @@
               </div>
             </div>
 
-            <div style="background:rgba(0,0,0,0.3); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem; margin-top:0.5rem;">
+            <div style="background:#faf4e9; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem; margin-top:0.5rem;">
               <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem; font-size:0.85rem;">
                 <span style="color:var(--text-secondary);">Relative 1st-Attempt Boost:</span>
                 <strong class="mono" style="color:var(--cyan);" id="win-boost-pct">+26.1% (PDF target: +24%)</strong>
@@ -501,25 +477,25 @@
           <p class="card-subtitle">Offered automatically during checkout for Medium & High risk cohorts</p>
 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
-            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
+            <div style="background:#fffaf3; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
               <strong style="font-size:0.88rem; display:block; margin-bottom:0.25rem;">Morning Window</strong>
               <span class="mono" style="font-size:0.78rem; color:var(--text-muted);">09:00 - 12:00</span>
               <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.4rem;">Optimized for residential stay-at-home and weekend shoppers.</p>
             </div>
 
-            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
+            <div style="background:#fffaf3; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
               <strong style="font-size:0.88rem; display:block; margin-bottom:0.25rem;">Afternoon Window</strong>
               <span class="mono" style="font-size:0.78rem; color:var(--text-muted);">13:00 - 17:00</span>
               <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.4rem;">Optimized for commercial offices, retail shops, and corporate campuses.</p>
             </div>
 
-            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
+            <div style="background:#fffaf3; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
               <strong style="font-size:0.88rem; display:block; margin-bottom:0.25rem;">Evening Window</strong>
               <span class="mono" style="font-size:0.78rem; color:var(--text-muted);">17:00 - 20:00</span>
               <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.4rem;">Highest demand among working professionals returning home.</p>
             </div>
 
-            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
+            <div style="background:#fffaf3; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
               <strong style="font-size:0.88rem; display:block; margin-bottom:0.25rem;">Weekend Slot</strong>
               <span class="mono" style="font-size:0.78rem; color:var(--text-muted);">Sat & Sun All Day</span>
               <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.4rem;">Scheduled specifically for non-urgent deliveries requiring recipient presence.</p>
@@ -580,16 +556,16 @@
       <div class="content-card" style="margin-top:1.5rem;">
         <div class="card-title">Strategic Alignment with Executive Principles</div>
         <div class="grid-3" style="margin-top:1rem; margin-bottom:0;">
-          <div style="padding:1rem; background:rgba(0,0,0,0.3); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
-            <strong style="color:#fff; font-size:0.9rem; display:block; margin-bottom:0.35rem;">Principle 1: Targeted</strong>
+          <div style="padding:1rem; background:#faf4e9; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <strong style="color:var(--text-primary); font-size:0.9rem; display:block; margin-bottom:0.35rem;">Principle 1: Targeted</strong>
             <p style="font-size:0.82rem; color:var(--text-secondary);">No broad-brush restrictions. 82.2% of buyers experience zero interruption, preserving top-of-funnel GMV.</p>
           </div>
-          <div style="padding:1rem; background:rgba(0,0,0,0.3); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
-            <strong style="color:#fff; font-size:0.9rem; display:block; margin-bottom:0.35rem;">Principle 2: Progressive</strong>
+          <div style="padding:1rem; background:#faf4e9; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <strong style="color:var(--text-primary); font-size:0.9rem; display:block; margin-bottom:0.35rem;">Principle 2: Progressive</strong>
             <p style="font-size:0.82rem; color:var(--text-secondary);">Interventions escalate smoothly (Reminder → OTP → Deposit) based on quantitative ML risk probability.</p>
           </div>
-          <div style="padding:1rem; background:rgba(0,0,0,0.3); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
-            <strong style="color:#fff; font-size:0.9rem; display:block; margin-bottom:0.35rem;">Principle 3: Recoverable</strong>
+          <div style="padding:1rem; background:#faf4e9; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <strong style="color:var(--text-primary); font-size:0.9rem; display:block; margin-bottom:0.35rem;">Principle 3: Recoverable</strong>
             <p style="font-size:0.82rem; color:var(--text-secondary);">Transparent path to redemption (+8 per delivered order), converting risky buyers into loyal high-value patrons.</p>
           </div>
         </div>
@@ -693,20 +669,36 @@
 
                 <!-- In-Phone Rider Simulation Drawer -->
                 <div class="phone-rider-drawer">
-                  <div class="rider-drawer-title">
-                    <span>Shopee Rider Simulation</span>
-                    <span style="font-size:0.68rem; color:#94a3b8;">Parcel at Doorstep</span>
+                  <div class="rider-drawer-header">
+                    <div class="rider-drawer-title">Shopee Rider Simulation</div>
+                    <span class="rider-status" id="phone-delivery-status">Ready to record</span>
                   </div>
-                  <p style="font-size:0.72rem; color:#cbd5e1; margin-bottom:0.35rem;">
-                    Simulate customer collection response when courier delivers:
+                  <div class="rider-score-summary" aria-live="polite">
+                    <div>
+                      <span>Reliability score</span>
+                      <strong id="phone-policy-score">90.0</strong>
+                    </div>
+                    <div>
+                      <span>Consecutive RTO</span>
+                      <strong id="phone-consecutive-failures">0</strong>
+                    </div>
+                  </div>
+                  <p class="rider-drawer-copy">
+                    Record what happened at the doorstep. The score above and the controls on the right update together.
                   </p>
                   <div class="rider-drawer-actions">
-                    <button class="btn-rider-accept" onclick="handleDeliveryFeedback('DELIVERED')">
-                      Accept Parcel (+8 Pts)
+                    <button class="btn-rider-accept" data-feedback-control onclick="handleDeliveryFeedback('DELIVERED')">
+                      <span>Accept delivery</span>
+                      <small>+8 points</small>
                     </button>
-                    <button class="btn-rider-reject" onclick="handleDeliveryFeedback('RETURNED_TO_ORIGIN')">
-                      Reject / Refuse (-25 Pts)
+                    <button class="btn-rider-reject" data-feedback-control onclick="handleDeliveryFeedback('RETURNED_TO_ORIGIN')">
+                      <span>Reject / RTO</span>
+                      <small>−20 points</small>
                     </button>
+                  </div>
+                  <div class="phone-feedback-result" id="phone-feedback-result" role="status" aria-live="polite">
+                    <strong id="phone-feedback-title">No delivery outcome yet</strong>
+                    <span id="phone-feedback-copy">Choose an outcome to update the reliability score.</span>
                   </div>
                 </div>
               </div>
@@ -765,7 +757,7 @@
           <!-- Fine-tuning Parameter Sliders -->
           <div class="content-card">
             <div class="card-title">Live Parameter Controls & AI Risk Engine</div>
-            <p class="card-subtitle">Real-time parameters streamed to Python inference service</p>
+            <p class="card-subtitle">One shared reliability score drives both the controls and the phone experience</p>
 
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
               <!-- Buyer Prior Score -->
@@ -848,7 +840,7 @@
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; font-size:0.83rem;">
               <div>
                 <span style="color:var(--text-secondary);">Model Architecture:</span>
-                <div class="mono" style="font-weight:600; color:#fff;">Calibrated Random Forest</div>
+                <div class="mono" style="font-weight:600; color:var(--text-primary);">Calibrated Random Forest</div>
               </div>
               <div>
                 <span style="color:var(--text-secondary);">Test ROC-AUC:</span>
@@ -860,7 +852,7 @@
               </div>
               <div>
                 <span style="color:var(--text-secondary);">Brier Calibration Loss:</span>
-                <div class="mono" style="font-weight:600; color:#fff;">0.02087 (Calibrated)</div>
+                <div class="mono" style="font-weight:600; color:var(--text-primary);">0.02087 (Calibrated)</div>
               </div>
             </div>
 

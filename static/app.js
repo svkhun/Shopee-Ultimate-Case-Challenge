@@ -12,7 +12,9 @@ const appState = {
   currentSimScore: 88.0,
   currentSimConsecFails: 0,
   currentDatasetFilter: 'ALL',
-  selectedPhoneWindow: 'MORNING'
+  selectedPhoneWindow: 'MORNING',
+  latestScoringRequestId: 0,
+  deliveryFeedbackPending: false
 };
 
 // =====================================================================
@@ -122,10 +124,6 @@ async function loadModelSummary() {
     const data = await res.json();
     appState.modelSummary = data;
 
-    const roc = data.evaluation.roc_auc;
-    document.getElementById('hero-auc-display').textContent = roc.toFixed(4);
-    document.getElementById('header-model-status').textContent = `Python 3.13 ML Active (AUC: ${roc.toFixed(2)})`;
-
     // Render feature importance ranking
     const container = document.getElementById('feature-importance-container');
     if (container && data.feature_importance_top) {
@@ -186,7 +184,65 @@ function selectPhoneWindow(windowType) {
   }
 }
 
-function updateLabInputs() {
+function getPolicyTier(score) {
+  if (score >= 80) return { label: 'Low Risk (Grade A)', color: 'emerald' };
+  if (score >= 50) return { label: 'Medium Risk (Grade B)', color: 'amber' };
+  if (score >= 30) return { label: 'High Risk (Grade C)', color: 'orange' };
+  return { label: 'Repeated High Risk (Grade D)', color: 'rose' };
+}
+
+function setText(id, value) {
+  const element = document.getElementById(id);
+  if (element) element.textContent = value;
+}
+
+function setPhoneFeedbackResult({ type = 'neutral', title, copy, status }) {
+  const result = document.getElementById('phone-feedback-result');
+  if (result) {
+    result.className = `phone-feedback-result${type === 'neutral' ? '' : ` is-${type}`}`;
+  }
+
+  setText('phone-feedback-title', title);
+  setText('phone-feedback-copy', copy);
+  if (status) setText('phone-delivery-status', status);
+}
+
+function syncSimulationScore(score, consecutiveFailures, { preserveFeedback = false } = {}) {
+  const normalizedScore = Number(score);
+  const normalizedFailures = Number(consecutiveFailures);
+  const tier = getPolicyTier(normalizedScore);
+
+  appState.currentSimScore = normalizedScore;
+  appState.currentSimConsecFails = normalizedFailures;
+
+  setText('phone-policy-score', normalizedScore.toFixed(1));
+  setText('phone-consecutive-failures', normalizedFailures);
+  setText('sim-current-score', normalizedScore.toFixed(1));
+  setText('sim-consec-fails', normalizedFailures);
+
+  const tierBadge = document.getElementById('sim-current-tier');
+  if (tierBadge) {
+    tierBadge.className = `tier-badge ${tier.color}`;
+    tierBadge.textContent = tier.label;
+  }
+
+  if (!preserveFeedback && !appState.deliveryFeedbackPending) {
+    setPhoneFeedbackResult({
+      title: 'Ready for rider outcome',
+      copy: 'Choose an outcome to update the reliability score.',
+      status: 'Ready to record'
+    });
+  }
+}
+
+function setDeliveryFeedbackLoading(isLoading) {
+  document.querySelectorAll('[data-feedback-control]').forEach(button => {
+    button.disabled = isLoading;
+    button.setAttribute('aria-busy', String(isLoading));
+  });
+}
+
+function updateLabInputs({ preserveFeedback = false, skipScoring = false } = {}) {
   const scoreVal = document.getElementById('input-score').value;
   const successVal = document.getElementById('input-success').value;
   const consecVal = document.getElementById('input-consec').value;
@@ -208,11 +264,16 @@ function updateLabInputs() {
   if (phonePrice) phonePrice.textContent = formattedPrice;
   if (phoneTotal) phoneTotal.textContent = formattedPrice;
 
+  syncSimulationScore(scoreVal, consecVal, { preserveFeedback });
+
+  if (skipScoring) return;
+
   clearTimeout(window._scoringDebounce);
   window._scoringDebounce = setTimeout(runLiveScoring, 200);
 }
 
 async function runLiveScoring() {
+  const requestId = ++appState.latestScoringRequestId;
   const payload = {
     order_id: "ORD-" + Math.floor(100000 + Math.random() * 900000),
     buyer_reliability_score: parseFloat(document.getElementById('input-score').value),
@@ -238,10 +299,15 @@ async function runLiveScoring() {
     if (!res.ok) throw new Error('Scoring inference failed');
     const result = await res.json();
 
-    updateSmartphoneScreen(result);
+    if (requestId === appState.latestScoringRequestId) {
+      updateSmartphoneScreen(result);
+      return result;
+    }
 
   } catch (err) {
-    console.error('Error during ML scoring:', err);
+    if (requestId === appState.latestScoringRequestId) {
+      console.error('Error during ML scoring:', err);
+    }
   }
 }
 
@@ -250,7 +316,7 @@ function updateSmartphoneScreen(result) {
   const checkoutBtn = document.getElementById('phone-checkout-btn');
   if (!box || !checkoutBtn) return;
 
-  const score = result.reliability_score;
+  const score = appState.currentSimScore;
   const tier = result.risk_tier;
 
   if (tier === 'LOW_RISK') {
@@ -413,12 +479,25 @@ function applyScenarioPreset(grade) {
 }
 
 // =====================================================================
-// 5. Rider Delivery Outcome Simulation (+8 / -25 Dynamic Loop)
+// 5. Rider Delivery Outcome Simulation (+8 / -20 Dynamic Loop)
 // =====================================================================
 
 async function handleDeliveryFeedback(eventOutcome) {
+  if (appState.deliveryFeedbackPending) return;
+
   const currentScore = parseFloat(document.getElementById('input-score').value);
   const currentConsec = parseInt(document.getElementById('input-consec').value, 10);
+  const isDelivered = eventOutcome === 'DELIVERED';
+
+  appState.deliveryFeedbackPending = true;
+  appState.latestScoringRequestId += 1;
+  setDeliveryFeedbackLoading(true);
+  setPhoneFeedbackResult({
+    type: 'pending',
+    title: 'Recording delivery outcome…',
+    copy: 'Updating the shared reliability score and policy tier.',
+    status: 'Updating…'
+  });
 
   try {
     const res = await fetch('/api/orders/simulate-feedback', {
@@ -435,13 +514,21 @@ async function handleDeliveryFeedback(eventOutcome) {
     if (!res.ok) throw new Error('Feedback transition failed');
     const data = await res.json();
 
-    // Update Slider inputs
+    // The score control, phone drawer, and scorecard now share this response as one source of truth.
     document.getElementById('input-score').value = data.new_score;
     document.getElementById('input-consec').value = data.new_consecutive_failures;
-    updateLabInputs();
-    runLiveScoring();
+    updateLabInputs({ preserveFeedback: true, skipScoring: true });
+    await runLiveScoring();
 
-    // Also update Slide 3 logger if rendered
+    const scoreDelta = `${data.score_delta > 0 ? '+' : '−'}${Math.abs(data.score_delta)}`;
+    setPhoneFeedbackResult({
+      type: isDelivered ? 'success' : 'failure',
+      title: `${isDelivered ? 'Delivery accepted' : 'RTO recorded'} · ${scoreDelta} points`,
+      copy: `Score ${data.old_score.toFixed(1)} → ${data.new_score.toFixed(1)}. ${data.current_policy_action}`,
+      status: isDelivered ? 'Delivery accepted' : 'RTO recorded'
+    });
+
+    // Keep the Slide 3 scorecard in sync without interrupting the user with a browser alert.
     const logEl = document.getElementById('sim-feedback-log');
     if (logEl) {
       const timeStr = new Date().toLocaleTimeString();
@@ -454,21 +541,23 @@ async function handleDeliveryFeedback(eventOutcome) {
           <span style="color:var(--text-secondary); margin-left:0.3rem;">(${data.old_score} → ${data.new_score})</span>
         </div>
         <p style="color:var(--text-primary); font-size:0.83rem; margin-bottom:0.4rem;">${data.message}</p>
-        <div style="font-size:0.78rem; color:var(--text-muted); padding:0.4rem 0.6rem; background:rgba(0,0,0,0.3); border-radius:4px;">
-          Policy: <span style="color:#fff;">${data.current_policy_action}</span>
+        <div style="font-size:0.78rem; color:var(--text-muted); padding:0.4rem 0.6rem; background:#faf4e9; border-left:2px solid ${deltaColor};">
+          Policy: <span style="color:var(--text-primary);">${data.current_policy_action}</span>
         </div>
       `;
     }
 
-    // In-phone Alert Toast
-    if (eventOutcome === 'DELIVERED') {
-      alert(`Package Delivered Successfully!\nBuyer accepted parcel.\nAwarded +8 Reliability Score points.\nNew Score: ${data.new_score.toFixed(1)}`);
-    } else {
-      alert(`Delivery Failed (Returned to Origin)!\nBuyer refused parcel.\nDeducted -25 Reliability Score points.\nNew Score: ${data.new_score.toFixed(1)}`);
-    }
-
   } catch (err) {
     console.error('Error during feedback simulation:', err);
+    setPhoneFeedbackResult({
+      type: 'error',
+      title: 'Could not record the outcome',
+      copy: 'The score was not changed. Please try again.',
+      status: 'Update failed'
+    });
+  } finally {
+    appState.deliveryFeedbackPending = false;
+    setDeliveryFeedbackLoading(false);
   }
 }
 
