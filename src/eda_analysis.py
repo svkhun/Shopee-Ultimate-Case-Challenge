@@ -1,6 +1,6 @@
 """
 Exploratory Data Analysis & Empirical PDF Verification
-Modeled after KBTG Data Science & Analytics Standards.
+Shopee Ultimate Case Challenge (SUCC) - Data Science & Analytics Standards.
 Analyzes the Shopee COD order dataset against the 5 slides of the Shopee Ultimate Case Challenge (SUCC) PDF.
 Produces statistical proofs and exports structured insights to 'data/eda_summary.json'.
 """
@@ -11,7 +11,7 @@ import pandas as pd
 from scipy import stats
 
 def run_eda_analysis(orders_csv: str = "data/shopee_cod_orders.csv", buyers_csv: str = "data/buyer_profiles.csv"):
-    print("Loading synthetic dataset for KBTG-grade statistical validation...")
+    print("Loading synthetic dataset for empirical statistical validation...")
     df_orders = pd.read_csv(orders_csv)
     df_buyers = pd.read_csv(buyers_csv)
 
@@ -130,7 +130,7 @@ def run_eda_analysis(orders_csv: str = "data/shopee_cod_orders.csv", buyers_csv:
     with open("data/eda_summary.json", "w", encoding="utf-8") as f:
         json.dump(eda_summary, f, indent=2, ensure_ascii=False)
 
-    print("\n=== KBTG DATA SCIENCE EDA VALIDATION COMPLETE ===")
+    print("\n=== DATA SCIENCE EDA VALIDATION COMPLETE ===")
     print(f"Empirical Metric 1 (10.6x Risk): COD {cod_fail_rate_pct}% vs Non-COD {prepaid_fail_rate_pct}% (Ratio: {risk_multiplier}x, p-value: {p_val:.2e})")
     print(f"Empirical Metric 2 (35% Mix): COD volume is {cod_order_pct}% of total")
     print(f"Empirical Metric 3 (85% Failures): COD accounts for {cod_share_of_all_failures}% of all return parcels")

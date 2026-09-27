@@ -1,9 +1,8 @@
 """
-KBTG-Grade Machine Learning & Credit Scoring Engine
+Shopee Predictive Machine Learning & Reliability Scoring Engine
 Shopee Ultimate Case Challenge (SUCC) - Smart COD Reliability System
 
-This engine trains a risk assessment pipeline on synthetic Shopee COD transactions.
-It adheres to KBTG Data Science methodologies:
+This engine trains a risk assessment pipeline on synthetic Shopee COD transactions:
 - Feature engineering on buyer credit history and basket context
 - Stratified cross-validation with class imbalance handling
 - Calibrated probability estimation (CalibratedClassifierCV)
@@ -109,7 +108,7 @@ def calculate_risk_tier(reliability_score: float) -> dict:
 
 def train_and_evaluate_model(orders_csv: str = "data/shopee_cod_orders.csv") -> dict:
     print("=" * 65)
-    print("KBTG ML PIPELINE: Training Shopee COD Risk Classifier & Scorecard")
+    print("SHOPEE ML PIPELINE: Training COD Risk Classifier & Scorecard")
     print("=" * 65)
 
     os.makedirs("models", exist_ok=True)
@@ -199,7 +198,7 @@ def train_and_evaluate_model(orders_csv: str = "data/shopee_cod_orders.csv") -> 
     print(f"\nSaved calibrated model to '{MODEL_PATH}'")
 
     metrics_payload = {
-        "model_architecture": "Calibrated Random Forest Pipeline (KBTG Scorecard Standard)",
+        "model_architecture": "Calibrated Random Forest Pipeline (Credit Scorecard Standard)",
         "features": {
             "numeric": NUMERIC_FEATURES,
             "categorical": CATEGORICAL_FEATURES,

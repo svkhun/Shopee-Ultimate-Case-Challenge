@@ -1,7 +1,7 @@
 """
 Shopee Ultimate Case Challenge (SUCC) - Smart COD Reliability System
 FastAPI Backend Application
-Serves RESTful APIs for KBTG-grade ML Scoring, Empirical EDA Metrics,
+Serves RESTful APIs for Machine Learning Risk Scoring, Empirical EDA Metrics,
 and hosts the modern pure HTML/CSS/JavaScript Executive Presentation & Analytics Portal.
 """
 
@@ -88,7 +88,7 @@ def get_eda_metrics():
 
 @app.get("/api/model/summary")
 def get_model_summary():
-    """Returns KBTG-grade model metrics, ROC-AUC, PR-AUC, confusion matrix, and feature rankings."""
+    """Returns model metrics, ROC-AUC, PR-AUC, confusion matrix, and feature rankings."""
     metrics_path = "models/model_metrics.json"
     if not os.path.exists(metrics_path):
         raise HTTPException(status_code=404, detail="Model metrics artifact not found.")

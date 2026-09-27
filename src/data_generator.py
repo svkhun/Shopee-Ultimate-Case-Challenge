@@ -1,6 +1,6 @@
 """
 Synthetic Data Generation Engine for Shopee COD Reliability & Risk Analysis
-Modeled after KBTG-grade financial & e-commerce risk engineering methodologies.
+Modeled after production e-commerce credit risk engineering methodologies.
 Generates empirical dataset strictly aligned with Shopee Ultimate Case Challenge (SUCC) PDF parameters:
   - 35% COD orders / 65% Non-COD (Prepaid) orders
   - COD failure rate: 2.61% vs Non-COD failure rate: 0.25% (10.6x risk ratio)

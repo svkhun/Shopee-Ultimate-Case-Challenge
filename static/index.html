@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shopee Smart COD Reliability Intelligence | KBTG Data Science Process</title>
-  <meta name="description" content="KBTG Data Science-driven Smart COD Reliability System for Shopee Ultimate Case Challenge (SUCC). Multi-page executive intelligence portal.">
+  <title>Shopee Smart COD Reliability Intelligence | Machine Learning & Policy Automation</title>
+  <meta name="description" content="Predictive Data Science & Machine Learning Framework for Shopee Ultimate Case Challenge (SUCC).">
   <link rel="stylesheet" href="/static/styles.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ee4d2d'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm1-12c2.21 0 4 1.79 4 4 0 1.28-.59 2.42-1.5 3.16-.48.39-.77.72-.77 1.34h-2.46c0-1.28.59-2.42 1.5-3.16.48-.39.77-.72.77-1.34 0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5H7.5c0-2.21 1.79-4 4-4z'/></svg>">
 </head>
@@ -38,7 +38,7 @@
       <button class="nav-tab-btn" data-target="slide3" onclick="switchTab('slide3')">3. Score & EasySell</button>
       <button class="nav-tab-btn" data-target="slide4" onclick="switchTab('slide4')">4. Preferred Window</button>
       <button class="nav-tab-btn" data-target="slide5" onclick="switchTab('slide5')">5. Financial Impact</button>
-      <button class="nav-tab-btn" data-target="mllab" onclick="switchTab('mllab')" style="color:var(--shopee-orange); font-weight:600;">⚡ KBTG ML Lab</button>
+      <button class="nav-tab-btn" data-target="simulator" onclick="switchTab('simulator')" style="color:var(--shopee-orange); font-weight:600;">📱 Live App Simulator</button>
       <button class="nav-tab-btn" data-target="dataset" onclick="switchTab('dataset')">Dataset</button>
     </nav>
 
@@ -60,7 +60,7 @@
         <div class="hero-text-content">
           <div class="hero-tag">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            Shopee Ultimate Case Challenge | KBTG Methodology
+            Shopee Ultimate Case Challenge | Predictive Analytics Framework
           </div>
           <h1 class="hero-title">
             Smart COD Reliability <span class="highlight">Intelligence</span>
@@ -69,18 +69,18 @@
             An empirical machine learning framework eliminating <strong>58% of Cash on Delivery (COD) failed deliveries</strong> while preserving GMV conversion through dynamic buyer reliability scoring, preferred window scheduling, and risk-calibrated friction.
           </p>
           <div class="hero-actions">
-            <button class="btn-primary" onclick="switchTab('mllab')">
-              Launch Live ML Lab
+            <button class="btn-primary" onclick="switchTab('simulator')">
+              📱 Launch Shopee Phone Simulator
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
             <button class="btn-secondary" onclick="switchTab('slide1')">
-              Explore 5 Presentation Slides
+              Explore 5 Case Slides
             </button>
           </div>
         </div>
 
         <div class="hero-media-card">
-          <img src="/static/assets/media_1790529901741.jpg" alt="Shopee Express Logistics Operations" class="hero-image">
+          <img src="/static/assets/shopee_hero.jpg" alt="Shopee Express Logistics Operations" class="hero-image">
           <div class="hero-media-overlay">
             <div class="overlay-metric">
               <span class="val">50,000</span>
@@ -103,7 +103,7 @@
         <div class="metric-card orange">
           <div class="metric-header">
             <span class="metric-title">Risk Disparity</span>
-            <span class="mono" style="color:var(--shopee-orange);">Slide 1</span>
+            <span class="slide-tag">Slide 1</span>
           </div>
           <div class="metric-num" id="kpi-risk-ratio">11.3×</div>
           <div class="metric-desc">COD failure rate (2.71%) vs Non-COD (0.24%). Statistically confirmed with Z-test p &lt; 0.001.</div>
@@ -112,7 +112,7 @@
         <div class="metric-card amber">
           <div class="metric-header">
             <span class="metric-title">Failure Concentration</span>
-            <span class="mono" style="color:var(--amber);">Slide 1</span>
+            <span class="slide-tag">Slide 1</span>
           </div>
           <div class="metric-num" id="kpi-failure-share">86.0%</div>
           <div class="metric-desc">86% of all return parcels originate from COD, despite COD representing only ~35% of total basket volume.</div>
@@ -121,7 +121,7 @@
         <div class="metric-card cyan">
           <div class="metric-header">
             <span class="metric-title">Window Scheduling Uplift</span>
-            <span class="mono" style="color:var(--cyan);">Slide 4</span>
+            <span class="slide-tag">Slide 4</span>
           </div>
           <div class="metric-num" id="kpi-window-uplift">+26.1%</div>
           <div class="metric-desc">First-attempt delivery success surges from 70.2% to 88.5% when buyer selects preferred time slot.</div>
@@ -130,7 +130,7 @@
         <div class="metric-card emerald">
           <div class="metric-header">
             <span class="metric-title">Targeted RTO Reduction</span>
-            <span class="mono" style="color:var(--emerald);">Slide 5</span>
+            <span class="slide-tag">Slide 5</span>
           </div>
           <div class="metric-num" id="kpi-target-reduction">-58.0%</div>
           <div class="metric-desc">Projected reverse logistics cost reduction saving THB 3.74M/mo (THB 44.9M annually) at 15M monthly volume.</div>
@@ -182,7 +182,7 @@
         <span class="section-tag">Empirical Data Science Proof</span>
         <h2 class="section-h2">Slide 1: Root Cause Analysis & Risk Disparity</h2>
         <p class="section-p">
-          Empirical verification of the fundamental hypothesis from the Shopee Ultimate Case Challenge PDF: COD orders present an exponentially higher risk of delivery failure than prepaid transactions.
+          Empirical verification of the fundamental hypothesis from the Shopee Ultimate Case Challenge: COD orders present an exponentially higher risk of delivery failure than prepaid transactions.
         </p>
       </div>
 
@@ -227,7 +227,7 @@
             </div>
             <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
               <span style="color:var(--text-secondary);">p-value:</span>
-              <strong class="mono" style="color:var(--emerald);" id="eda-stat-p">&lt; 0.000001 (Highly Significant)</strong>
+              <strong class="mono" style="color:var(--emerald);" id="eda-stat-p">&lt; 0.000001 (Statistically Significant)</strong>
             </div>
             <div style="display:flex; justify-content:space-between;">
               <span style="color:var(--text-secondary);">COD Share of All RTO Parcels:</span>
@@ -283,7 +283,7 @@
         <span class="section-tag">Policy Segmentation Architecture</span>
         <h2 class="section-h2">Slide 2: 4-Tier Buyer Risk Interventions</h2>
         <p class="section-p">
-          Following KBTG credit risk tiering practices, the population is divided into four operational segments. High reliability accounts experience zero friction, while graduated guardrails prevent costly RTO.
+          Credit risk tiering divides the buyer population into four operational segments. High reliability accounts experience zero friction, while graduated guardrails prevent costly RTO.
         </p>
       </div>
 
@@ -384,7 +384,7 @@
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
               <div>
                 <span style="font-size:0.8rem; color:var(--text-secondary); display:block;">Current Simulated Score:</span>
-                <span id="sim-current-score" style="font-size:2rem; font-weight:700; font-family:'Geist Mono', monospace; color:var(--shopee-orange);">75.0</span>
+                <span id="sim-current-score" style="font-size:2rem; font-weight:700; font-variant-numeric:tabular-nums; color:var(--shopee-orange);">75.0</span>
               </div>
               <div style="text-align:right;">
                 <span style="font-size:0.8rem; color:var(--text-secondary); display:block;">Current Tier:</span>
@@ -398,19 +398,19 @@
             </div>
           </div>
 
-          <div class="feedback-actions">
-            <button class="btn-feedback-delivered" onclick="handleDeliveryFeedback('DELIVERED')">
+          <div style="display:flex; gap:0.75rem; margin:1.25rem 0;">
+            <button class="btn-primary" style="flex:1; justify-content:center; background:#10b981;" onclick="handleDeliveryFeedback('DELIVERED')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
               Parcel Delivered (+8 Pts)
             </button>
-            <button class="btn-feedback-rto" onclick="handleDeliveryFeedback('RETURNED_TO_ORIGIN')">
+            <button class="btn-primary" style="flex:1; justify-content:center; background:#ef4444;" onclick="handleDeliveryFeedback('RETURNED_TO_ORIGIN')">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
               Delivery Failed / RTO (-25 Pts)
             </button>
           </div>
 
           <div id="sim-feedback-log" style="font-size:0.84rem; padding:0.85rem; border-radius:var(--radius-sm); background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); color:var(--text-secondary);">
-            Ready. Click an outcome button to trigger the Python dynamic scoring feedback API.
+            Ready. Click an outcome button to trigger the dynamic scoring feedback API.
           </div>
         </div>
 
@@ -466,7 +466,7 @@
             <div>
               <div style="display:flex; justify-content:space-between; font-size:0.86rem; margin-bottom:0.35rem;">
                 <span>First-Attempt Success (With Preferred Window)</span>
-                <strong style="color:var(--emerald); font-family:'Geist Mono', monospace;" id="win-first-with">88.5%</strong>
+                <strong style="color:var(--emerald); font-variant-numeric:tabular-nums;" id="win-first-with">88.5%</strong>
               </div>
               <div class="feat-bar-track">
                 <div class="feat-bar-fill" style="width: 88.5%; background:var(--emerald);"></div>
@@ -476,7 +476,7 @@
             <div>
               <div style="display:flex; justify-content:space-between; font-size:0.86rem; margin-bottom:0.35rem;">
                 <span>First-Attempt Success (No Window / Unscheduled)</span>
-                <strong style="color:var(--text-muted); font-family:'Geist Mono', monospace;" id="win-first-without">70.2%</strong>
+                <strong style="color:var(--text-muted); font-variant-numeric:tabular-nums;" id="win-first-without">70.2%</strong>
               </div>
               <div class="feat-bar-track">
                 <div class="feat-bar-fill" style="width: 70.2%; background:var(--text-muted);"></div>
@@ -545,8 +545,8 @@
         <div class="content-card">
           <div class="card-title">Baseline RTO Waste</div>
           <p class="card-subtitle">Without Smart COD Reliability System</p>
-          <div style="font-size:2.2rem; font-weight:700; color:var(--rose); font-family:'Geist Mono', monospace; margin:1rem 0;" id="fin-baseline-waste">
-            ฿6.45M / mo
+          <div class="stat-number-wrapper" style="color:var(--rose);">
+            <span class="currency">฿</span><span class="val" id="fin-baseline-waste-val">6.45M</span><span class="unit">/ mo</span>
           </div>
           <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
             Calculated at 35.2% COD mix (5.28M orders) and 2.71% failed delivery rate = ~143,000 failed parcels monthly at ฿45/parcel waste.
@@ -556,8 +556,8 @@
         <div class="content-card">
           <div class="card-title">Targeted 58% Reduction</div>
           <p class="card-subtitle">Through 4-Tier policy & window scheduling</p>
-          <div style="font-size:2.2rem; font-weight:700; color:var(--emerald); font-family:'Geist Mono', monospace; margin:1rem 0;" id="fin-monthly-savings">
-            ฿3.74M / mo
+          <div class="stat-number-wrapper" style="color:var(--emerald);">
+            <span class="currency">฿</span><span class="val" id="fin-monthly-savings-val">3.74M</span><span class="unit">/ mo</span>
           </div>
           <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
             Eliminating 83,000 avoidable return parcels monthly while maintaining zero checkout barriers for the 82.2% Low Risk customer base.
@@ -567,8 +567,8 @@
         <div class="content-card">
           <div class="card-title">Annualized Cost Savings</div>
           <p class="card-subtitle">Direct platform EBITDA enhancement</p>
-          <div style="font-size:2.2rem; font-weight:700; color:var(--cyan); font-family:'Geist Mono', monospace; margin:1rem 0;" id="fin-annual-savings">
-            ฿44.9M / yr
+          <div class="stat-number-wrapper" style="color:var(--cyan);">
+            <span class="currency">฿</span><span class="val" id="fin-annual-savings-val">44.9M</span><span class="unit">/ yr</span>
           </div>
           <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
             Total annual capital preserved for marketing reinvestment, free shipping subsidies, and seller commission reductions.
@@ -597,200 +597,283 @@
     </section>
 
     <!-- ===================================================================
-         PAGE 7: KBTG DATA SCIENCE & ML LAB (INTERACTIVE)
+         PAGE 7: INTERACTIVE SHOPEE SMARTPHONE SIMULATOR & MODEL ENGINE
          =================================================================== -->
-    <section id="page-mllab" class="page-section">
+    <section id="page-simulator" class="page-section">
       <div class="section-headline">
-        <span class="section-tag">Interactive Machine Learning Console</span>
-        <h2 class="section-h2">KBTG-Grade Risk Scoring Engine & Explainability Lab</h2>
+        <span class="section-tag">Interactive Customer Journey Simulation</span>
+        <h2 class="section-h2">Shopee Mobile App Simulation & Machine Learning Engine</h2>
         <p class="section-p">
-          Test real-time scoring inference using our calibrated Random Forest pipeline. Tweak buyer credit history, basket parameters, and logistics factors to observe instant policy reactions.
+          Experience what the buyer sees on their smartphone in real time as risk parameters change. Test how progressive guardrails (Zero friction, Reminder, SMS OTP, Deposit) activate based on buyer reliability score.
         </p>
       </div>
 
-      <div class="simulator-layout">
-        <!-- Input Parameters Form -->
-        <div class="content-card">
-          <div class="card-title">Transaction & Credit Profile Parameters</div>
-          <p class="card-subtitle">Live inputs streamed to Python FastAPI inference endpoint</p>
-
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
-            <!-- Buyer Prior Score -->
-            <div class="form-group">
-              <label class="form-label">
-                <span>Buyer Prior Score</span>
-                <span class="form-val-display" id="val-score">85</span>
-              </label>
-              <input type="range" class="form-range" id="input-score" min="10" max="100" value="85" oninput="updateLabInputs()">
+      <div class="phone-simulation-container">
+        <!-- ================= SMARTPHONE MOCKUP ================= -->
+        <div class="phone-mockup-wrapper">
+          <div class="phone-device">
+            <!-- Dynamic Island / Top Notch -->
+            <div class="phone-notch">
+              <div class="notch-camera"></div>
             </div>
 
-            <!-- Historical Success Rate -->
-            <div class="form-group">
-              <label class="form-label">
-                <span>Historical Success Rate</span>
-                <span class="form-val-display" id="val-success">95%</span>
-              </label>
-              <input type="range" class="form-range" id="input-success" min="20" max="100" value="95" oninput="updateLabInputs()">
-            </div>
+            <!-- Phone Screen Content -->
+            <div class="phone-screen" id="phone-screen-container">
+              <!-- Status Bar -->
+              <div class="phone-status-bar">
+                <span>9:41</span>
+                <span style="display:flex; align-items:center; gap:4px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.25A10.93 10.93 0 0 1 1 12C1 5.92 5.92 1 12 1s11 4.92 11 11c0 2.45-.8 4.71-2.16 6.55l-.62-.64C21.35 16.32 22 14.24 22 12c0-4.97-4.03-9-9-9z"/></svg>
+                  5G 100%
+                </span>
+              </div>
 
-            <!-- Consecutive Failed CODs -->
-            <div class="form-group">
-              <label class="form-label">
-                <span>Consecutive Failed CODs</span>
-                <span class="form-val-display" id="val-consec">0</span>
-              </label>
-              <input type="range" class="form-range" id="input-consec" min="0" max="5" value="0" oninput="updateLabInputs()">
-            </div>
+              <!-- Shopee App Header -->
+              <div class="phone-app-header">
+                <span style="font-size:1.1rem; cursor:pointer;">‹</span>
+                <span class="phone-header-title">Checkout</span>
+                <span style="font-size:0.8rem;">Help</span>
+              </div>
 
-            <!-- Order Amount (THB) -->
-            <div class="form-group">
-              <label class="form-label">
-                <span>Order Basket (THB)</span>
-                <span class="form-val-display" id="val-amount">฿450</span>
-              </label>
-              <input type="range" class="form-range" id="input-amount" min="80" max="6000" step="50" value="450" oninput="updateLabInputs()">
-            </div>
+              <!-- Phone Body -->
+              <div class="phone-content-body">
+                <!-- Delivery Address Card -->
+                <div class="phone-card">
+                  <div class="phone-card-title">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--shopee-orange)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    Delivery Address
+                  </div>
+                  <div class="phone-address-text">
+                    <strong id="phone-buyer-name">Somchai Prasert</strong> <span style="color:#777;">(+66 89 452 1890)</span><br>
+                    <span id="phone-buyer-address" style="color:#555; font-size:0.76rem;">128/4 Sukhumvit Soi 55, Thonglor, Bangkok 10110</span>
+                  </div>
+                </div>
 
-            <!-- Delivery Distance -->
-            <div class="form-group">
-              <label class="form-label">
-                <span>Delivery Distance</span>
-                <span class="form-val-display" id="val-distance">12 km</span>
-              </label>
-              <input type="range" class="form-range" id="input-distance" min="1" max="45" value="12" oninput="updateLabInputs()">
-            </div>
+                <!-- Order Item Card -->
+                <div class="phone-card">
+                  <div class="phone-card-title">Shopee Mall • Official Store</div>
+                  <div class="phone-product-row">
+                    <img src="/static/assets/shopee_hero.jpg" class="phone-prod-img" alt="Product">
+                    <div class="phone-prod-info">
+                      <div class="phone-prod-title" id="phone-prod-title">Wireless ANC Headphones Pro</div>
+                      <div style="font-size:0.7rem; color:#888;">Variation: Matte Black</div>
+                      <div class="phone-prod-price" id="phone-prod-price">฿1,850</div>
+                    </div>
+                  </div>
+                </div>
 
-            <!-- Account Age Days -->
-            <div class="form-group">
-              <label class="form-label">
-                <span>Account Age</span>
-                <span class="form-val-display" id="val-age">365 days</span>
-              </label>
-              <input type="range" class="form-range" id="input-age" min="1" max="1200" step="15" value="365" oninput="updateLabInputs()">
-            </div>
+                <!-- Delivery Option & Preferred Window -->
+                <div class="phone-card">
+                  <div class="phone-card-title">
+                    Shipping Option: <strong style="color:var(--shopee-orange); margin-left:4px;">Shopee Xpress</strong>
+                  </div>
+                  <div style="font-size:0.72rem; color:#666; margin-bottom:0.25rem;">
+                    Select Preferred Delivery Window:
+                  </div>
+                  <div class="window-radio-group">
+                    <div class="window-option-chip selected" id="chip-morning" onclick="selectPhoneWindow('MORNING')">🌅 Morning (09-12)</div>
+                    <div class="window-option-chip" id="chip-afternoon" onclick="selectPhoneWindow('AFTERNOON')">☀️ Afternoon (13-17)</div>
+                    <div class="window-option-chip" id="chip-evening" onclick="selectPhoneWindow('EVENING')">🌙 Evening (17-20)</div>
+                    <div class="window-option-chip" id="chip-weekend" onclick="selectPhoneWindow('WEEKEND')">📅 Weekend</div>
+                  </div>
+                </div>
 
-            <!-- Category -->
-            <div class="form-group">
-              <label class="form-label">Item Category</label>
-              <select class="form-select" id="input-category" onchange="runLiveScoring()">
-                <option value="Fashion" selected>Fashion & Apparel</option>
-                <option value="Electronics">Electronics & Gadgets</option>
-                <option value="Home_Living">Home & Living</option>
-                <option value="Beauty">Health & Beauty</option>
-                <option value="Groceries">Groceries & FMCG</option>
-              </select>
-            </div>
+                <!-- Dynamic Payment Method & Risk Intervention Banner -->
+                <div class="phone-card" style="border:1px solid #ffccba;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div style="font-size:0.78rem; font-weight:600; color:#222;">Payment Method</div>
+                    <span class="mono" style="font-size:0.74rem; font-weight:700; color:var(--shopee-orange);">Cash on Delivery (COD)</span>
+                  </div>
 
-            <!-- Courier -->
-            <div class="form-group">
-              <label class="form-label">Courier Logistics Partner</label>
-              <select class="form-select" id="input-courier" onchange="runLiveScoring()">
-                <option value="Shopee_Xpress" selected>Shopee Xpress (SPX)</option>
-                <option value="Kerry_Express">Kerry Express</option>
-                <option value="Flash_Express">Flash Express</option>
-                <option value="JT_Express">J&T Express</option>
-              </select>
-            </div>
-          </div>
+                  <!-- Dynamic Alert Banner inside Phone -->
+                  <div id="phone-intervention-box" style="margin-top:0.5rem;">
+                    <!-- Dynamically populated according to Risk Tier -->
+                  </div>
+                </div>
 
-          <!-- Toggles for Binary Features -->
-          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-top:0.75rem;">
-            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.84rem; cursor:pointer;">
-              <input type="checkbox" id="input-window" onchange="runLiveScoring()">
-              <span>Preferred Window Selected</span>
-            </label>
+                <!-- In-Phone Rider Simulation Drawer -->
+                <div class="phone-rider-drawer">
+                  <div class="rider-drawer-title">
+                    <span>🛵 Shopee Rider Simulation</span>
+                    <span style="font-size:0.68rem; color:#94a3b8;">Parcel at Doorstep</span>
+                  </div>
+                  <p style="font-size:0.72rem; color:#cbd5e1; margin-bottom:0.35rem;">
+                    Simulate customer collection response when courier delivers:
+                  </p>
+                  <div class="rider-drawer-actions">
+                    <button class="btn-rider-accept" onclick="handleDeliveryFeedback('DELIVERED')">
+                      ✓ Accept Parcel (+8 Pts)
+                    </button>
+                    <button class="btn-rider-reject" onclick="handleDeliveryFeedback('RETURNED_TO_ORIGIN')">
+                      ✗ Reject / Refuse (-25 Pts)
+                    </button>
+                  </div>
+                </div>
+              </div>
 
-            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.84rem; cursor:pointer;">
-              <input type="checkbox" id="input-phone" checked onchange="runLiveScoring()">
-              <span>Phone Verified</span>
-            </label>
-
-            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.84rem; cursor:pointer;">
-              <input type="checkbox" id="input-address" onchange="runLiveScoring()">
-              <span>Address Changed (&lt;48h)</span>
-            </label>
-          </div>
-
-          <div style="margin-top:1.5rem; display:flex; gap:0.75rem;">
-            <button class="btn-primary" style="flex:1;" onclick="runLiveScoring()">
-              ⚡ Run ML Risk Assessment
-            </button>
-            <button class="btn-secondary" onclick="loadHighRiskPreset()">
-              Load High Risk Scenario
-            </button>
-            <button class="btn-secondary" onclick="loadLowRiskPreset()">
-              Reset to Clean Buyer
-            </button>
-          </div>
-        </div>
-
-        <!-- Live Prediction Output & Explainability -->
-        <div>
-          <div class="prediction-box">
-            <span style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-secondary);">
-              Calibrated Credit Reliability Score
-            </span>
-
-            <div class="score-circle" id="pred-score-circle">
-              <span class="score-num" id="pred-score-val">87.5</span>
-              <span class="score-max">/ 100 max</span>
-            </div>
-
-            <div id="pred-tier-badge" class="tier-badge emerald" style="font-size:0.82rem; padding:4px 14px;">
-              Low Risk (Grade A)
-            </div>
-
-            <div style="width:100%; display:flex; justify-content:space-between; margin-top:1rem; padding:0.6rem 0.8rem; background:rgba(0,0,0,0.3); border-radius:var(--radius-sm); font-size:0.82rem;">
-              <span style="color:var(--text-secondary);">P(Failure): <strong id="pred-fail-prob" class="mono" style="color:#fff;">1.2%</strong></span>
-              <span style="color:var(--text-secondary);">Friction: <strong id="pred-friction-lvl" class="mono" style="color:var(--emerald);">Zero Friction</strong></span>
-            </div>
-
-            <!-- Mandatory Action Output -->
-            <div style="width:100%; margin-top:1rem; text-align:left; padding:0.85rem; background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
-              <span style="font-size:0.72rem; text-transform:uppercase; color:var(--shopee-orange); font-weight:600; display:block; margin-bottom:0.25rem;">Prescribed Policy Action</span>
-              <p id="pred-action-text" style="font-size:0.84rem; color:var(--text-primary); line-height:1.4;">
-                Immediate dispatch with standard 1-click COD fulfillment.
-              </p>
-            </div>
-
-            <!-- Explainable Risk Drivers -->
-            <div style="width:100%; margin-top:1rem; text-align:left;">
-              <span style="font-size:0.76rem; text-transform:uppercase; color:var(--text-secondary); font-weight:600; display:block;">Key Contributing Factors</span>
-              <ul class="risk-reasons-list" id="pred-factors-list">
-                <li>Clean credit history and standard basket profile</li>
-              </ul>
+              <!-- Phone Bottom Checkout Bar -->
+              <div class="phone-bottom-bar">
+                <div>
+                  <div class="phone-total-label">Total Payment</div>
+                  <div class="phone-total-price" id="phone-total-price">฿1,850</div>
+                </div>
+                <button class="phone-checkout-btn" id="phone-checkout-btn" onclick="handlePhoneOrderClick()">
+                  Place COD Order
+                </button>
+              </div>
             </div>
           </div>
 
-          <!-- Model Diagnostics Panel -->
-          <div class="content-card" style="margin-top:1.25rem;">
-            <div class="card-title" style="font-size:0.95rem;">KBTG Model Diagnostics</div>
-            <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.4rem;">
-              <span style="color:var(--text-secondary);">Model Pipeline:</span>
-              <span class="mono">CalibratedClassifierCV (RandomForest)</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.4rem;">
-              <span style="color:var(--text-secondary);">Test ROC-AUC:</span>
-              <strong class="mono" style="color:var(--emerald);">0.8629</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.4rem;">
-              <span style="color:var(--text-secondary);">Average Precision (PR-AUC):</span>
-              <strong class="mono" style="color:var(--cyan);">0.3722</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
-              <span style="color:var(--text-secondary);">Brier Calibration Loss:</span>
-              <strong class="mono">0.02087</strong>
-            </div>
+          <div style="font-size:0.76rem; color:var(--text-muted); margin-top:0.75rem; text-align:center;">
+            Interactive Shopee Mobile App Experience (Simulated Phone Viewport)
           </div>
         </div>
-      </div>
 
-      <!-- Feature Importance Ranking -->
-      <div class="content-card" style="margin-top:2rem;">
-        <div class="card-title">Top Risk Predictive Drivers (Feature Importance)</div>
-        <p class="card-subtitle">Relative Gini contribution extracted from trained Random Forest ensemble</p>
-        <div id="feature-importance-container" style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
-          <!-- Dynamically populated by JS -->
+        <!-- ================= CONTROLLER & AI MODEL PANEL ================= -->
+        <div class="simulator-controls-panel">
+          <!-- 1-Click Scenario Presets -->
+          <div class="content-card">
+            <div class="card-title">1-Click Buyer Risk Scenario Presets</div>
+            <p class="card-subtitle">Instantly test the 4 policy tiers on the smartphone screen</p>
+            <div class="scenario-presets-grid">
+              <button class="preset-chip-btn active" id="preset-grade-a" onclick="applyScenarioPreset('A')">
+                <strong style="color:var(--emerald);">Grade A</strong>
+                <span>Low Risk (Score 90)</span>
+                <span style="font-size:0.68rem; color:var(--text-muted);">Zero Friction</span>
+              </button>
+
+              <button class="preset-chip-btn" id="preset-grade-b" onclick="applyScenarioPreset('B')">
+                <strong style="color:var(--amber);">Grade B</strong>
+                <span>Medium Risk (Score 65)</span>
+                <span style="font-size:0.68rem; color:var(--text-muted);">SMS Reminder</span>
+              </button>
+
+              <button class="preset-chip-btn" id="preset-grade-c" onclick="applyScenarioPreset('C')">
+                <strong style="color:var(--orange);">Grade C</strong>
+                <span>High Risk (Score 40)</span>
+                <span style="font-size:0.68rem; color:var(--text-muted);">Mandatory OTP</span>
+              </button>
+
+              <button class="preset-chip-btn" id="preset-grade-d" onclick="applyScenarioPreset('D')">
+                <strong style="color:var(--rose);">Grade D</strong>
+                <span>Repeated Risk (Score 18)</span>
+                <span style="font-size:0.68rem; color:var(--text-muted);">฿40 Deposit</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Fine-tuning Parameter Sliders -->
+          <div class="content-card">
+            <div class="card-title">Live Parameter Controls & AI Risk Engine</div>
+            <p class="card-subtitle">Real-time parameters streamed to Python inference service</p>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+              <!-- Buyer Prior Score -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Buyer Reliability Score</span>
+                  <span class="form-val-display" id="val-score">88</span>
+                </label>
+                <input type="range" class="form-range" id="input-score" min="10" max="100" value="88" oninput="updateLabInputs()">
+              </div>
+
+              <!-- Historical Success Rate -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Historical Delivery Rate</span>
+                  <span class="form-val-display" id="val-success">96%</span>
+                </label>
+                <input type="range" class="form-range" id="input-success" min="20" max="100" value="96" oninput="updateLabInputs()">
+              </div>
+
+              <!-- Consecutive Failed CODs -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Consecutive Failed CODs</span>
+                  <span class="form-val-display" id="val-consec">0</span>
+                </label>
+                <input type="range" class="form-range" id="input-consec" min="0" max="5" value="0" oninput="updateLabInputs()">
+              </div>
+
+              <!-- Order Basket Amount -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Order Value (THB)</span>
+                  <span class="form-val-display" id="val-amount">฿1,850</span>
+                </label>
+                <input type="range" class="form-range" id="input-amount" min="150" max="5000" step="50" value="1850" oninput="updateLabInputs()">
+              </div>
+
+              <!-- Distance -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Delivery Distance</span>
+                  <span class="form-val-display" id="val-distance">12 km</span>
+                </label>
+                <input type="range" class="form-range" id="input-distance" min="1" max="40" value="12" oninput="updateLabInputs()">
+              </div>
+
+              <!-- Account Age -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Account Age</span>
+                  <span class="form-val-display" id="val-age">365 days</span>
+                </label>
+                <input type="range" class="form-range" id="input-age" min="1" max="1000" step="15" value="365" oninput="updateLabInputs()">
+              </div>
+            </div>
+
+            <!-- Anomaly Toggles -->
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.5rem; margin-top:0.75rem; font-size:0.82rem;">
+              <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                <input type="checkbox" id="input-window" checked onchange="runLiveScoring()">
+                <span>Pref. Window Selected</span>
+              </label>
+
+              <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                <input type="checkbox" id="input-phone" checked onchange="runLiveScoring()">
+                <span>Phone Verified</span>
+              </label>
+
+              <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                <input type="checkbox" id="input-address" onchange="runLiveScoring()">
+                <span>Address Altered &lt;48h</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- AI Model Diagnostics & Telemetry -->
+          <div class="content-card">
+            <div class="card-title" style="font-size:0.95rem;">Machine Learning Model Diagnostics</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; font-size:0.83rem;">
+              <div>
+                <span style="color:var(--text-secondary);">Model Architecture:</span>
+                <div class="mono" style="font-weight:600; color:#fff;">Calibrated Random Forest</div>
+              </div>
+              <div>
+                <span style="color:var(--text-secondary);">Test ROC-AUC:</span>
+                <div class="mono" style="font-weight:700; color:var(--emerald);">0.8629 (High Discrimination)</div>
+              </div>
+              <div>
+                <span style="color:var(--text-secondary);">Average Precision (PR-AUC):</span>
+                <div class="mono" style="font-weight:600; color:var(--cyan);">0.3722</div>
+              </div>
+              <div>
+                <span style="color:var(--text-secondary);">Brier Calibration Loss:</span>
+                <div class="mono" style="font-weight:600; color:#fff;">0.02087 (Calibrated)</div>
+              </div>
+            </div>
+
+            <!-- Top Feature Drivers -->
+            <div style="margin-top:1.25rem;">
+              <div style="font-size:0.8rem; font-weight:600; color:var(--text-secondary); margin-bottom:0.5rem; text-transform:uppercase;">
+                Top Risk Feature Contributions
+              </div>
+              <div id="feature-importance-container" style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -810,12 +893,12 @@
       <div class="content-card" style="margin-bottom:1.5rem;">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
           <div style="display:flex; gap:0.5rem;">
-            <button class="btn-secondary" id="btn-filter-all" onclick="filterDataset('ALL')">All Orders (50,000)</button>
+            <button class="btn-primary" id="btn-filter-all" onclick="filterDataset('ALL')">All Orders (50,000)</button>
             <button class="btn-secondary" id="btn-filter-cod" onclick="filterDataset('COD')">COD Orders Only (17,618)</button>
             <button class="btn-secondary" id="btn-filter-prepaid" onclick="filterDataset('PREPAID')">Prepaid Orders Only (32,382)</button>
           </div>
           <div>
-            <button class="btn-primary" onclick="refreshDatasetSample()">
+            <button class="btn-secondary" onclick="refreshDatasetSample()">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
               Fetch Random Sample
             </button>
@@ -861,7 +944,8 @@
       <a href="#slide3" onclick="switchTab('slide3')">Feedback Loop</a>
       <a href="#slide4" onclick="switchTab('slide4')">Window Scheduling</a>
       <a href="#slide5" onclick="switchTab('slide5')">Financial Model</a>
-      <a href="#mllab" onclick="switchTab('mllab')">KBTG ML Lab</a>
+      <a href="#simulator" onclick="switchTab('simulator')">📱 Phone Simulator</a>
+      <a href="#dataset" onclick="switchTab('dataset')">Dataset Explorer</a>
     </div>
     <p>Shopee Ultimate Case Challenge (SUCC) 2026 | Built with Python 3.13, Scikit-Learn, FastAPI & Slender Geist Typography.</p>
   </footer>

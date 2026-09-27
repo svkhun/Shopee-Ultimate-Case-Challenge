@@ -9,9 +9,10 @@ const appState = {
   currentTab: 'overview',
   edaData: null,
   modelSummary: null,
-  currentSimScore: 75.0,
+  currentSimScore: 88.0,
   currentSimConsecFails: 0,
-  currentDatasetFilter: 'ALL'
+  currentDatasetFilter: 'ALL',
+  selectedPhoneWindow: 'MORNING'
 };
 
 // =====================================================================
@@ -19,7 +20,7 @@ const appState = {
 // =====================================================================
 
 function switchTab(tabId) {
-  const validTabs = ['overview', 'slide1', 'slide2', 'slide3', 'slide4', 'slide5', 'mllab', 'dataset'];
+  const validTabs = ['overview', 'slide1', 'slide2', 'slide3', 'slide4', 'slide5', 'simulator', 'dataset'];
   if (!validTabs.includes(tabId)) {
     tabId = 'overview';
   }
@@ -45,7 +46,7 @@ function switchTab(tabId) {
     activeSection.classList.add('active');
   }
 
-  // Update URL hash without retriggering scroll jump
+  // Update URL hash
   if (window.location.hash !== `#${tabId}`) {
     history.pushState(null, '', `#${tabId}`);
   }
@@ -78,10 +79,10 @@ async function loadEdaMetrics() {
       document.getElementById('eda-prepaid-mix').textContent = `${s1.prepaid_share_of_orders_pct}% (${data.dataset_metrics.prepaid_order_count.toLocaleString()})`;
       document.getElementById('eda-cod-rate').textContent = `${s1.cod_failed_delivery_rate_pct}%`;
       document.getElementById('eda-prepaid-rate').textContent = `${s1.prepaid_failed_delivery_rate_pct}%`;
-      document.getElementById('eda-stat-ratio').textContent = `${s1.risk_multiplier}× (PDF Target: 10.6×)`;
+      document.getElementById('eda-stat-ratio').textContent = `${s1.risk_multiplier}× (Target: 10.6×)`;
       document.getElementById('eda-stat-z').textContent = `z = ${s1.z_statistic}`;
-      document.getElementById('eda-stat-p').textContent = `< 0.000001 (Highly Significant)`;
-      document.getElementById('eda-stat-share').textContent = `${s1.cod_share_of_all_failures_pct}% (PDF Target: 85%)`;
+      document.getElementById('eda-stat-p').textContent = `< 0.000001 (Significant)`;
+      document.getElementById('eda-stat-share').textContent = `${s1.cod_share_of_all_failures_pct}% (Target: 85%)`;
 
       document.getElementById('kpi-risk-ratio').textContent = `${s1.risk_multiplier}×`;
       document.getElementById('kpi-failure-share').textContent = `${s1.cod_share_of_all_failures_pct}%`;
@@ -92,8 +93,8 @@ async function loadEdaMetrics() {
     if (s4) {
       document.getElementById('win-first-with').textContent = `${s4.first_attempt_success_with_window_pct}%`;
       document.getElementById('win-first-without').textContent = `${s4.first_attempt_success_without_window_pct}%`;
-      document.getElementById('win-boost-pct').textContent = `+${s4.first_attempt_relative_boost_pct}% (PDF Target: +24%)`;
-      document.getElementById('win-fail-reduct').textContent = `-${s4.failure_reduction_from_window_pct}% relative reduction`;
+      document.getElementById('win-boost-pct').textContent = `+${s4.first_attempt_relative_boost_pct}% (Target: +24%)`;
+      document.getElementById('win-fail-reduct').textContent = `-${s4.failure_reduction_from_window_pct}% reduction`;
       document.getElementById('kpi-window-uplift').textContent = `+${s4.first_attempt_relative_boost_pct}%`;
     }
 
@@ -104,9 +105,9 @@ async function loadEdaMetrics() {
       const monthlySavM = (s5.estimated_monthly_savings_thb / 1e6).toFixed(2);
       const annualSavM = (s5.estimated_annual_savings_thb / 1e6).toFixed(1);
 
-      document.getElementById('fin-baseline-waste').textContent = `฿${monthlyLossM}M / mo`;
-      document.getElementById('fin-monthly-savings').textContent = `฿${monthlySavM}M / mo`;
-      document.getElementById('fin-annual-savings').textContent = `฿${annualSavM}M / yr`;
+      document.getElementById('fin-baseline-waste-val').textContent = `${monthlyLossM}M`;
+      document.getElementById('fin-monthly-savings-val').textContent = `${monthlySavM}M`;
+      document.getElementById('fin-annual-savings-val').textContent = `${annualSavM}M`;
     }
 
   } catch (err) {
@@ -129,7 +130,7 @@ async function loadModelSummary() {
     const container = document.getElementById('feature-importance-container');
     if (container && data.feature_importance_top) {
       container.innerHTML = '';
-      const topItems = data.feature_importance_top.slice(0, 8);
+      const topItems = data.feature_importance_top.slice(0, 6);
       const maxImp = Math.max(...topItems.map(i => i.importance));
 
       topItems.forEach(item => {
@@ -143,7 +144,7 @@ async function loadModelSummary() {
         const barHtml = `
           <div class="feat-bar-row">
             <div class="feat-bar-header">
-              <span>${readableName}</span>
+              <span style="color:#cbd5e1;">${readableName}</span>
               <span class="mono" style="color:var(--shopee-orange); font-weight:600;">${(item.importance * 100).toFixed(1)}%</span>
             </div>
             <div class="feat-bar-track">
@@ -161,25 +162,59 @@ async function loadModelSummary() {
 }
 
 // =====================================================================
-// 3. Interactive KBTG Machine Learning Console
+// 3. Interactive Shopee Smartphone Simulation
 // =====================================================================
 
+function selectPhoneWindow(windowType) {
+  appState.selectedPhoneWindow = windowType;
+  const chipKeys = ['morning', 'afternoon', 'evening', 'weekend'];
+  chipKeys.forEach(k => {
+    const chip = document.getElementById(`chip-${k}`);
+    if (chip) {
+      if (k.toUpperCase() === windowType) {
+        chip.classList.add('selected');
+      } else {
+        chip.classList.remove('selected');
+      }
+    }
+  });
+
+  const winCheck = document.getElementById('input-window');
+  if (winCheck) {
+    winCheck.checked = true;
+    runLiveScoring();
+  }
+}
+
 function updateLabInputs() {
-  document.getElementById('val-score').textContent = document.getElementById('input-score').value;
-  document.getElementById('val-success').textContent = `${document.getElementById('input-success').value}%`;
-  document.getElementById('val-consec').textContent = document.getElementById('input-consec').value;
-  document.getElementById('val-amount').textContent = `฿${Number(document.getElementById('input-amount').value).toLocaleString()}`;
-  document.getElementById('val-distance').textContent = `${document.getElementById('input-distance').value} km`;
-  document.getElementById('val-age').textContent = `${document.getElementById('input-age').value} days`;
-  
-  // Debounce live scoring
+  const scoreVal = document.getElementById('input-score').value;
+  const successVal = document.getElementById('input-success').value;
+  const consecVal = document.getElementById('input-consec').value;
+  const amountVal = document.getElementById('input-amount').value;
+  const distVal = document.getElementById('input-distance').value;
+  const ageVal = document.getElementById('input-age').value;
+
+  document.getElementById('val-score').textContent = scoreVal;
+  document.getElementById('val-success').textContent = `${successVal}%`;
+  document.getElementById('val-consec').textContent = consecVal;
+  document.getElementById('val-amount').textContent = `฿${Number(amountVal).toLocaleString()}`;
+  document.getElementById('val-distance').textContent = `${distVal} km`;
+  document.getElementById('val-age').textContent = `${ageVal} days`;
+
+  // Update in-phone price
+  const formattedPrice = `฿${Number(amountVal).toLocaleString()}`;
+  const phonePrice = document.getElementById('phone-prod-price');
+  const phoneTotal = document.getElementById('phone-total-price');
+  if (phonePrice) phonePrice.textContent = formattedPrice;
+  if (phoneTotal) phoneTotal.textContent = formattedPrice;
+
   clearTimeout(window._scoringDebounce);
   window._scoringDebounce = setTimeout(runLiveScoring, 200);
 }
 
 async function runLiveScoring() {
   const payload = {
-    order_id: "SIM-" + Math.floor(100000 + Math.random() * 900000),
+    order_id: "ORD-" + Math.floor(100000 + Math.random() * 900000),
     buyer_reliability_score: parseFloat(document.getElementById('input-score').value),
     buyer_historical_success_rate: parseFloat(document.getElementById('input-success').value) / 100.0,
     buyer_consecutive_failed_cods: parseInt(document.getElementById('input-consec').value, 10),
@@ -189,8 +224,8 @@ async function runLiveScoring() {
     order_amount_thb: parseFloat(document.getElementById('input-amount').value),
     window_selected: document.getElementById('input-window').checked ? 1 : 0,
     delivery_distance_km: parseFloat(document.getElementById('input-distance').value),
-    item_category: document.getElementById('input-category').value,
-    courier_code: document.getElementById('input-courier').value
+    item_category: "Electronics",
+    courier_code: "Shopee_Xpress"
   };
 
   try {
@@ -203,139 +238,247 @@ async function runLiveScoring() {
     if (!res.ok) throw new Error('Scoring inference failed');
     const result = await res.json();
 
-    // Render Score
-    const scoreVal = result.reliability_score;
-    document.getElementById('pred-score-val').textContent = scoreVal.toFixed(1);
-    
-    // Circle Color & Badge
-    const circle = document.getElementById('pred-score-circle');
-    const badge = document.getElementById('pred-tier-badge');
-    
-    circle.style.borderColor = `var(--${result.badge_color})`;
-    badge.className = `tier-badge ${result.badge_color}`;
-    badge.textContent = result.tier_display;
-
-    // Metrics
-    document.getElementById('pred-fail-prob').textContent = result.predicted_failure_percentage;
-    document.getElementById('pred-friction-lvl').textContent = result.friction_level.replace(/_/g, ' ');
-    document.getElementById('pred-friction-lvl').style.color = `var(--${result.badge_color})`;
-
-    // Action Text
-    document.getElementById('pred-action-text').textContent = result.action;
-
-    // Risk factors
-    const factorsList = document.getElementById('pred-factors-list');
-    factorsList.innerHTML = '';
-    result.risk_factors.forEach(f => {
-      const li = document.createElement('li');
-      li.textContent = f;
-      factorsList.appendChild(li);
-    });
+    updateSmartphoneScreen(result);
 
   } catch (err) {
     console.error('Error during ML scoring:', err);
   }
 }
 
-function loadHighRiskPreset() {
-  document.getElementById('input-score').value = 35;
-  document.getElementById('input-success').value = 65;
-  document.getElementById('input-consec').value = 3;
-  document.getElementById('input-amount').value = 2800;
-  document.getElementById('input-distance').value = 24;
-  document.getElementById('input-age').value = 60;
-  document.getElementById('input-category').value = 'Electronics';
-  document.getElementById('input-courier').value = 'Flash_Express';
-  document.getElementById('input-window').checked = false;
-  document.getElementById('input-phone').checked = false;
-  document.getElementById('input-address').checked = true;
+function updateSmartphoneScreen(result) {
+  const box = document.getElementById('phone-intervention-box');
+  const checkoutBtn = document.getElementById('phone-checkout-btn');
+  if (!box || !checkoutBtn) return;
 
-  updateLabInputs();
-  runLiveScoring();
+  const score = result.reliability_score;
+  const tier = result.risk_tier;
+
+  if (tier === 'LOW_RISK') {
+    box.innerHTML = `
+      <div class="phone-intervention-banner banner-grade-a">
+        <div style="font-weight:700; display:flex; align-items:center; gap:4px;">
+          <span>✓</span> Reliable Buyer (Score: ${score.toFixed(1)})
+        </div>
+        <div>Standard 1-click Cash on Delivery. Zero checkout friction.</div>
+      </div>
+    `;
+    checkoutBtn.textContent = 'Place COD Order';
+    checkoutBtn.disabled = false;
+    checkoutBtn.style.background = 'var(--shopee-orange)';
+  } else if (tier === 'MEDIUM_RISK') {
+    box.innerHTML = `
+      <div class="phone-intervention-banner banner-grade-b">
+        <div style="font-weight:700; display:flex; align-items:center; gap:4px;">
+          <span>⚠️</span> Pre-Delivery Reminder Active (Score: ${score.toFixed(1)})
+        </div>
+        <div>Automated SMS confirmation will be sent 24h prior. Please confirm your delivery window above.</div>
+      </div>
+    `;
+    checkoutBtn.textContent = 'Confirm COD Order';
+    checkoutBtn.disabled = false;
+    checkoutBtn.style.background = 'var(--shopee-orange)';
+  } else if (tier === 'HIGH_RISK') {
+    box.innerHTML = `
+      <div class="phone-intervention-banner banner-grade-c">
+        <div style="font-weight:700; display:flex; align-items:center; gap:4px;">
+          <span>📱</span> Mandatory SMS OTP Required (Score: ${score.toFixed(1)})
+        </div>
+        <div>Elevated return risk detected. Please enter the 6-digit verification code sent to your phone.</div>
+        <div class="phone-otp-box">
+          <div style="font-size:0.7rem; color:#666; margin-bottom:4px;">Enter verification code:</div>
+          <div class="otp-inputs">
+            <input class="otp-digit" maxlength="1" value="7" readonly>
+            <input class="otp-digit" maxlength="1" value="3" readonly>
+            <input class="otp-digit" maxlength="1" value="9" readonly>
+            <input class="otp-digit" maxlength="1" value="4" readonly>
+            <input class="otp-digit" maxlength="1" value="0" readonly>
+            <input class="otp-digit" maxlength="1" value="2" readonly>
+          </div>
+          <div style="font-size:0.68rem; color:var(--shopee-orange);">Resend OTP in 42s</div>
+        </div>
+      </div>
+    `;
+    checkoutBtn.textContent = 'Verify OTP & Place Order';
+    checkoutBtn.disabled = false;
+    checkoutBtn.style.background = 'var(--orange)';
+  } else {
+    // REPEATED_HIGH_RISK
+    box.innerHTML = `
+      <div class="phone-intervention-banner banner-grade-d">
+        <div style="font-weight:700; display:flex; align-items:center; gap:4px;">
+          <span>🚫</span> COD Restricted (Score: ${score.toFixed(1)})
+        </div>
+        <div>Due to multiple previous failed deliveries, standard COD is restricted for this account.</div>
+        <div class="phone-deposit-box">
+          <div style="font-size:0.74rem; font-weight:700; color:#111;">Option 1: Reverse Logistics Deposit</div>
+          <div style="font-size:0.68rem; color:#666; margin-top:2px;">Pay ฿40 logistics commitment. 100% refunded when parcel is collected.</div>
+          <button class="deposit-action-btn" onclick="alert('฿40 Deposit Authorized! Order dispatched.')">
+            Pay ฿40 Deposit & Dispatch
+          </button>
+          <div style="border-top:1px dashed #ddd; margin:6px 0; padding-top:6px; font-size:0.72rem; color:#444;">
+            <strong>Option 2:</strong> Switch to PromptPay / Credit Card (0% Extra Fee)
+          </div>
+        </div>
+      </div>
+    `;
+    checkoutBtn.textContent = 'Deposit or Prepaid Only';
+    checkoutBtn.disabled = true;
+    checkoutBtn.style.background = '#94a3b8';
+  }
 }
 
-function loadLowRiskPreset() {
-  document.getElementById('input-score').value = 92;
-  document.getElementById('input-success').value = 98;
-  document.getElementById('input-consec').value = 0;
-  document.getElementById('input-amount').value = 380;
-  document.getElementById('input-distance').value = 8;
-  document.getElementById('input-age').value = 520;
-  document.getElementById('input-category').value = 'Fashion';
-  document.getElementById('input-courier').value = 'Shopee_Xpress';
-  document.getElementById('input-window').checked = true;
-  document.getElementById('input-phone').checked = true;
-  document.getElementById('input-address').checked = false;
+function handlePhoneOrderClick() {
+  const btn = document.getElementById('phone-checkout-btn');
+  const originalText = btn.textContent;
+  btn.textContent = 'Processing...';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    alert('Shopee Order Placed Successfully!\nScroll down inside the phone screen to simulate the rider arrival at your doorstep.');
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }, 400);
+}
+
+// =====================================================================
+// 4. Scenario Presets & Simulation
+// =====================================================================
+
+function applyScenarioPreset(grade) {
+  // Update active chip style
+  ['a', 'b', 'c', 'd'].forEach(g => {
+    const chip = document.getElementById(`preset-grade-${g}`);
+    if (chip) {
+      if (g.toUpperCase() === grade) chip.classList.add('active');
+      else chip.classList.remove('active');
+    }
+  });
+
+  const scoreInput = document.getElementById('input-score');
+  const successInput = document.getElementById('input-success');
+  const consecInput = document.getElementById('input-consec');
+  const amountInput = document.getElementById('input-amount');
+  const distInput = document.getElementById('input-distance');
+  const ageInput = document.getElementById('input-age');
+  const phoneInput = document.getElementById('input-phone');
+  const addressInput = document.getElementById('input-address');
+  const windowInput = document.getElementById('input-window');
+
+  if (grade === 'A') {
+    scoreInput.value = 90;
+    successInput.value = 98;
+    consecInput.value = 0;
+    amountInput.value = 1850;
+    distInput.value = 8;
+    ageInput.value = 520;
+    phoneInput.checked = true;
+    addressInput.checked = false;
+    windowInput.checked = true;
+    selectPhoneWindow('MORNING');
+  } else if (grade === 'B') {
+    scoreInput.value = 65;
+    successInput.value = 87;
+    consecInput.value = 0;
+    amountInput.value = 2100;
+    distInput.value = 14;
+    ageInput.value = 240;
+    phoneInput.checked = true;
+    addressInput.checked = false;
+    windowInput.checked = true;
+    selectPhoneWindow('AFTERNOON');
+  } else if (grade === 'C') {
+    scoreInput.value = 40;
+    successInput.value = 70;
+    consecInput.value = 1;
+    amountInput.value = 2600;
+    distInput.value = 22;
+    ageInput.value = 85;
+    phoneInput.checked = false;
+    addressInput.checked = true;
+    windowInput.checked = false;
+  } else if (grade === 'D') {
+    scoreInput.value = 18;
+    successInput.value = 38;
+    consecInput.value = 3;
+    amountInput.value = 3200;
+    distInput.value = 28;
+    ageInput.value = 45;
+    phoneInput.checked = false;
+    addressInput.checked = true;
+    windowInput.checked = false;
+  }
 
   updateLabInputs();
   runLiveScoring();
 }
 
 // =====================================================================
-// 4. Dynamic Scoring Feedback Simulator (Slide 3)
+// 5. Rider Delivery Outcome Simulation (+8 / -25 Dynamic Loop)
 // =====================================================================
 
 async function handleDeliveryFeedback(eventOutcome) {
-  const logEl = document.getElementById('sim-feedback-log');
-  logEl.innerHTML = `<span style="color:var(--text-muted);">Transmitting outcome to Python feedback policy engine...</span>`;
+  const currentScore = parseFloat(document.getElementById('input-score').value);
+  const currentConsec = parseInt(document.getElementById('input-consec').value, 10);
 
   try {
     const res = await fetch('/api/orders/simulate-feedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        current_score: appState.currentSimScore,
-        current_consecutive_failed: appState.currentSimConsecFails,
+        current_score: currentScore,
+        current_consecutive_failed: currentConsec,
         delivery_event: eventOutcome,
-        reason: eventOutcome === 'DELIVERED' ? 'Package accepted by buyer at doorstep' : 'Buyer rejected parcel upon arrival (RTO)'
+        reason: eventOutcome === 'DELIVERED' ? 'Customer collected package at doorstep' : 'Customer refused parcel / unreachable (RTO)'
       })
     });
 
     if (!res.ok) throw new Error('Feedback transition failed');
     const data = await res.json();
 
-    appState.currentSimScore = data.new_score;
-    appState.currentSimConsecFails = data.new_consecutive_failures;
+    // Update Slider inputs
+    document.getElementById('input-score').value = data.new_score;
+    document.getElementById('input-consec').value = data.new_consecutive_failures;
+    updateLabInputs();
+    runLiveScoring();
 
-    // Update UI elements
-    document.getElementById('sim-current-score').textContent = data.new_score.toFixed(1);
-    document.getElementById('sim-consec-fails').textContent = data.new_consecutive_failures;
-    
-    const tierBadge = document.getElementById('sim-current-tier');
-    tierBadge.className = `tier-badge ${data.badge_color}`;
-    tierBadge.textContent = data.new_tier;
+    // Also update Slide 3 logger if rendered
+    const logEl = document.getElementById('sim-feedback-log');
+    if (logEl) {
+      const timeStr = new Date().toLocaleTimeString();
+      const deltaColor = data.score_delta > 0 ? 'var(--emerald)' : 'var(--rose)';
+      const sign = data.score_delta > 0 ? '+' : '';
+      logEl.innerHTML = `
+        <div style="margin-bottom:0.35rem;">
+          <span class="mono" style="color:var(--text-muted); font-size:0.75rem;">[${timeStr}]</span>
+          <strong style="color:${deltaColor}; margin-left:0.3rem;">Score ${sign}${data.score_delta} Pts</strong>
+          <span style="color:var(--text-secondary); margin-left:0.3rem;">(${data.old_score} → ${data.new_score})</span>
+        </div>
+        <p style="color:var(--text-primary); font-size:0.83rem; margin-bottom:0.4rem;">${data.message}</p>
+        <div style="font-size:0.78rem; color:var(--text-muted); padding:0.4rem 0.6rem; background:rgba(0,0,0,0.3); border-radius:4px;">
+          Policy: <span style="color:#fff;">${data.current_policy_action}</span>
+        </div>
+      `;
+    }
 
-    // Render Event Log with timestamp
-    const timeStr = new Date().toLocaleTimeString();
-    const deltaColor = data.score_delta > 0 ? 'var(--emerald)' : 'var(--rose)';
-    const sign = data.score_delta > 0 ? '+' : '';
-
-    logEl.innerHTML = `
-      <div style="margin-bottom:0.35rem;">
-        <span class="mono" style="color:var(--text-muted); font-size:0.75rem;">[${timeStr}]</span>
-        <strong style="color:${deltaColor}; margin-left:0.3rem;">Score ${sign}${data.score_delta} Pts</strong>
-        <span style="color:var(--text-secondary); margin-left:0.3rem;">(${data.old_score} → ${data.new_score})</span>
-      </div>
-      <p style="color:var(--text-primary); font-size:0.83rem; margin-bottom:0.4rem;">${data.message}</p>
-      <div style="font-size:0.78rem; color:var(--text-muted); padding:0.4rem 0.6rem; background:rgba(0,0,0,0.3); border-radius:4px;">
-        Policy Directive: <span style="color:#fff;">${data.current_policy_action}</span>
-      </div>
-    `;
+    // In-phone Alert Toast
+    if (eventOutcome === 'DELIVERED') {
+      alert(`🎉 Package Delivered Successfully!\nBuyer accepted parcel.\nAwarded +8 Reliability Score points.\nNew Score: ${data.new_score.toFixed(1)}`);
+    } else {
+      alert(`⚠️ Delivery Failed (Returned to Origin)!\nBuyer refused parcel.\nDeducted -25 Reliability Score points.\nNew Score: ${data.new_score.toFixed(1)}`);
+    }
 
   } catch (err) {
     console.error('Error during feedback simulation:', err);
-    logEl.innerHTML = `<span style="color:var(--rose);">Error communicating with feedback service.</span>`;
   }
 }
 
 // =====================================================================
-// 5. Dataset Explorer
+// 6. Dataset Explorer
 // =====================================================================
 
 async function filterDataset(paymentMethod) {
   appState.currentDatasetFilter = paymentMethod;
 
-  // Update button active styles
   ['all', 'cod', 'prepaid'].forEach(key => {
     const btn = document.getElementById(`btn-filter-${key}`);
     if (btn) {
@@ -354,7 +497,7 @@ async function filterDataset(paymentMethod) {
 
 async function refreshDatasetSample() {
   const tbody = document.getElementById('dataset-tbody');
-  tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding:1.5rem; color:var(--text-muted);">Fetching dynamic batch from CSV...</td></tr>`;
+  tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding:1.5rem; color:var(--text-muted);">Fetching sample from CSV...</td></tr>`;
 
   try {
     let url = '/api/dataset/sample?limit=14';
@@ -405,17 +548,15 @@ async function refreshDatasetSample() {
 }
 
 // =====================================================================
-// 6. Application Initialization
+// 7. Application Initialization
 // =====================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Check initial hash
   const initialHash = window.location.hash.replace('#', '') || 'overview';
   switchTab(initialHash);
 
-  // Load initial backend telemetry
   loadEdaMetrics();
   loadModelSummary();
-  runLiveScoring();
+  applyScenarioPreset('A');
   filterDataset('ALL');
 });

@@ -1,5 +1,5 @@
 {
-  "model_architecture": "Calibrated Random Forest Pipeline (KBTG Scorecard Standard)",
+  "model_architecture": "Calibrated Random Forest Pipeline (Credit Scorecard Standard)",
   "features": {
     "numeric": [
       "buyer_reliability_score",
