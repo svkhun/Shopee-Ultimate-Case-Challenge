@@ -20,7 +20,7 @@ Features:
 
 ---
 
-## 📊 Alignment with the 5 Case Presentation Slides (PDF)
+## Alignment with the 5 Case Presentation Slides (PDF)
 
 | Slide | Core Empirical Finding / Business Policy | Data Science Proof & System Implementation |
 | :--- | :--- | :--- |
@@ -32,18 +32,18 @@ Features:
 
 ---
 
-## 📱 Interactive Shopee Mobile App Simulator
+## Interactive Shopee Mobile App Simulator
 
 The simulator models the actual Shopee mobile app checkout screen:
-- **Grade A (Score ≥ 80)**: Instant 1-click COD checkout with green verified badge.
-- **Grade B (Score 50–79)**: Yellow pre-delivery reminder notification + preferred delivery window prompt.
+- **Grade A (Score ≥ 80)**: Instant 1-click COD checkout with verified badge.
+- **Grade B (Score 50–79)**: Pre-delivery reminder notification + preferred delivery window prompt.
 - **Grade C (Score 30–49)**: Mandatory SMS OTP verification modal with 6-digit input boxes.
 - **Grade D (Score < 30)**: COD restricted with ฿40 reverse logistics deposit authorization or PromptPay conversion.
 - **Rider Delivery Feedback**: Direct buttons to simulate doorstep collection (`+8 Pts` on successful delivery, `-25 Pts` on RTO).
 
 ---
 
-## 🏗️ Architecture & Technology Stack
+## Architecture & Technology Stack
 
 ```
 Shopee-Ultimate-Case-Challenge/
@@ -79,7 +79,7 @@ Shopee-Ultimate-Case-Challenge/
 
 ---
 
-## ⚡ Machine Learning Pipeline
+## Machine Learning Pipeline
 
 The risk model predicts delivery failure probability $P(\text{failed} \mid \text{COD})$ and scales it into a credit-standard **Reliability Score**:
 
@@ -98,7 +98,7 @@ $$\text{Reliability Score} = \text{round}\left(100 \times \left(1 - \hat{P}_{\te
 
 ---
 
-## 🚀 Quickstart & Local Setup
+## Quickstart & Local Setup
 
 ### 1. Prerequisites
 - Python 3.11+ installed.
@@ -126,7 +126,7 @@ Open your browser at `http://127.0.0.1:8000` to interact with the executive pres
 
 ---
 
-## ☁️ Deploy to Render.com
+## Deploy to Render.com
 
 This repository is pre-configured for instant zero-configuration deployment on **Render.com**:
 
@@ -141,7 +141,7 @@ This repository is pre-configured for instant zero-configuration deployment on *
 
 ---
 
-## 📡 REST API Documentation
+## REST API Documentation
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |

@@ -257,7 +257,7 @@ function updateSmartphoneScreen(result) {
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-a">
         <div style="font-weight:700; display:flex; align-items:center; gap:4px;">
-          <span>✓</span> Reliable Buyer (Score: ${score.toFixed(1)})
+          Reliable Buyer (Score: ${score.toFixed(1)})
         </div>
         <div>Standard 1-click Cash on Delivery. Zero checkout friction.</div>
       </div>
@@ -269,7 +269,7 @@ function updateSmartphoneScreen(result) {
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-b">
         <div style="font-weight:700; display:flex; align-items:center; gap:4px;">
-          <span>⚠️</span> Pre-Delivery Reminder Active (Score: ${score.toFixed(1)})
+          Pre-Delivery Reminder Active (Score: ${score.toFixed(1)})
         </div>
         <div>Automated SMS confirmation will be sent 24h prior. Please confirm your delivery window above.</div>
       </div>
@@ -281,7 +281,7 @@ function updateSmartphoneScreen(result) {
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-c">
         <div style="font-weight:700; display:flex; align-items:center; gap:4px;">
-          <span>📱</span> Mandatory SMS OTP Required (Score: ${score.toFixed(1)})
+          Mandatory SMS OTP Required (Score: ${score.toFixed(1)})
         </div>
         <div>Elevated return risk detected. Please enter the 6-digit verification code sent to your phone.</div>
         <div class="phone-otp-box">
@@ -306,7 +306,7 @@ function updateSmartphoneScreen(result) {
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-d">
         <div style="font-weight:700; display:flex; align-items:center; gap:4px;">
-          <span>🚫</span> COD Restricted (Score: ${score.toFixed(1)})
+          COD Restricted (Score: ${score.toFixed(1)})
         </div>
         <div>Due to multiple previous failed deliveries, standard COD is restricted for this account.</div>
         <div class="phone-deposit-box">
@@ -462,9 +462,9 @@ async function handleDeliveryFeedback(eventOutcome) {
 
     // In-phone Alert Toast
     if (eventOutcome === 'DELIVERED') {
-      alert(`🎉 Package Delivered Successfully!\nBuyer accepted parcel.\nAwarded +8 Reliability Score points.\nNew Score: ${data.new_score.toFixed(1)}`);
+      alert(`Package Delivered Successfully!\nBuyer accepted parcel.\nAwarded +8 Reliability Score points.\nNew Score: ${data.new_score.toFixed(1)}`);
     } else {
-      alert(`⚠️ Delivery Failed (Returned to Origin)!\nBuyer refused parcel.\nDeducted -25 Reliability Score points.\nNew Score: ${data.new_score.toFixed(1)}`);
+      alert(`Delivery Failed (Returned to Origin)!\nBuyer refused parcel.\nDeducted -25 Reliability Score points.\nNew Score: ${data.new_score.toFixed(1)}`);
     }
 
   } catch (err) {
