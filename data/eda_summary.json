@@ -1,0 +1,73 @@
+{
+  "dataset_metrics": {
+    "total_orders_sample": 50000,
+    "total_buyers_sample": 12000,
+    "cod_order_count": 17618,
+    "prepaid_order_count": 32382
+  },
+  "slide_1_root_cause": {
+    "cod_share_of_orders_pct": 35.24,
+    "prepaid_share_of_orders_pct": 64.76,
+    "cod_failed_delivery_rate_pct": 2.71,
+    "prepaid_failed_delivery_rate_pct": 0.24,
+    "risk_multiplier": 11.3,
+    "cod_share_of_all_failures_pct": 86.0,
+    "z_statistic": 25.16,
+    "p_value": 0.0,
+    "is_statistically_significant": true
+  },
+  "slide_2_buyer_segmentation": {
+    "LOW_RISK": {
+      "buyer_count": 9868,
+      "buyer_share_pct": 82.2,
+      "avg_reliability_score": 90.1,
+      "avg_historical_success_rate": 97.5,
+      "avg_consecutive_failed_cods": 0.0,
+      "cod_order_count": 14419,
+      "cod_fail_rate_pct": 0.65
+    },
+    "MEDIUM_RISK": {
+      "buyer_count": 1425,
+      "buyer_share_pct": 11.9,
+      "avg_reliability_score": 66.8,
+      "avg_historical_success_rate": 87.1,
+      "avg_consecutive_failed_cods": 0.25,
+      "cod_order_count": 2124,
+      "cod_fail_rate_pct": 3.67
+    },
+    "HIGH_RISK": {
+      "buyer_count": 492,
+      "buyer_share_pct": 4.1,
+      "avg_reliability_score": 40.4,
+      "avg_historical_success_rate": 69.9,
+      "avg_consecutive_failed_cods": 1.42,
+      "cod_order_count": 729,
+      "cod_fail_rate_pct": 15.91
+    },
+    "REPEATED_HIGH_RISK": {
+      "buyer_count": 215,
+      "buyer_share_pct": 1.8,
+      "avg_reliability_score": 18.1,
+      "avg_historical_success_rate": 38.7,
+      "avg_consecutive_failed_cods": 4.47,
+      "cod_order_count": 346,
+      "cod_fail_rate_pct": 54.91
+    }
+  },
+  "slide_4_scheduling_impact": {
+    "with_window_fail_rate_pct": 2.36,
+    "without_window_fail_rate_pct": 3.09,
+    "failure_reduction_from_window_pct": 23.6,
+    "first_attempt_success_with_window_pct": 88.5,
+    "first_attempt_success_without_window_pct": 70.2,
+    "first_attempt_relative_boost_pct": 26.1
+  },
+  "slide_5_financial_impact": {
+    "cost_per_rto_parcel_thb": 45.0,
+    "simulated_monthly_orders": 15000000,
+    "monthly_reverse_logistics_waste_thb": 6446277.0,
+    "target_reduction_pct": 58.0,
+    "estimated_monthly_savings_thb": 3738840.66,
+    "estimated_annual_savings_thb": 44866087.92
+  }
+}

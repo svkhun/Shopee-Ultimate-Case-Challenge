@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopee Smart COD Reliability Intelligence | KBTG Data Science Process</title>
+  <meta name="description" content="KBTG Data Science-driven Smart COD Reliability System for Shopee Ultimate Case Challenge (SUCC). Multi-page executive intelligence portal.">
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ee4d2d'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm1-12c2.21 0 4 1.79 4 4 0 1.28-.59 2.42-1.5 3.16-.48.39-.77.72-.77 1.34h-2.46c0-1.28.59-2.42 1.5-3.16.48-.39.77-.72.77-1.34 0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5H7.5c0-2.21 1.79-4 4-4z'/></svg>">
+</head>
+<body>
+
+  <!-- Ambient Glow Effects -->
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- Main Navigation Header -->
+  <header class="app-header">
+    <a href="#overview" class="brand-wrapper" onclick="switchTab('overview')">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+        </svg>
+      </div>
+      <div>
+        <div style="display:flex; align-items:center;">
+          <span class="brand-title">Shopee COD Sentinel</span>
+          <span class="brand-badge">SUCC 2026</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Multi-Page Navigation Tabs -->
+    <nav class="main-nav">
+      <button class="nav-tab-btn active" data-target="overview" onclick="switchTab('overview')">Overview</button>
+      <button class="nav-tab-btn" data-target="slide1" onclick="switchTab('slide1')">1. Root Cause</button>
+      <button class="nav-tab-btn" data-target="slide2" onclick="switchTab('slide2')">2. 4-Tier Policy</button>
+      <button class="nav-tab-btn" data-target="slide3" onclick="switchTab('slide3')">3. Score & EasySell</button>
+      <button class="nav-tab-btn" data-target="slide4" onclick="switchTab('slide4')">4. Preferred Window</button>
+      <button class="nav-tab-btn" data-target="slide5" onclick="switchTab('slide5')">5. Financial Impact</button>
+      <button class="nav-tab-btn" data-target="mllab" onclick="switchTab('mllab')" style="color:var(--shopee-orange); font-weight:600;">⚡ KBTG ML Lab</button>
+      <button class="nav-tab-btn" data-target="dataset" onclick="switchTab('dataset')">Dataset</button>
+    </nav>
+
+    <!-- Model Status Badge -->
+    <div class="status-pill">
+      <div class="pulsing-dot"></div>
+      <span id="header-model-status">Python 3.13 ML Active (AUC: 0.86)</span>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="app-main">
+
+    <!-- ===================================================================
+         PAGE 1: OVERVIEW & HERO SECTION
+         =================================================================== -->
+    <section id="page-overview" class="page-section active">
+      <div class="hero-wrapper">
+        <div class="hero-text-content">
+          <div class="hero-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Shopee Ultimate Case Challenge | KBTG Methodology
+          </div>
+          <h1 class="hero-title">
+            Smart COD Reliability <span class="highlight">Intelligence</span>
+          </h1>
+          <p class="hero-lead">
+            An empirical machine learning framework eliminating <strong>58% of Cash on Delivery (COD) failed deliveries</strong> while preserving GMV conversion through dynamic buyer reliability scoring, preferred window scheduling, and risk-calibrated friction.
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="switchTab('mllab')">
+              Launch Live ML Lab
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <button class="btn-secondary" onclick="switchTab('slide1')">
+              Explore 5 Presentation Slides
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-media-card">
+          <img src="/static/assets/media_1790529901741.jpg" alt="Shopee Express Logistics Operations" class="hero-image">
+          <div class="hero-media-overlay">
+            <div class="overlay-metric">
+              <span class="val">50,000</span>
+              <span class="lbl">Simulated Orders (CSV)</span>
+            </div>
+            <div class="overlay-metric">
+              <span class="val" id="hero-auc-display">0.8629</span>
+              <span class="lbl">Calibrated ROC-AUC</span>
+            </div>
+            <div class="overlay-metric">
+              <span class="val" style="color:var(--emerald);">฿3.74M</span>
+              <span class="lbl">Est. Monthly Savings</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Executive KPI Ribbon -->
+      <div class="metrics-ribbon">
+        <div class="metric-card orange">
+          <div class="metric-header">
+            <span class="metric-title">Risk Disparity</span>
+            <span class="mono" style="color:var(--shopee-orange);">Slide 1</span>
+          </div>
+          <div class="metric-num" id="kpi-risk-ratio">11.3×</div>
+          <div class="metric-desc">COD failure rate (2.71%) vs Non-COD (0.24%). Statistically confirmed with Z-test p &lt; 0.001.</div>
+        </div>
+
+        <div class="metric-card amber">
+          <div class="metric-header">
+            <span class="metric-title">Failure Concentration</span>
+            <span class="mono" style="color:var(--amber);">Slide 1</span>
+          </div>
+          <div class="metric-num" id="kpi-failure-share">86.0%</div>
+          <div class="metric-desc">86% of all return parcels originate from COD, despite COD representing only ~35% of total basket volume.</div>
+        </div>
+
+        <div class="metric-card cyan">
+          <div class="metric-header">
+            <span class="metric-title">Window Scheduling Uplift</span>
+            <span class="mono" style="color:var(--cyan);">Slide 4</span>
+          </div>
+          <div class="metric-num" id="kpi-window-uplift">+26.1%</div>
+          <div class="metric-desc">First-attempt delivery success surges from 70.2% to 88.5% when buyer selects preferred time slot.</div>
+        </div>
+
+        <div class="metric-card emerald">
+          <div class="metric-header">
+            <span class="metric-title">Targeted RTO Reduction</span>
+            <span class="mono" style="color:var(--emerald);">Slide 5</span>
+          </div>
+          <div class="metric-num" id="kpi-target-reduction">-58.0%</div>
+          <div class="metric-desc">Projected reverse logistics cost reduction saving THB 3.74M/mo (THB 44.9M annually) at 15M monthly volume.</div>
+        </div>
+      </div>
+
+      <!-- Quick Strategic Pillars Card Grid -->
+      <div class="grid-3">
+        <div class="content-card">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+            Targeted Precision
+          </div>
+          <p class="card-subtitle">Zero friction on 82.2% Low Risk buyers</p>
+          <p style="font-size:0.86rem; color:var(--text-secondary);">
+            Standard checkouts remain frictionless for verified, high-scoring buyers. Interventions are concentrated exclusively on high-probability RTO cohorts.
+          </p>
+        </div>
+
+        <div class="content-card">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Progressive Interventions
+          </div>
+          <p class="card-subtitle">Adaptive barriers scaled to risk score</p>
+          <p style="font-size:0.86rem; color:var(--text-secondary);">
+            Graduated measures starting from non-intrusive push reminders (Medium Risk) to SMS OTP verification (High Risk) and micro-deposit collateral (Repeated High Risk).
+          </p>
+        </div>
+
+        <div class="content-card">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            Recoverable Feedback Loop
+          </div>
+          <p class="card-subtitle">+8 Delivered / -25 RTO rehabilitation</p>
+          <p style="font-size:0.86rem; color:var(--text-secondary);">
+            Buyers are never permanently penalized. Every successful delivery restores reliability score, enabling reformed buyers to regain instant 1-click COD privileges.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 2: SLIDE 1 - ROOT CAUSE & STATISTICAL EDA
+         =================================================================== -->
+    <section id="page-slide1" class="page-section">
+      <div class="section-headline">
+        <span class="section-tag">Empirical Data Science Proof</span>
+        <h2 class="section-h2">Slide 1: Root Cause Analysis & Risk Disparity</h2>
+        <p class="section-p">
+          Empirical verification of the fundamental hypothesis from the Shopee Ultimate Case Challenge PDF: COD orders present an exponentially higher risk of delivery failure than prepaid transactions.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="content-card">
+          <div class="card-title">Statistical Hypothesis Testing (Two-Proportion Z-Test)</div>
+          <p class="card-subtitle">Evaluated on 50,000 Shopee synthetic transactions</p>
+
+          <table class="shopee-table" style="margin-bottom:1.5rem;">
+            <thead>
+              <tr>
+                <th>Payment Channel</th>
+                <th>Volume Mix</th>
+                <th>Delivery Failures</th>
+                <th>Failure Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Cash on Delivery (COD)</strong></td>
+                <td id="eda-cod-mix">35.2% (17,618)</td>
+                <td id="eda-cod-fails">478 orders</td>
+                <td style="color:var(--rose); font-weight:600;" id="eda-cod-rate">2.71%</td>
+              </tr>
+              <tr>
+                <td><strong>Prepaid (PromptPay / Card / SPayLater)</strong></td>
+                <td id="eda-prepaid-mix">64.8% (32,382)</td>
+                <td id="eda-prepaid-fails">78 orders</td>
+                <td style="color:var(--emerald); font-weight:600;" id="eda-prepaid-rate">0.24%</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="background:rgba(0,0,0,0.3); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem; font-size:0.86rem;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+              <span style="color:var(--text-secondary);">Relative Risk Ratio:</span>
+              <strong class="mono" style="color:var(--shopee-orange);" id="eda-stat-ratio">11.3× (PDF target: 10.6×)</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+              <span style="color:var(--text-secondary);">Z-Score Statistic:</span>
+              <strong class="mono" id="eda-stat-z">z = 25.16</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+              <span style="color:var(--text-secondary);">p-value:</span>
+              <strong class="mono" style="color:var(--emerald);" id="eda-stat-p">&lt; 0.000001 (Highly Significant)</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span style="color:var(--text-secondary);">COD Share of All RTO Parcels:</span>
+              <strong class="mono" style="color:var(--rose);" id="eda-stat-share">86.0% (PDF target: 85%)</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <div class="card-title">Key Insights & Behavioral Mechanics</div>
+          <p class="card-subtitle">Why Cash on Delivery fails at 10.6× higher frequency</p>
+          
+          <div style="display:flex; flex-direction:column; gap:1.25rem;">
+            <div style="display:flex; gap:0.85rem;">
+              <div style="background:var(--rose-bg); color:var(--rose); padding:0.5rem; border-radius:8px; height:fit-content; font-weight:700;">01</div>
+              <div>
+                <strong style="font-size:0.92rem; display:block; margin-bottom:0.25rem;">Zero Financial Commitment at Checkout</strong>
+                <p style="font-size:0.84rem; color:var(--text-secondary);">
+                  Buyers bear no immediate financial loss if they refuse delivery, fostering casual impulse orders that are later abandoned when rider arrives.
+                </p>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:0.85rem;">
+              <div style="background:var(--amber-bg); color:var(--amber); padding:0.5rem; border-radius:8px; height:fit-content; font-weight:700;">02</div>
+              <div>
+                <strong style="font-size:0.92rem; display:block; margin-bottom:0.25rem;">Unsynchronized Delivery Timing</strong>
+                <p style="font-size:0.84rem; color:var(--text-secondary);">
+                  Without scheduled delivery windows, couriers arrive unannounced when buyers are away, leading to multiple failed attempts and ultimate RTO.
+                </p>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:0.85rem;">
+              <div style="background:var(--cyan-bg); color:var(--cyan); padding:0.5rem; border-radius:8px; height:fit-content; font-weight:700;">03</div>
+              <div>
+                <strong style="font-size:0.92rem; display:block; margin-bottom:0.25rem;">Disproportionate Reverse Logistics Waste</strong>
+                <p style="font-size:0.84rem; color:var(--text-secondary);">
+                  At THB 45 per return shipment, COD failures drain merchants and platform unit economics while tying up inventory for 5–7 days.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 3: SLIDE 2 - 4-TIER BUYER RISK INTERVENTION POLICY
+         =================================================================== -->
+    <section id="page-slide2" class="page-section">
+      <div class="section-headline">
+        <span class="section-tag">Policy Segmentation Architecture</span>
+        <h2 class="section-h2">Slide 2: 4-Tier Buyer Risk Interventions</h2>
+        <p class="section-p">
+          Following KBTG credit risk tiering practices, the population is divided into four operational segments. High reliability accounts experience zero friction, while graduated guardrails prevent costly RTO.
+        </p>
+      </div>
+
+      <div class="grid-4">
+        <!-- Low Risk -->
+        <div class="tier-card tier-low">
+          <div>
+            <span class="tier-badge emerald">Grade A • Low Risk</span>
+            <div class="tier-score-range" style="color:var(--emerald);">Score ≥ 80</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+              82.2% of buyer population (9,868 accounts)
+            </div>
+            <p style="font-size:0.84rem; color:var(--text-primary); line-height:1.5;">
+              Reliable buyers with clean track records (97.5% historical completion).
+            </p>
+          </div>
+          <div class="tier-action-box">
+            <strong style="color:var(--emerald); display:block; margin-bottom:0.25rem;">Zero Friction</strong>
+            Instant 1-click checkout. Standard COD dispatch without verification barriers.
+          </div>
+        </div>
+
+        <!-- Medium Risk -->
+        <div class="tier-card tier-med">
+          <div>
+            <span class="tier-badge amber">Grade B • Medium Risk</span>
+            <div class="tier-score-range" style="color:var(--amber);">Score 50 – 79</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+              11.9% of buyer population (1,425 accounts)
+            </div>
+            <p style="font-size:0.84rem; color:var(--text-primary); line-height:1.5;">
+              Average accounts or new profiles without proven history (87.1% success).
+            </p>
+          </div>
+          <div class="tier-action-box">
+            <strong style="color:var(--amber); display:block; margin-bottom:0.25rem;">Pre-Delivery Reminder</strong>
+            Automated in-app/SMS alert 24h prior. Prompt to choose preferred delivery window.
+          </div>
+        </div>
+
+        <!-- High Risk -->
+        <div class="tier-card tier-high">
+          <div>
+            <span class="tier-badge orange">Grade C • High Risk</span>
+            <div class="tier-score-range" style="color:var(--orange);">Score 30 – 49</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+              4.1% of buyer population (492 accounts)
+            </div>
+            <p style="font-size:0.84rem; color:var(--text-primary); line-height:1.5;">
+              Accounts with 1–2 recent failed deliveries or address modifications (69.9% success).
+            </p>
+          </div>
+          <div class="tier-action-box">
+            <strong style="color:var(--orange); display:block; margin-bottom:0.25rem;">Mandatory SMS OTP</strong>
+            Requires two-factor phone confirmation before order transmission to warehouse.
+          </div>
+        </div>
+
+        <!-- Repeated High Risk -->
+        <div class="tier-card tier-rep">
+          <div>
+            <span class="tier-badge rose">Grade D • Repeated High Risk</span>
+            <div class="tier-score-range" style="color:var(--rose);">Score &lt; 30</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+              1.8% of buyer population (215 accounts)
+            </div>
+            <p style="font-size:0.84rem; color:var(--text-primary); line-height:1.5;">
+              Chronic returners with ≥3 consecutive failed deliveries (38.7% success, 54.9% COD fail).
+            </p>
+          </div>
+          <div class="tier-action-box">
+            <strong style="color:var(--rose); display:block; margin-bottom:0.25rem;">฿40 Deposit or Prepaid</strong>
+            Restricts open COD. Requires THB 40 reverse logistics deposit or full prepaid conversion.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 4: SLIDE 3 - DYNAMIC SCORECARD & EASYSELL FRAUD SHIELD
+         =================================================================== -->
+    <section id="page-slide3" class="page-section">
+      <div class="section-headline">
+        <span class="section-tag">Adaptive Buyer Credit & Security</span>
+        <h2 class="section-h2">Slide 3: Dynamic Feedback Loop & EasySell Shield</h2>
+        <p class="section-p">
+          A self-correcting feedback mechanism incentivizes good buyer behavior: scores increase by +8 for completed deliveries and decline by -25 for failed deliveries. EasySell protects sellers from malicious addresses.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Dynamic Feedback Interactive Simulator -->
+        <div class="content-card">
+          <div class="card-title">Live Score Transition Simulator</div>
+          <p class="card-subtitle">Experience how real-time order outcomes alter buyer credit standing</p>
+
+          <div style="background:#090d16; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1.25rem; margin-bottom:1.25rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+              <div>
+                <span style="font-size:0.8rem; color:var(--text-secondary); display:block;">Current Simulated Score:</span>
+                <span id="sim-current-score" style="font-size:2rem; font-weight:700; font-family:'Geist Mono', monospace; color:var(--shopee-orange);">75.0</span>
+              </div>
+              <div style="text-align:right;">
+                <span style="font-size:0.8rem; color:var(--text-secondary); display:block;">Current Tier:</span>
+                <span id="sim-current-tier" class="tier-badge amber" style="margin-bottom:0;">Medium Risk (Grade B)</span>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; font-size:0.82rem; color:var(--text-muted); border-top:1px solid rgba(255,255,255,0.06); padding-top:0.75rem;">
+              <span>Consecutive Failed CODs: <strong id="sim-consec-fails" class="mono" style="color:#fff;">0</strong></span>
+              <span>Next Threshold: <span class="mono">&lt; 50 (High Risk) | ≥ 80 (Low)</span></span>
+            </div>
+          </div>
+
+          <div class="feedback-actions">
+            <button class="btn-feedback-delivered" onclick="handleDeliveryFeedback('DELIVERED')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Parcel Delivered (+8 Pts)
+            </button>
+            <button class="btn-feedback-rto" onclick="handleDeliveryFeedback('RETURNED_TO_ORIGIN')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Delivery Failed / RTO (-25 Pts)
+            </button>
+          </div>
+
+          <div id="sim-feedback-log" style="font-size:0.84rem; padding:0.85rem; border-radius:var(--radius-sm); background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); color:var(--text-secondary);">
+            Ready. Click an outcome button to trigger the Python dynamic scoring feedback API.
+          </div>
+        </div>
+
+        <!-- EasySell Fraud Shield -->
+        <div class="content-card">
+          <div class="card-title">EasySell Seller Protection Shield</div>
+          <p class="card-subtitle">Automated merchant risk mitigation against fake addresses and burner bots</p>
+
+          <div style="display:flex; flex-direction:column; gap:1.2rem;">
+            <div style="padding:1rem; border-radius:var(--radius-sm); background:rgba(238,77,45,0.05); border:1px solid rgba(238,77,45,0.2);">
+              <strong style="color:var(--shopee-orange); font-size:0.9rem; display:block; margin-bottom:0.25rem;">Address Tampering Detection</strong>
+              <p style="font-size:0.83rem; color:var(--text-secondary);">
+                When a buyer modifies shipping address within 48 hours of order placement on an unverified phone account, EasySell automatically places a delivery hold until SMS OTP verification is completed.
+              </p>
+            </div>
+
+            <div style="padding:1rem; border-radius:var(--radius-sm); background:rgba(16,185,129,0.05); border:1px solid rgba(16,185,129,0.2);">
+              <strong style="color:var(--emerald); font-size:0.9rem; display:block; margin-bottom:0.25rem;">Platform RTO Insurance Coverage</strong>
+              <p style="font-size:0.83rem; color:var(--text-secondary);">
+                Compliant sellers fulfilling orders approved by the Smart COD Sentinel are guaranteed 100% reimbursement of reverse logistics charges in the event of an unavoidable courier return.
+              </p>
+            </div>
+
+            <div style="padding:1rem; border-radius:var(--radius-sm); background:rgba(6,182,212,0.05); border:1px solid rgba(6,182,212,0.2);">
+              <strong style="color:var(--cyan); font-size:0.9rem; display:block; margin-bottom:0.25rem;">Rehabilitation & Recoverability</strong>
+              <p style="font-size:0.83rem; color:var(--text-secondary);">
+                Buyers who accept packages consecutively recover +8 points per parcel. Two successful deliveries can elevate a restricted user back into frictionless shopping.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 5: SLIDE 4 - PREFERRED DELIVERY WINDOW SCHEDULING
+         =================================================================== -->
+    <section id="page-slide4" class="page-section">
+      <div class="section-headline">
+        <span class="section-tag">Logistics Synchronization</span>
+        <h2 class="section-h2">Slide 4: Preferred Delivery Window Impact</h2>
+        <p class="section-p">
+          Synchronizing delivery arrival with buyer availability increases first-attempt collection rates by +24%, eliminating costly secondary attempts and parcel abandonment.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="content-card">
+          <div class="card-title">Empirical Delivery Window Comparison</div>
+          <p class="card-subtitle">Derived from 17,618 COD shipments in synthetic dataset</p>
+
+          <div style="display:flex; flex-direction:column; gap:1.25rem; margin-top:1rem;">
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.86rem; margin-bottom:0.35rem;">
+                <span>First-Attempt Success (With Preferred Window)</span>
+                <strong style="color:var(--emerald); font-family:'Geist Mono', monospace;" id="win-first-with">88.5%</strong>
+              </div>
+              <div class="feat-bar-track">
+                <div class="feat-bar-fill" style="width: 88.5%; background:var(--emerald);"></div>
+              </div>
+            </div>
+
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.86rem; margin-bottom:0.35rem;">
+                <span>First-Attempt Success (No Window / Unscheduled)</span>
+                <strong style="color:var(--text-muted); font-family:'Geist Mono', monospace;" id="win-first-without">70.2%</strong>
+              </div>
+              <div class="feat-bar-track">
+                <div class="feat-bar-fill" style="width: 70.2%; background:var(--text-muted);"></div>
+              </div>
+            </div>
+
+            <div style="background:rgba(0,0,0,0.3); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem; margin-top:0.5rem;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem; font-size:0.85rem;">
+                <span style="color:var(--text-secondary);">Relative 1st-Attempt Boost:</span>
+                <strong class="mono" style="color:var(--cyan);" id="win-boost-pct">+26.1% (PDF target: +24%)</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
+                <span style="color:var(--text-secondary);">Overall Failure Rate Reduction:</span>
+                <strong class="mono" style="color:var(--emerald);" id="win-fail-reduct">-23.6% reduction</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <div class="card-title">Delivery Slot Selection Architecture</div>
+          <p class="card-subtitle">Offered automatically during checkout for Medium & High risk cohorts</p>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
+              <strong style="font-size:0.88rem; display:block; margin-bottom:0.25rem;">🌅 Morning Window</strong>
+              <span class="mono" style="font-size:0.78rem; color:var(--text-muted);">09:00 - 12:00</span>
+              <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.4rem;">Optimized for residential stay-at-home and weekend shoppers.</p>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
+              <strong style="font-size:0.88rem; display:block; margin-bottom:0.25rem;">☀️ Afternoon Window</strong>
+              <span class="mono" style="font-size:0.78rem; color:var(--text-muted);">13:00 - 17:00</span>
+              <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.4rem;">Optimized for commercial offices, retail shops, and corporate campuses.</p>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
+              <strong style="font-size:0.88rem; display:block; margin-bottom:0.25rem;">🌙 Evening Window</strong>
+              <span class="mono" style="font-size:0.78rem; color:var(--text-muted);">17:00 - 20:00</span>
+              <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.4rem;">Highest demand among working professionals returning home.</p>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
+              <strong style="font-size:0.88rem; display:block; margin-bottom:0.25rem;">📅 Weekend Slot</strong>
+              <span class="mono" style="font-size:0.78rem; color:var(--text-muted);">Sat & Sun All Day</span>
+              <p style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.4rem;">Scheduled specifically for non-urgent deliveries requiring recipient presence.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 6: SLIDE 5 - FINANCIAL IMPACT & STRATEGY
+         =================================================================== -->
+    <section id="page-slide5" class="page-section">
+      <div class="section-headline">
+        <span class="section-tag">Value Realization & Economics</span>
+        <h2 class="section-h2">Slide 5: Business Impact & Reverse Logistics Shield</h2>
+        <p class="section-p">
+          Comprehensive cost-benefit modeling based on THB 45 reverse handling fees across Shopee's estimated 15,000,000 monthly orders in Thailand.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="content-card">
+          <div class="card-title">Baseline RTO Waste</div>
+          <p class="card-subtitle">Without Smart COD Reliability System</p>
+          <div style="font-size:2.2rem; font-weight:700; color:var(--rose); font-family:'Geist Mono', monospace; margin:1rem 0;" id="fin-baseline-waste">
+            ฿6.45M / mo
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+            Calculated at 35.2% COD mix (5.28M orders) and 2.71% failed delivery rate = ~143,000 failed parcels monthly at ฿45/parcel waste.
+          </p>
+        </div>
+
+        <div class="content-card">
+          <div class="card-title">Targeted 58% Reduction</div>
+          <p class="card-subtitle">Through 4-Tier policy & window scheduling</p>
+          <div style="font-size:2.2rem; font-weight:700; color:var(--emerald); font-family:'Geist Mono', monospace; margin:1rem 0;" id="fin-monthly-savings">
+            ฿3.74M / mo
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+            Eliminating 83,000 avoidable return parcels monthly while maintaining zero checkout barriers for the 82.2% Low Risk customer base.
+          </p>
+        </div>
+
+        <div class="content-card">
+          <div class="card-title">Annualized Cost Savings</div>
+          <p class="card-subtitle">Direct platform EBITDA enhancement</p>
+          <div style="font-size:2.2rem; font-weight:700; color:var(--cyan); font-family:'Geist Mono', monospace; margin:1rem 0;" id="fin-annual-savings">
+            ฿44.9M / yr
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+            Total annual capital preserved for marketing reinvestment, free shipping subsidies, and seller commission reductions.
+          </p>
+        </div>
+      </div>
+
+      <!-- Strategic Pillars Checklist -->
+      <div class="content-card" style="margin-top:1.5rem;">
+        <div class="card-title">Strategic Alignment with Executive Principles</div>
+        <div class="grid-3" style="margin-top:1rem; margin-bottom:0;">
+          <div style="padding:1rem; background:rgba(0,0,0,0.3); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <strong style="color:#fff; font-size:0.9rem; display:block; margin-bottom:0.35rem;">🎯 Principle 1: Targeted</strong>
+            <p style="font-size:0.82rem; color:var(--text-secondary);">No broad-brush restrictions. 82.2% of buyers experience zero interruption, preserving top-of-funnel GMV.</p>
+          </div>
+          <div style="padding:1rem; background:rgba(0,0,0,0.3); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <strong style="color:#fff; font-size:0.9rem; display:block; margin-bottom:0.35rem;">📈 Principle 2: Progressive</strong>
+            <p style="font-size:0.82rem; color:var(--text-secondary);">Interventions escalate smoothly (Reminder → OTP → Deposit) based on quantitative ML risk probability.</p>
+          </div>
+          <div style="padding:1rem; background:rgba(0,0,0,0.3); border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <strong style="color:#fff; font-size:0.9rem; display:block; margin-bottom:0.35rem;">🔄 Principle 3: Recoverable</strong>
+            <p style="font-size:0.82rem; color:var(--text-secondary);">Transparent path to redemption (+8 per delivered order), converting risky buyers into loyal high-value patrons.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 7: KBTG DATA SCIENCE & ML LAB (INTERACTIVE)
+         =================================================================== -->
+    <section id="page-mllab" class="page-section">
+      <div class="section-headline">
+        <span class="section-tag">Interactive Machine Learning Console</span>
+        <h2 class="section-h2">KBTG-Grade Risk Scoring Engine & Explainability Lab</h2>
+        <p class="section-p">
+          Test real-time scoring inference using our calibrated Random Forest pipeline. Tweak buyer credit history, basket parameters, and logistics factors to observe instant policy reactions.
+        </p>
+      </div>
+
+      <div class="simulator-layout">
+        <!-- Input Parameters Form -->
+        <div class="content-card">
+          <div class="card-title">Transaction & Credit Profile Parameters</div>
+          <p class="card-subtitle">Live inputs streamed to Python FastAPI inference endpoint</p>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
+            <!-- Buyer Prior Score -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Buyer Prior Score</span>
+                <span class="form-val-display" id="val-score">85</span>
+              </label>
+              <input type="range" class="form-range" id="input-score" min="10" max="100" value="85" oninput="updateLabInputs()">
+            </div>
+
+            <!-- Historical Success Rate -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Historical Success Rate</span>
+                <span class="form-val-display" id="val-success">95%</span>
+              </label>
+              <input type="range" class="form-range" id="input-success" min="20" max="100" value="95" oninput="updateLabInputs()">
+            </div>
+
+            <!-- Consecutive Failed CODs -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Consecutive Failed CODs</span>
+                <span class="form-val-display" id="val-consec">0</span>
+              </label>
+              <input type="range" class="form-range" id="input-consec" min="0" max="5" value="0" oninput="updateLabInputs()">
+            </div>
+
+            <!-- Order Amount (THB) -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Order Basket (THB)</span>
+                <span class="form-val-display" id="val-amount">฿450</span>
+              </label>
+              <input type="range" class="form-range" id="input-amount" min="80" max="6000" step="50" value="450" oninput="updateLabInputs()">
+            </div>
+
+            <!-- Delivery Distance -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Delivery Distance</span>
+                <span class="form-val-display" id="val-distance">12 km</span>
+              </label>
+              <input type="range" class="form-range" id="input-distance" min="1" max="45" value="12" oninput="updateLabInputs()">
+            </div>
+
+            <!-- Account Age Days -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Account Age</span>
+                <span class="form-val-display" id="val-age">365 days</span>
+              </label>
+              <input type="range" class="form-range" id="input-age" min="1" max="1200" step="15" value="365" oninput="updateLabInputs()">
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+              <label class="form-label">Item Category</label>
+              <select class="form-select" id="input-category" onchange="runLiveScoring()">
+                <option value="Fashion" selected>Fashion & Apparel</option>
+                <option value="Electronics">Electronics & Gadgets</option>
+                <option value="Home_Living">Home & Living</option>
+                <option value="Beauty">Health & Beauty</option>
+                <option value="Groceries">Groceries & FMCG</option>
+              </select>
+            </div>
+
+            <!-- Courier -->
+            <div class="form-group">
+              <label class="form-label">Courier Logistics Partner</label>
+              <select class="form-select" id="input-courier" onchange="runLiveScoring()">
+                <option value="Shopee_Xpress" selected>Shopee Xpress (SPX)</option>
+                <option value="Kerry_Express">Kerry Express</option>
+                <option value="Flash_Express">Flash Express</option>
+                <option value="JT_Express">J&T Express</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Toggles for Binary Features -->
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-top:0.75rem;">
+            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.84rem; cursor:pointer;">
+              <input type="checkbox" id="input-window" onchange="runLiveScoring()">
+              <span>Preferred Window Selected</span>
+            </label>
+
+            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.84rem; cursor:pointer;">
+              <input type="checkbox" id="input-phone" checked onchange="runLiveScoring()">
+              <span>Phone Verified</span>
+            </label>
+
+            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.84rem; cursor:pointer;">
+              <input type="checkbox" id="input-address" onchange="runLiveScoring()">
+              <span>Address Changed (&lt;48h)</span>
+            </label>
+          </div>
+
+          <div style="margin-top:1.5rem; display:flex; gap:0.75rem;">
+            <button class="btn-primary" style="flex:1;" onclick="runLiveScoring()">
+              ⚡ Run ML Risk Assessment
+            </button>
+            <button class="btn-secondary" onclick="loadHighRiskPreset()">
+              Load High Risk Scenario
+            </button>
+            <button class="btn-secondary" onclick="loadLowRiskPreset()">
+              Reset to Clean Buyer
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Prediction Output & Explainability -->
+        <div>
+          <div class="prediction-box">
+            <span style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-secondary);">
+              Calibrated Credit Reliability Score
+            </span>
+
+            <div class="score-circle" id="pred-score-circle">
+              <span class="score-num" id="pred-score-val">87.5</span>
+              <span class="score-max">/ 100 max</span>
+            </div>
+
+            <div id="pred-tier-badge" class="tier-badge emerald" style="font-size:0.82rem; padding:4px 14px;">
+              Low Risk (Grade A)
+            </div>
+
+            <div style="width:100%; display:flex; justify-content:space-between; margin-top:1rem; padding:0.6rem 0.8rem; background:rgba(0,0,0,0.3); border-radius:var(--radius-sm); font-size:0.82rem;">
+              <span style="color:var(--text-secondary);">P(Failure): <strong id="pred-fail-prob" class="mono" style="color:#fff;">1.2%</strong></span>
+              <span style="color:var(--text-secondary);">Friction: <strong id="pred-friction-lvl" class="mono" style="color:var(--emerald);">Zero Friction</strong></span>
+            </div>
+
+            <!-- Mandatory Action Output -->
+            <div style="width:100%; margin-top:1rem; text-align:left; padding:0.85rem; background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
+              <span style="font-size:0.72rem; text-transform:uppercase; color:var(--shopee-orange); font-weight:600; display:block; margin-bottom:0.25rem;">Prescribed Policy Action</span>
+              <p id="pred-action-text" style="font-size:0.84rem; color:var(--text-primary); line-height:1.4;">
+                Immediate dispatch with standard 1-click COD fulfillment.
+              </p>
+            </div>
+
+            <!-- Explainable Risk Drivers -->
+            <div style="width:100%; margin-top:1rem; text-align:left;">
+              <span style="font-size:0.76rem; text-transform:uppercase; color:var(--text-secondary); font-weight:600; display:block;">Key Contributing Factors</span>
+              <ul class="risk-reasons-list" id="pred-factors-list">
+                <li>Clean credit history and standard basket profile</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Model Diagnostics Panel -->
+          <div class="content-card" style="margin-top:1.25rem;">
+            <div class="card-title" style="font-size:0.95rem;">KBTG Model Diagnostics</div>
+            <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.4rem;">
+              <span style="color:var(--text-secondary);">Model Pipeline:</span>
+              <span class="mono">CalibratedClassifierCV (RandomForest)</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.4rem;">
+              <span style="color:var(--text-secondary);">Test ROC-AUC:</span>
+              <strong class="mono" style="color:var(--emerald);">0.8629</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.4rem;">
+              <span style="color:var(--text-secondary);">Average Precision (PR-AUC):</span>
+              <strong class="mono" style="color:var(--cyan);">0.3722</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
+              <span style="color:var(--text-secondary);">Brier Calibration Loss:</span>
+              <strong class="mono">0.02087</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Importance Ranking -->
+      <div class="content-card" style="margin-top:2rem;">
+        <div class="card-title">Top Risk Predictive Drivers (Feature Importance)</div>
+        <p class="card-subtitle">Relative Gini contribution extracted from trained Random Forest ensemble</p>
+        <div id="feature-importance-container" style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
+          <!-- Dynamically populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 8: DATASET EXPLORER
+         =================================================================== -->
+    <section id="page-dataset" class="page-section">
+      <div class="section-headline">
+        <span class="section-tag">Empirical Data Ground Truth</span>
+        <h2 class="section-h2">Shopee Synthetic Orders Dataset Explorer</h2>
+        <p class="section-p">
+          Browse real records from <code class="mono">data/shopee_cod_orders.csv</code> (50,000 orders). Filter between COD and Prepaid to verify delivery status distributions and buyer profiles.
+        </p>
+      </div>
+
+      <div class="content-card" style="margin-bottom:1.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn-secondary" id="btn-filter-all" onclick="filterDataset('ALL')">All Orders (50,000)</button>
+            <button class="btn-secondary" id="btn-filter-cod" onclick="filterDataset('COD')">COD Orders Only (17,618)</button>
+            <button class="btn-secondary" id="btn-filter-prepaid" onclick="filterDataset('PREPAID')">Prepaid Orders Only (32,382)</button>
+          </div>
+          <div>
+            <button class="btn-primary" onclick="refreshDatasetSample()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              Fetch Random Sample
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="data-table-container">
+        <table class="shopee-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Buyer ID</th>
+              <th>Risk Tier</th>
+              <th>Score</th>
+              <th>Method</th>
+              <th>Amount (THB)</th>
+              <th>Category</th>
+              <th>Pref. Window</th>
+              <th>Attempts</th>
+              <th>Delivery Status</th>
+            </tr>
+          </thead>
+          <tbody id="dataset-tbody">
+            <tr>
+              <td colspan="10" style="text-align:center; padding:2rem; color:var(--text-muted);">
+                Loading dataset sample from Python backend...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modern App Footer -->
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="#overview" onclick="switchTab('overview')">Executive Summary</a>
+      <a href="#slide1" onclick="switchTab('slide1')">Statistical EDA</a>
+      <a href="#slide2" onclick="switchTab('slide2')">4-Tier Risk Policy</a>
+      <a href="#slide3" onclick="switchTab('slide3')">Feedback Loop</a>
+      <a href="#slide4" onclick="switchTab('slide4')">Window Scheduling</a>
+      <a href="#slide5" onclick="switchTab('slide5')">Financial Model</a>
+      <a href="#mllab" onclick="switchTab('mllab')">KBTG ML Lab</a>
+    </div>
+    <p>Shopee Ultimate Case Challenge (SUCC) 2026 | Built with Python 3.13, Scikit-Learn, FastAPI & Slender Geist Typography.</p>
+  </footer>
+
+  <!-- Vanilla Application Scripts -->
+  <script src="/static/app.js"></script>
+</body>
+</html>

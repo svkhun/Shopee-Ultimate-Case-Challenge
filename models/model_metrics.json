@@ -1,0 +1,110 @@
+{
+  "model_architecture": "Calibrated Random Forest Pipeline (KBTG Scorecard Standard)",
+  "features": {
+    "numeric": [
+      "buyer_reliability_score",
+      "buyer_historical_success_rate",
+      "buyer_consecutive_failed_cods",
+      "buyer_account_age_days",
+      "buyer_phone_verified",
+      "buyer_address_changed",
+      "order_amount_thb",
+      "window_selected",
+      "delivery_distance_km"
+    ],
+    "categorical": [
+      "item_category",
+      "courier_code"
+    ]
+  },
+  "evaluation": {
+    "test_sample_size": 3524,
+    "roc_auc": 0.8629,
+    "pr_auc": 0.3722,
+    "brier_score": 0.02087,
+    "operating_decision_threshold": 0.15,
+    "confusion_matrix": {
+      "true_negatives": 3310,
+      "false_positives": 118,
+      "false_negatives": 40,
+      "true_positives": 56
+    },
+    "classification_report": {
+      "0": {
+        "precision": 0.9880597014925373,
+        "recall": 0.9655775962660443,
+        "f1-score": 0.9766892888757746,
+        "support": 3428.0
+      },
+      "1": {
+        "precision": 0.3218390804597701,
+        "recall": 0.5833333333333334,
+        "f1-score": 0.4148148148148148,
+        "support": 96.0
+      },
+      "accuracy": 0.9551645856980704,
+      "macro avg": {
+        "precision": 0.6549493909761537,
+        "recall": 0.7744554647996889,
+        "f1-score": 0.6957520518452947,
+        "support": 3524.0
+      },
+      "weighted avg": {
+        "precision": 0.9699106720886935,
+        "recall": 0.9551645856980704,
+        "f1-score": 0.9613828332827403,
+        "support": 3524.0
+      }
+    }
+  },
+  "feature_importance_top": [
+    {
+      "feature": "buyer_historical_success_rate",
+      "importance": 0.2758
+    },
+    {
+      "feature": "buyer_reliability_score",
+      "importance": 0.2589
+    },
+    {
+      "feature": "buyer_consecutive_failed_cods",
+      "importance": 0.187
+    },
+    {
+      "feature": "buyer_account_age_days",
+      "importance": 0.1056
+    },
+    {
+      "feature": "buyer_phone_verified",
+      "importance": 0.0397
+    },
+    {
+      "feature": "buyer_address_changed",
+      "importance": 0.0335
+    },
+    {
+      "feature": "order_amount_thb",
+      "importance": 0.0304
+    },
+    {
+      "feature": "delivery_distance_km",
+      "importance": 0.0291
+    },
+    {
+      "feature": "window_selected",
+      "importance": 0.0105
+    },
+    {
+      "feature": "courier_code_Flash_Express",
+      "importance": 0.0071
+    },
+    {
+      "feature": "item_category_FMCG",
+      "importance": 0.0039
+    },
+    {
+      "feature": "courier_code_Shopee_Xpress",
+      "importance": 0.0032
+    }
+  ]
+}
