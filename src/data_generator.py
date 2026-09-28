@@ -231,7 +231,7 @@ def generate_synthetic_dataset(num_orders: int = 50000, num_buyers: int = 12000,
 
     # Save to data directory
     os.makedirs("data", exist_ok=True)
-    df_orders.to_csv("data/shopee_cod_orders.csv", index=False)
+    df_orders.to_csv("data/shopee_cod_orders_example.csv", index=False)
     df_buyers.to_csv("data/buyer_profiles.csv", index=False)
 
     print("Synthetic dataset successfully generated and saved to 'data/' folder.")

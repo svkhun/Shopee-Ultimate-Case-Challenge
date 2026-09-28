@@ -6,6 +6,7 @@ Produces statistical proofs and exports structured insights to 'data/eda_summary
 """
 
 import json
+import os
 import numpy as np
 import pandas as pd
 from scipy import stats
