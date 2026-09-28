@@ -33,7 +33,7 @@ def run_eda_analysis(orders_csv: str = "data/shopee_cod_orders.csv", buyers_csv:
 
     cod_fail_rate_pct = round((cod_failed_count / cod_count) * 100, 2)
     prepaid_fail_rate_pct = round((prepaid_failed_count / prepaid_count) * 100, 2)
-    risk_multiplier = round(cod_fail_rate_pct / max(prepaid_fail_rate_pct, 0.001), 1)
+    risk_multiplier = round((cod_failed_count / cod_count) / max(prepaid_failed_count / prepaid_count, 1e-6), 1)
 
     cod_share_of_all_failures = round((cod_failed_count / total_failed_count) * 100, 1) if total_failed_count > 0 else 0.0
 

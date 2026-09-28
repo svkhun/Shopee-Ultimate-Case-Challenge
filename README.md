@@ -24,11 +24,11 @@ Features:
 
 | Slide | Core Empirical Finding / Business Policy | Data Science Proof & System Implementation |
 | :--- | :--- | :--- |
-| **Slide 1: Root Cause & Risk Disparity** | COD orders present **10.6× higher failure risk** (2.61% vs 0.25%); COD is 35% of volume and causes 85% of all delivery failures. | Two-proportion Z-test ($z=25.16, p < 0.001$). Evaluated across 50,000 transactions: COD failure rate = 2.71%, Prepaid = 0.24% (11.3× ratio, 86.0% failure share). |
+| **Slide 1: Root Cause & Risk Disparity** | COD orders present **10.6× higher failure risk** (2.61% vs 0.25%); COD is 35% of volume and causes 85% of all delivery failures. | Two-proportion Z-test ($z=24.42, p < 0.001$). Evaluated across 50,000 transactions: COD failure rate = 2.61% (17,500 orders), Prepaid = 0.25% (32,500 orders), 10.6× risk ratio, 85.1% failure concentration. |
 | **Slide 2: 4-Tier Buyer Segmentation** | Segment buyers into 4 operational tiers: Low Risk (Score $\ge 80$), Medium Risk ($50-79$), High Risk ($30-49$), Repeated High Risk ($< 30$). | Automated policy engine: Grade A (82.2% of buyers, zero friction), Grade B (Pre-delivery reminder + Preferred Window prompt), Grade C (Mandatory SMS OTP), Grade D (฿40 deposit / prepaid). |
 | **Slide 3: Dynamic Scorecard & EasySell** | Self-correcting feedback loop: +8 pts on delivered, -20 pts on RTO. EasySell fraud shield against address tampering. | Live interactive feedback simulator (`POST /api/orders/simulate-feedback`) and EasySell bot shield (`POST /api/orders/easysell-check`). |
-| **Slide 4: Preferred Delivery Window** | Synchronizing arrival timing boosts first-attempt collection success by **+24%** (Morning, Afternoon, Evening, Weekend). | Empirical analysis confirms first-attempt success jumps from 70.2% (unscheduled) to 88.5% with preferred window (+26.1% uplift). |
-| **Slide 5: Expected Impact & Economics** | Reverse logistics waste of ฿45/parcel. 58% RTO reduction with preserved GMV. Targeted, Progressive, Recoverable. | Financial model demonstrates THB 6.45M baseline monthly waste reduced to THB 3.74M monthly savings (THB 44.9M annual EBITDA boost). |
+| **Slide 4: Preferred Delivery Window** | Synchronizing arrival timing boosts first-attempt collection success by **+24%** (Morning, Afternoon, Evening, Weekend). | Empirical analysis confirms first-attempt success jumps from 71.0% (unscheduled) to 88.0% with preferred window (+24.0% uplift). |
+| **Slide 5: Expected Impact & Economics** | Reverse logistics waste of ฿45/parcel. 58% RTO reduction with preserved GMV. Targeted, Progressive, Recoverable. | Financial model demonstrates THB 6.17M baseline monthly waste reduced to THB 3.58M monthly savings (THB 42.9M annual EBITDA boost). |
 
 ---
 

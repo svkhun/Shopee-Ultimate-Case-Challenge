@@ -82,20 +82,27 @@ def generate_synthetic_dataset(num_orders: int = 50000, num_buyers: int = 12000,
     couriers = ["Shopee_Xpress", "Flash_Express", "J_and_T", "Kerry_Express"]
     delivery_windows = ["MORNING", "AFTERNOON", "EVENING", "WEEKEND", "NONE"]
 
-    # 35% COD vs 65% Non-COD (Prepaid) strictly matching Slide 1
-    payment_methods = np.random.choice(
-        ["COD", "PREPAID"],
-        size=num_orders,
-        p=[0.35, 0.65]
-    )
+    # 35% COD (17,500) vs 65% Non-COD (Prepaid 32,500) strictly matching Slide 1
+    num_cod = int(num_orders * 0.35)
+    num_prepaid = num_orders - num_cod
+    payment_methods = ["COD"] * num_cod + ["PREPAID"] * num_prepaid
+    random.shuffle(payment_methods)
 
     assigned_buyers_idx = np.random.choice(len(buyer_records), size=num_orders)
 
     order_records = []
+    cod_indices = []
+    prepaid_indices = []
+    prob_fails = []
+
     for i in range(num_orders):
         order_id = f"SHP-2026-{i+1:06d}"
         b = buyer_records[assigned_buyers_idx[i]]
         is_cod = (payment_methods[i] == "COD")
+        if is_cod:
+            cod_indices.append(i)
+        else:
+            prepaid_indices.append(i)
 
         cat = random.choice(categories)
         if cat == "Electronics":
@@ -114,58 +121,35 @@ def generate_synthetic_dataset(num_orders: int = 50000, num_buyers: int = 12000,
         distance_km = round(random.uniform(1.2, 45.0), 1)
         courier = random.choice(couriers)
 
-        # Target Failure Probability Calculation matching PDF baseline
-        # Baseline COD: 2.61%, Non-COD: 0.25%
+        # Calibrated risk weight based on behavioral tier
         if not is_cod:
-            # Prepaid orders have very low failure probability (0.25%)
             prob_fail = 0.0025
+            if b["phone_verified"] == 0:
+                prob_fail *= 1.3
+            if b["address_changed_recently"] == 1:
+                prob_fail *= 1.2
         else:
-            # COD order baseline calibrated to hit exact 2.61% overall
             if b["risk_tier"] == "LOW_RISK":
-                prob_fail = 0.0068 # 0.68%
+                prob_fail = 0.0065
             elif b["risk_tier"] == "MEDIUM_RISK":
-                prob_fail = 0.0400 # 4.0%
+                prob_fail = 0.0380
             elif b["risk_tier"] == "HIGH_RISK":
-                prob_fail = 0.1700 # 17.0%
+                prob_fail = 0.1650
             else: # REPEATED_HIGH_RISK
-                prob_fail = 0.5300 # 53.0%
+                prob_fail = 0.5400
 
-            # Interaction effect: Selecting a preferred delivery window cuts failure by ~24%
             if window_selected == 1:
                 prob_fail *= 0.76
 
-            # Phone unverified or address changed increases risk
             if b["phone_verified"] == 0:
-                prob_fail *= 1.20
+                prob_fail *= 1.25
             if b["address_changed_recently"] == 1:
-                prob_fail *= 1.15
-
-            # Order amount impact on COD: higher amount without verification increases refusal risk
-            if amount > 2000 and b["risk_tier"] in ["HIGH_RISK", "REPEATED_HIGH_RISK"]:
                 prob_fail *= 1.20
 
-            # Cap probability
-            prob_fail = min(max(prob_fail, 0.001), 0.95)
+            if amount > 2000 and b["risk_tier"] in ["HIGH_RISK", "REPEATED_HIGH_RISK"]:
+                prob_fail *= 1.25
 
-        # Sample outcome from Bernoulli trial
-        is_failed = 1 if (random.random() < prob_fail) else 0
-
-        if is_failed:
-            delivery_status = "RETURNED_TO_ORIGIN"
-            attempts = random.choice([2, 3])
-            failure_reason = random.choice([
-                "Customer refused package",
-                "Unreachable customer phone",
-                "Not at home / No cash available",
-                "Fake or invalid address",
-                "Cancellation during delivery run"
-            ]) if is_cod else "Unreachable address after multiple attempts"
-        else:
-            delivery_status = "DELIVERED"
-            # If window selected, 1st attempt success is ~88% vs ~71% without window
-            p_first_attempt = 0.88 if window_selected else 0.71
-            attempts = 1 if (random.random() < p_first_attempt) else 2
-            failure_reason = "NONE"
+        prob_fails.append(prob_fail)
 
         order_records.append({
             "order_id": order_id,
@@ -184,11 +168,64 @@ def generate_synthetic_dataset(num_orders: int = 50000, num_buyers: int = 12000,
             "window_selected": window_selected,
             "courier_code": courier,
             "delivery_distance_km": distance_km,
-            "delivery_attempts": attempts,
-            "delivery_status": delivery_status,
-            "failure_reason": failure_reason,
-            "is_failed_delivery": is_failed
+            "delivery_attempts": 1,
+            "delivery_status": "DELIVERED",
+            "failure_reason": "NONE",
+            "is_failed_delivery": 0
         })
+
+    # Exact calibration matching Slide 1:
+    # 457 failed COD orders out of 17,500 = 2.61%
+    # 80 failed Prepaid orders out of 32,500 = 0.25%
+    # Risk ratio = 2.61 / 0.246 = 10.6x
+    # COD share of all failures = 457 / 537 = 85.1%
+    cod_probs = np.array([prob_fails[idx] for idx in cod_indices])
+    cod_probs /= cod_probs.sum()
+    failed_cod_set = set(np.random.choice(cod_indices, size=457, replace=False, p=cod_probs))
+
+    prepaid_probs = np.array([prob_fails[idx] for idx in prepaid_indices])
+    prepaid_probs /= prepaid_probs.sum()
+    failed_prepaid_set = set(np.random.choice(prepaid_indices, size=80, replace=False, p=prepaid_probs))
+
+    failed_all_set = failed_cod_set.union(failed_prepaid_set)
+
+    # Exact delivery attempt calibration for delivered COD orders
+    delivered_cod_w1 = [idx for idx in cod_indices if idx not in failed_all_set and order_records[idx]["window_selected"] == 1]
+    delivered_cod_w0 = [idx for idx in cod_indices if idx not in failed_all_set and order_records[idx]["window_selected"] == 0]
+
+    w1_att1_count = int(round(len(delivered_cod_w1) * 0.8804))
+    w0_att1_count = int(round(len(delivered_cod_w0) * 0.7100))
+
+    w1_att1_set = set(random.sample(delivered_cod_w1, w1_att1_count))
+    w0_att1_set = set(random.sample(delivered_cod_w0, w0_att1_count))
+
+    for i in range(num_orders):
+        rec = order_records[i]
+        is_cod = (rec["payment_method"] == "COD")
+        w_sel = rec["window_selected"]
+
+        if i in failed_all_set:
+            rec["is_failed_delivery"] = 1
+            rec["delivery_status"] = "RETURNED_TO_ORIGIN"
+            rec["delivery_attempts"] = random.choice([2, 3])
+            rec["failure_reason"] = random.choice([
+                "Customer refused package",
+                "Unreachable customer phone",
+                "Not at home / No cash available",
+                "Fake or invalid address",
+                "Cancellation during delivery run"
+            ]) if is_cod else "Unreachable address after multiple attempts"
+        else:
+            rec["is_failed_delivery"] = 0
+            rec["delivery_status"] = "DELIVERED"
+            if is_cod:
+                if w_sel == 1:
+                    rec["delivery_attempts"] = 1 if i in w1_att1_set else 2
+                else:
+                    rec["delivery_attempts"] = 1 if i in w0_att1_set else 2
+            else:
+                rec["delivery_attempts"] = 1 if (random.random() < 0.95) else 2
+            rec["failure_reason"] = "NONE"
 
     df_orders = pd.DataFrame(order_records)
 

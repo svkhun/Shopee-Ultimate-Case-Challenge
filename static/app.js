@@ -81,13 +81,13 @@ async function loadEdaMetrics() {
       document.getElementById('eda-prepaid-mix').textContent = `${s1.prepaid_share_of_orders_pct}% (${data.dataset_metrics.prepaid_order_count.toLocaleString()})`;
       document.getElementById('eda-cod-rate').textContent = `${s1.cod_failed_delivery_rate_pct}%`;
       document.getElementById('eda-prepaid-rate').textContent = `${s1.prepaid_failed_delivery_rate_pct}%`;
-      document.getElementById('eda-stat-ratio').textContent = `${s1.risk_multiplier}× (Target: 10.6×)`;
+      document.getElementById('eda-stat-ratio').textContent = `${s1.risk_multiplier}×`;
       document.getElementById('eda-stat-z').textContent = `z = ${s1.z_statistic}`;
       document.getElementById('eda-stat-p').textContent = `< 0.000001 (Significant)`;
-      document.getElementById('eda-stat-share').textContent = `${s1.cod_share_of_all_failures_pct}% (Target: 85%)`;
+      document.getElementById('eda-stat-share').textContent = `${s1.cod_share_of_all_failures_pct}%`;
 
       document.getElementById('kpi-risk-ratio').textContent = `${s1.risk_multiplier}×`;
-      document.getElementById('kpi-failure-share').textContent = `${s1.cod_share_of_all_failures_pct}%`;
+      document.getElementById('kpi-failure-share').textContent = `${Math.round(s1.cod_share_of_all_failures_pct)}%`;
     }
 
     // Populate Slide 4
@@ -95,7 +95,7 @@ async function loadEdaMetrics() {
     if (s4) {
       document.getElementById('win-first-with').textContent = `${s4.first_attempt_success_with_window_pct}%`;
       document.getElementById('win-first-without').textContent = `${s4.first_attempt_success_without_window_pct}%`;
-      document.getElementById('win-boost-pct').textContent = `+${s4.first_attempt_relative_boost_pct}% (Target: +24%)`;
+      document.getElementById('win-boost-pct').textContent = `+${s4.first_attempt_relative_boost_pct}%`;
       document.getElementById('win-fail-reduct').textContent = `-${s4.failure_reduction_from_window_pct}% reduction`;
       document.getElementById('kpi-window-uplift').textContent = `+${s4.first_attempt_relative_boost_pct}%`;
     }

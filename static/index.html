@@ -81,11 +81,11 @@
       <div class="metrics-ribbon">
         <div class="metric-card orange">
           <div class="metric-header">
-            <span class="metric-title">Risk Disparity</span>
+            <span class="metric-title">Higher COD Risk</span>
             <span class="slide-tag">Slide 1</span>
           </div>
-          <div class="metric-num" id="kpi-risk-ratio">11.3×</div>
-          <div class="metric-desc">COD failure rate (2.71%) vs Non-COD (0.24%). Statistically confirmed with Z-test p &lt; 0.001.</div>
+          <div class="metric-num" id="kpi-risk-ratio">10.6×</div>
+          <div class="metric-desc">COD failed delivery rate is 2.61% versus just 0.25% for non-COD — a 10.6× difference.</div>
         </div>
 
         <div class="metric-card amber">
@@ -93,8 +93,8 @@
             <span class="metric-title">Failure Concentration</span>
             <span class="slide-tag">Slide 1</span>
           </div>
-          <div class="metric-num" id="kpi-failure-share">86.0%</div>
-          <div class="metric-desc">86% of all return parcels originate from COD, despite COD representing only ~35% of total basket volume.</div>
+          <div class="metric-num" id="kpi-failure-share">85%</div>
+          <div class="metric-desc">Estimated share of all failed deliveries attributable to COD orders, based on 35% order share.</div>
         </div>
 
         <div class="metric-card cyan">
@@ -102,8 +102,8 @@
             <span class="metric-title">Window Scheduling Uplift</span>
             <span class="slide-tag">Slide 4</span>
           </div>
-          <div class="metric-num" id="kpi-window-uplift">+26.1%</div>
-          <div class="metric-desc">First-attempt delivery success surges from 70.2% to 88.5% when buyer selects preferred time slot.</div>
+          <div class="metric-num" id="kpi-window-uplift">+24.0%</div>
+          <div class="metric-desc">First-attempt delivery success surges from 71.0% to 88.0% (+24% boost) when buyer selects preferred delivery window.</div>
         </div>
 
         <div class="metric-card emerald">
@@ -112,7 +112,7 @@
             <span class="slide-tag">Slide 5</span>
           </div>
           <div class="metric-num" id="kpi-target-reduction">-58.0%</div>
-          <div class="metric-desc">Projected reverse logistics cost reduction saving THB 3.74M/mo (THB 44.9M annually) at 15M monthly volume.</div>
+          <div class="metric-desc">Projected reverse logistics cost reduction saving THB 3.58M/mo (THB 42.9M annually) at 15M monthly volume.</div>
         </div>
       </div>
 
@@ -182,15 +182,15 @@
             <tbody>
               <tr>
                 <td><strong>Cash on Delivery (COD)</strong></td>
-                <td id="eda-cod-mix">35.2% (17,618)</td>
-                <td id="eda-cod-fails">478 orders</td>
-                <td style="color:var(--rose); font-weight:600;" id="eda-cod-rate">2.71%</td>
+                <td id="eda-cod-mix">35.0% (17,500)</td>
+                <td id="eda-cod-fails">457 orders</td>
+                <td style="color:var(--rose); font-weight:600;" id="eda-cod-rate">2.61%</td>
               </tr>
               <tr>
                 <td><strong>Prepaid (PromptPay / Card / SPayLater)</strong></td>
-                <td id="eda-prepaid-mix">64.8% (32,382)</td>
-                <td id="eda-prepaid-fails">78 orders</td>
-                <td style="color:var(--emerald); font-weight:600;" id="eda-prepaid-rate">0.24%</td>
+                <td id="eda-prepaid-mix">65.0% (32,500)</td>
+                <td id="eda-prepaid-fails">80 orders</td>
+                <td style="color:var(--emerald); font-weight:600;" id="eda-prepaid-rate">0.25%</td>
               </tr>
             </tbody>
           </table>
@@ -198,11 +198,11 @@
           <div style="background:#faf4e9; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem; font-size:0.86rem;">
             <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
               <span style="color:var(--text-secondary);">Relative Risk Ratio:</span>
-              <strong class="mono" style="color:var(--shopee-orange);" id="eda-stat-ratio">11.3× (PDF target: 10.6×)</strong>
+              <strong class="mono" style="color:var(--shopee-orange);" id="eda-stat-ratio">10.6×</strong>
             </div>
             <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
               <span style="color:var(--text-secondary);">Z-Score Statistic:</span>
-              <strong class="mono" id="eda-stat-z">z = 25.16</strong>
+              <strong class="mono" id="eda-stat-z">z = 24.42</strong>
             </div>
             <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
               <span style="color:var(--text-secondary);">p-value:</span>
@@ -210,7 +210,7 @@
             </div>
             <div style="display:flex; justify-content:space-between;">
               <span style="color:var(--text-secondary);">COD Share of All RTO Parcels:</span>
-              <strong class="mono" style="color:var(--rose);" id="eda-stat-share">86.0% (PDF target: 85%)</strong>
+              <strong class="mono" style="color:var(--rose);" id="eda-stat-share">85.1%</strong>
             </div>
           </div>
         </div>
@@ -270,72 +270,80 @@
         <!-- Low Risk -->
         <div class="tier-card tier-low">
           <div>
-            <span class="tier-badge emerald">Grade A • Low Risk</span>
+            <span class="tier-badge emerald">Low-Risk Buyers</span>
             <div class="tier-score-range" style="color:var(--emerald);">Score ≥ 80</div>
             <div style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.75rem;">
               82.2% of buyer population (9,868 accounts)
             </div>
-            <p style="font-size:0.84rem; color:var(--text-primary); line-height:1.5;">
-              Reliable buyers with clean track records (97.5% historical completion).
-            </p>
+            <ul style="font-size:0.84rem; color:var(--text-primary); line-height:1.6; padding-left:1.1rem; margin-bottom:0.75rem;">
+              <li>High delivery success history</li>
+              <li>Continue normal COD experience</li>
+              <li>No additional friction</li>
+            </ul>
           </div>
           <div class="tier-action-box">
-            <strong style="color:var(--emerald); display:block; margin-bottom:0.25rem;">Zero Friction</strong>
-            Instant 1-click checkout. Standard COD dispatch without verification barriers.
+            <strong style="color:var(--emerald); display:block; margin-bottom:0.25rem;">Standard Experience</strong>
+            Instant 1-click checkout. Standard COD dispatch with zero operational barriers.
           </div>
         </div>
 
         <!-- Medium Risk -->
         <div class="tier-card tier-med">
           <div>
-            <span class="tier-badge amber">Grade B • Medium Risk</span>
+            <span class="tier-badge amber">Medium-Risk Buyers</span>
             <div class="tier-score-range" style="color:var(--amber);">Score 50 – 79</div>
             <div style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.75rem;">
               11.9% of buyer population (1,425 accounts)
             </div>
-            <p style="font-size:0.84rem; color:var(--text-primary); line-height:1.5;">
-              Average accounts or new profiles without proven history (87.1% success).
-            </p>
+            <ul style="font-size:0.84rem; color:var(--text-primary); line-height:1.6; padding-left:1.1rem; margin-bottom:0.75rem;">
+              <li>Some failed deliveries</li>
+              <li>Receive reminder before delivery</li>
+              <li>Confirm availability</li>
+            </ul>
           </div>
           <div class="tier-action-box">
             <strong style="color:var(--amber); display:block; margin-bottom:0.25rem;">Pre-Delivery Reminder</strong>
-            Automated in-app/SMS alert 24h prior. Prompt to choose preferred delivery window.
+            Automated reminder before delivery. Confirm recipient availability & time slot.
           </div>
         </div>
 
         <!-- High Risk -->
         <div class="tier-card tier-high">
           <div>
-            <span class="tier-badge orange">Grade C • High Risk</span>
+            <span class="tier-badge orange">High-Risk Buyers</span>
             <div class="tier-score-range" style="color:var(--orange);">Score 30 – 49</div>
             <div style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.75rem;">
               4.1% of buyer population (492 accounts)
             </div>
-            <p style="font-size:0.84rem; color:var(--text-primary); line-height:1.5;">
-              Accounts with 1–2 recent failed deliveries or address modifications (69.9% success).
-            </p>
+            <ul style="font-size:0.84rem; color:var(--text-primary); line-height:1.6; padding-left:1.1rem; margin-bottom:0.75rem;">
+              <li>Frequent failed deliveries</li>
+              <li>Strong warning</li>
+              <li>Mandatory delivery confirmation</li>
+            </ul>
           </div>
           <div class="tier-action-box">
-            <strong style="color:var(--orange); display:block; margin-bottom:0.25rem;">Mandatory SMS OTP</strong>
-            Requires two-factor phone confirmation before order transmission to warehouse.
+            <strong style="color:var(--orange); display:block; margin-bottom:0.25rem;">Strong Warning & OTP</strong>
+            Strong warning banner. Mandatory phone delivery confirmation before fulfillment.
           </div>
         </div>
 
         <!-- Repeated High Risk -->
         <div class="tier-card tier-rep">
           <div>
-            <span class="tier-badge rose">Grade D • Repeated High Risk</span>
+            <span class="tier-badge rose">Repeated High-Risk Buyers</span>
             <div class="tier-score-range" style="color:var(--rose);">Score &lt; 30</div>
             <div style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.75rem;">
               1.8% of buyer population (215 accounts)
             </div>
-            <p style="font-size:0.84rem; color:var(--text-primary); line-height:1.5;">
-              Chronic returners with ≥3 consecutive failed deliveries (38.7% success, 54.9% COD fail).
-            </p>
+            <ul style="font-size:0.84rem; color:var(--text-primary); line-height:1.6; padding-left:1.1rem; margin-bottom:0.75rem;">
+              <li>Consistent history of failed COD</li>
+              <li>Deposit or partial prepayment required</li>
+              <li>Encourage switch to prepaid payment</li>
+            </ul>
           </div>
           <div class="tier-action-box">
-            <strong style="color:var(--rose); display:block; margin-bottom:0.25rem;">฿40 Deposit or Prepaid</strong>
-            Restricts open COD. Requires THB 40 reverse logistics deposit or full prepaid conversion.
+            <strong style="color:var(--rose); display:block; margin-bottom:0.25rem;">Deposit or Switch to Prepaid</strong>
+            Require ฿40 logistics deposit or partial prepayment. Incentivize switch to prepaid.
           </div>
         </div>
       </div>
@@ -439,37 +447,37 @@
       <div class="grid-2">
         <div class="content-card">
           <div class="card-title">Empirical Delivery Window Comparison</div>
-          <p class="card-subtitle">Derived from 17,618 COD shipments in synthetic dataset</p>
+          <p class="card-subtitle">Derived from 17,500 COD shipments in synthetic dataset</p>
 
           <div style="display:flex; flex-direction:column; gap:1.25rem; margin-top:1rem;">
             <div>
               <div style="display:flex; justify-content:space-between; font-size:0.86rem; margin-bottom:0.35rem;">
                 <span>First-Attempt Success (With Preferred Window)</span>
-                <strong style="color:var(--emerald); font-variant-numeric:tabular-nums;" id="win-first-with">88.5%</strong>
+                <strong style="color:var(--emerald); font-variant-numeric:tabular-nums;" id="win-first-with">88.0%</strong>
               </div>
               <div class="feat-bar-track">
-                <div class="feat-bar-fill" style="width: 88.5%; background:var(--emerald);"></div>
+                <div class="feat-bar-fill" style="width: 88.0%; background:var(--emerald);"></div>
               </div>
             </div>
 
             <div>
               <div style="display:flex; justify-content:space-between; font-size:0.86rem; margin-bottom:0.35rem;">
                 <span>First-Attempt Success (No Window / Unscheduled)</span>
-                <strong style="color:var(--text-muted); font-variant-numeric:tabular-nums;" id="win-first-without">70.2%</strong>
+                <strong style="color:var(--text-muted); font-variant-numeric:tabular-nums;" id="win-first-without">71.0%</strong>
               </div>
               <div class="feat-bar-track">
-                <div class="feat-bar-fill" style="width: 70.2%; background:var(--text-muted);"></div>
+                <div class="feat-bar-fill" style="width: 71.0%; background:var(--text-muted);"></div>
               </div>
             </div>
 
             <div style="background:#faf4e9; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem; margin-top:0.5rem;">
               <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem; font-size:0.85rem;">
                 <span style="color:var(--text-secondary);">Relative 1st-Attempt Boost:</span>
-                <strong class="mono" style="color:var(--cyan);" id="win-boost-pct">+26.1% (PDF target: +24%)</strong>
+                <strong class="mono" style="color:var(--cyan);" id="win-boost-pct">+24.0%</strong>
               </div>
               <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
                 <span style="color:var(--text-secondary);">Overall Failure Rate Reduction:</span>
-                <strong class="mono" style="color:var(--emerald);" id="win-fail-reduct">-23.6% reduction</strong>
+                <strong class="mono" style="color:var(--emerald);" id="win-fail-reduct">-24.0% reduction</strong>
               </div>
             </div>
           </div>
@@ -525,10 +533,10 @@
           <div class="card-title">Baseline RTO Waste</div>
           <p class="card-subtitle">Without Smart COD Reliability System</p>
           <div class="stat-number-wrapper" style="color:var(--rose);">
-            <span class="currency">฿</span><span class="val" id="fin-baseline-waste-val">6.45M</span><span class="unit">/ mo</span>
+            <span class="currency">฿</span><span class="val" id="fin-baseline-waste-val">6.17M</span><span class="unit">/ mo</span>
           </div>
           <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
-            Calculated at 35.2% COD mix (5.28M orders) and 2.71% failed delivery rate = ~143,000 failed parcels monthly at ฿45/parcel waste.
+            Calculated at 35% COD mix (5.25M orders) and 2.61% failed delivery rate = ~137,000 failed parcels monthly at ฿45/parcel waste.
           </p>
         </div>
 
@@ -536,10 +544,10 @@
           <div class="card-title">Targeted 58% Reduction</div>
           <p class="card-subtitle">Through 4-Tier policy & window scheduling</p>
           <div class="stat-number-wrapper" style="color:var(--emerald);">
-            <span class="currency">฿</span><span class="val" id="fin-monthly-savings-val">3.74M</span><span class="unit">/ mo</span>
+            <span class="currency">฿</span><span class="val" id="fin-monthly-savings-val">3.58M</span><span class="unit">/ mo</span>
           </div>
           <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
-            Eliminating 83,000 avoidable return parcels monthly while maintaining zero checkout barriers for the 82.2% Low Risk customer base.
+            Eliminating ~79,500 avoidable return parcels monthly while maintaining zero checkout barriers for the 82.2% Low Risk customer base.
           </p>
         </div>
 
@@ -547,7 +555,7 @@
           <div class="card-title">Annualized Cost Savings</div>
           <p class="card-subtitle">Direct platform EBITDA enhancement</p>
           <div class="stat-number-wrapper" style="color:var(--cyan);">
-            <span class="currency">฿</span><span class="val" id="fin-annual-savings-val">44.9M</span><span class="unit">/ yr</span>
+            <span class="currency">฿</span><span class="val" id="fin-annual-savings-val">42.9M</span><span class="unit">/ yr</span>
           </div>
           <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
             Total annual capital preserved for marketing reinvestment, free shipping subsidies, and seller commission reductions.
@@ -555,21 +563,41 @@
         </div>
       </div>
 
-      <!-- Strategic Pillars Checklist -->
+      <!-- Strategic Pillars Checklist matching Slide 5 -->
       <div class="content-card" style="margin-top:1.5rem;">
-        <div class="card-title">Strategic Alignment with Executive Principles</div>
-        <div class="grid-3" style="margin-top:1rem; margin-bottom:0;">
+        <div class="card-title">Expected Impact & Feasibility Framework</div>
+        
+        <div class="grid-3" style="margin-top:1rem; margin-bottom:1.25rem;">
           <div style="padding:1rem; background:#faf4e9; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
-            <strong style="color:var(--text-primary); font-size:0.9rem; display:block; margin-bottom:0.35rem;">Principle 1: Targeted</strong>
-            <p style="font-size:0.82rem; color:var(--text-secondary);">No broad-brush restrictions. 82.2% of buyers experience zero interruption, preserving top-of-funnel GMV.</p>
+            <strong style="color:var(--shopee-orange); font-size:0.9rem; display:block; margin-bottom:0.35rem;">Why Our Solution Works</strong>
+            <ul style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6; padding-left:1.1rem; margin:0;">
+              <li><strong>Targeted</strong>: Intervene only when risk is high → Keep reliable buyers frictionless</li>
+              <li><strong>Progressive</strong>: Reminder → Warning → Deposit → Increase commitment without banning COD</li>
+              <li><strong>Recoverable</strong>: Good delivery history restores status → Restrictions are temporary</li>
+            </ul>
           </div>
+          
           <div style="padding:1rem; background:#faf4e9; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
-            <strong style="color:var(--text-primary); font-size:0.9rem; display:block; margin-bottom:0.35rem;">Principle 2: Progressive</strong>
-            <p style="font-size:0.82rem; color:var(--text-secondary);">Interventions escalate smoothly (Reminder → OTP → Deposit) based on quantitative ML risk probability.</p>
+            <strong style="color:var(--cyan); font-size:0.9rem; display:block; margin-bottom:0.35rem;">Why It Is Feasible</strong>
+            <ul style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6; padding-left:1.1rem; margin:0;">
+              <li>Uses existing delivery-history data</li>
+              <li>Simple rules trigger interventions</li>
+              <li>AI is used only where prediction adds value</li>
+            </ul>
           </div>
+
           <div style="padding:1rem; background:#faf4e9; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
-            <strong style="color:var(--text-primary); font-size:0.9rem; display:block; margin-bottom:0.35rem;">Principle 3: Recoverable</strong>
-            <p style="font-size:0.82rem; color:var(--text-secondary);">Transparent path to redemption (+8 per delivered order), converting risky buyers into loyal high-value patrons.</p>
+            <strong style="color:var(--emerald); font-size:0.9rem; display:block; margin-bottom:0.35rem;">Success Metrics & Guardrails</strong>
+            <div style="font-size:0.82rem; color:var(--text-secondary); line-height:1.55;">
+              <strong style="color:var(--text-primary); display:block; margin-bottom:2px;">Core Outcomes:</strong>
+              • COD Failed Delivery Rate ↓<br>
+              • First-Attempt Success Rate ↑<br>
+              • Repeat Failure Rate ↓
+              <strong style="color:var(--text-primary); display:block; margin-top:6px; margin-bottom:2px;">Buyer Guardrails:</strong>
+              • Conversion Rate maintained<br>
+              • Order Volume maintained<br>
+              • Buyer Complaint Rate controlled
+            </div>
           </div>
         </div>
       </div>
@@ -946,8 +974,8 @@
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
             <button class="btn-primary" id="btn-filter-all" onclick="filterDataset('ALL')">All Orders (50,000)</button>
-            <button class="btn-secondary" id="btn-filter-cod" onclick="filterDataset('COD')">COD Orders Only (17,618)</button>
-            <button class="btn-secondary" id="btn-filter-prepaid" onclick="filterDataset('PREPAID')">Prepaid Orders Only (32,382)</button>
+            <button class="btn-secondary" id="btn-filter-cod" onclick="filterDataset('COD')">COD Orders Only (17,500)</button>
+            <button class="btn-secondary" id="btn-filter-prepaid" onclick="filterDataset('PREPAID')">Prepaid Orders Only (32,500)</button>
           </div>
           <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
             <a href="/api/dataset/download" class="btn-secondary" download="shopee_cod_orders_synthetic_50k.csv" title="Download complete synthetic dataset CSV">

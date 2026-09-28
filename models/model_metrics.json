@@ -18,93 +18,93 @@
     ]
   },
   "evaluation": {
-    "test_sample_size": 3524,
-    "roc_auc": 0.8629,
-    "pr_auc": 0.3722,
-    "brier_score": 0.02087,
+    "test_sample_size": 3500,
+    "roc_auc": 0.84,
+    "pr_auc": 0.3056,
+    "brier_score": 0.02112,
     "operating_decision_threshold": 0.15,
     "confusion_matrix": {
-      "true_negatives": 3310,
-      "false_positives": 118,
-      "false_negatives": 40,
-      "true_positives": 56
+      "true_negatives": 3283,
+      "false_positives": 126,
+      "false_negatives": 41,
+      "true_positives": 50
     },
     "classification_report": {
       "0": {
-        "precision": 0.9880597014925373,
-        "recall": 0.9655775962660443,
-        "f1-score": 0.9766892888757746,
-        "support": 3428.0
+        "precision": 0.9876654632972323,
+        "recall": 0.9630390143737166,
+        "f1-score": 0.9751967919203921,
+        "support": 3409.0
       },
       "1": {
-        "precision": 0.3218390804597701,
-        "recall": 0.5833333333333334,
-        "f1-score": 0.4148148148148148,
-        "support": 96.0
+        "precision": 0.2840909090909091,
+        "recall": 0.5494505494505495,
+        "f1-score": 0.37453183520599254,
+        "support": 91.0
       },
-      "accuracy": 0.9551645856980704,
+      "accuracy": 0.9522857142857143,
       "macro avg": {
-        "precision": 0.6549493909761537,
-        "recall": 0.7744554647996889,
-        "f1-score": 0.6957520518452947,
-        "support": 3524.0
+        "precision": 0.6358781861940707,
+        "recall": 0.7562447819121331,
+        "f1-score": 0.6748643135631923,
+        "support": 3500.0
       },
       "weighted avg": {
-        "precision": 0.9699106720886935,
-        "recall": 0.9551645856980704,
-        "f1-score": 0.9613828332827403,
-        "support": 3524.0
+        "precision": 0.9693725248878677,
+        "recall": 0.9522857142857143,
+        "f1-score": 0.9595795030458178,
+        "support": 3500.0
       }
     }
   },
   "feature_importance_top": [
     {
-      "feature": "buyer_historical_success_rate",
-      "importance": 0.2758
+      "feature": "buyer_reliability_score",
+      "importance": 0.2821
     },
     {
-      "feature": "buyer_reliability_score",
-      "importance": 0.2589
+      "feature": "buyer_historical_success_rate",
+      "importance": 0.2731
     },
     {
       "feature": "buyer_consecutive_failed_cods",
-      "importance": 0.187
+      "importance": 0.1693
     },
     {
       "feature": "buyer_account_age_days",
-      "importance": 0.1056
-    },
-    {
-      "feature": "buyer_phone_verified",
-      "importance": 0.0397
-    },
-    {
-      "feature": "buyer_address_changed",
-      "importance": 0.0335
-    },
-    {
-      "feature": "order_amount_thb",
-      "importance": 0.0304
+      "importance": 0.0996
     },
     {
       "feature": "delivery_distance_km",
-      "importance": 0.0291
+      "importance": 0.037
     },
     {
-      "feature": "window_selected",
-      "importance": 0.0105
+      "feature": "buyer_phone_verified",
+      "importance": 0.0357
     },
     {
-      "feature": "courier_code_Flash_Express",
-      "importance": 0.0071
+      "feature": "order_amount_thb",
+      "importance": 0.0319
     },
     {
-      "feature": "item_category_FMCG",
-      "importance": 0.0039
+      "feature": "buyer_address_changed",
+      "importance": 0.0257
     },
     {
       "feature": "courier_code_Shopee_Xpress",
-      "importance": 0.0032
+      "importance": 0.0084
+    },
+    {
+      "feature": "item_category_Beauty_Personal_Care",
+      "importance": 0.0057
+    },
+    {
+      "feature": "courier_code_Kerry_Express",
+      "importance": 0.0048
+    },
+    {
+      "feature": "window_selected",
+      "importance": 0.0046
     }
   ]
 }
