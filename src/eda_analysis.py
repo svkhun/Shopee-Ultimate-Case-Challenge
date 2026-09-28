@@ -10,7 +10,9 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-def run_eda_analysis(orders_csv: str = "data/shopee_cod_orders.csv", buyers_csv: str = "data/buyer_profiles.csv"):
+def run_eda_analysis(orders_csv: str = "data/shopee_cod_orders_example.csv", buyers_csv: str = "data/buyer_profiles.csv"):
+    if not os.path.exists(orders_csv) and os.path.exists("data/shopee_cod_orders.csv"):
+        orders_csv = "data/shopee_cod_orders.csv"
     print("Loading synthetic dataset for empirical statistical validation...")
     df_orders = pd.read_csv(orders_csv)
     df_buyers = pd.read_csv(buyers_csv)

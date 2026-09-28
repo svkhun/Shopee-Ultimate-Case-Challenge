@@ -1390,9 +1390,9 @@
             </div>
           </div>
           <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-            <a href="/api/dataset/download" class="btn-primary" download="shopee_cod_orders_synthetic_50k.csv" style="padding:0.6rem 1.2rem; font-size:0.88rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem;">
+            <a href="/api/dataset/download" class="btn-primary" download="shopee_cod_orders_example.csv" style="padding:0.6rem 1.2rem; font-size:0.88rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem;">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download Full CSV (50,000 Rows • 6.5 MB)
+              Download Example CSV (6.5 MB)
             </a>
           </div>
         </div>
@@ -1421,10 +1421,10 @@
           <div style="background:#fffcf7; border:1px solid var(--border-subtle); padding:1rem; border-radius:var(--radius-sm);">
             <div style="font-weight:600; font-size:0.84rem; color:var(--cyan); margin-bottom:0.4rem; display:flex; align-items:center; gap:0.4rem;">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-              3. File Specification & Data Schema
+              3. File Specification &amp; Data Schema
             </div>
             <p style="font-size:0.81rem; color:var(--text-secondary); line-height:1.55;">
-              The <code class="mono" style="font-size:0.75rem;">shopee_cod_orders.csv</code> file comprises <strong>50,000 rows (6.5 MB)</strong> across 12,000 unique simulated buyer profiles, featuring 20 core operational columns including reliability scores, consecutive failure streaks, order values, categories, preferred delivery slots, attempt counts, and final status.
+              The <code class="mono" style="font-size:0.75rem;">shopee_cod_orders_example.csv</code> file comprises <strong>50,000 example rows (6.5 MB)</strong> across 12,000 simulated buyer profiles, featuring 20 core operational columns including reliability scores, consecutive failure streaks, order values, categories, preferred delivery slots, attempt counts, and final status.
             </p>
           </div>
         </div>
@@ -1433,19 +1433,15 @@
       <div class="content-card" style="margin-bottom:1.5rem;">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-            <button class="btn-primary" id="btn-filter-all" onclick="filterDataset('ALL')">All Orders (50,000)</button>
-            <button class="btn-secondary" id="btn-filter-cod" onclick="filterDataset('COD')">COD Orders Only (17,500)</button>
-            <button class="btn-secondary" id="btn-filter-prepaid" onclick="filterDataset('PREPAID')">Prepaid Orders Only (32,500)</button>
+            <button class="btn-primary" id="btn-filter-all" onclick="filterDataset('ALL')">All Example Orders</button>
+            <button class="btn-secondary" id="btn-filter-cod" onclick="filterDataset('COD')">COD Orders Only</button>
+            <button class="btn-secondary" id="btn-filter-prepaid" onclick="filterDataset('PREPAID')">Prepaid Orders Only</button>
           </div>
           <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-            <a href="/api/dataset/download" class="btn-secondary" download="shopee_cod_orders_synthetic_50k.csv" title="Download complete synthetic dataset CSV">
+            <a href="/api/dataset/download" class="btn-secondary" download="shopee_cod_orders_example.csv" title="Download example dataset CSV">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download CSV (6.5 MB)
+              Download Example CSV (6.5 MB)
             </a>
-            <button class="btn-secondary" onclick="refreshDatasetSample()">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-              Fetch Random Sample
-            </button>
           </div>
         </div>
       </div>
@@ -1478,11 +1474,11 @@
 
       <div style="margin-top:0.85rem; font-size:0.78rem; color:var(--text-muted); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
         <div>
-          Showing randomized sample from <span class="mono" style="color:var(--text-primary); font-weight:600;">50,000 synthetic records</span> (Engineered via <code class="mono">src/data_generator.py</code>)
+          Showing example records from synthetic benchmark (Engineered via <code class="mono">src/data_generator.py</code>)
         </div>
         <div style="display:flex; gap:1rem; align-items:center;">
-          <span>File: <strong style="color:var(--text-primary);">shopee_cod_orders.csv</strong> (6.5 MB)</span>
-          <a href="/api/dataset/download" download="shopee_cod_orders_synthetic_50k.csv" style="color:var(--shopee-orange); text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:0.25rem;">
+          <span>File: <strong style="color:var(--text-primary);">shopee_cod_orders_example.csv</strong> (6.5 MB)</span>
+          <a href="/api/dataset/download" download="shopee_cod_orders_example.csv" style="color:var(--shopee-orange); text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:0.25rem;">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Direct CSV Download
           </a>

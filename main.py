@@ -139,7 +139,9 @@ def get_dataset_sample(limit: int = 15, payment_method: Optional[str] = None):
     """
     Returns a sample of synthetic Shopee orders from the CSV for live exploration.
     """
-    csv_path = "data/shopee_cod_orders.csv"
+    csv_path = "data/shopee_cod_orders_example.csv"
+    if not os.path.exists(csv_path):
+        csv_path = "data/shopee_cod_orders.csv"
     if not os.path.exists(csv_path):
         raise HTTPException(status_code=404, detail="Dataset CSV not found.")
     
@@ -157,16 +159,18 @@ def get_dataset_sample(limit: int = 15, payment_method: Optional[str] = None):
 @app.get("/api/dataset/download")
 def download_dataset():
     """
-    Serves the complete 50,000-order synthetic benchmark CSV file for download.
+    Serves the example synthetic benchmark CSV file for download.
     """
-    csv_path = "data/shopee_cod_orders.csv"
+    csv_path = "data/shopee_cod_orders_example.csv"
+    if not os.path.exists(csv_path):
+        csv_path = "data/shopee_cod_orders.csv"
     if not os.path.exists(csv_path):
         raise HTTPException(status_code=404, detail="Dataset CSV not found.")
     return FileResponse(
         path=csv_path,
-        filename="shopee_cod_orders_synthetic_50k.csv",
+        filename="shopee_cod_orders_example.csv",
         media_type="text/csv",
-        headers={"Content-Disposition": 'attachment; filename="shopee_cod_orders_synthetic_50k.csv"'}
+        headers={"Content-Disposition": 'attachment; filename="shopee_cod_orders_example.csv"'}
     )
 
 # Mount static files directory

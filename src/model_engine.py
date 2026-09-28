@@ -106,7 +106,9 @@ def calculate_risk_tier(reliability_score: float) -> dict:
             "policy_summary": "Chronic RTO history. Protect seller GMV by requiring reverse logistics collateral before dispatch."
         }
 
-def train_and_evaluate_model(orders_csv: str = "data/shopee_cod_orders.csv") -> dict:
+def train_and_evaluate_model(orders_csv: str = "data/shopee_cod_orders_example.csv") -> dict:
+    if not os.path.exists(orders_csv) and os.path.exists("data/shopee_cod_orders.csv"):
+        orders_csv = "data/shopee_cod_orders.csv"
     print("=" * 65)
     print("SHOPEE ML PIPELINE: Training COD Risk Classifier & Scorecard")
     print("=" * 65)
