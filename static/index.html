@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/styles.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ee4d2d'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm1-12c2.21 0 4 1.79 4 4 0 1.28-.59 2.42-1.5 3.16-.48.39-.77.72-.77 1.34h-2.46c0-1.28.59-2.42 1.5-3.16.48-.39.77-.72.77-1.34 0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5H7.5c0-2.21 1.79-4 4-4z'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23ee4d2d'/><path fill='%23ffffff' transform='translate(4, 4)' d='M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z'/></svg>">
 </head>
 <body>
 
@@ -43,6 +43,8 @@
       <button class="nav-tab-btn" data-target="slide5" onclick="switchTab('slide5')">5. Financial Impact</button>
       <button class="nav-tab-btn nav-tab-btn--simulator" data-target="simulator" onclick="switchTab('simulator')">Live App Simulator</button>
       <button class="nav-tab-btn" data-target="dataset" onclick="switchTab('dataset')">Dataset</button>
+      <button class="nav-tab-btn" data-target="tutorial" onclick="switchTab('tutorial')">Tutorial</button>
+      <button class="nav-tab-btn" data-target="team" onclick="switchTab('team')">Team Members</button>
     </nav>
   </header>
 
@@ -1199,6 +1201,416 @@
       </div>
     </section>
 
+    <!-- ===================================================================
+         PAGE 9: WEBSITE TUTORIAL & PLATFORM GUIDE
+         =================================================================== -->
+    <section id="page-tutorial" class="page-section">
+      <div class="section-headline">
+        <span class="section-tag">Interactive User Guide & Methodology</span>
+        <h2 class="section-h2">Website Tutorial & Evaluator Walkthrough</h2>
+        <p class="section-p">
+          A step-by-step interactive roadmap designed for competition judges and evaluators to systematically navigate our empirical research, live machine learning sandbox, and interactive smartphone experience.
+        </p>
+      </div>
+
+      <!-- Quick Roadmap Stepper -->
+      <div class="tutorial-grid">
+        <!-- Module 1 -->
+        <div class="content-card tutorial-card">
+          <div class="tutorial-card-header">
+            <span class="tutorial-step-badge">Phase 01</span>
+            <span class="tutorial-est-time">3 Min Read</span>
+          </div>
+          <div class="card-title" style="margin-top:0.5rem;">Executive Pitch Deck (Slides 1 – 5)</div>
+          <p class="card-subtitle">Empirical validation and strategic thesis</p>
+          <p style="font-size:0.84rem; color:var(--text-secondary); line-height:1.6; margin-bottom:1rem;">
+            Explore our end-to-end strategy structured around Shopee's official case challenge criteria:
+          </p>
+          <ul class="tutorial-checklist">
+            <li><strong>Slide 1 (Root Cause)</strong>: Explores the 10.6× COD failure disparity (2.61% vs 0.25%) and 85% concentration of platform return parcels.</li>
+            <li><strong>Slide 2 (4-Tier Policy)</strong>: Details our graduated risk interventions from 0-friction for reliable buyers to deposit collateral for chronic returners.</li>
+            <li><strong>Slide 3 (Score & EasySell)</strong>: Demonstrates the +8/-20 reliability flywheel and C2C seller protection badge.</li>
+            <li><strong>Slide 4 (Window Scheduling)</strong>: Shows empirical proof of +24% delivery success uplift via customer presence routing.</li>
+            <li><strong>Slide 5 (Financial Impact)</strong>: Models 58% RTO waste reduction and ฿42.9M annual EBITDA platform savings.</li>
+          </ul>
+          <div style="margin-top:auto; padding-top:1rem;">
+            <button class="btn-primary" style="width:100%; justify-content:center;" onclick="switchTab('slide1')">
+              Start with Slide 1: Root Cause
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="content-card tutorial-card">
+          <div class="tutorial-card-header">
+            <span class="tutorial-step-badge">Phase 02</span>
+            <span class="tutorial-est-time">Interactive Sandbox</span>
+          </div>
+          <div class="card-title" style="margin-top:0.5rem;">Live Smartphone App Simulator</div>
+          <p class="card-subtitle">Real-time mobile checkout & doorstep rider feedback</p>
+          <p style="font-size:0.84rem; color:var(--text-secondary); line-height:1.6; margin-bottom:1rem;">
+            Experience what the buyer and rider see in real time:
+          </p>
+          <ul class="tutorial-checklist">
+            <li><strong>1-Click Presets</strong>: Click <em>Grade A, B, C, or D</em> chips on the right panel to simulate different risk profiles immediately.</li>
+            <li><strong>View 1 (Checkout)</strong>: Observe how interventions appear (Instant COD vs Pre-delivery SMS vs 6-digit OTP vs ฿40 Deposit).</li>
+            <li><strong>Place Order Flow</strong>: Tap <em>Place COD Order</em> to confirm and auto-transition to Shopee Xpress live tracking.</li>
+            <li><strong>View 2 (Doorstep Delivery)</strong>: Test the courier handover console by clicking <em>Accept (+8 pts)</em> or <em>Refuse/RTO (-20 pts)</em> to watch the score and policy tier react dynamically.</li>
+          </ul>
+          <div style="margin-top:auto; padding-top:1rem;">
+            <button class="btn-primary" style="width:100%; justify-content:center;" onclick="switchTab('simulator')">
+              Launch Phone Simulator
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="content-card tutorial-card">
+          <div class="tutorial-card-header">
+            <span class="tutorial-step-badge">Phase 03</span>
+            <span class="tutorial-est-time">Real-time ML</span>
+          </div>
+          <div class="card-title" style="margin-top:0.5rem;">Custom AI Scoring & Stress Testing</div>
+          <p class="card-subtitle">Live inference from Scikit-Learn Random Forest</p>
+          <p style="font-size:0.84rem; color:var(--text-secondary); line-height:1.6; margin-bottom:1rem;">
+            Stress-test the calibrated Random Forest classification model running live on the Python FastAPI backend:
+          </p>
+          <ul class="tutorial-checklist">
+            <li><strong>Tweak Parameters</strong>: Adjust buyer score, consecutive failures, order amount (฿300 - ฿5,000), distance, and verification flags.</li>
+            <li><strong>Live Debounce Inference</strong>: Watch the model recalculate predicted RTO probability and expected logistics loss in milliseconds.</li>
+            <li><strong>Decision Rules vs ML</strong>: Notice how deterministic rules immediately shield high-risk repeat accounts while ML evaluates ambiguous middle cohorts.</li>
+          </ul>
+          <div style="margin-top:auto; padding-top:1rem;">
+            <button class="btn-secondary" style="width:100%; justify-content:center;" onclick="switchTab('simulator')">
+              Tune AI Model Sliders
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Module 4 -->
+        <div class="content-card tutorial-card">
+          <div class="tutorial-card-header">
+            <span class="tutorial-step-badge">Phase 04</span>
+            <span class="tutorial-est-time">Data Audit</span>
+          </div>
+          <div class="card-title" style="margin-top:0.5rem;">Empirical Dataset Inspection</div>
+          <p class="card-subtitle">50,000 synthetic orders calibrated with Thailand logistics</p>
+          <p style="font-size:0.84rem; color:var(--text-secondary); line-height:1.6; margin-bottom:1rem;">
+            Verify the mathematical integrity of our foundational dataset:
+          </p>
+          <ul class="tutorial-checklist">
+            <li><strong>Filter by Payment</strong>: Switch between <em>All Orders</em>, <em>COD Only</em>, and <em>Prepaid</em> to compare failure metrics.</li>
+            <li><strong>Inspect Key Features</strong>: Examine account age, preferred time slots, delivery attempts, and final delivery outcomes.</li>
+            <li><strong>Direct CSV Download</strong>: Download the full 6.5 MB raw dataset file to verify in Python, R, or Excel.</li>
+          </ul>
+          <div style="margin-top:auto; padding-top:1rem;">
+            <button class="btn-secondary" style="width:100%; justify-content:center;" onclick="switchTab('dataset')">
+              Open Dataset Explorer
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- System Architecture & Flowchart -->
+      <div class="content-card" style="margin-top:1.5rem;">
+        <div class="card-title">End-to-End System Operational Pipeline</div>
+        <p class="card-subtitle">How user interactions, backend intelligence, and physical delivery synchronize</p>
+        <div class="pipeline-flow-container">
+          <div class="pipeline-step">
+            <div class="pipeline-step-num">01</div>
+            <div class="pipeline-step-body">
+              <strong>Order Placement</strong>
+              <span>Buyer configures cart, preferred window & selects COD payment method.</span>
+            </div>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step">
+            <div class="pipeline-step-num">02</div>
+            <div class="pipeline-step-body">
+              <strong>ML Risk Inference</strong>
+              <span>FastAPI backend scores buyer reliability and classifies into 4 policy tiers.</span>
+            </div>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step">
+            <div class="pipeline-step-num">03</div>
+            <div class="pipeline-step-body">
+              <strong>Calibrated Guardrail</strong>
+              <span>Checkout applies targeted friction: 0-friction, SMS reminder, OTP, or ฿40 deposit.</span>
+            </div>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step">
+            <div class="pipeline-step-num">04</div>
+            <div class="pipeline-step-body">
+              <strong>SPX Scheduled Dispatch</strong>
+              <span>Shopee Xpress delivers parcel within preferred time window to guarantee presence.</span>
+            </div>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-step">
+            <div class="pipeline-step-num">05</div>
+            <div class="pipeline-step-body">
+              <strong>Doorstep Feedback Loop</strong>
+              <span>Collection updates buyer reliability (+8 / -20 pts) in closed-loop system.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PAGE 10: CASE COMPETITION TEAM MEMBERS
+         =================================================================== -->
+    <section id="page-team" class="page-section">
+      <div class="section-headline">
+        <span class="section-tag">Shopee Ultimate Case Challenge 2026</span>
+        <h2 class="section-h2">Project Team Members</h2>
+        <p class="section-p">
+          Meet the 4 team members behind the Smart COD Reliability Intelligence case submission. The format below is prepared with structured placeholders ready for team information.
+        </p>
+      </div>
+
+      <!-- Information Notice for User -->
+      <div class="team-notice-banner">
+        <div class="team-notice-icon">💡</div>
+        <div>
+          <strong style="color:var(--text-primary); font-size:0.88rem;">Format Ready for Customization:</strong>
+          <span style="font-size:0.82rem; color:var(--text-secondary); margin-left:4px;">
+            The profile cards below are pre-formatted for all 4 members. You can update names, universities, roles, contributions, and contact links directly in <code class="mono" style="color:var(--shopee-orange);">static/index.html</code>.
+          </span>
+        </div>
+      </div>
+
+      <!-- 4-Member Responsive Grid -->
+      <div class="team-cards-grid">
+
+        <!-- ================= MEMBER 1 ================= -->
+        <!-- REPLACE: Member 1 Information -->
+        <div class="content-card team-card">
+          <div class="team-card-top">
+            <div class="team-avatar-box">
+              <div class="team-avatar-inner">
+                <span class="team-avatar-monogram">M1</span>
+              </div>
+            </div>
+            <div class="team-meta-header">
+              <span class="team-role-badge">Team Leader & Strategy</span>
+              <h3 class="team-name">[Member 1 Name]</h3>
+              <div class="team-title-text">[Role Title, e.g. Business Strategy & Pitch Lead]</div>
+            </div>
+          </div>
+
+          <div class="team-academic-box">
+            <div class="academic-row">
+              <span class="academic-label">University</span>
+              <span class="academic-val">[University Name, e.g. Chulalongkorn University]</span>
+            </div>
+            <div class="academic-row">
+              <span class="academic-label">Faculty</span>
+              <span class="academic-val">[Faculty / Major, e.g. BBA / Economics / Business]</span>
+            </div>
+            <div class="academic-row">
+              <span class="academic-label">Class</span>
+              <span class="academic-val">[Academic Year / Class, e.g. Year 4, Class of 2026]</span>
+            </div>
+          </div>
+
+          <div class="team-contributions-section">
+            <div class="team-section-title">Key Case Responsibilities:</div>
+            <ul class="team-checklist">
+              <li>Formulated the 4-Tier Policy framework and consumer psychology guardrails.</li>
+              <li>Engineered the economic thesis and ฿42.9M platform EBITDA realization model.</li>
+              <li>Directed the executive pitch deck narrative and competitive differentiation strategy.</li>
+            </ul>
+          </div>
+
+          <div class="team-social-row">
+            <a href="mailto:member1@example.com" class="team-social-btn" title="Email Member 1">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>Email</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social-btn" title="LinkedIn Profile">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- ================= MEMBER 2 ================= -->
+        <!-- REPLACE: Member 2 Information -->
+        <div class="content-card team-card">
+          <div class="team-card-top">
+            <div class="team-avatar-box">
+              <div class="team-avatar-inner">
+                <span class="team-avatar-monogram">M2</span>
+              </div>
+            </div>
+            <div class="team-meta-header">
+              <span class="team-role-badge">Data Science & ML</span>
+              <h3 class="team-name">[Member 2 Name]</h3>
+              <div class="team-title-text">[Role Title, e.g. Lead Machine Learning Engineer]</div>
+            </div>
+          </div>
+
+          <div class="team-academic-box">
+            <div class="academic-row">
+              <span class="academic-label">University</span>
+              <span class="academic-val">[University Name, e.g. Thammasat University]</span>
+            </div>
+            <div class="academic-row">
+              <span class="academic-label">Faculty</span>
+              <span class="academic-val">[Faculty / Major, e.g. Computer Science / Engineering]</span>
+            </div>
+            <div class="academic-row">
+              <span class="academic-label">Class</span>
+              <span class="academic-val">[Academic Year / Class, e.g. Year 4, Class of 2026]</span>
+            </div>
+          </div>
+
+          <div class="team-contributions-section">
+            <div class="team-section-title">Key Case Responsibilities:</div>
+            <ul class="team-checklist">
+              <li>Trained and tuned the Random Forest Classifier on 10 behavioral & logistics features.</li>
+              <li>Engineered the synthetic dataset generation pipeline (50,000 calibrated records).</li>
+              <li>Constructed the Python FastAPI inference endpoints and model calibration pipeline.</li>
+            </ul>
+          </div>
+
+          <div class="team-social-row">
+            <a href="mailto:member2@example.com" class="team-social-btn" title="Email Member 2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>Email</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social-btn" title="LinkedIn Profile">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- ================= MEMBER 3 ================= -->
+        <!-- REPLACE: Member 3 Information -->
+        <div class="content-card team-card">
+          <div class="team-card-top">
+            <div class="team-avatar-box">
+              <div class="team-avatar-inner">
+                <span class="team-avatar-monogram">M3</span>
+              </div>
+            </div>
+            <div class="team-meta-header">
+              <span class="team-role-badge">Operations & Economics</span>
+              <h3 class="team-name">[Member 3 Name]</h3>
+              <div class="team-title-text">[Role Title, e.g. Logistics Economics & Financial Analyst]</div>
+            </div>
+          </div>
+
+          <div class="team-academic-box">
+            <div class="academic-row">
+              <span class="academic-label">University</span>
+              <span class="academic-val">[University Name, e.g. Kasetsart University]</span>
+            </div>
+            <div class="academic-row">
+              <span class="academic-label">Faculty</span>
+              <span class="academic-val">[Faculty / Major, e.g. Industrial Engineering / Finance]</span>
+            </div>
+            <div class="academic-row">
+              <span class="academic-label">Class</span>
+              <span class="academic-val">[Academic Year / Class, e.g. Year 4, Class of 2026]</span>
+            </div>
+          </div>
+
+          <div class="team-contributions-section">
+            <div class="team-section-title">Key Case Responsibilities:</div>
+            <ul class="team-checklist">
+              <li>Designed the Preferred Window dispatch model yielding +24% first-attempt success.</li>
+              <li>Modeled reverse logistics cost breakdown (THB 45/parcel failed handling loss).</li>
+              <li>Conducted sensitivity analysis on buyer churn vs RTO loss prevention.</li>
+            </ul>
+          </div>
+
+          <div class="team-social-row">
+            <a href="mailto:member3@example.com" class="team-social-btn" title="Email Member 3">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>Email</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social-btn" title="LinkedIn Profile">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- ================= MEMBER 4 ================= -->
+        <!-- REPLACE: Member 4 Information -->
+        <div class="content-card team-card">
+          <div class="team-card-top">
+            <div class="team-avatar-box">
+              <div class="team-avatar-inner">
+                <span class="team-avatar-monogram">M4</span>
+              </div>
+            </div>
+            <div class="team-meta-header">
+              <span class="team-role-badge">Product & Full-Stack</span>
+              <h3 class="team-name">[Member 4 Name]</h3>
+              <div class="team-title-text">[Role Title, e.g. Frontend Engineer & UX/UI Designer]</div>
+            </div>
+          </div>
+
+          <div class="team-academic-box">
+            <div class="academic-row">
+              <span class="academic-label">University</span>
+              <span class="academic-val">[University Name, e.g. KMUTT / Chulalongkorn]</span>
+            </div>
+            <div class="academic-row">
+              <span class="academic-label">Faculty</span>
+              <span class="academic-val">[Faculty / Major, e.g. Information Technology / Design]</span>
+            </div>
+            <div class="academic-row">
+              <span class="academic-label">Class</span>
+              <span class="academic-val">[Academic Year / Class, e.g. Year 4, Class of 2026]</span>
+            </div>
+          </div>
+
+          <div class="team-contributions-section">
+            <div class="team-section-title">Key Case Responsibilities:</div>
+            <ul class="team-checklist">
+              <li>Engineered the authentic Shopee smartphone simulator with dual-view architecture.</li>
+              <li>Implemented the real-time closed-loop feedback doorstep delivery console.</li>
+              <li>Developed the interactive web platform using Geist typography and modern CSS.</li>
+            </ul>
+          </div>
+
+          <div class="team-social-row">
+            <a href="mailto:member4@example.com" class="team-social-btn" title="Email Member 4">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>Email</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social-btn" title="LinkedIn Profile">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Team Mission Statement Card -->
+      <div class="content-card team-statement-card" style="margin-top:1.5rem;">
+        <div class="team-statement-header">
+          <div class="card-title">Team Executive Statement & Vision</div>
+          <span class="mono" style="font-size:0.75rem; color:var(--shopee-orange); font-weight:700;">SUCC 2026 Submission</span>
+        </div>
+        <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.65; margin-top:0.4rem;">
+          Our interdisciplinary team combines business strategy, predictive machine learning, logistics engineering, and customer-centric design to transform Cash on Delivery (COD) from an operational cost sink into a competitive advantage for Shopee Thailand. By replacing blunt punitive bans with intelligent progressive friction, we safeguard <strong>฿42.9M annually in EBITDA</strong> while keeping 82.2% of reliable buyers completely frictionless.
+        </p>
+      </div>
+    </section>
+
   </main>
 
   <!-- Modern App Footer -->
@@ -1212,6 +1624,8 @@
       <a href="#slide5" onclick="switchTab('slide5')">Financial Model</a>
       <a href="#simulator" onclick="switchTab('simulator')">Phone Simulator</a>
       <a href="#dataset" onclick="switchTab('dataset')">Dataset Explorer</a>
+      <a href="#tutorial" onclick="switchTab('tutorial')">Tutorial Guide</a>
+      <a href="#team" onclick="switchTab('team')">Team Members</a>
     </div>
     <p>Shopee Ultimate Case Challenge (SUCC) 2026 | Built with Python 3.13, Scikit-Learn, FastAPI & Slender Geist Typography.</p>
   </footer>

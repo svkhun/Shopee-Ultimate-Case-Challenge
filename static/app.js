@@ -22,7 +22,7 @@ const appState = {
 // =====================================================================
 
 function switchTab(tabId) {
-  const validTabs = ['overview', 'slide1', 'slide2', 'slide3', 'slide4', 'slide5', 'simulator', 'dataset'];
+  const validTabs = ['overview', 'slide1', 'slide2', 'slide3', 'slide4', 'slide5', 'simulator', 'dataset', 'tutorial', 'team'];
   if (!validTabs.includes(tabId)) {
     tabId = 'overview';
   }
