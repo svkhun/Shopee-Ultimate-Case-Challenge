@@ -2970,3 +2970,81 @@ footer .footer-links a:hover {
   border-color: rgba(238, 77, 45, 0.4);
 }
 
+/* ==========================================================================
+   Smooth Ambient Mouse Glow & Diffused Trail Effect (ฟุ้งๆ สมูทๆ)
+   ========================================================================== */
+
+.mouse-glow-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.4s ease;
+}
+
+/* Layer 1: Atmospheric Outer Diffused Halo (รัศมีออร่าฟุ้งๆ นุ่มนวล เคลื่อนไหวสมูท) */
+.mouse-glow-ambient {
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle at center, 
+    rgba(238, 77, 45, 0.15) 0%, 
+    rgba(255, 122, 89, 0.08) 35%, 
+    rgba(255, 160, 122, 0.03) 55%, 
+    transparent 72%
+  );
+  filter: blur(36px);
+  z-index: 9998;
+}
+
+/* Layer 2: Core Vibrant Warm Spotlight (แกนกลางสีส้ม Shopee อุ่นละมุนตามเมาส์) */
+.mouse-glow-core {
+  width: 130px;
+  height: 130px;
+  background: radial-gradient(circle at center, 
+    rgba(255, 138, 101, 0.28) 0%, 
+    rgba(238, 77, 45, 0.12) 45%, 
+    transparent 75%
+  );
+  filter: blur(14px);
+  z-index: 9999;
+}
+
+/* Micro Diffused Trail Puffs (ละอองฟุ้งๆ จางๆ ลอยตามรอยเมาส์) */
+.mouse-trail-puff {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    rgba(238, 77, 45, 0.24) 0%, 
+    rgba(255, 140, 90, 0.10) 40%, 
+    transparent 75%
+  );
+  filter: blur(8px);
+  z-index: 9997;
+  transform: translate(-50%, -50%) scale(0.6);
+  animation: trailPuffFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes trailPuffFade {
+  0% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.6);
+  }
+}
+
+/* Disable on touch devices to conserve battery & preserve performance */
+@media (pointer: coarse) {
+  .mouse-glow-follower,
+  .mouse-trail-puff {
+    display: none !important;
+  }
+}
+
+
