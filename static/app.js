@@ -918,7 +918,6 @@ function renderHeroExpansion() {
   const overlay = document.getElementById('hero-media-overlay');
   const leftWord = document.getElementById('hero-split-left');
   const rightWord = document.getElementById('hero-split-right');
-  const cardMeta = document.getElementById('hero-card-meta');
   const expandedWrapper = document.getElementById('hero-expanded-wrapper');
   const scrollPrompt = document.getElementById('hero-scroll-prompt');
 
@@ -965,12 +964,6 @@ function renderHeroExpansion() {
     rightWord.style.transform = `translateX(${textTranslate}px)`;
     leftWord.style.opacity = textOpacity;
     rightWord.style.opacity = textOpacity;
-  }
-
-  // 5. Initial Card Subtitles
-  if (cardMeta) {
-    const metaOpacity = Math.max(0, 1 - p * 3.0);
-    cardMeta.style.opacity = metaOpacity;
   }
 
   // 6. High-Contrast Frosted Glass Card Reveal (Inside Fullscreen Warehouse)
