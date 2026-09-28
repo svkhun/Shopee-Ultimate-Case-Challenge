@@ -751,7 +751,31 @@ async function refreshDatasetSample() {
 }
 
 // =====================================================================
-// 7. Application Initialization
+// 7. Real-time Smartphone Clock Synchronization
+// =====================================================================
+
+function updatePhoneClock() {
+  const clockEl = document.getElementById('phone-status-clock') || document.querySelector('.phone-status-time');
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+
+  if (clockEl) {
+    clockEl.textContent = `${hours}:${minutes}`;
+  }
+
+  // Synchronize Estimated Delivery ETA in tracking view
+  const etaEl = document.querySelector('.tracking-eta');
+  if (etaEl) {
+    const etaDate = new Date(now.getTime() + 60 * 60 * 1000);
+    const etaH = String(etaDate.getHours()).padStart(2, '0');
+    const etaM = String(etaDate.getMinutes()).padStart(2, '0');
+    etaEl.textContent = `Est. Today, ${etaH}:${etaM}`;
+  }
+}
+
+// =====================================================================
+// 8. Application Initialization
 // =====================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -763,4 +787,8 @@ document.addEventListener('DOMContentLoaded', () => {
   loadModelSummary();
   applyScenarioPreset('A');
   filterDataset('ALL');
+
+  // Start real-time phone clock
+  updatePhoneClock();
+  setInterval(updatePhoneClock, 1000);
 });
