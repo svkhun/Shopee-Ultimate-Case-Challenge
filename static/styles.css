@@ -659,38 +659,7 @@ main.app-main {
   border-color: rgba(255, 255, 255, 0.5) !important;
 }
 
-.hero-kpi-chips {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.85rem;
-  margin-top: 1.85rem;
-  flex-wrap: wrap;
-}
 
-.hero-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.78rem;
-  font-weight: 550;
-  color: #cbd5e1;
-  background: rgba(30, 41, 59, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 5px 14px;
-  border-radius: 9999px;
-  backdrop-filter: blur(8px);
-}
-
-.chip-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-}
-
-.chip-dot.emerald { background: #10b981; box-shadow: 0 0 6px #10b981; }
-.chip-dot.orange { background: #f97316; box-shadow: 0 0 6px #f97316; }
-.chip-dot.cyan { background: #06b6d4; box-shadow: 0 0 6px #06b6d4; }
 
 /* Scroll Prompt */
 .hero-scroll-prompt {
