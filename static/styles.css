@@ -2616,27 +2616,62 @@ footer .footer-links a:hover {
 .hero-brand-pill {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  background: #0f172a;
-  padding: 6px 18px 6px 12px;
+  gap: 14px;
+  background: rgba(15, 23, 42, 0.95);
+  padding: 8px 22px 8px 16px;
   border-radius: 9999px;
-  border: 1px solid #334155;
-  box-shadow: 0 8px 24px rgba(238, 77, 45, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 28px rgba(238, 77, 45, 0.2), 0 2px 8px rgba(0, 0, 0, 0.4);
   margin-bottom: 1.25rem;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
 }
 
 .hero-brand-pill:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(238, 77, 45, 0.35);
+  box-shadow: 0 12px 34px rgba(238, 77, 45, 0.35), 0 4px 12px rgba(0, 0, 0, 0.5);
   border-color: rgba(238, 77, 45, 0.5);
 }
 
 .hero-brand-pill-img {
-  height: 38px;
+  height: 44px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(238, 77, 45, 0.6));
+  /* Keep image sharp; outer glow is already baked in the artwork */
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+  transition: transform 0.25s ease;
+}
+
+.hero-brand-pill:hover .hero-brand-pill-img {
+  transform: scale(1.04);
+}
+
+.hero-brand-pill-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.hero-brand-pill-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.25;
+}
+
+.hero-brand-pill-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #fb923c;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hero-brand-pill-sub {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #f8fafc;
+  letter-spacing: -0.01em;
 }
 
 .team-header-flex {
