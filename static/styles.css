@@ -247,19 +247,32 @@ header.app-header {
 
 .nav-dropdown-menu {
   position: absolute;
-  top: calc(100% + 8px);
+  top: 100%;
   left: 0;
-  width: 285px;
+  width: 295px;
   background: #ffffff;
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
-  padding: 0.4rem;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  padding: 0.45rem;
+  margin-top: 6px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.15);
   display: none;
   flex-direction: column;
   gap: 2px;
   z-index: 100;
   animation: dropdownFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Invisible Hover Bridge: spans the gap so moving cursor down never loses hover */
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background: transparent;
+  display: block;
 }
 
 .nav-dropdown-wrapper:hover .nav-dropdown-menu,

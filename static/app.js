@@ -81,17 +81,38 @@ function switchTab(tabId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+let deckDropdownTimer = null;
+
 function toggleDeckDropdown(event) {
   event.stopPropagation();
   const dropdown = document.getElementById('nav-deck-dropdown');
   if (dropdown) {
+    clearTimeout(deckDropdownTimer);
     dropdown.classList.toggle('open');
   }
+}
+
+function initDeckDropdownBehavior() {
+  const dropdown = document.getElementById('nav-deck-dropdown');
+  if (!dropdown) return;
+
+  dropdown.addEventListener('mouseenter', () => {
+    clearTimeout(deckDropdownTimer);
+    dropdown.classList.add('open');
+  });
+
+  dropdown.addEventListener('mouseleave', () => {
+    clearTimeout(deckDropdownTimer);
+    deckDropdownTimer = setTimeout(() => {
+      dropdown.classList.remove('open');
+    }, 240);
+  });
 }
 
 document.addEventListener('click', (e) => {
   const dropdown = document.getElementById('nav-deck-dropdown');
   if (dropdown && !dropdown.contains(e.target)) {
+    clearTimeout(deckDropdownTimer);
     dropdown.classList.remove('open');
   }
 });
@@ -755,6 +776,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const initialHash = window.location.hash.replace('#', '') || 'overview';
   switchTab(initialHash);
 
+  initDeckDropdownBehavior();
   loadEdaMetrics();
   loadModelSummary();
   applyScenarioPreset('A');
