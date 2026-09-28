@@ -79,6 +79,12 @@ function switchTab(tabId) {
   }
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (tabId === 'overview') {
+    setTimeout(() => {
+      if (typeof onHeroScroll === 'function') onHeroScroll();
+    }, 60);
+  }
 }
 
 let deckDropdownTimer = null;
@@ -849,4 +855,153 @@ document.addEventListener('DOMContentLoaded', () => {
   // Start real-time phone clock
   updatePhoneClock();
   setInterval(updatePhoneClock, 1000);
+
+  // Initialize Scroll Media Expansion Hero
+  initHeroScrollExpansion();
 });
+
+// =====================================================================
+// 9. Scroll Media Expansion Hero (Shopee Smart Warehouse Fulfillment)
+// =====================================================================
+
+let heroScrollAnimFrame = null;
+let currentHeroProgress = 0;
+let targetHeroProgress = 0;
+
+function initHeroScrollExpansion() {
+  const track = document.getElementById('hero-expand-track');
+  if (!track) return;
+
+  window.addEventListener('scroll', onHeroScroll, { passive: true });
+  window.addEventListener('resize', onHeroScroll, { passive: true });
+
+  // Initial trigger
+  onHeroScroll();
+}
+
+function onHeroScroll() {
+  if (appState.currentTab !== 'overview') return;
+
+  const track = document.getElementById('hero-expand-track');
+  if (!track) return;
+
+  const rect = track.getBoundingClientRect();
+  const scrollableDistance = track.offsetHeight - window.innerHeight;
+
+  if (scrollableDistance <= 0) {
+    targetHeroProgress = 1;
+  } else {
+    // When rect.top is at top of screen minus header offset (~70px)
+    const scrolled = -rect.top + 70;
+    targetHeroProgress = Math.max(0, Math.min(1, scrolled / scrollableDistance));
+  }
+
+  if (!heroScrollAnimFrame) {
+    heroScrollAnimFrame = requestAnimationFrame(renderHeroExpansion);
+  }
+}
+
+function renderHeroExpansion() {
+  heroScrollAnimFrame = null;
+
+  // Butter-smooth lerp interpolation
+  currentHeroProgress += (targetHeroProgress - currentHeroProgress) * 0.16;
+  if (Math.abs(targetHeroProgress - currentHeroProgress) < 0.001) {
+    currentHeroProgress = targetHeroProgress;
+  }
+
+  const p = currentHeroProgress;
+  const isMobile = window.innerWidth <= 900;
+
+  const card = document.getElementById('hero-media-card');
+  const mediaImg = document.getElementById('hero-media-img');
+  const overlay = document.getElementById('hero-media-overlay');
+  const leftWord = document.getElementById('hero-split-left');
+  const rightWord = document.getElementById('hero-split-right');
+  const cardBadges = document.getElementById('hero-card-badges');
+  const expandedContent = document.getElementById('hero-expanded-content');
+  const scrollPrompt = document.getElementById('hero-scroll-prompt');
+
+  if (!card) return;
+
+  const viewportWidth = window.innerWidth;
+  const initialWidth = isMobile ? Math.min(viewportWidth * 0.88, 360) : 380;
+  const finalWidth = isMobile ? viewportWidth * 0.94 : Math.min(viewportWidth * 0.94, 1260);
+
+  const initialHeight = isMobile ? 380 : 480;
+  const finalHeight = isMobile ? Math.min(window.innerHeight * 0.82, 600) : Math.min(window.innerHeight * 0.82, 680);
+
+  const cardW = initialWidth + (finalWidth - initialWidth) * p;
+  const cardH = initialHeight + (finalHeight - initialHeight) * p;
+  const cardRadius = 26 - (26 - 16) * p;
+
+  card.style.width = `${cardW}px`;
+  card.style.height = `${cardH}px`;
+  card.style.borderRadius = `${cardRadius}px`;
+
+  if (mediaImg) {
+    const scale = 1.15 - 0.12 * p;
+    mediaImg.style.transform = `scale(${scale})`;
+  }
+
+  if (overlay) {
+    const overlayOpacity = 0.25 + 0.65 * p;
+    overlay.style.opacity = overlayOpacity;
+  }
+
+  if (leftWord && rightWord) {
+    const splitDistance = p * 160;
+    const splitOpacity = Math.max(0, 1 - p * 2.2);
+    leftWord.style.transform = `translateX(-${splitDistance}px)`;
+    rightWord.style.transform = `translateX(${splitDistance}px)`;
+    leftWord.style.opacity = splitOpacity;
+    rightWord.style.opacity = splitOpacity;
+  }
+
+  if (cardBadges) {
+    const badgesOpacity = Math.max(0, 1 - p * 2.8);
+    cardBadges.style.opacity = badgesOpacity;
+    cardBadges.style.pointerEvents = p > 0.2 ? 'none' : 'auto';
+  }
+
+  if (expandedContent) {
+    const contentP = Math.max(0, Math.min(1, (p - 0.35) / 0.5));
+    expandedContent.style.opacity = contentP;
+    const translateY = (1 - contentP) * 35;
+    expandedContent.style.transform = `translateY(${translateY}px)`;
+    expandedContent.style.pointerEvents = contentP > 0.7 ? 'auto' : 'none';
+  }
+
+  if (scrollPrompt) {
+    const promptOpacity = Math.max(0, 1 - p * 3.5);
+    scrollPrompt.style.opacity = promptOpacity;
+    scrollPrompt.style.pointerEvents = p > 0.15 ? 'none' : 'auto';
+  }
+
+  if (Math.abs(targetHeroProgress - currentHeroProgress) >= 0.001) {
+    heroScrollAnimFrame = requestAnimationFrame(renderHeroExpansion);
+  }
+}
+
+function smoothExpandHero() {
+  const track = document.getElementById('hero-expand-track');
+  if (!track) return;
+  const targetY = track.offsetTop + (track.offsetHeight - window.innerHeight) * 0.95;
+  window.scrollTo({ top: targetY, behavior: 'smooth' });
+}
+
+function toggleHeroHUD(enable) {
+  const hud = document.getElementById('hero-telemetry-hud');
+  const btnWarehouse = document.getElementById('btn-toggle-warehouse');
+  const btnHud = document.getElementById('btn-toggle-hud');
+
+  if (enable) {
+    hud?.classList.add('active');
+    btnHud?.classList.add('active');
+    btnWarehouse?.classList.remove('active');
+  } else {
+    hud?.classList.remove('active');
+    btnWarehouse?.classList.add('active');
+    btnHud?.classList.remove('active');
+  }
+}
