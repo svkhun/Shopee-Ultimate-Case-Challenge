@@ -602,13 +602,13 @@ main.app-main {
 .phone-device {
   width: 360px;
   height: 720px;
-  background: #000;
+  background: #0f172a;
   border-radius: 46px;
-  padding: 12px;
+  padding: 10px;
   box-shadow: 
-    0 0 0 2px #222938,
-    0 0 0 6px #101623,
-    0 25px 60px rgba(0, 0, 0, 0.8);
+    0 0 0 2px #334155,
+    0 0 0 6px #090d16,
+    0 25px 60px rgba(0, 0, 0, 0.7);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -620,83 +620,200 @@ main.app-main {
   height: 100%;
   background: #f6f6f6;
   border-radius: 36px;
-  overflow-y: auto;
+  overflow: hidden;
   position: relative;
   color: #111;
   font-family: 'Geist', sans-serif;
   display: flex;
   flex-direction: column;
-  scrollbar-width: none;
 }
 
-.phone-screen::-webkit-scrollbar {
-  display: none;
-}
-
-/* Phone Status Bar */
-.phone-status-bar {
-  height: 38px;
+/* Fixed Top Bar (Status Bar + App Header + Dual-View Switcher) */
+.phone-top-bar {
   background: var(--shopee-orange);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  z-index: 25;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Phone Status Bar with Integrated Dynamic Island */
+.phone-status-bar {
+  height: 34px;
+  background: transparent;
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1.2rem;
-  font-size: 0.76rem;
+  padding: 0 1rem;
+  font-size: 0.74rem;
   font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 30;
+  position: relative;
 }
 
-.phone-notch {
-  width: 105px;
-  height: 20px;
+.phone-dynamic-island {
+  width: 82px;
+  height: 18px;
   background: #000;
   border-radius: 20px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 6px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 8px;
+  padding-right: 6px;
 }
 
-.notch-camera {
-  width: 8px;
-  height: 8px;
+.island-camera {
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: #111;
-  border: 1px solid #333;
+  background: #18181b;
+  border: 1px solid #3f3f46;
+}
+
+.phone-status-icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 /* Shopee App Header inside Phone */
 .phone-app-header {
-  background: var(--shopee-orange);
+  height: 38px;
+  background: transparent;
   color: #fff;
-  padding: 0.6rem 1rem 0.8rem;
+  padding: 0 0.85rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 38px;
-  z-index: 25;
 }
 
 .phone-header-title {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
-.phone-content-body {
-  padding: 0.75rem;
+.phone-header-back,
+.phone-header-action {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 50%;
+  transition: opacity 0.15s;
+}
+
+.phone-header-back:hover,
+.phone-header-action:hover {
+  opacity: 0.8;
+}
+
+/* Segmented Dual-View Navigation */
+.phone-sub-nav {
+  background: rgba(0, 0, 0, 0.08);
+  padding: 3px 8px 6px;
+  display: flex;
+  gap: 6px;
+}
+
+.phone-nav-tab {
   flex: 1;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.phone-nav-tab:hover {
+  background: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+
+.phone-nav-tab.active {
+  background: #ffffff;
+  color: var(--shopee-orange);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  font-weight: 700;
+}
+
+/* Scrollable Container (The ONLY scrollable viewport) */
+.phone-screen-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+  scrollbar-width: none;
+}
+
+.phone-screen-scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.phone-view-container {
+  padding: 0.7rem;
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
+}
+
+/* Authentic Shopee Address Card with Tricolor Ribbon */
+.shopee-address-card {
+  position: relative;
+  overflow: hidden;
+  padding-top: 0.7rem;
+}
+
+.shopee-mail-ribbon {
+  height: 4px;
+  width: calc(100% + 1.5rem);
+  margin: -0.7rem -0.75rem 0.65rem -0.75rem;
+  background: repeating-linear-gradient(45deg, #ee4d2d 0, #ee4d2d 12px, #fff 12px, #fff 18px, #0088ff 18px, #0088ff 30px, #fff 30px, #fff 36px);
+}
+
+.badge-shopee-mall {
+  background: #d0011b;
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.phone-prod-badge {
+  font-size: 0.68rem;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  width: fit-content;
+  margin-top: 2px;
+}
+
+.phone-return-guarantee {
+  font-size: 0.68rem;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-top: 1px solid #f1f5f9;
+  margin-top: 0.5rem;
+  padding-top: 0.45rem;
+  font-weight: 500;
 }
 
 .phone-card {
@@ -918,147 +1035,520 @@ main.app-main {
   cursor: not-allowed;
 }
 
-/* In-Phone Rider Delivery Simulator Drawer */
-.phone-rider-drawer {
-  background: #1e293b;
-  color: #fff;
-  border-radius: 10px;
-  padding: 0.85rem;
-  margin-top: 0.5rem;
-  font-size: 0.78rem;
-  border: 1px solid #334155;
-}
-
-.rider-drawer-header {
+/* In-Phone Alert Modal Overlay */
+.phone-modal-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.7rem;
+  justify-content: center;
+  padding: 1.5rem;
+  border-radius: 36px;
+  animation: phoneModalFadeIn 0.2s ease-out;
 }
 
-.rider-drawer-title {
-  font-weight: 700;
-  color: var(--shopee-orange);
-}
-
-.rider-status {
-  border: 1px solid #475569;
-  border-radius: 999px;
-  color: #cbd5e1;
-  font-size: 0.63rem;
-  font-weight: 600;
-  line-height: 1;
-  padding: 0.32rem 0.45rem;
-  white-space: nowrap;
-}
-
-.rider-score-summary {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-  margin-bottom: 0.7rem;
-}
-
-.rider-score-summary > div {
-  background: #273449;
-  border-left: 2px solid var(--shopee-orange);
-  padding: 0.5rem 0.55rem;
-}
-
-.rider-score-summary span {
-  color: #cbd5e1;
-  display: block;
-  font-size: 0.62rem;
-  margin-bottom: 0.14rem;
-}
-
-.rider-score-summary strong {
-  color: #fff;
-  font-size: 1rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
-}
-
-.rider-drawer-copy {
-  color: #cbd5e1;
-  font-size: 0.7rem;
-  line-height: 1.45;
-  margin-bottom: 0.65rem;
-}
-
-.rider-drawer-actions {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.btn-rider-accept,
-.btn-rider-reject {
-  flex: 1;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  min-height: 52px;
-  padding: 0.45rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  cursor: pointer;
+.phone-modal-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 1.5rem 1.25rem 1.25rem;
+  text-align: center;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 270px;
+  animation: phoneModalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.phone-modal-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--shopee-orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 0.08rem;
+  margin-bottom: 0.85rem;
+  box-shadow: 0 4px 12px rgba(238, 77, 45, 0.35);
+}
+
+.phone-modal-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.35;
+  margin-bottom: 0.45rem;
+  letter-spacing: -0.02em;
+}
+
+.phone-modal-body {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.45;
+  margin-bottom: 1.15rem;
+}
+
+.phone-modal-btn {
+  width: 100%;
+  background: var(--shopee-orange);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
   transition: var(--transition);
 }
 
-.btn-rider-accept { background: #10b981; }
-.btn-rider-reject { background: #ef4444; }
+.phone-modal-btn:hover {
+  background: var(--shopee-orange-hover);
+  transform: translateY(-1px);
+}
 
-.btn-rider-accept small,
-.btn-rider-reject small {
+.phone-modal-btn:active {
+  transform: translateY(0);
+}
+
+@keyframes phoneModalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes phoneModalScaleUp {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* =====================================================================
+   VIEW 2: SPX LIVE TRACKING & DOORSTEP DELIVERY SIMULATION
+   ===================================================================== */
+.tracking-hero-card {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  padding: 0.85rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.tracking-hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.tracking-badge-pulse {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fef2f2;
+  color: var(--shopee-orange);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  border: 1px solid #fecaca;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--shopee-orange);
+  animation: pulseDotAnim 1.4s infinite;
+}
+
+@keyframes pulseDotAnim {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(1.35); }
+}
+
+.tracking-eta {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.tracking-hero-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+
+.tracking-track-no {
+  font-size: 0.68rem;
+  color: #94a3b8;
+  margin-bottom: 0.65rem;
+}
+
+.tracking-timeline-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.35rem;
+  padding: 0 0.25rem;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  z-index: 2;
+}
+
+.step-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.step-item.completed .step-circle {
+  background: var(--shopee-orange);
+  color: #fff;
+}
+
+.step-item.current .step-circle {
+  background: #fff;
+  color: var(--shopee-orange);
+  border: 2px solid var(--shopee-orange);
+  box-shadow: 0 0 8px rgba(238, 77, 45, 0.4);
+}
+
+.step-label {
+  font-size: 0.6rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background: #e2e8f0;
+  margin: 0 -2px 14px -2px;
+  z-index: 1;
+}
+
+.step-line.active {
+  background: var(--shopee-orange);
+}
+
+/* Rider Profile Card */
+.rider-card-view {
+  padding: 0.75rem;
+}
+
+.rider-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.rider-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fff5f2;
+  border: 1px solid #ffd8cc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rider-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.rider-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.rider-meta {
+  font-size: 0.68rem;
+  color: #64748b;
+  margin-top: 1px;
+}
+
+.rider-plate {
+  font-size: 0.64rem;
+  color: #94a3b8;
+  margin-top: 1px;
+}
+
+.rider-contact-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-rider-contact {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  background: #fafafa;
+  color: var(--shopee-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-rider-contact:hover {
+  background: #fff5f2;
+  border-color: var(--shopee-orange);
+}
+
+/* COD Cash Collection Box */
+.cod-due-card {
+  background: #fff;
+  border: 1px dashed var(--shopee-orange);
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+}
+
+.cod-due-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 2px;
+}
+
+.cod-due-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--shopee-orange);
+  font-variant-numeric: tabular-nums;
+}
+
+.cod-due-chip {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #059669;
+  background: #ecfdf5;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Doorstep Action Console */
+.doorstep-action-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.85rem;
+}
+
+.doorstep-action-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.65rem;
+  gap: 0.5rem;
+}
+
+.rider-status {
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  color: #475569;
+  font-size: 0.63rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.32rem 0.55rem;
+  white-space: nowrap;
+  background: #f8fafc;
+}
+
+.doorstep-score-pills {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.score-pill {
+  background: #f8fafc;
+  border-left: 3px solid var(--shopee-orange);
+  border-radius: 4px;
+  padding: 0.45rem 0.6rem;
+}
+
+.score-pill-label {
   font-size: 0.62rem;
-  font-weight: 500;
-  opacity: 0.88;
+  color: #64748b;
+  display: block;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
-.btn-rider-accept:hover { background: #059669; }
-.btn-rider-reject:hover { background: #dc2626; }
-
-.btn-rider-accept:focus-visible,
-.btn-rider-reject:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 2px;
+.score-pill-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #1e293b;
+  font-variant-numeric: tabular-nums;
 }
 
-.btn-rider-accept:disabled,
-.btn-rider-reject:disabled {
+.doorstep-btn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.btn-doorstep-accept,
+.btn-doorstep-reject {
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 0.5rem;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+
+.btn-doorstep-accept {
+  background: #10b981;
+}
+
+.btn-doorstep-accept:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+.btn-doorstep-reject {
+  background: #ef4444;
+}
+
+.btn-doorstep-reject:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+.btn-doorstep-accept:disabled,
+.btn-doorstep-reject:disabled {
   cursor: wait;
   opacity: 0.65;
+  transform: none;
+}
+
+.btn-doorstep-accept strong,
+.btn-doorstep-reject strong {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.btn-doorstep-accept small,
+.btn-doorstep-reject small {
+  display: block;
+  font-size: 0.6rem;
+  opacity: 0.9;
 }
 
 .phone-feedback-result {
-  background: #273449;
-  border-left: 2px solid #64748b;
-  color: #e2e8f0;
+  background: #f8fafc;
+  border-left: 3px solid #94a3b8;
+  border-radius: 4px;
+  color: #334155;
   display: flex;
   flex-direction: column;
   font-size: 0.68rem;
   gap: 0.2rem;
   line-height: 1.35;
-  margin-top: 0.65rem;
-  min-height: 46px;
-  padding: 0.5rem 0.55rem;
+  margin-top: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 0.6rem;
+  transition: var(--transition);
 }
 
 .phone-feedback-result strong {
-  color: #fff;
-  font-size: 0.7rem;
+  color: #0f172a;
+  font-size: 0.72rem;
 }
 
-.phone-feedback-result.is-success { border-left-color: #10b981; }
-.phone-feedback-result.is-failure { border-left-color: #ef4444; }
-.phone-feedback-result.is-pending { border-left-color: var(--amber); }
-.phone-feedback-result.is-error { border-left-color: #f97316; }
+.phone-feedback-result.is-success {
+  border-left-color: #10b981;
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.phone-feedback-result.is-success strong {
+  color: #065f46;
+}
+
+.phone-feedback-result.is-failure {
+  border-left-color: #ef4444;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.phone-feedback-result.is-failure strong {
+  color: #991b1b;
+}
+
+.phone-feedback-result.is-pending {
+  border-left-color: var(--amber);
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.phone-feedback-result.is-pending strong {
+  color: #92400e;
+}
+
+.phone-feedback-result.is-error {
+  border-left-color: #f97316;
+  background: #fff7ed;
+  color: #9a3412;
+}
+
+.phone-feedback-result.is-error strong {
+  color: #9a3412;
+}
+
+.btn-return-checkout {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #475569;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.55rem;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.btn-return-checkout:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+  border-color: #94a3b8;
+}
 
 /* Simulation Controller Panel (Desktop side) */
 .simulator-controls-panel {

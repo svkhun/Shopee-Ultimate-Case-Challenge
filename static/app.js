@@ -242,6 +242,35 @@ function setDeliveryFeedbackLoading(isLoading) {
   });
 }
 
+function switchPhoneView(view) {
+  const checkoutView = document.getElementById('phone-view-checkout');
+  const trackingView = document.getElementById('phone-view-tracking');
+  const checkoutTab = document.getElementById('tab-phone-checkout');
+  const trackingTab = document.getElementById('tab-phone-tracking');
+  const navTitle = document.getElementById('phone-nav-title');
+  const bottomBar = document.querySelector('.phone-bottom-bar');
+  const scrollContainer = document.querySelector('.phone-screen-scrollable');
+
+  if (view === 'checkout') {
+    if (checkoutView) checkoutView.style.display = 'flex';
+    if (trackingView) trackingView.style.display = 'none';
+    if (checkoutTab) checkoutTab.classList.add('active');
+    if (trackingTab) trackingTab.classList.remove('active');
+    if (navTitle) navTitle.textContent = 'Checkout';
+    if (bottomBar) bottomBar.style.display = 'flex';
+  } else {
+    if (checkoutView) checkoutView.style.display = 'none';
+    if (trackingView) trackingView.style.display = 'flex';
+    if (checkoutTab) checkoutTab.classList.remove('active');
+    if (trackingTab) trackingTab.classList.add('active');
+    if (navTitle) navTitle.textContent = 'SPX Live Tracking';
+    if (bottomBar) bottomBar.style.display = 'none';
+  }
+  if (scrollContainer) {
+    scrollContainer.scrollTop = 0;
+  }
+}
+
 function updateLabInputs({ preserveFeedback = false, skipScoring = false } = {}) {
   const scoreVal = document.getElementById('input-score').value;
   const successVal = document.getElementById('input-success').value;
@@ -257,12 +286,19 @@ function updateLabInputs({ preserveFeedback = false, skipScoring = false } = {})
   document.getElementById('val-distance').textContent = `${distVal} km`;
   document.getElementById('val-age').textContent = `${ageVal} days`;
 
-  // Update in-phone price
+  // Update in-phone price and doorstep cash due
   const formattedPrice = `฿${Number(amountVal).toLocaleString()}`;
   const phonePrice = document.getElementById('phone-prod-price');
   const phoneTotal = document.getElementById('phone-total-price');
+  const phoneCodDue = document.getElementById('phone-cod-due');
+  const subtotal = document.getElementById('phone-summary-subtotal');
+  const summaryTotal = document.getElementById('phone-summary-total');
+
   if (phonePrice) phonePrice.textContent = formattedPrice;
   if (phoneTotal) phoneTotal.textContent = formattedPrice;
+  if (phoneCodDue) phoneCodDue.textContent = formattedPrice;
+  if (subtotal) subtotal.textContent = formattedPrice;
+  if (summaryTotal) summaryTotal.textContent = formattedPrice;
 
   syncSimulationScore(scoreVal, consecVal, { preserveFeedback });
 
@@ -378,7 +414,7 @@ function updateSmartphoneScreen(result) {
         <div class="phone-deposit-box">
           <div style="font-size:0.74rem; font-weight:700; color:#111;">Option 1: Reverse Logistics Deposit</div>
           <div style="font-size:0.68rem; color:#666; margin-top:2px;">Pay ฿40 logistics commitment. 100% refunded when parcel is collected.</div>
-          <button class="deposit-action-btn" onclick="alert('฿40 Deposit Authorized! Order dispatched.')">
+          <button class="deposit-action-btn" onclick="showPhoneModal('฿40 Deposit Authorized!', 'Your deposit has been secured. Order dispatched with reverse logistics guarantee.')">
             Pay ฿40 Deposit & Dispatch
           </button>
           <div style="border-top:1px dashed #ddd; margin:6px 0; padding-top:6px; font-size:0.72rem; color:#444;">
@@ -393,6 +429,35 @@ function updateSmartphoneScreen(result) {
   }
 }
 
+let phoneModalCallback = null;
+
+function showPhoneModal(title, message, onConfirm = null) {
+  const overlay = document.getElementById('phone-modal-overlay');
+  const titleEl = document.getElementById('phone-modal-title');
+  const bodyEl = document.getElementById('phone-modal-body');
+  if (overlay && titleEl && bodyEl) {
+    titleEl.textContent = title;
+    bodyEl.textContent = message;
+    phoneModalCallback = onConfirm;
+    overlay.style.display = 'flex';
+  }
+}
+
+function closePhoneModal() {
+  const overlay = document.getElementById('phone-modal-overlay');
+  if (overlay) {
+    overlay.style.display = 'none';
+  }
+}
+
+function confirmPhoneModal() {
+  closePhoneModal();
+  if (typeof phoneModalCallback === 'function') {
+    phoneModalCallback();
+    phoneModalCallback = null;
+  }
+}
+
 function handlePhoneOrderClick() {
   const btn = document.getElementById('phone-checkout-btn');
   const originalText = btn.textContent;
@@ -400,10 +465,16 @@ function handlePhoneOrderClick() {
   btn.disabled = true;
 
   setTimeout(() => {
-    alert('Shopee Order Placed Successfully!\nScroll down inside the phone screen to simulate the rider arrival at your doorstep.');
     btn.textContent = originalText;
     btn.disabled = false;
-  }, 400);
+    showPhoneModal(
+      'Shopee Order Placed Successfully!',
+      'Your Cash on Delivery order is confirmed! Shopee Xpress is dispatching your package. Switching to Doorstep Delivery simulation...',
+      () => {
+        switchPhoneView('tracking');
+      }
+    );
+  }, 350);
 }
 
 // =====================================================================

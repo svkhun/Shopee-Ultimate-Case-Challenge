@@ -619,122 +619,291 @@
         <!-- ================= SMARTPHONE MOCKUP ================= -->
         <div class="phone-mockup-wrapper">
           <div class="phone-device">
-            <!-- Dynamic Island / Top Notch -->
-            <div class="phone-notch">
-              <div class="notch-camera"></div>
+            <!-- In-Phone Alert Modal Overlay -->
+            <div class="phone-modal-overlay" id="phone-modal-overlay" style="display:none;" onclick="closePhoneModal()">
+              <div class="phone-modal-card" onclick="event.stopPropagation()">
+                <div class="phone-modal-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div class="phone-modal-title" id="phone-modal-title">Shopee Order Placed Successfully!</div>
+                <div class="phone-modal-body" id="phone-modal-body">
+                  Your Cash on Delivery order is confirmed! Shopee Xpress is dispatching your package.
+                </div>
+                <button class="phone-modal-btn" id="phone-modal-btn" onclick="confirmPhoneModal()">Track Delivery 🚚</button>
+              </div>
             </div>
 
-            <!-- Phone Screen Content -->
+            <!-- Phone Screen (Strictly non-overflowing parent) -->
             <div class="phone-screen" id="phone-screen-container">
-              <!-- Status Bar -->
-              <div class="phone-status-bar">
-                <span>9:41</span>
-                <span style="display:flex; align-items:center; gap:4px;">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.25A10.93 10.93 0 0 1 1 12C1 5.92 5.92 1 12 1s11 4.92 11 11c0 2.45-.8 4.71-2.16 6.55l-.62-.64C21.35 16.32 22 14.24 22 12c0-4.97-4.03-9-9-9z"/></svg>
-                  5G 100%
-                </span>
-              </div>
-
-              <!-- Shopee App Header -->
-              <div class="phone-app-header">
-                <span style="font-size:1.1rem; cursor:pointer;">‹</span>
-                <span class="phone-header-title">Checkout</span>
-                <span style="font-size:0.8rem;">Help</span>
-              </div>
-
-              <!-- Phone Body -->
-              <div class="phone-content-body">
-                <!-- Delivery Address Card -->
-                <div class="phone-card">
-                  <div class="phone-card-title">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--shopee-orange)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    Delivery Address
+              <!-- FIXED TOP BAR (Status Bar + App Header + Dual-View Switcher) -->
+              <div class="phone-top-bar">
+                <!-- Status Bar with Integrated Dynamic Island -->
+                <div class="phone-status-bar">
+                  <span class="phone-status-time">9:41</span>
+                  <!-- Dynamic Island Pill -->
+                  <div class="phone-dynamic-island">
+                    <div class="island-camera"></div>
                   </div>
-                  <div class="phone-address-text">
-                    <strong id="phone-buyer-name">Somchai Prasert</strong> <span style="color:#777;">(+66 89 452 1890)</span><br>
-                    <span id="phone-buyer-address" style="color:#555; font-size:0.76rem;">128/4 Sukhumvit Soi 55, Thonglor, Bangkok 10110</span>
-                  </div>
+                  <span class="phone-status-icons">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.25A10.93 10.93 0 0 1 1 12C1 5.92 5.92 1 12 1s11 4.92 11 11c0 2.45-.8 4.71-2.16 6.55l-.62-.64C21.35 16.32 22 14.24 22 12c0-4.97-4.03-9-9-9z"/></svg>
+                    5G 100%
+                  </span>
                 </div>
 
-                <!-- Order Item Card -->
-                <div class="phone-card">
-                  <div class="phone-card-title">Shopee Mall • Official Store</div>
-                  <div class="phone-product-row">
-                    <img src="/static/assets/shopee_hero.jpg" class="phone-prod-img" alt="Product">
-                    <div class="phone-prod-info">
-                      <div class="phone-prod-title" id="phone-prod-title">Wireless ANC Headphones Pro</div>
-                      <div style="font-size:0.7rem; color:#888;">Variation: Matte Black</div>
-                      <div class="phone-prod-price" id="phone-prod-price">฿1,850</div>
+                <!-- Shopee App Header -->
+                <div class="phone-app-header">
+                  <span class="phone-header-back" onclick="switchPhoneView('checkout')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                  </span>
+                  <span class="phone-header-title" id="phone-nav-title">Checkout</span>
+                  <span class="phone-header-action" onclick="showPhoneModal('Shopee Support', 'Need help with your COD order? Contact our 24/7 customer concierge.')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                  </span>
+                </div>
+
+                <!-- Segmented Dual-View Navigation -->
+                <div class="phone-sub-nav">
+                  <button class="phone-nav-tab active" id="tab-phone-checkout" onclick="switchPhoneView('checkout')">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    1. Checkout
+                  </button>
+                  <button class="phone-nav-tab" id="tab-phone-tracking" onclick="switchPhoneView('tracking')">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    2. Doorstep Delivery
+                  </button>
+                </div>
+              </div>
+
+              <!-- SCROLLABLE CONTENT VIEWPORT -->
+              <div class="phone-screen-scrollable">
+
+                <!-- ================= VIEW 1: AUTHENTIC CHECKOUT ================= -->
+                <div id="phone-view-checkout" class="phone-view-container">
+                  <!-- Delivery Address Card with Shopee Mail Ribbon -->
+                  <div class="phone-card shopee-address-card">
+                    <div class="shopee-mail-ribbon"></div>
+                    <div class="phone-card-title" style="color:var(--shopee-orange); font-size:0.75rem;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                      Delivery Address
+                      <span style="margin-left:auto; color:#999; font-size:0.9rem;">›</span>
+                    </div>
+                    <div class="phone-address-text">
+                      <strong id="phone-buyer-name">Somchai Prasert</strong> <span style="color:#777; font-size:0.75rem;">(+66 89 452 1890)</span><br>
+                      <span id="phone-buyer-address" style="color:#555; font-size:0.76rem; display:block; margin-top:2px;">128/4 Sukhumvit Soi 55, Thonglor, Bangkok 10110</span>
+                    </div>
+                  </div>
+
+                  <!-- Store & Product Card -->
+                  <div class="phone-card">
+                    <div class="phone-card-title" style="display:flex; align-items:center; gap:6px;">
+                      <span class="badge-shopee-mall">Mall</span>
+                      <strong style="color:#222; font-size:0.78rem;">Soundcore Official Store</strong>
+                      <span style="margin-left:auto; color:#999; font-size:0.9rem;">›</span>
+                    </div>
+                    <div class="phone-product-row">
+                      <img src="/static/assets/shopee_hero.jpg" class="phone-prod-img" alt="Product">
+                      <div class="phone-prod-info">
+                        <div class="phone-prod-title" id="phone-prod-title">Wireless ANC Headphones Pro</div>
+                        <div class="phone-prod-badge">Matte Black · 1-Yr Warranty</div>
+                        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-top:4px;">
+                          <span class="phone-prod-price" id="phone-prod-price">฿1,850</span>
+                          <span style="font-size:0.72rem; color:#888;">x1</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="phone-return-guarantee">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--emerald)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                      <span>Shopee Mall: 15-Day Return · 100% Authentic Guarantee</span>
+                    </div>
+                  </div>
+
+                  <!-- Shipping Option & Preferred Delivery Window -->
+                  <div class="phone-card">
+                    <div class="phone-card-title">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--shopee-orange)" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                      Shipping Option: <strong style="color:var(--shopee-orange); margin-left:4px;">Shopee Xpress</strong>
+                    </div>
+                    <div style="font-size:0.72rem; color:#555; margin-bottom:0.4rem; display:flex; justify-content:space-between;">
+                      <span>Preferred Delivery Window:</span>
+                      <span style="color:var(--emerald); font-weight:600;">Free Shipping</span>
+                    </div>
+                    <div class="window-radio-group">
+                      <div class="window-option-chip selected" id="chip-morning" onclick="selectPhoneWindow('MORNING')">Morning (09-12)</div>
+                      <div class="window-option-chip" id="chip-afternoon" onclick="selectPhoneWindow('AFTERNOON')">Afternoon (13-17)</div>
+                      <div class="window-option-chip" id="chip-evening" onclick="selectPhoneWindow('EVENING')">Evening (17-20)</div>
+                      <div class="window-option-chip" id="chip-weekend" onclick="selectPhoneWindow('WEEKEND')">Weekend</div>
+                    </div>
+                    <div style="font-size:0.68rem; color:#888; margin-top:0.45rem; line-height:1.35;">
+                      ℹ️ Scheduled delivery ensures rider presence when you are home, preventing return-to-origin trips.
+                    </div>
+                  </div>
+
+                  <!-- Voucher & Platform Promo -->
+                  <div class="phone-card" style="padding:0.6rem 0.75rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.76rem;">
+                      <span style="color:#333; font-weight:600; display:flex; align-items:center; gap:5px;">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--shopee-orange)" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Shopee Voucher
+                      </span>
+                      <span style="color:var(--shopee-orange); font-weight:600; font-size:0.74rem;">-฿45 Free Shipping Applied ›</span>
+                    </div>
+                  </div>
+
+                  <!-- Dynamic Payment Method & Machine Learning Risk Guardrails -->
+                  <div class="phone-card" style="border:1px solid #ffd8cc;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                      <div style="font-size:0.78rem; font-weight:600; color:#222;">Payment Method</div>
+                      <span class="mono" style="font-size:0.74rem; font-weight:700; color:var(--shopee-orange);">Cash on Delivery (COD)</span>
+                    </div>
+
+                    <!-- Dynamic Alert Banner inside Phone -->
+                    <div id="phone-intervention-box" style="margin-top:0.5rem;">
+                      <!-- Dynamically populated according to Risk Tier -->
+                    </div>
+                  </div>
+
+                  <!-- Payment Breakdown Summary -->
+                  <div class="phone-card" style="font-size:0.74rem; color:#666;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:0.25rem;">
+                      <span>Merchandise Subtotal</span>
+                      <span class="mono" id="phone-summary-subtotal" style="color:#222;">฿1,850</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:0.25rem;">
+                      <span>Shipping Subtotal</span>
+                      <span class="mono" style="color:#222;">฿45</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem; color:var(--emerald);">
+                      <span>Shipping Discount Subtotal</span>
+                      <span class="mono">-฿45</span>
+                    </div>
+                    <div style="border-top:1px dashed #e2e8f0; padding-top:0.4rem; display:flex; justify-content:space-between; font-weight:700; color:#111; font-size:0.8rem;">
+                      <span>Total Payment</span>
+                      <span class="mono" id="phone-summary-total" style="color:var(--shopee-orange);">฿1,850</span>
                     </div>
                   </div>
                 </div>
 
-                <!-- Delivery Option & Preferred Window -->
-                <div class="phone-card">
-                  <div class="phone-card-title">
-                    Shipping Option: <strong style="color:var(--shopee-orange); margin-left:4px;">Shopee Xpress</strong>
-                  </div>
-                  <div style="font-size:0.72rem; color:#666; margin-bottom:0.25rem;">
-                    Select Preferred Delivery Window:
-                  </div>
-                  <div class="window-radio-group">
-                    <div class="window-option-chip selected" id="chip-morning" onclick="selectPhoneWindow('MORNING')">Morning (09-12)</div>
-                    <div class="window-option-chip" id="chip-afternoon" onclick="selectPhoneWindow('AFTERNOON')">Afternoon (13-17)</div>
-                    <div class="window-option-chip" id="chip-evening" onclick="selectPhoneWindow('EVENING')">Evening (17-20)</div>
-                    <div class="window-option-chip" id="chip-weekend" onclick="selectPhoneWindow('WEEKEND')">Weekend</div>
-                  </div>
-                </div>
-
-                <!-- Dynamic Payment Method & Risk Intervention Banner -->
-                <div class="phone-card" style="border:1px solid #ffccba;">
-                  <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div style="font-size:0.78rem; font-weight:600; color:#222;">Payment Method</div>
-                    <span class="mono" style="font-size:0.74rem; font-weight:700; color:var(--shopee-orange);">Cash on Delivery (COD)</span>
-                  </div>
-
-                  <!-- Dynamic Alert Banner inside Phone -->
-                  <div id="phone-intervention-box" style="margin-top:0.5rem;">
-                    <!-- Dynamically populated according to Risk Tier -->
-                  </div>
-                </div>
-
-                <!-- In-Phone Rider Simulation Drawer -->
-                <div class="phone-rider-drawer">
-                  <div class="rider-drawer-header">
-                    <div class="rider-drawer-title">Shopee Rider Simulation</div>
-                    <span class="rider-status" id="phone-delivery-status">Ready to record</span>
-                  </div>
-                  <div class="rider-score-summary" aria-live="polite">
-                    <div>
-                      <span>Reliability score</span>
-                      <strong id="phone-policy-score">90.0</strong>
+                <!-- ================= VIEW 2: SPX LIVE TRACKING & RIDER CONSOLE ================= -->
+                <div id="phone-view-tracking" class="phone-view-container" style="display:none;">
+                  <!-- Tracking Hero Card -->
+                  <div class="tracking-hero-card">
+                    <div class="tracking-hero-header">
+                      <div class="tracking-badge-pulse">
+                        <span class="pulse-dot"></span>
+                        <span>Out for Delivery</span>
+                      </div>
+                      <span class="mono tracking-eta">Est. Today, 14:30</span>
                     </div>
-                    <div>
-                      <span>Consecutive RTO</span>
-                      <strong id="phone-consecutive-failures">0</strong>
+                    <div class="tracking-hero-title">Shopee Xpress (SPX Express)</div>
+                    <div class="mono tracking-track-no">Tracking: TH240928SPX8829</div>
+
+                    <!-- Visual Step Timeline -->
+                    <div class="tracking-timeline-bar">
+                      <div class="step-item completed">
+                        <div class="step-circle">✓</div>
+                        <span class="step-label">Ordered</span>
+                      </div>
+                      <div class="step-line active"></div>
+                      <div class="step-item completed">
+                        <div class="step-circle">✓</div>
+                        <span class="step-label">In Transit</span>
+                      </div>
+                      <div class="step-line active"></div>
+                      <div class="step-item current">
+                        <div class="step-circle">🚚</div>
+                        <span class="step-label">Out</span>
+                      </div>
+                      <div class="step-line"></div>
+                      <div class="step-item">
+                        <div class="step-circle">4</div>
+                        <span class="step-label">Delivered</span>
+                      </div>
                     </div>
                   </div>
-                  <p class="rider-drawer-copy">
-                    Record what happened at the doorstep. The score above and the controls on the right update together.
-                  </p>
-                  <div class="rider-drawer-actions">
-                    <button class="btn-rider-accept" data-feedback-control onclick="handleDeliveryFeedback('DELIVERED')">
-                      <span>Accept delivery</span>
-                      <small>+8 points</small>
-                    </button>
-                    <button class="btn-rider-reject" data-feedback-control onclick="handleDeliveryFeedback('RETURNED_TO_ORIGIN')">
-                      <span>Reject / RTO</span>
-                      <small>−20 points</small>
-                    </button>
+
+                  <!-- Rider Profile Card -->
+                  <div class="phone-card rider-card-view">
+                    <div class="rider-card-top">
+                      <div class="rider-avatar">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--shopee-orange)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                      </div>
+                      <div class="rider-details">
+                        <div class="rider-name">Wichai Sukprasert</div>
+                        <div class="rider-meta">Shopee Xpress Courier · <span style="color:#f59e0b;">★ 4.9</span> (1,240+)</div>
+                        <div class="rider-plate">Vehicle: Honda Wave 125i (3ขพ 4421 กทม.)</div>
+                      </div>
+                      <div class="rider-contact-btns">
+                        <button class="btn-rider-contact" onclick="showPhoneModal('Calling Rider', 'Connecting call to Wichai S. (+66 81 234 5678)...')">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </button>
+                        <button class="btn-rider-contact" onclick="showPhoneModal('Shopee Chat', 'Opening driver chat session: Wichai is 450m away from your address.')">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <div class="phone-feedback-result" id="phone-feedback-result" role="status" aria-live="polite">
-                    <strong id="phone-feedback-title">No delivery outcome yet</strong>
-                    <span id="phone-feedback-copy">Choose an outcome to update the reliability score.</span>
+
+                  <!-- Cash Due at Doorstep -->
+                  <div class="cod-due-card">
+                    <div style="font-size:0.72rem; color:#64748b; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Cash on Delivery Amount Due</div>
+                    <div class="cod-due-row">
+                      <span class="cod-due-val" id="phone-cod-due">฿1,850</span>
+                      <span class="cod-due-chip">Exact Cash or QR</span>
+                    </div>
                   </div>
+
+                  <!-- Doorstep Delivery Simulation & Dynamic Feedback Loop -->
+                  <div class="phone-card doorstep-action-card">
+                    <div class="doorstep-action-header">
+                      <div>
+                        <div style="font-size:0.8rem; font-weight:700; color:#1e293b;">Doorstep Handover Simulation</div>
+                        <div style="font-size:0.68rem; color:#64748b;">Simulate buyer acceptance or refusal to test reliability loop</div>
+                      </div>
+                      <span class="rider-status" id="phone-delivery-status">Ready to record</span>
+                    </div>
+
+                    <div class="doorstep-score-pills" aria-live="polite">
+                      <div class="score-pill">
+                        <span class="score-pill-label">Reliability Score</span>
+                        <strong class="score-pill-val" id="phone-policy-score">90.0</strong>
+                      </div>
+                      <div class="score-pill">
+                        <span class="score-pill-label">Consecutive RTO</span>
+                        <strong class="score-pill-val" id="phone-consecutive-failures">0</strong>
+                      </div>
+                    </div>
+
+                    <div class="doorstep-btn-grid">
+                      <button class="btn-doorstep-accept" data-feedback-control onclick="handleDeliveryFeedback('DELIVERED')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        <div>
+                          <strong>Accept & Pay COD</strong>
+                          <small>+8 Points · Restores Tier</small>
+                        </div>
+                      </button>
+                      <button class="btn-doorstep-reject" data-feedback-control onclick="handleDeliveryFeedback('RETURNED_TO_ORIGIN')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        <div>
+                          <strong>Refuse Parcel (RTO)</strong>
+                          <small>−20 Points · Triggers OTP/Deposit</small>
+                        </div>
+                      </button>
+                    </div>
+
+                    <div class="phone-feedback-result" id="phone-feedback-result" role="status" aria-live="polite">
+                      <strong id="phone-feedback-title">No delivery outcome yet</strong>
+                      <span id="phone-feedback-copy">Choose an outcome to update the reliability score in real time.</span>
+                    </div>
+                  </div>
+
+                  <!-- Back to Checkout Button -->
+                  <button class="btn-return-checkout" onclick="switchPhoneView('checkout')">
+                    ← Return to Checkout Screen
+                  </button>
                 </div>
               </div>
 
-              <!-- Phone Bottom Checkout Bar -->
+              <!-- Phone Bottom Checkout Bar (Fixed outside scroll area for View 1) -->
               <div class="phone-bottom-bar">
                 <div>
                   <div class="phone-total-label">Total Payment</div>
