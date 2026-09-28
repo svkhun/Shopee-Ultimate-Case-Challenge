@@ -44,11 +44,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Geist', sans-serif;
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Thai', sans-serif;
 }
 
 body {
-  font-family: 'Geist', sans-serif;
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Thai', sans-serif;
   font-weight: 350;
   letter-spacing: -0.018em;
   background-color: var(--bg-main);
@@ -453,7 +453,11 @@ main.app-main {
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
-  padding: 2rem 2rem 5rem;
+  padding: 1.25rem 2rem 4rem;
+}
+
+#page-simulator .section-headline {
+  margin-bottom: 0.85rem;
 }
 
 .page-section {
@@ -831,28 +835,32 @@ main.app-main {
    ===================================================================== */
 .phone-simulation-container {
   display: grid;
-  grid-template-columns: 390px 1fr;
-  gap: 2.5rem;
+  grid-template-columns: 370px 1fr;
+  gap: 2rem;
   align-items: start;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .phone-mockup-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: sticky;
+  top: 76px;
+  z-index: 20;
 }
 
 .phone-device {
-  width: 360px;
-  height: 720px;
+  width: 350px;
+  height: 630px;
+  max-height: calc(100vh - 96px);
   background: #0f172a;
-  border-radius: 46px;
-  padding: 10px;
+  border-radius: 44px;
+  padding: 8px;
   box-shadow: 
     0 0 0 2px #334155,
-    0 0 0 6px #090d16,
-    0 25px 60px rgba(0, 0, 0, 0.7);
+    0 0 0 5px #090d16,
+    0 20px 50px rgba(0, 0, 0, 0.45);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -867,7 +875,7 @@ main.app-main {
   overflow: hidden;
   position: relative;
   color: #111;
-  font-family: 'Geist', sans-serif;
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Thai', sans-serif;
   display: flex;
   flex-direction: column;
 }
@@ -885,21 +893,21 @@ main.app-main {
 
 /* Phone Status Bar with Integrated Dynamic Island */
 .phone-status-bar {
-  height: 34px;
+  height: 30px;
   background: transparent;
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
-  font-size: 0.74rem;
+  padding: 0 0.85rem;
+  font-size: 0.72rem;
   font-weight: 600;
   position: relative;
 }
 
 .phone-dynamic-island {
-  width: 82px;
-  height: 18px;
+  width: 78px;
+  height: 16px;
   background: #000;
   border-radius: 20px;
   display: flex;
@@ -909,8 +917,8 @@ main.app-main {
 }
 
 .island-camera {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: #18181b;
   border: 1px solid #3f3f46;
@@ -924,17 +932,17 @@ main.app-main {
 
 /* Shopee App Header inside Phone */
 .phone-app-header {
-  height: 38px;
+  height: 34px;
   background: transparent;
   color: #fff;
-  padding: 0 0.85rem;
+  padding: 0 0.8rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .phone-header-title {
-  font-size: 0.96rem;
+  font-size: 0.94rem;
   font-weight: 700;
   letter-spacing: -0.01em;
 }

@@ -318,7 +318,6 @@ function updateLabInputs({ preserveFeedback = false, skipScoring = false } = {})
 
   if (phonePrice) phonePrice.textContent = formattedPrice;
   if (phoneTotal) phoneTotal.textContent = formattedPrice;
-  if (phoneCodDue) phoneCodDue.textContent = formattedPrice;
   if (subtotal) subtotal.textContent = formattedPrice;
   if (summaryTotal) summaryTotal.textContent = formattedPrice;
 
@@ -396,6 +395,7 @@ function updateSmartphoneScreen(result) {
     checkoutBtn.textContent = 'Place COD Order';
     checkoutBtn.disabled = false;
     checkoutBtn.style.background = 'var(--shopee-orange)';
+    checkoutBtn.onclick = handlePhoneOrderClick;
   } else if (tier === 'MEDIUM_RISK') {
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-b">
@@ -413,6 +413,7 @@ function updateSmartphoneScreen(result) {
     checkoutBtn.textContent = 'Confirm COD (Under Warning)';
     checkoutBtn.disabled = false;
     checkoutBtn.style.background = 'var(--amber)';
+    checkoutBtn.onclick = handlePhoneOrderClick;
   } else if (tier === 'HIGH_RISK') {
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-c" style="border-left:3px solid var(--orange);">
@@ -430,7 +431,7 @@ function updateSmartphoneScreen(result) {
           <div style="font-size:0.68rem; color:#7c2d12; margin:3px 0 6px;">
             ✓ 100% credited toward your doorstep COD payment (Remaining ฿${remainingAmountHigh.toLocaleString()} collected upon handover).
           </div>
-          <button class="deposit-action-btn" style="background:#ea580c;" onclick="showPhoneModal('20% Seller Deposit Secured!', 'Your ฿${depositAmountHigh.toLocaleString()} (20%) deposit has been secured for the merchant. Remaining ฿${remainingAmountHigh.toLocaleString()} will be collected upon parcel arrival.')">
+          <button class="deposit-action-btn" style="background:#ea580c;" onclick="handleDepositOrder(0.20)">
             Authorize 20% Deposit (฿${depositAmountHigh.toLocaleString()}) & Order COD
           </button>
           <div style="border-top:1px dashed #fed7aa; margin:6px 0 2px; padding-top:4px; font-size:0.69rem; color:#666;">
@@ -442,6 +443,7 @@ function updateSmartphoneScreen(result) {
     checkoutBtn.textContent = `Pay 20% Deposit (฿${depositAmountHigh.toLocaleString()}) & Place COD`;
     checkoutBtn.disabled = false;
     checkoutBtn.style.background = 'var(--orange)';
+    checkoutBtn.onclick = () => handleDepositOrder(0.20);
   } else {
     // REPEATED_HIGH_RISK
     box.innerHTML = `
@@ -453,7 +455,7 @@ function updateSmartphoneScreen(result) {
           Standard COD is locked due to chronic delivery rejections. To place this order, pay an upfront 30% seller deposit (฿${depositAmountRep.toLocaleString()}) or switch to prepaid.
         </div>
         <div class="phone-deposit-box" style="margin-top:6px;">
-          <button class="deposit-action-btn" onclick="showPhoneModal('30% Seller Deposit Authorized!', 'Your ฿${depositAmountRep.toLocaleString()} (30%) deposit has been secured for merchant logistics. Dispatched under verified collateral.')">
+          <button class="deposit-action-btn" onclick="handleDepositOrder(0.30)">
             Pay 30% Deposit (฿${depositAmountRep.toLocaleString()}) & Dispatch
           </button>
           <div style="border-top:1px dashed #ddd; margin:6px 0; padding-top:6px; font-size:0.72rem; color:#444;">
@@ -462,24 +464,71 @@ function updateSmartphoneScreen(result) {
         </div>
       </div>
     `;
-    checkoutBtn.textContent = '30% Deposit or Prepaid Only';
-    checkoutBtn.disabled = true;
-    checkoutBtn.style.background = '#94a3b8';
+    checkoutBtn.textContent = `Pay 30% Deposit (฿${depositAmountRep.toLocaleString()}) & Place COD`;
+    checkoutBtn.disabled = false;
+    checkoutBtn.style.background = '#be123c';
+    checkoutBtn.onclick = () => handleDepositOrder(0.30);
+  }
+
+  // Update doorstep cash due in View 2 to reflect upfront deposits
+  const phoneCodDue = document.getElementById('phone-cod-due');
+  const phoneCodChip = document.getElementById('phone-cod-chip');
+  if (phoneCodDue) {
+    if (tier === 'HIGH_RISK') {
+      phoneCodDue.textContent = `฿${remainingAmountHigh.toLocaleString()}`;
+      if (phoneCodChip) {
+        phoneCodChip.textContent = `฿${depositAmountHigh.toLocaleString()} (20%) Deposit Credited`;
+        phoneCodChip.style.background = '#ffedd5';
+        phoneCodChip.style.color = '#c2410c';
+      }
+    } else if (tier === 'REPEATED_HIGH_RISK') {
+      phoneCodDue.textContent = `฿${remainingAmountRep.toLocaleString()}`;
+      if (phoneCodChip) {
+        phoneCodChip.textContent = `฿${depositAmountRep.toLocaleString()} (30%) Deposit Credited`;
+        phoneCodChip.style.background = '#ffe4e6';
+        phoneCodChip.style.color = '#be123c';
+      }
+    } else {
+      phoneCodDue.textContent = `฿${Number(orderAmount).toLocaleString()}`;
+      if (phoneCodChip) {
+        phoneCodChip.textContent = 'Exact Cash or QR';
+        phoneCodChip.style.background = '#f1f5f9';
+        phoneCodChip.style.color = '#475569';
+      }
+    }
   }
 }
 
 let phoneModalCallback = null;
 
-function showPhoneModal(title, message, onConfirm = null) {
+function showPhoneModal(title, message, onConfirm = null, btnText = 'Track Delivery 🚚') {
   const overlay = document.getElementById('phone-modal-overlay');
   const titleEl = document.getElementById('phone-modal-title');
   const bodyEl = document.getElementById('phone-modal-body');
+  const btnEl = document.getElementById('phone-modal-btn');
   if (overlay && titleEl && bodyEl) {
     titleEl.textContent = title;
     bodyEl.textContent = message;
     phoneModalCallback = onConfirm;
+    if (btnEl) btnEl.textContent = btnText;
     overlay.style.display = 'flex';
   }
+}
+
+function handleDepositOrder(depositPct) {
+  const orderAmount = parseFloat(document.getElementById('input-amount').value) || 1850;
+  const depositAmount = Math.round(orderAmount * depositPct);
+  const remainingAmount = orderAmount - depositAmount;
+  const pctStr = Math.round(depositPct * 100) + '%';
+
+  showPhoneModal(
+    `${pctStr} Seller Security Deposit Secured!`,
+    `Your ฿${depositAmount.toLocaleString()} (${pctStr}) seller security deposit has been authorized and held in escrow for merchant protection. Remaining ฿${remainingAmount.toLocaleString()} will be collected upon parcel arrival. Proceeding to live tracking...`,
+    () => {
+      switchPhoneView('tracking');
+    },
+    'Track Delivery 🚚'
+  );
 }
 
 function closePhoneModal() {
@@ -511,7 +560,8 @@ function handlePhoneOrderClick() {
       'Your Cash on Delivery order is confirmed! Shopee Xpress is dispatching your package. Switching to Doorstep Delivery simulation...',
       () => {
         switchPhoneView('tracking');
-      }
+      },
+      'Track Delivery 🚚'
     );
   }, 350);
 }
@@ -582,6 +632,12 @@ function applyScenarioPreset(grade) {
     phoneInput.checked = false;
     addressInput.checked = true;
     windowInput.checked = false;
+  }
+
+  switchPhoneView('checkout');
+  const scrollContainer = document.querySelector('.phone-screen-scrollable');
+  if (scrollContainer) {
+    scrollContainer.scrollTop = 0;
   }
 
   updateLabInputs();
