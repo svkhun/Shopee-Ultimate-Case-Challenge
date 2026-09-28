@@ -519,6 +519,34 @@ main.app-main {
   pointer-events: none;
   width: 100%;
   gap: 0.5rem;
+  isolation: isolate;
+}
+
+/* Smooth Diffused Spotlight BEHIND the Hero Letters (From Web Portfolio) */
+.hero-split-container::before {
+  content: '';
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  top: var(--hero-mouse-y, 50%);
+  left: var(--hero-mouse-x, 50%);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle at center,
+    rgba(238, 77, 45, 0.22) 0%,
+    rgba(255, 122, 89, 0.08) 35%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: -1; /* STRICTLY BEHIND THE LETTERS! */
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.hero-expand-sticky:hover .hero-split-container::before {
+  opacity: 1;
 }
 
 .hero-split-word {
@@ -2971,80 +2999,78 @@ footer .footer-links a:hover {
 }
 
 /* ==========================================================================
-   Smooth Ambient Mouse Glow & Diffused Trail Effect (ฟุ้งๆ สมูทๆ)
+   Linear / Stripe Interactive Card Spotlight (From Web Portfolio)
+   Displays Smooth Diffused Spotlight Glow BEHIND Text and Letters
    ========================================================================== */
 
-.mouse-glow-follower {
-  position: fixed;
-  top: 0;
-  left: 0;
-  border-radius: 50%;
-  pointer-events: none;
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    480px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(238, 77, 45, 0.12),
+    rgba(255, 122, 89, 0.05) 35%,
+    transparent 65%
+  );
   opacity: 0;
-  will-change: transform, opacity;
-  transition: opacity 0.4s ease;
-}
-
-/* Layer 1: Atmospheric Outer Diffused Halo (รัศมีออร่าฟุ้งๆ นุ่มนวล เคลื่อนไหวสมูท) */
-.mouse-glow-ambient {
-  width: 460px;
-  height: 460px;
-  background: radial-gradient(circle at center, 
-    rgba(238, 77, 45, 0.15) 0%, 
-    rgba(255, 122, 89, 0.08) 35%, 
-    rgba(255, 160, 122, 0.03) 55%, 
-    transparent 72%
-  );
-  filter: blur(36px);
-  z-index: 9998;
-}
-
-/* Layer 2: Core Vibrant Warm Spotlight (แกนกลางสีส้ม Shopee อุ่นละมุนตามเมาส์) */
-.mouse-glow-core {
-  width: 130px;
-  height: 130px;
-  background: radial-gradient(circle at center, 
-    rgba(255, 138, 101, 0.28) 0%, 
-    rgba(238, 77, 45, 0.12) 45%, 
-    transparent 75%
-  );
-  filter: blur(14px);
-  z-index: 9999;
-}
-
-/* Micro Diffused Trail Puffs (ละอองฟุ้งๆ จางๆ ลอยตามรอยเมาส์) */
-.mouse-trail-puff {
-  position: fixed;
+  transition: opacity 0.35s ease;
   pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(circle, 
-    rgba(238, 77, 45, 0.24) 0%, 
-    rgba(255, 140, 90, 0.10) 40%, 
-    transparent 75%
+  z-index: 0; /* Strictly behind all content and text! */
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Ensure all children (text, numbers, badges, buttons) sit crisp in FRONT of the spotlight */
+.spotlight-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Color-matched spotlights for KPI cards */
+.spotlight-card.orange::before {
+  background: radial-gradient(
+    480px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(238, 77, 45, 0.16),
+    rgba(255, 122, 89, 0.06) 35%,
+    transparent 65%
   );
-  filter: blur(8px);
-  z-index: 9997;
-  transform: translate(-50%, -50%) scale(0.6);
-  animation: trailPuffFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes trailPuffFade {
-  0% {
-    opacity: 0.85;
-    transform: translate(-50%, -50%) scale(0.6);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.6);
-  }
+.spotlight-card.amber::before {
+  background: radial-gradient(
+    480px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(245, 158, 11, 0.16),
+    rgba(251, 191, 36, 0.06) 35%,
+    transparent 65%
+  );
 }
 
-/* Disable on touch devices to conserve battery & preserve performance */
-@media (pointer: coarse) {
-  .mouse-glow-follower,
-  .mouse-trail-puff {
-    display: none !important;
-  }
+.spotlight-card.cyan::before {
+  background: radial-gradient(
+    480px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(6, 182, 212, 0.16),
+    rgba(34, 211, 238, 0.06) 35%,
+    transparent 65%
+  );
+}
+
+.spotlight-card.emerald::before {
+  background: radial-gradient(
+    480px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(16, 185, 129, 0.16),
+    rgba(52, 211, 153, 0.06) 35%,
+    transparent 65%
+  );
 }
 
 

@@ -859,8 +859,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Scroll Media Expansion Hero
   initHeroScrollExpansion();
 
-  // Initialize Smooth Ambient Mouse Glow & Diffused Trail Effect
-  initMouseGlowEffect();
+  // Initialize Linear/Stripe Interactive Spotlight Behind Text (From Web Portfolio)
+  initSpotlightCards();
 });
 
 // =====================================================================
@@ -998,104 +998,68 @@ function smoothExpandHero() {
 }
 
 // =====================================================================
-// 10. Smooth Ambient Mouse Glow & Diffused Trail Effect (ฟุ้งๆ สมูทๆ)
+// 10. Linear/Stripe Interactive Card Spotlight (From Web Portfolio)
+// Displays Smooth Diffused Spotlight Glow BEHIND Text and Letters
 // =====================================================================
 
-function initMouseGlowEffect() {
-  // Disable on touch devices
+function initSpotlightCards() {
   if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
     return;
   }
 
-  const ambientEl = document.getElementById('mouseGlowAmbient');
-  const coreEl = document.getElementById('mouseGlowCore');
-  if (!ambientEl || !coreEl) return;
+  const cardSelectors = [
+    '.metric-card',
+    '.content-card',
+    '.hero-glass-card',
+    '.impact-column-card',
+    '.tier-card',
+    '.tracking-hero-card',
+    '.phone-card',
+    '.math-step-card',
+    '.simulator-controls-panel',
+    '.impact-item-box',
+    '.math-derivation-box',
+    '.team-academic-box',
+    '.team-avatar-box',
+    '.tier-action-box',
+    '.team-succ-banner',
+    '.card',
+    '.table-card'
+  ];
 
-  let targetX = window.innerWidth / 2;
-  let targetY = window.innerHeight / 2;
-  let ambientX = targetX;
-  let ambientY = targetY;
-  let coreX = targetX;
-  let coreY = targetY;
-  let isVisible = false;
-  let isHovering = false;
-  let lastPuffTime = 0;
-  let lastPuffX = 0;
-  let lastPuffY = 0;
+  const cards = document.querySelectorAll(cardSelectors.join(', '));
+  cards.forEach(card => {
+    card.classList.add('spotlight-card');
 
-  window.addEventListener('mousemove', (e) => {
-    targetX = e.clientX;
-    targetY = e.clientY;
+    card.addEventListener('pointermove', function (e) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    }, { passive: true });
 
-    if (!isVisible) {
-      isVisible = true;
-      ambientEl.style.opacity = '1';
-      coreEl.style.opacity = '1';
-      ambientX = targetX;
-      ambientY = targetY;
-      coreX = targetX;
-      coreY = targetY;
-    }
-
-    // Interactive element detection for smooth tactile expansion
-    const target = e.target;
-    if (target && target.closest) {
-      const interactive = target.closest('a, button, input, select, textarea, [onclick], .nav-tab-btn, .hero-media-card, .metric-card, .chart-card, .hero-brand-pill, .control-btn');
-      isHovering = !!interactive;
-    }
-
-    // Emit gentle, smooth diffused trailing puffs on cursor motion
-    const now = performance.now();
-    const distSq = (targetX - lastPuffX) ** 2 + (targetY - lastPuffY) ** 2;
-    if (now - lastPuffTime > 45 && distSq > 350) { // ~19px moved and at least 45ms
-      lastPuffTime = now;
-      lastPuffX = targetX;
-      lastPuffY = targetY;
-
-      const puff = document.createElement('div');
-      puff.className = 'mouse-trail-puff';
-      const size = Math.floor(Math.random() * 20) + 24; // 24px - 44px
-      puff.style.width = `${size}px`;
-      puff.style.height = `${size}px`;
-      puff.style.left = `${targetX}px`;
-      puff.style.top = `${targetY}px`;
-      document.body.appendChild(puff);
-
-      puff.addEventListener('animationend', () => {
-        puff.remove();
-      });
-    }
-  }, { passive: true });
-
-  document.addEventListener('mouseleave', () => {
-    isVisible = false;
-    ambientEl.style.opacity = '0';
-    coreEl.style.opacity = '0';
+    card.addEventListener('pointerleave', function () {
+      card.style.removeProperty('--mouse-x');
+      card.style.removeProperty('--mouse-y');
+    });
   });
 
-  document.addEventListener('mouseenter', () => {
-    isVisible = true;
-    ambientEl.style.opacity = '1';
-    coreEl.style.opacity = '1';
-  });
+  // Hero Split Headline Backlight (behind the letters of "Smart COD Reliability Intelligence")
+  const heroSticky = document.getElementById('hero-expand-sticky');
+  const heroSplitContainer = document.getElementById('hero-split-container');
+  if (heroSticky && heroSplitContainer) {
+    heroSticky.addEventListener('pointermove', function (e) {
+      const rect = heroSplitContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      heroSplitContainer.style.setProperty('--hero-mouse-x', `${x}px`);
+      heroSplitContainer.style.setProperty('--hero-mouse-y', `${y}px`);
+    }, { passive: true });
 
-  function renderMouseGlow() {
-    if (isVisible) {
-      // Fluid physics: ambient halo lags gently (0.082), core spotlight follows closely (0.22)
-      ambientX += (targetX - ambientX) * 0.082;
-      ambientY += (targetY - ambientY) * 0.082;
-      coreX += (targetX - coreX) * 0.22;
-      coreY += (targetY - coreY) * 0.22;
-
-      const ambientScale = isHovering ? 1.25 : 1.0;
-      const coreScale = isHovering ? 1.35 : 1.0;
-
-      ambientEl.style.transform = `translate3d(${ambientX - 230}px, ${ambientY - 230}px, 0) scale(${ambientScale})`;
-      coreEl.style.transform = `translate3d(${coreX - 65}px, ${coreY - 65}px, 0) scale(${coreScale})`;
-    }
-
-    requestAnimationFrame(renderMouseGlow);
+    heroSticky.addEventListener('pointerleave', function () {
+      heroSplitContainer.style.removeProperty('--hero-mouse-x');
+      heroSplitContainer.style.removeProperty('--hero-mouse-y');
+    });
   }
-
-  requestAnimationFrame(renderMouseGlow);
 }
