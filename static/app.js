@@ -83,6 +83,7 @@ function switchTab(tabId) {
   if (tabId === 'overview') {
     setTimeout(() => {
       if (typeof onHeroScroll === 'function') onHeroScroll();
+      if (typeof initStatCounters === 'function') initStatCounters();
     }, 60);
   }
 }
@@ -861,6 +862,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Linear/Stripe Interactive Spotlight Behind Text (From Web Portfolio)
   initSpotlightCards();
+
+  // Initialize Overview Animated Counters
+  initStatCounters();
 });
 
 // =====================================================================
@@ -1024,7 +1028,13 @@ function initSpotlightCards() {
     '.tier-action-box',
     '.team-succ-banner',
     '.card',
-    '.table-card'
+    '.table-card',
+    '.paradigm-box',
+    '.pipeline-step-box',
+    '.deck-hub-card',
+    '.overview-tier-detail',
+    '.tier-mock-phone-preview',
+    '.overview-tier-pill'
   ];
 
   const cards = document.querySelectorAll(cardSelectors.join(', '));
@@ -1062,4 +1072,106 @@ function initSpotlightCards() {
       heroSplitContainer.style.removeProperty('--hero-mouse-y');
     });
   }
+}
+
+// =====================================================================
+// 11. Overview Interactive Features & Animated Counters
+// =====================================================================
+
+function initStatCounters() {
+  const counterEls = document.querySelectorAll('.stat-number');
+  if (!counterEls.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    counterEls.forEach(el => animateSingleCounter(el));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateSingleCounter(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  counterEls.forEach(el => {
+    if (el.getAttribute('data-counted') !== 'true') {
+      observer.observe(el);
+    }
+  });
+}
+
+function animateSingleCounter(el) {
+  if (el.getAttribute('data-counted') === 'true') return;
+  el.setAttribute('data-counted', 'true');
+
+  const rawCount = el.getAttribute('data-count') || '0';
+  const targetVal = parseFloat(rawCount);
+  const prefix = el.getAttribute('data-prefix') || '';
+  const suffix = el.getAttribute('data-suffix') || '';
+  const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+  const duration = 1350; // ms
+  const startTime = performance.now();
+
+  function updateCount(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Smooth cubic ease-out curve
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const currentVal = targetVal * easeOut;
+
+    const formatted = decimals > 0 ? currentVal.toFixed(decimals) : Math.round(currentVal);
+    el.textContent = `${prefix}${formatted}${suffix}`;
+
+    if (progress < 1) {
+      requestAnimationFrame(updateCount);
+    } else {
+      const finalFormatted = decimals > 0 ? targetVal.toFixed(decimals) : Math.round(targetVal);
+      el.textContent = `${prefix}${finalFormatted}${suffix}`;
+    }
+  }
+
+  requestAnimationFrame(updateCount);
+}
+
+function toggleParadigmComparison(mode) {
+  const punitiveBoxes = document.querySelectorAll('.paradigm-box.punitive');
+  const modernBoxes = document.querySelectorAll('.paradigm-box.modern');
+  const buttons = document.querySelectorAll('.comparison-switch-btn');
+
+  buttons.forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-mode') === mode);
+  });
+
+  const grid = document.querySelector('.paradigm-grid');
+  if (grid) {
+    if (mode === 'both') {
+      grid.style.gridTemplateColumns = window.innerWidth > 1100 ? 'repeat(4, 1fr)' : window.innerWidth > 640 ? 'repeat(2, 1fr)' : '1fr';
+    } else {
+      grid.style.gridTemplateColumns = window.innerWidth > 640 ? 'repeat(2, 1fr)' : '1fr';
+    }
+  }
+
+  if (mode === 'both') {
+    punitiveBoxes.forEach(b => b.style.display = 'flex');
+    modernBoxes.forEach(b => b.style.display = 'flex');
+  } else if (mode === 'blanket') {
+    punitiveBoxes.forEach(b => b.style.display = 'flex');
+    modernBoxes.forEach(b => b.style.display = 'none');
+  } else if (mode === 'sentinel') {
+    punitiveBoxes.forEach(b => b.style.display = 'none');
+    modernBoxes.forEach(b => b.style.display = 'flex');
+  }
+}
+
+function selectOverviewTier(tierNum) {
+  document.querySelectorAll('.overview-tier-pill').forEach(pill => {
+    pill.classList.toggle('active', pill.getAttribute('data-tier') === String(tierNum));
+  });
+
+  document.querySelectorAll('.overview-tier-detail').forEach(detail => {
+    detail.classList.toggle('active', detail.getAttribute('data-tier') === String(tierNum));
+  });
 }

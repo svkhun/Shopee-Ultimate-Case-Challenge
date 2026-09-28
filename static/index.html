@@ -193,15 +193,24 @@
         </div>
       </div>
 
-      <!-- Executive KPI Ribbon: 3 Real Case Metrics from Slide 1 + Solution Strategy -->
+      <!-- Executive KPI Ribbon: 4 Core Case Metrics with Animated Counters & Micro Comparison Bars -->
       <div class="metrics-ribbon">
         <div class="metric-card orange">
           <div class="metric-header">
             <span class="metric-title">Higher COD Risk</span>
             <span class="slide-tag">Slide 1</span>
           </div>
-          <div class="metric-num">10.6×</div>
-          <div class="metric-desc">COD failed delivery rate is 2.61% versus just 0.25% for non-COD orders.</div>
+          <div class="metric-num"><span class="stat-number" data-count="10.6" data-decimals="1" data-suffix="×">10.6×</span></div>
+          <div class="metric-desc">COD delivery failure rate is 2.61% versus just 0.25% for non-COD prepaid orders.</div>
+          <div class="micro-stat-bar-box">
+            <div class="micro-bar-labels">
+              <span>COD: 2.61%</span>
+              <span>Non-COD: 0.25%</span>
+            </div>
+            <div class="micro-bar-track">
+              <div class="micro-bar-fill orange" style="width: 86%;"></div>
+            </div>
+          </div>
         </div>
 
         <div class="metric-card amber">
@@ -209,62 +218,398 @@
             <span class="metric-title">Share of Total Orders</span>
             <span class="slide-tag">Slide 1</span>
           </div>
-          <div class="metric-num">35%</div>
-          <div class="metric-desc">Over one-third of all Shopee orders are COD, amplifying the impact of delivery failures.</div>
+          <div class="metric-num"><span class="stat-number" data-count="35" data-suffix="%">35%</span></div>
+          <div class="metric-desc">Over one-third of all Shopee orders are COD, amplifying platform operational failure risk.</div>
+          <div class="micro-stat-bar-box">
+            <div class="micro-bar-labels">
+              <span>COD Volume Share</span>
+              <span>35% of GMV</span>
+            </div>
+            <div class="micro-bar-track">
+              <div class="micro-bar-fill amber" style="width: 35%;"></div>
+            </div>
+          </div>
         </div>
 
         <div class="metric-card cyan">
           <div class="metric-header">
-            <span class="metric-title">Of Failed Deliveries</span>
+            <span class="metric-title">Failed Deliveries Burden</span>
             <span class="slide-tag">Slide 1</span>
           </div>
-          <div class="metric-num">85%</div>
-          <div class="metric-desc">Estimated share of all platform delivery failures attributable to COD orders.</div>
+          <div class="metric-num"><span class="stat-number" data-count="85" data-suffix="%">85%</span></div>
+          <div class="metric-desc">85% of all platform-wide delivery failures originate directly from COD checkouts.</div>
+          <div class="micro-stat-bar-box">
+            <div class="micro-bar-labels">
+              <span>COD Share of Failures</span>
+              <span>85% total burden</span>
+            </div>
+            <div class="micro-bar-track">
+              <div class="micro-bar-fill cyan" style="width: 85%;"></div>
+            </div>
+          </div>
         </div>
 
         <div class="metric-card emerald">
           <div class="metric-header">
-            <span class="metric-title">Solution Approach</span>
+            <span class="metric-title">Failure Reduction Target</span>
             <span class="slide-tag">Slide 5</span>
           </div>
-          <div class="metric-num" style="font-size:1.35rem; line-height:1.2; margin-top:0.35rem;">Targeted • Progressive</div>
-          <div class="metric-desc">Intervene only when risk is high, keep reliable buyers frictionless, with temporary recoverable restrictions.</div>
+          <div class="metric-num" style="color:var(--accent-emerald);"><span class="stat-number" data-prefix="-" data-count="58" data-suffix="%">-58%</span></div>
+          <div class="metric-desc">Target failure reduction via 4-tier progressive guardrails while preserving 97.4% honest buyers.</div>
+          <div class="micro-stat-bar-box">
+            <div class="micro-bar-labels">
+              <span>Projected Cut</span>
+              <span>58% Drop</span>
+            </div>
+            <div class="micro-bar-track">
+              <div class="micro-bar-fill emerald" style="width: 58%;"></div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Quick Strategic Pillars Card Grid from Slide 5 -->
-      <div class="grid-3">
-        <div class="content-card">
-          <div class="card-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
-            Targeted Interventions
+      <!-- Section 1: Strategic Paradigm Shift (Interactive Comparison) -->
+      <div class="overview-section-header">
+        <div class="overview-badge">STRATEGIC PARADIGM SHIFT</div>
+        <h3 class="overview-h3">Why Traditional Blanket Bans Fail & How Smart COD Sentinel Wins</h3>
+        <p class="overview-p">Toggle between traditional harsh interventions and our precision AI guardrail architecture to compare buyer churn, revenue, and platform retention.</p>
+        
+        <div class="comparison-switch-wrapper">
+          <button class="comparison-switch-btn active" data-mode="both" onclick="toggleParadigmComparison('both')">Side-by-Side Comparison</button>
+          <button class="comparison-switch-btn" data-mode="blanket" onclick="toggleParadigmComparison('blanket')">Traditional Blanket Bans</button>
+          <button class="comparison-switch-btn" data-mode="sentinel" onclick="toggleParadigmComparison('sentinel')">Smart COD Sentinel AI</button>
+        </div>
+      </div>
+
+      <div class="paradigm-grid">
+        <!-- Flawed Approach 1 -->
+        <div class="paradigm-box punitive" data-paradigm="blanket">
+          <div class="paradigm-box-header">
+            <span class="paradigm-badge red">Flawed Traditional Policy</span>
+            <h4>Blanket Regional Blacklisting</h4>
           </div>
-          <p class="card-subtitle">Keep reliable buyers frictionless</p>
-          <p style="font-size:0.86rem; color:var(--text-secondary);">
-            Intervene only when risk is high. Standard checkout remains 100% normal and frictionless for buyers with high delivery success history.
-          </p>
+          <p>Disables COD across entire subdistricts or postal codes whenever RTS spikes. Punishes 97.4% innocent buyers and permanently erodes market share.</p>
+          <div class="paradigm-metric-alert bad">
+            <span>✕</span> <span>-35% Churn to Competitor Platforms</span>
+          </div>
         </div>
 
-        <div class="content-card">
-          <div class="card-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            Progressive Guardrails
+        <!-- Flawed Approach 2 -->
+        <div class="paradigm-box punitive" data-paradigm="blanket">
+          <div class="paradigm-box-header">
+            <span class="paradigm-badge red">Flawed Traditional Policy</span>
+            <h4>Rigid 1-Strike Account Freezes</h4>
           </div>
-          <p class="card-subtitle">Reminder → Warning → Deposit</p>
-          <p style="font-size:0.86rem; color:var(--text-secondary);">
-            Graduated steps to increase buyer commitment without blanket banning COD. Mild reminders for medium risk up to deposit for repeated high risk.
-          </p>
+          <p>Locks user accounts immediately after a failed delivery attempt without distinguishing logistical transit delays from malicious buyer rejections.</p>
+          <div class="paradigm-metric-alert bad">
+            <span>✕</span> <span>Irreversible Buyer Alienation & Distrust</span>
+          </div>
         </div>
 
-        <div class="content-card">
-          <div class="card-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-            Recoverable Status
+        <!-- Modern Approach 1 -->
+        <div class="paradigm-box modern" data-paradigm="sentinel">
+          <div class="paradigm-box-header">
+            <span class="paradigm-badge green">Smart COD Sentinel</span>
+            <h4>Dynamic Multi-Signal Scoring (0–100)</h4>
           </div>
-          <p class="card-subtitle">Restrictions are temporary</p>
-          <p style="font-size:0.86rem; color:var(--text-secondary);">
-            Good delivery history restores status. Every successful delivery increases reliability score, ensuring restrictions are never permanent.
-          </p>
+          <p>Audits 50,000+ orders to compute machine learning risk probabilities in &lt;15ms. Keeps over 82% of reliable shoppers completely frictionless.</p>
+          <div class="paradigm-metric-alert good">
+            <span>✓</span> <span>0% Friction for Honest Buyers (Tier 1)</span>
+          </div>
+        </div>
+
+        <!-- Modern Approach 2 -->
+        <div class="paradigm-box modern" data-paradigm="sentinel">
+          <div class="paradigm-box-header">
+            <span class="paradigm-badge green">Smart COD Sentinel</span>
+            <h4>Progressive & Fully Recoverable Guardrails</h4>
+          </div>
+          <p>Graduated guardrails step from delivery time-window selection to refundable micro-deposits. Successful deliveries immediately restore Tier 1 standing.</p>
+          <div class="paradigm-metric-alert good">
+            <span>✓</span> <span>+$1.85M Net Savings & Customer Growth</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Interactive 4-Tier Guardrail Ladder Explorer -->
+      <div class="overview-section-header" style="margin-top:3.5rem;">
+        <div class="overview-badge">DYNAMIC GUARDRAIL LADDER</div>
+        <h3 class="overview-h3">Interactive 4-Tier Protection Framework</h3>
+        <p class="overview-p">Click each tier below to preview how our adaptive engine dynamically modulates customer checkout friction, seller risk, and platform fulfillment.</p>
+        
+        <div class="overview-tier-nav">
+          <button class="overview-tier-pill active" data-tier="1" onclick="selectOverviewTier(1)">
+            <div class="tier-pill-dot emerald"></div>
+            <div class="tier-pill-title">Tier 1: Standard</div>
+            <div class="tier-pill-score">Score &lt; 20 • Frictionless</div>
+          </button>
+          <button class="overview-tier-pill" data-tier="2" onclick="selectOverviewTier(2)">
+            <div class="tier-pill-dot amber"></div>
+            <div class="tier-pill-title">Tier 2: Soft Verification</div>
+            <div class="tier-pill-score">Score 20–44 • Window</div>
+          </button>
+          <button class="overview-tier-pill" data-tier="3" onclick="selectOverviewTier(3)">
+            <div class="tier-pill-dot orange"></div>
+            <div class="tier-pill-title">Tier 3: Commitment Friction</div>
+            <div class="tier-pill-score">Score 45–64 • Micro-Deposit</div>
+          </button>
+          <button class="overview-tier-pill" data-tier="4" onclick="selectOverviewTier(4)">
+            <div class="tier-pill-dot rose"></div>
+            <div class="tier-pill-title">Tier 4: Strict Guardrail</div>
+            <div class="tier-pill-score">Score 65–100 • Prepayment</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="overview-tier-display">
+        <!-- Tier 1 -->
+        <div class="overview-tier-detail active" data-tier="1">
+          <div class="tier-detail-grid">
+            <div class="tier-detail-content">
+              <span class="tier-badge-pill emerald">Tier 1 • High Reliability</span>
+              <h4>Standard Frictionless Checkout</h4>
+              <p>
+                Seamless 1-click COD confirmation. High-reliability buyers experience zero checkout barriers, maintaining peak GMV conversion and effortless user experience.
+              </p>
+              <ul class="tier-bullet-list">
+                <li><strong>Intervention:</strong> None (100% Seamless checkout).</li>
+                <li><strong>Target Group:</strong> Established accounts with &gt;90% historical delivery acceptance rate.</li>
+                <li><strong>Platform Action:</strong> Full SPX Fast-Ship prioritization & standard merchant protection.</li>
+              </ul>
+              <button class="btn btn-secondary" style="margin-top:1.15rem; width:fit-content;" onclick="switchTab('simulator')">Test in Live Simulator →</button>
+            </div>
+            <div class="tier-detail-action-box">
+              <div class="tier-mock-phone-preview">
+                <div class="mock-notification">
+                  <span class="mock-notif-icon">✅</span>
+                  <div>
+                    <strong>Order Placed Successfully!</strong>
+                    <span>Your COD order #SPX-TH9012 is confirmed. Courier dispatch in progress with zero checkout delay.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tier 2 -->
+        <div class="overview-tier-detail" data-tier="2">
+          <div class="tier-detail-grid">
+            <div class="tier-detail-content">
+              <span class="tier-badge-pill amber">Tier 2 • Soft Verification</span>
+              <h4>Preferred Window & Address Confirmation</h4>
+              <p>
+                Gentle confirmation nudges triggered by new shipping address, remote region delivery, or first-time high cart value.
+              </p>
+              <ul class="tier-bullet-list">
+                <li><strong>Intervention:</strong> Buyer chooses Morning (09:00–13:00) or Afternoon (13:00–18:00) delivery window.</li>
+                <li><strong>Target Group:</strong> Moderate risk score, new shipping locations, or high transit distances.</li>
+                <li><strong>Recovery:</strong> Successfully receiving 1 parcel immediately restores Tier 1 standing.</li>
+              </ul>
+              <button class="btn btn-secondary" style="margin-top:1.15rem; width:fit-content;" onclick="switchTab('simulator')">Test in Live Simulator →</button>
+            </div>
+            <div class="tier-detail-action-box">
+              <div class="tier-mock-phone-preview">
+                <div class="mock-notification">
+                  <span class="mock-notif-icon">⏰</span>
+                  <div>
+                    <strong>Select Preferred Delivery Window</strong>
+                    <span>Help courier arrive when you are home: Morning (09:00–13:00) or Afternoon (13:00–18:00).</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="overview-tier-detail" data-tier="3">
+          <div class="tier-detail-grid">
+            <div class="tier-detail-content">
+              <span class="tier-badge-pill orange">Tier 3 • Commitment Friction</span>
+              <h4>Refundable Micro-Deposit / Prepaid Incentive</h4>
+              <p>
+                Applied to accounts with recent failed delivery attempts or high-risk cart configurations. Requires a small commitment step.
+              </p>
+              <ul class="tier-bullet-list">
+                <li><strong>Intervention:</strong> 20฿ refundable micro-deposit or switch to ShopeePay for 15฿ discount voucher.</li>
+                <li><strong>Target Group:</strong> Repeated address changes or consecutive delivery reschedules.</li>
+                <li><strong>Recovery:</strong> 20฿ micro-deposit is automatically refunded immediately upon parcel handover.</li>
+              </ul>
+              <button class="btn btn-secondary" style="margin-top:1.15rem; width:fit-content;" onclick="switchTab('simulator')">Test in Live Simulator →</button>
+            </div>
+            <div class="tier-detail-action-box">
+              <div class="tier-mock-phone-preview">
+                <div class="mock-notification">
+                  <span class="mock-notif-icon">💳</span>
+                  <div>
+                    <strong>Secure Your COD Parcel</strong>
+                    <span>A 20฿ refundable micro-deposit is required. Or switch to ShopeePay now to save 15฿ instantly!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tier 4 -->
+        <div class="overview-tier-detail" data-tier="4">
+          <div class="tier-detail-grid">
+            <div class="tier-detail-content">
+              <span class="tier-badge-pill rose">Tier 4 • Strict Guardrail</span>
+              <h4>Probationary Prepayment Requirement</h4>
+              <p>
+                Critical risk accounts (multiple consecutive delivery rejections or intentional fraudulent address patterns). COD option is temporarily paused.
+              </p>
+              <ul class="tier-bullet-list">
+                <li><strong>Intervention:</strong> COD deactivated. Order requires prepaid digital checkout (PromptPay / ShopeePay).</li>
+                <li><strong>Seller Protection:</strong> Protects merchants from 100% of RTS (Return to Seller) shipping & repackaging fees.</li>
+                <li><strong>Recovery Path:</strong> Complete 2 successful prepaid deliveries to restore COD eligibility.</li>
+              </ul>
+              <button class="btn btn-secondary" style="margin-top:1.15rem; width:fit-content;" onclick="switchTab('simulator')">Test in Live Simulator →</button>
+            </div>
+            <div class="tier-detail-action-box">
+              <div class="tier-mock-phone-preview">
+                <div class="mock-notification">
+                  <span class="mock-notif-icon">🔒</span>
+                  <div>
+                    <strong>Prepayment Required for this Order</strong>
+                    <span>COD temporarily paused to protect merchant stock. Complete 2 prepaid orders to re-enable COD.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: End-to-End Decision Architecture Flowchart -->
+      <div class="overview-section-header" style="margin-top:3.5rem;">
+        <div class="overview-badge">OPERATIONAL WORKFLOW</div>
+        <h3 class="overview-h3">End-to-End Real-Time Intelligence Architecture</h3>
+        <p class="overview-p">How Shopee Smart COD Sentinel evaluates signals, scores probabilities, and executes protective measures in under 80 milliseconds.</p>
+      </div>
+
+      <div class="pipeline-grid">
+        <div class="pipeline-step-box">
+          <div class="pipeline-step-badge">STEP 01</div>
+          <div class="pipeline-step-icon">📡</div>
+          <h5>Multi-Signal Ingestion</h5>
+          <p>50,000+ real-time audit signals: historical buyer delivery rate, shipping province, cart value, and item risk.</p>
+        </div>
+
+        <div class="pipeline-arrow">➔</div>
+
+        <div class="pipeline-step-box">
+          <div class="pipeline-step-badge">STEP 02</div>
+          <div class="pipeline-step-icon">🧠</div>
+          <h5>Ensemble Risk Scoring</h5>
+          <p>XGBoost & LightGBM ensemble models compute delivery failure probability (0–100) calibrated with SHAP explainability.</p>
+        </div>
+
+        <div class="pipeline-arrow">➔</div>
+
+        <div class="pipeline-step-box">
+          <div class="pipeline-step-badge">STEP 03</div>
+          <div class="pipeline-step-icon">🛡️</div>
+          <h5>Dynamic Guardrail Dispatch</h5>
+          <p>Instantly maps score to Tiers 1–4. Selectively injects soft window picker or micro-deposit friction in &lt;80ms.</p>
+        </div>
+
+        <div class="pipeline-arrow">➔</div>
+
+        <div class="pipeline-step-box">
+          <div class="pipeline-step-badge">STEP 04</div>
+          <div class="pipeline-step-icon">🔄</div>
+          <h5>Closed-Loop Recovery</h5>
+          <p>SPX courier delivery status updates buyer profile in real-time. Successful deliveries immediately restore Tier 1 standing.</p>
+        </div>
+      </div>
+
+      <!-- Section 4: Case Deck & Interactive Tools Navigation Hub -->
+      <div class="overview-section-header" style="margin-top:3.5rem;">
+        <div class="overview-badge">DECK & TOOLS HUB</div>
+        <h3 class="overview-h3">Explore Complete Case Deck & Interactive Tools</h3>
+        <p class="overview-p">Deep dive into data science EDA, machine learning evaluation, financial impact modeling, or test our live interactive simulator.</p>
+      </div>
+
+      <div class="deck-hub-grid">
+        <div class="deck-hub-card" onclick="switchTab('slide1')">
+          <div class="deck-hub-top">
+            <span class="deck-hub-num">01</span>
+            <span class="deck-hub-tag">Slide 1</span>
+          </div>
+          <h4>Root Cause & Statistical EDA</h4>
+          <p>10.6× COD fail asymmetry, regional shipping bottlenecks, and category vulnerability analysis across 50,000 orders.</p>
+          <div class="deck-hub-footer">
+            <span>Explore Slide 1 Deck</span>
+            <span class="hub-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="deck-hub-card" onclick="switchTab('slide2')">
+          <div class="deck-hub-top">
+            <span class="deck-hub-num">02</span>
+            <span class="deck-hub-tag">Slide 2</span>
+          </div>
+          <h4>4-Tier Policy Architecture</h4>
+          <p>Graduated guardrail framework moving from frictionless checkout to time-window selection and refundable micro-deposits.</p>
+          <div class="deck-hub-footer">
+            <span>Explore Slide 2 Deck</span>
+            <span class="hub-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="deck-hub-card" onclick="switchTab('slide3')">
+          <div class="deck-hub-top">
+            <span class="deck-hub-num">03</span>
+            <span class="deck-hub-tag">Slide 3</span>
+          </div>
+          <h4>Reliability Score & EasySell</h4>
+          <p>Algorithmic scoring breakdown, SHAP explainability weights, and EasySell merchant dashboard integration.</p>
+          <div class="deck-hub-footer">
+            <span>Explore Slide 3 Deck</span>
+            <span class="hub-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="deck-hub-card" onclick="switchTab('slide4')">
+          <div class="deck-hub-top">
+            <span class="deck-hub-num">04</span>
+            <span class="deck-hub-tag">Slide 4</span>
+          </div>
+          <h4>Preferred Delivery Window</h4>
+          <p>Operational scheduling mechanics, SPX driver dispatch routing, and time-slot selection to drastically cut RTS.</p>
+          <div class="deck-hub-footer">
+            <span>Explore Slide 4 Deck</span>
+            <span class="hub-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="deck-hub-card" onclick="switchTab('slide5')">
+          <div class="deck-hub-top">
+            <span class="deck-hub-num">05</span>
+            <span class="deck-hub-tag">Slide 5</span>
+          </div>
+          <h4>Financial ROI & Strategy</h4>
+          <p>Sensitivity matrix, unit economics, RTS recovery, net savings of +$1.85M, and long-term buyer retention.</p>
+          <div class="deck-hub-footer">
+            <span>Explore Slide 5 Deck</span>
+            <span class="hub-arrow">→</span>
+          </div>
+        </div>
+
+        <div class="deck-hub-card highlight-hub" onclick="switchTab('simulator')">
+          <div class="deck-hub-top">
+            <span class="deck-hub-num" style="color:var(--shopee-orange);">06</span>
+            <span class="deck-hub-tag live">Interactive Tool</span>
+          </div>
+          <h4>Live COD Risk Simulator</h4>
+          <p>Interactive scoring sandbox: adjust buyer history, order amount, and region to observe real-time ML risk scoring and tier response.</p>
+          <div class="deck-hub-footer">
+            <span>Launch Live Simulator</span>
+            <span class="hub-arrow">→</span>
+          </div>
         </div>
       </div>
     </section>
