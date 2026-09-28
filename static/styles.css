@@ -2356,3 +2356,237 @@ footer .footer-links a:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   Slide 1: Mathematical Derivation & Case Metrics Architecture
+   ========================================================================== */
+.math-derivation-box {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--shopee-orange);
+  border-radius: var(--radius-sm);
+  padding: 1.35rem 1.5rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.math-derivation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.math-derivation-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.math-step-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1.15rem;
+}
+
+.math-step-card {
+  background: #faf4e9;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.math-step-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--shopee-orange);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.04em;
+}
+
+.math-step-formula {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0.4rem 0;
+  background: #ffffff;
+  padding: 0.35rem 0.55rem;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.math-step-desc {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   Slide 4: Preferred Delivery Window 4-Step Flowchart
+   ========================================================================== */
+.window-flow-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.window-flow-step {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.4rem 1.1rem;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.window-flow-step:hover {
+  transform: translateY(-2px);
+  border-color: rgba(238, 77, 45, 0.35);
+  box-shadow: 0 6px 20px rgba(238, 77, 45, 0.08);
+}
+
+.window-flow-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(238, 77, 45, 0.08);
+  color: var(--shopee-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.85rem;
+}
+
+.window-flow-num {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--shopee-orange);
+  background: #fff5ef;
+  border: 1px solid rgba(238, 77, 45, 0.2);
+  padding: 1px 7px;
+  border-radius: 9999px;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.window-flow-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+  line-height: 1.35;
+}
+
+.window-flow-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.window-flow-arrow {
+  position: absolute;
+  right: -13px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  color: var(--shopee-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   Slide 5: Expected Impact Framework & Success Metrics
+   ========================================================================== */
+.impact-framework-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.impact-column-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+.impact-column-card.targeted { border-top: 4px solid var(--shopee-orange); }
+.impact-column-card.feasible { border-top: 4px solid var(--cyan); }
+.impact-column-card.metrics { border-top: 4px solid var(--emerald); }
+
+.impact-column-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.impact-column-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.impact-item-box {
+  background: #faf4e9;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.impact-item-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.impact-item-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .math-step-grid,
+  .window-flow-container,
+  .impact-framework-grid {
+    grid-template-columns: 1fr;
+  }
+  .window-flow-arrow {
+    display: none;
+  }
+}
+

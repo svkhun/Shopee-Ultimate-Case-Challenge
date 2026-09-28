@@ -131,48 +131,9 @@ window.addEventListener('hashchange', () => {
 async function loadEdaMetrics() {
   try {
     const res = await fetch('/api/eda/metrics');
-    if (!res.ok) throw new Error('Failed to load EDA metrics');
+    if (!res.ok) return;
     const data = await res.json();
     appState.edaData = data;
-
-    // Populate Slide 1
-    const s1 = data.slide_1_root_cause;
-    if (s1) {
-      document.getElementById('eda-cod-mix').textContent = `${s1.cod_share_of_orders_pct}% (${data.dataset_metrics.cod_order_count.toLocaleString()})`;
-      document.getElementById('eda-prepaid-mix').textContent = `${s1.prepaid_share_of_orders_pct}% (${data.dataset_metrics.prepaid_order_count.toLocaleString()})`;
-      document.getElementById('eda-cod-rate').textContent = `${s1.cod_failed_delivery_rate_pct}%`;
-      document.getElementById('eda-prepaid-rate').textContent = `${s1.prepaid_failed_delivery_rate_pct}%`;
-      document.getElementById('eda-stat-ratio').textContent = `${s1.risk_multiplier}×`;
-      document.getElementById('eda-stat-z').textContent = `z = ${s1.z_statistic}`;
-      document.getElementById('eda-stat-p').textContent = `< 0.000001 (Significant)`;
-      document.getElementById('eda-stat-share').textContent = `${s1.cod_share_of_all_failures_pct}%`;
-
-      document.getElementById('kpi-risk-ratio').textContent = `${s1.risk_multiplier}×`;
-      document.getElementById('kpi-failure-share').textContent = `${Math.round(s1.cod_share_of_all_failures_pct)}%`;
-    }
-
-    // Populate Slide 4
-    const s4 = data.slide_4_scheduling_impact;
-    if (s4) {
-      document.getElementById('win-first-with').textContent = `${s4.first_attempt_success_with_window_pct}%`;
-      document.getElementById('win-first-without').textContent = `${s4.first_attempt_success_without_window_pct}%`;
-      document.getElementById('win-boost-pct').textContent = `+${s4.first_attempt_relative_boost_pct}%`;
-      document.getElementById('win-fail-reduct').textContent = `-${s4.failure_reduction_from_window_pct}% reduction`;
-      document.getElementById('kpi-window-uplift').textContent = `+${s4.first_attempt_relative_boost_pct}%`;
-    }
-
-    // Populate Slide 5
-    const s5 = data.slide_5_financial_impact;
-    if (s5) {
-      const monthlyLossM = (s5.monthly_reverse_logistics_waste_thb / 1e6).toFixed(2);
-      const monthlySavM = (s5.estimated_monthly_savings_thb / 1e6).toFixed(2);
-      const annualSavM = (s5.estimated_annual_savings_thb / 1e6).toFixed(1);
-
-      document.getElementById('fin-baseline-waste-val').textContent = `${monthlyLossM}M`;
-      document.getElementById('fin-monthly-savings-val').textContent = `${monthlySavM}M`;
-      document.getElementById('fin-annual-savings-val').textContent = `${annualSavM}M`;
-    }
-
   } catch (err) {
     console.error('Error fetching EDA metrics:', err);
   }
