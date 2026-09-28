@@ -380,10 +380,12 @@ function updateSmartphoneScreen(result) {
   if (tier === 'LOW_RISK') {
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-a">
-        <div style="font-weight:700; display:flex; align-items:center; gap:4px;">
-          Reliable Buyer (Score: ${score.toFixed(1)})
+        <div style="font-weight:700; display:flex; align-items:center; gap:4px; color:#065f46;">
+          ✓ Reliable Buyer (Score: ${score.toFixed(1)})
         </div>
-        <div>Standard 1-click Cash on Delivery. Zero checkout friction.</div>
+        <div style="font-size:0.71rem; line-height:1.4; margin-top:2px;">
+          Standard 1-click Cash on Delivery. Zero checkout friction.
+        </div>
       </div>
     `;
     checkoutBtn.textContent = 'Place COD Order';
@@ -392,55 +394,65 @@ function updateSmartphoneScreen(result) {
   } else if (tier === 'MEDIUM_RISK') {
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-b">
-        <div style="font-weight:700; display:flex; align-items:center; gap:4px;">
-          Pre-Delivery Reminder Active (Score: ${score.toFixed(1)})
+        <div style="font-weight:700; display:flex; align-items:center; gap:4px; color:#b45309;">
+          ⚠️ Warning: Medium Risk Probation (Score: ${score.toFixed(1)})
         </div>
-        <div>Automated SMS confirmation will be sent 24h prior. Please confirm your delivery window above.</div>
+        <div style="font-size:0.71rem; line-height:1.4; margin-top:3px;">
+          <strong>Buyer Warning:</strong> Your account has previous delivery hiccups. If this parcel fails after re-attempts, your account will enter <strong>High Risk</strong>, requiring an <strong>upfront seller security deposit</strong> for future COD orders.
+        </div>
+        <div style="font-size:0.69rem; color:#854d0e; margin-top:5px; padding:4px 6px; background:rgba(245,158,11,0.12); border-radius:4px;">
+          📅 Select a <strong>Preferred Delivery Window</strong> above to ensure you are home for courier arrival.
+        </div>
       </div>
     `;
-    checkoutBtn.textContent = 'Confirm COD Order';
+    checkoutBtn.textContent = 'Confirm COD (Under Warning)';
     checkoutBtn.disabled = false;
-    checkoutBtn.style.background = 'var(--shopee-orange)';
+    checkoutBtn.style.background = 'var(--amber)';
   } else if (tier === 'HIGH_RISK') {
     box.innerHTML = `
-      <div class="phone-intervention-banner banner-grade-c">
-        <div style="font-weight:700; display:flex; align-items:center; gap:4px;">
-          Mandatory SMS OTP Required (Score: ${score.toFixed(1)})
+      <div class="phone-intervention-banner banner-grade-c" style="border-left:3px solid var(--orange);">
+        <div style="font-weight:700; display:flex; align-items:center; gap:4px; color:#c2410c;">
+          🔒 High Risk: Upfront Seller Deposit Required (Score: ${score.toFixed(1)})
         </div>
-        <div>Elevated return risk detected. Please enter the 6-digit verification code sent to your phone.</div>
-        <div class="phone-otp-box">
-          <div style="font-size:0.7rem; color:#666; margin-bottom:4px;">Enter verification code:</div>
-          <div class="otp-inputs">
-            <input class="otp-digit" maxlength="1" value="7" readonly>
-            <input class="otp-digit" maxlength="1" value="3" readonly>
-            <input class="otp-digit" maxlength="1" value="9" readonly>
-            <input class="otp-digit" maxlength="1" value="4" readonly>
-            <input class="otp-digit" maxlength="1" value="0" readonly>
-            <input class="otp-digit" maxlength="1" value="2" readonly>
+        <div style="font-size:0.71rem; line-height:1.4; margin-top:3px;">
+          Due to elevated delivery failure risk, a <strong>฿40 seller security deposit</strong> is required to dispatch this COD order.
+        </div>
+        <div class="phone-deposit-box" style="margin-top:6px; background:#fff7ed; border:1px solid #fed7aa; padding:8px; border-radius:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong style="font-size:0.75rem; color:#9a3412;">Seller Security Deposit:</strong>
+            <span class="mono" style="font-size:0.85rem; font-weight:800; color:#ea580c;">฿40</span>
           </div>
-          <div style="font-size:0.68rem; color:var(--shopee-orange);">Resend OTP in 42s</div>
+          <div style="font-size:0.68rem; color:#7c2d12; margin:3px 0 6px;">
+            ✓ 100% credited toward your doorstep COD payment (Remaining ฿1,810 collected upon handover).
+          </div>
+          <button class="deposit-action-btn" style="background:#ea580c;" onclick="showPhoneModal('฿40 Seller Deposit Secured!', 'Your ฿40 deposit has been secured for the merchant. Remaining ฿1,810 will be collected upon parcel arrival.')">
+            Authorize ฿40 Seller Deposit & Order COD
+          </button>
+          <div style="border-top:1px dashed #fed7aa; margin:6px 0 2px; padding-top:4px; font-size:0.69rem; color:#666;">
+            Or switch to <strong>PromptPay / Credit Card</strong> (No deposit required)
+          </div>
         </div>
       </div>
     `;
-    checkoutBtn.textContent = 'Verify OTP & Place Order';
+    checkoutBtn.textContent = 'Pay ฿40 Seller Deposit & Place COD';
     checkoutBtn.disabled = false;
     checkoutBtn.style.background = 'var(--orange)';
   } else {
     // REPEATED_HIGH_RISK
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-d">
-        <div style="font-weight:700; display:flex; align-items:center; gap:4px;">
-          COD Restricted (Score: ${score.toFixed(1)})
+        <div style="font-weight:700; display:flex; align-items:center; gap:4px; color:#be123c;">
+          ⛔ COD Restricted: Chronic RTO (Score: ${score.toFixed(1)})
         </div>
-        <div>Due to multiple previous failed deliveries, standard COD is restricted for this account.</div>
-        <div class="phone-deposit-box">
-          <div style="font-size:0.74rem; font-weight:700; color:#111;">Option 1: Reverse Logistics Deposit</div>
-          <div style="font-size:0.68rem; color:#666; margin-top:2px;">Pay ฿40 logistics commitment. 100% refunded when parcel is collected.</div>
-          <button class="deposit-action-btn" onclick="showPhoneModal('฿40 Deposit Authorized!', 'Your deposit has been secured. Order dispatched with reverse logistics guarantee.')">
-            Pay ฿40 Deposit & Dispatch
+        <div style="font-size:0.71rem; line-height:1.4; margin-top:3px;">
+          Standard COD is locked due to chronic delivery rejections. To place this order, pay an upfront ฿50 seller deposit or switch to prepaid.
+        </div>
+        <div class="phone-deposit-box" style="margin-top:6px;">
+          <button class="deposit-action-btn" onclick="showPhoneModal('฿50 Seller Deposit Authorized!', 'Your ฿50 deposit has been secured for merchant logistics. Dispatched under verified collateral.')">
+            Pay ฿50 Seller Deposit & Dispatch
           </button>
           <div style="border-top:1px dashed #ddd; margin:6px 0; padding-top:6px; font-size:0.72rem; color:#444;">
-            <strong>Option 2:</strong> Switch to PromptPay / Credit Card (0% Extra Fee)
+            <strong>Preferred:</strong> Switch to PromptPay / Credit Card (0% Extra Fee)
           </div>
         </div>
       </div>
@@ -600,7 +612,9 @@ async function handleDeliveryFeedback(eventOutcome) {
         current_score: currentScore,
         current_consecutive_failed: currentConsec,
         delivery_event: eventOutcome,
-        reason: eventOutcome === 'DELIVERED' ? 'Customer collected package at doorstep' : 'Customer refused parcel / unreachable (RTO)'
+        reason: eventOutcome === 'DELIVERED' 
+          ? 'Customer verified delivery handover' 
+          : 'All re-attempts exhausted; parcel marked Returned to Origin (RTO)'
       })
     });
 
@@ -616,9 +630,13 @@ async function handleDeliveryFeedback(eventOutcome) {
     const scoreDelta = `${data.score_delta > 0 ? '+' : '−'}${Math.abs(data.score_delta)}`;
     setPhoneFeedbackResult({
       type: isDelivered ? 'success' : 'failure',
-      title: `${isDelivered ? 'Delivery accepted' : 'RTO recorded'} · ${scoreDelta} points`,
-      copy: `Score ${data.old_score.toFixed(1)} → ${data.new_score.toFixed(1)}. ${data.current_policy_action}`,
-      status: isDelivered ? 'Delivery accepted' : 'RTO recorded'
+      title: isDelivered 
+        ? `Delivered Successfully · ${scoreDelta} Pts (Auto-Awarded)`
+        : `Re-attempts Exhausted (RTO) · ${scoreDelta} Pts (Auto-Deducted)`,
+      copy: isDelivered
+        ? `Automated verification: Score ${data.old_score.toFixed(1)} → ${data.new_score.toFixed(1)}. Positive credit rehabilitates buyer risk standing.`
+        : `Automated lifecycle deduction: Score ${data.old_score.toFixed(1)} → ${data.new_score.toFixed(1)}. Parcel returned to seller after failed attempts without courier bias.`,
+      status: isDelivered ? 'Delivery verified (+8 Pts)' : 'Final RTO recorded (−20 Pts)'
     });
 
     // Keep the Slide 3 scorecard in sync without interrupting the user with a browser alert.

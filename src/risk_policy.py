@@ -19,9 +19,10 @@ class RiskPolicyEngine:
         reason: str = "DELIVERED"
     ) -> Dict[str, Any]:
         """
-        Dynamic Feedback Loop:
+        Automated Lifecycle Feedback Loop (No manual rider scoring):
         - Successful delivery: +8 score points, resets consecutive failures to 0
-        - Failed / Returned To Origin (RTO): -20 score points, increments consecutive failures +1
+        - Final Returned To Origin (RTO after all re-attempts exhausted): -20 score points, increments consecutive failures +1
+        Triggered systematically upon lifecycle completion without subjective courier discretion.
         """
         old_score = current_score
         old_consecutive = current_consecutive_failed
@@ -32,19 +33,19 @@ class RiskPolicyEngine:
             new_score = min(100.0, old_score + score_delta)
             new_consecutive = 0
             event_type = "DELIVERED_SUCCESS"
-            event_message = "Parcel successfully accepted and collected by buyer. Awarded +8 Reliability Score points."
-        elif delivery_event.upper() in ["FAILED", "RETURNED_TO_ORIGIN", "RTO", "BUYER_REJECTED"]:
+            event_message = "Automated system update: Parcel successfully delivered and collected. Awarded +8 Reliability Score points."
+        elif delivery_event.upper() in ["FAILED", "RETURNED_TO_ORIGIN", "RTO", "BUYER_REJECTED", "MAX_ATTEMPTS_EXHAUSTED"]:
             score_delta = -20.0
             new_score = max(0.0, old_score + score_delta)
             new_consecutive = old_consecutive + 1
             event_type = "RETURNED_TO_ORIGIN"
-            event_message = f"Parcel delivery failed ({reason}). Deducted -20 Reliability Score points. Consecutive failures: {new_consecutive}."
+            event_message = f"Automated system update: Re-attempts exhausted / Parcel returned to origin ({reason}). Deducted -20 Reliability Score points automatically."
         else:
             score_delta = 0.0
             new_score = old_score
             new_consecutive = old_consecutive
             event_type = "NO_CHANGE"
-            event_message = "Delivery event pending or neutral. No score modification applied."
+            event_message = "Delivery event pending or in transit. No score modification applied."
 
         new_tier = calculate_risk_tier(new_score)
         tier_changed = (old_tier["tier"] != new_tier["tier"])

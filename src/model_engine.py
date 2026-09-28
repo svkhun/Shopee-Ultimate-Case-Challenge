@@ -74,24 +74,24 @@ def calculate_risk_tier(reliability_score: float) -> dict:
             "tier": "MEDIUM_RISK",
             "tier_display": "Medium Risk (Grade B)",
             "badge_color": "amber",
-            "friction_level": "PRE_DELIVERY_REMINDER",
-            "action": "Dispatch order; send SMS/App confirmation 24h prior + Offer Preferred Window.",
+            "friction_level": "PRE_DELIVERY_REMINDER_AND_WARNING",
+            "action": "Dispatch order with early warning: Alert buyer of probation before High-Risk seller deposit requirement + schedule Preferred Window.",
             "requires_otp": False,
             "requires_deposit": False,
             "deposit_amount_thb": 0,
-            "policy_summary": "Nudge customer via push notification to confirm availability and schedule delivery window."
+            "policy_summary": "Medium Risk Warning: Further failed delivery will demote account to High Risk requiring mandatory upfront seller deposit."
         }
     elif reliability_score >= 30:
         return {
             "tier": "HIGH_RISK",
             "tier_display": "High Risk (Grade C)",
             "badge_color": "orange",
-            "friction_level": "MANDATORY_OTP_VERIFICATION",
-            "action": "Hold dispatch until buyer verifies phone via SMS OTP. Offer ฿40 deposit for fast track.",
+            "friction_level": "MANDATORY_SELLER_DEPOSIT",
+            "action": "Mandatory seller security deposit (฿40) required before COD dispatch to protect merchant against reverse logistics loss.",
             "requires_otp": True,
-            "requires_deposit": False,
-            "deposit_amount_thb": 0,
-            "policy_summary": "Elevated return risk detected. Mandatory 2-factor OTP authorization prevents fake/impulse checkout."
+            "requires_deposit": True,
+            "deposit_amount_thb": 40.0,
+            "policy_summary": "High Risk Account: Mandatory ฿40 seller security deposit (deducted from final doorstep COD payment) or switch to prepaid."
         }
     else:
         return {
@@ -99,11 +99,11 @@ def calculate_risk_tier(reliability_score: float) -> dict:
             "tier_display": "Repeated High Risk (Grade D)",
             "badge_color": "rose",
             "friction_level": "COD_RESTRICTED_PREPAID_OR_DEPOSIT",
-            "action": "Restrict standard COD. Require ฿40 return logistics deposit or full prepaid conversion.",
+            "action": "Chronic RTO: Standard COD restricted. Require ฿50 upfront seller deposit or full prepaid conversion.",
             "requires_otp": True,
             "requires_deposit": True,
-            "deposit_amount_thb": 40.0,
-            "policy_summary": "Chronic RTO history. Protect seller GMV by requiring reverse logistics collateral before dispatch."
+            "deposit_amount_thb": 50.0,
+            "policy_summary": "Chronic RTO history. Standard COD blocked; upfront seller deposit or full prepaid conversion mandatory."
         }
 
 def train_and_evaluate_model(orders_csv: str = "data/shopee_cod_orders_example.csv") -> dict:
@@ -266,17 +266,19 @@ class CODScoringEngine:
         df_input = pd.DataFrame([row_dict])
         prob_fail = float(self.model.predict_proba(df_input)[0][1])
 
-        # Convert failure probability to calibrated 0-100 reliability score
-        # Using logarithmic risk mapping matching banking credit scorecard standard
-        # P(fail) = 0.005 -> ~95, P(fail) = 0.025 -> ~80, P(fail) = 0.10 -> ~55, P(fail) = 0.30 -> ~35, P(fail) >= 0.50 -> <25
-        # Blend ML model prob with historical score for smooth Bayesian update
+        # Anchored on buyer dynamic Reliability Score (Slide 3)
+        # ML model risk evaluation applies context-sensitive risk modulation
         prior_score = row_dict["buyer_reliability_score"]
-        ml_derived_score = max(0.0, min(100.0, 100.0 * (1.0 - (prob_fail ** 0.65))))
-        
-        # Weighted combination: 60% ML real-time basket risk + 40% historical profile
-        composite_score = round(0.60 * ml_derived_score + 0.40 * prior_score, 1)
-        composite_score = max(5.0, min(99.0, composite_score))
-
+        if prob_fail > 0.35:
+            ml_adjustment = -6.0
+        elif prob_fail > 0.20:
+            ml_adjustment = -3.0
+        elif prob_fail < 0.01:
+            ml_adjustment = +1.0
+        else:
+            ml_adjustment = 0.0
+            
+        composite_score = round(max(5.0, min(99.0, prior_score + ml_adjustment)), 1)
         tier_info = calculate_risk_tier(composite_score)
 
         # Explainable factors
