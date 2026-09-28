@@ -463,17 +463,17 @@
           <div>
             <span class="tier-badge orange">High-Risk Buyers</span>
             <div style="font-size:0.88rem; font-weight:700; color:var(--text-primary); margin:0.6rem 0 0.35rem;">
-              Frequent Failures · Deposit Required
+              Frequent Failures · 30% Deposit
             </div>
             <ul style="font-size:0.84rem; color:var(--text-secondary); line-height:1.65; padding-left:1.1rem; margin-bottom:1rem;">
               <li>High return probability or multiple rejections</li>
-              <li>Mandatory ฿40 seller security deposit</li>
+              <li>Mandatory 30% seller security deposit</li>
               <li>Credited toward final doorstep payment</li>
             </ul>
           </div>
           <div class="tier-action-box">
-            <strong style="color:var(--orange); display:block; margin-bottom:0.25rem;">Mandatory Seller Deposit (฿40)</strong>
-            Buyer pays ฿40 deposit to merchant escrow before dispatch, guaranteeing courier reverse logistics costs upon uncollected parcels.
+            <strong style="color:var(--orange); display:block; margin-bottom:0.25rem;">Mandatory 30% Seller Deposit</strong>
+            Buyer pays 30% deposit of order total to merchant escrow before dispatch, guaranteeing courier reverse logistics costs upon uncollected parcels.
           </div>
         </div>
 
@@ -486,13 +486,13 @@
             </div>
             <ul style="font-size:0.84rem; color:var(--text-secondary); line-height:1.65; padding-left:1.1rem; margin-bottom:1rem;">
               <li>Consistent history of failed COD</li>
-              <li>Deposit or partial prepayment required</li>
-              <li>Encourage switch to prepaid payment</li>
+              <li>30% deposit or full prepaid required</li>
+              <li>Encourage switch to digital payment</li>
             </ul>
           </div>
           <div class="tier-action-box">
-            <strong style="color:var(--rose); display:block; margin-bottom:0.25rem;">Deposit / Switch to Prepaid</strong>
-            Deposit or partial prepayment required to secure commitment. Guide buyer toward prepaid payment.
+            <strong style="color:var(--rose); display:block; margin-bottom:0.25rem;">30% Deposit / Switch to Prepaid</strong>
+            Mandatory 30% deposit or full prepayment required to secure commitment. Guide buyer toward digital payment.
           </div>
         </div>
       </div>
@@ -576,7 +576,7 @@
             <div style="background:#faf4e9; border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:1rem;">
               <strong style="color:var(--shopee-orange); font-size:0.92rem; display:block; margin-bottom:0.35rem;">Action Determination</strong>
               <p style="font-size:0.83rem; color:var(--text-secondary); margin:0;">
-                The score determines the buyer's risk tier and automated actions (Zero friction → Warning &amp; Schedule → Mandatory ฿40 Deposit → Restricted).
+                The score determines the buyer's risk tier and automated actions (Zero friction → Warning &amp; Schedule → Mandatory 30% Deposit → Restricted).
               </p>
             </div>
           </div>
@@ -1238,13 +1238,13 @@
               <button class="preset-chip-btn" id="preset-grade-c" onclick="applyScenarioPreset('C')">
                 <strong style="color:var(--orange);">Grade C</strong>
                 <span>High Risk (Score 40)</span>
-                <span style="font-size:0.68rem; color:var(--text-muted);">฿40 Seller Deposit</span>
+                <span style="font-size:0.68rem; color:var(--text-muted);">30% Seller Deposit</span>
               </button>
 
               <button class="preset-chip-btn" id="preset-grade-d" onclick="applyScenarioPreset('D')">
                 <strong style="color:var(--rose);">Grade D</strong>
                 <span>Repeated Risk (Score 18)</span>
-                <span style="font-size:0.68rem; color:var(--text-muted);">฿50 Deposit</span>
+                <span style="font-size:0.68rem; color:var(--text-muted);">30% Deposit / Prepaid</span>
               </button>
             </div>
           </div>
@@ -1543,7 +1543,7 @@
           </p>
           <ul class="tutorial-checklist">
             <li><strong>1-Click Presets</strong>: Click <em>Grade A, B, C, or D</em> chips on the right panel to simulate different risk profiles immediately.</li>
-            <li><strong>View 1 (Checkout)</strong>: Observe how interventions appear (Instant COD vs Pre-delivery SMS vs 6-digit OTP vs ฿40 Deposit).</li>
+            <li><strong>View 1 (Checkout)</strong>: Observe how interventions appear (Instant COD vs Pre-delivery Warning vs 30% Seller Deposit).</li>
             <li><strong>Place Order Flow</strong>: Tap <em>Place COD Order</em> to confirm and auto-transition to Shopee Xpress live tracking.</li>
             <li><strong>View 2 (Doorstep Delivery)</strong>: Test the courier handover console by clicking <em>Accept (+8 pts)</em> or <em>Refuse/RTO (-20 pts)</em> to watch the score and policy tier react dynamically.</li>
           </ul>
@@ -1629,7 +1629,7 @@
             <div class="pipeline-step-num">03</div>
             <div class="pipeline-step-body">
               <strong>Calibrated Guardrail</strong>
-              <span>Checkout applies targeted friction: 0-friction, SMS reminder, OTP, or ฿40 deposit.</span>
+              <span>Checkout applies targeted friction: 0-friction, warning reminder, or 30% seller deposit.</span>
             </div>
           </div>
           <div class="pipeline-arrow">→</div>

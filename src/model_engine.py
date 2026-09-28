@@ -49,14 +49,17 @@ CATEGORICAL_FEATURES = [
 MODEL_PATH = "models/cod_risk_model.joblib"
 METRICS_PATH = "models/model_metrics.json"
 
-def calculate_risk_tier(reliability_score: float) -> dict:
+def calculate_risk_tier(reliability_score: float, order_amount_thb: float = 1850.0) -> dict:
     """
     Business Policy & Risk Tier Interventions as defined in Slide 2 & 5 of the PDF:
     - Low Risk (>=80): Zero friction, direct dispatch.
-    - Medium Risk (50-79): Pre-delivery SMS reminder, preferred window prompt.
-    - High Risk (30-49): Mandatory OTP verification, ฿40 deposit option.
-    - Repeated High Risk (<30): COD blocked, Prepaid or ฿40 deposit required.
+    - Medium Risk (50-79): Proactive warning probation before High Risk 30% seller deposit, preferred window prompt.
+    - High Risk (30-49): Mandatory 30% seller security deposit required before COD dispatch.
+    - Repeated High Risk (<30): Chronic RTO; mandatory 30% seller deposit or 100% prepaid conversion.
     """
+    deposit_pct = 0.30
+    deposit_val = round(order_amount_thb * deposit_pct, 2)
+
     if reliability_score >= 80:
         return {
             "tier": "LOW_RISK",
@@ -66,6 +69,7 @@ def calculate_risk_tier(reliability_score: float) -> dict:
             "action": "Immediate dispatch with standard 1-click COD fulfillment.",
             "requires_otp": False,
             "requires_deposit": False,
+            "deposit_pct": 0.0,
             "deposit_amount_thb": 0,
             "policy_summary": "Preferred customer. Direct fulfillment with zero checkout barriers."
         }
@@ -75,11 +79,12 @@ def calculate_risk_tier(reliability_score: float) -> dict:
             "tier_display": "Medium Risk (Grade B)",
             "badge_color": "amber",
             "friction_level": "PRE_DELIVERY_REMINDER_AND_WARNING",
-            "action": "Dispatch order with early warning: Alert buyer of probation before High-Risk seller deposit requirement + schedule Preferred Window.",
+            "action": "Dispatch order with early warning: Alert buyer of probation before High-Risk 30% seller deposit requirement + schedule Preferred Window.",
             "requires_otp": False,
             "requires_deposit": False,
+            "deposit_pct": 0.0,
             "deposit_amount_thb": 0,
-            "policy_summary": "Medium Risk Warning: Further failed delivery will demote account to High Risk requiring mandatory upfront seller deposit."
+            "policy_summary": "Medium Risk Warning: Further failed delivery will demote account to High Risk, requiring an upfront 30% seller security deposit."
         }
     elif reliability_score >= 30:
         return {
@@ -87,11 +92,12 @@ def calculate_risk_tier(reliability_score: float) -> dict:
             "tier_display": "High Risk (Grade C)",
             "badge_color": "orange",
             "friction_level": "MANDATORY_SELLER_DEPOSIT",
-            "action": "Mandatory seller security deposit (฿40) required before COD dispatch to protect merchant against reverse logistics loss.",
+            "action": f"Mandatory 30% seller security deposit (฿{deposit_val:,.0f}) required before COD dispatch to protect merchant against reverse logistics loss.",
             "requires_otp": True,
             "requires_deposit": True,
-            "deposit_amount_thb": 40.0,
-            "policy_summary": "High Risk Account: Mandatory ฿40 seller security deposit (deducted from final doorstep COD payment) or switch to prepaid."
+            "deposit_pct": deposit_pct,
+            "deposit_amount_thb": deposit_val,
+            "policy_summary": f"High Risk Account: Mandatory 30% seller deposit (฿{deposit_val:,.0f}, deducted from final doorstep COD payment) or switch to prepaid."
         }
     else:
         return {
@@ -99,11 +105,12 @@ def calculate_risk_tier(reliability_score: float) -> dict:
             "tier_display": "Repeated High Risk (Grade D)",
             "badge_color": "rose",
             "friction_level": "COD_RESTRICTED_PREPAID_OR_DEPOSIT",
-            "action": "Chronic RTO: Standard COD restricted. Require ฿50 upfront seller deposit or full prepaid conversion.",
+            "action": f"Chronic RTO: Standard COD restricted. Require upfront 30% seller deposit (฿{deposit_val:,.0f}) or full prepaid conversion.",
             "requires_otp": True,
             "requires_deposit": True,
-            "deposit_amount_thb": 50.0,
-            "policy_summary": "Chronic RTO history. Standard COD blocked; upfront seller deposit or full prepaid conversion mandatory."
+            "deposit_pct": deposit_pct,
+            "deposit_amount_thb": deposit_val,
+            "policy_summary": f"Chronic RTO history. Standard COD blocked; upfront 30% seller deposit (฿{deposit_val:,.0f}) or full prepaid conversion mandatory."
         }
 
 def train_and_evaluate_model(orders_csv: str = "data/shopee_cod_orders_example.csv") -> dict:
@@ -279,7 +286,7 @@ class CODScoringEngine:
             ml_adjustment = 0.0
             
         composite_score = round(max(5.0, min(99.0, prior_score + ml_adjustment)), 1)
-        tier_info = calculate_risk_tier(composite_score)
+        tier_info = calculate_risk_tier(composite_score, order_amount_thb=row_dict["order_amount_thb"])
 
         # Explainable factors
         risk_flags = []
@@ -314,6 +321,7 @@ class CODScoringEngine:
             "friction_level": tier_info["friction_level"],
             "requires_otp": tier_info["requires_otp"],
             "requires_deposit": tier_info["requires_deposit"],
+            "deposit_pct": tier_info["deposit_pct"],
             "deposit_amount_thb": tier_info["deposit_amount_thb"],
             "action": tier_info["action"],
             "policy_summary": tier_info["policy_summary"],
