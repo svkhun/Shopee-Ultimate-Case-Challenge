@@ -29,14 +29,39 @@ function switchTab(tabId) {
 
   appState.currentTab = tabId;
 
-  // Update nav buttons
-  document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+  // Update nav buttons and dropdown items
+  document.querySelectorAll('.nav-tab-btn, .dropdown-item').forEach(btn => {
     if (btn.getAttribute('data-target') === tabId) {
       btn.classList.add('active');
     } else {
       btn.classList.remove('active');
     }
   });
+
+  // Sync Case Slides dropdown trigger active state & label
+  const isSlide = ['slide1', 'slide2', 'slide3', 'slide4', 'slide5'].includes(tabId);
+  const deckTrigger = document.getElementById('nav-deck-trigger');
+  const deckLabel = document.getElementById('nav-deck-label');
+  if (deckTrigger) {
+    if (isSlide) {
+      deckTrigger.classList.add('active');
+      const slideLabels = {
+        slide1: 'Slide 1: Root Cause',
+        slide2: 'Slide 2: 4-Tier Policy',
+        slide3: 'Slide 3: Score & EasySell',
+        slide4: 'Slide 4: Preferred Window',
+        slide5: 'Slide 5: Financial Impact'
+      };
+      if (deckLabel) deckLabel.textContent = slideLabels[tabId] || 'Case Slides';
+    } else {
+      deckTrigger.classList.remove('active');
+      if (deckLabel) deckLabel.textContent = 'Case Slides';
+    }
+  }
+
+  // Close dropdown if open
+  const dropdown = document.getElementById('nav-deck-dropdown');
+  if (dropdown) dropdown.classList.remove('open');
 
   // Update section views
   document.querySelectorAll('.page-section').forEach(sec => {
@@ -55,6 +80,21 @@ function switchTab(tabId) {
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+function toggleDeckDropdown(event) {
+  event.stopPropagation();
+  const dropdown = document.getElementById('nav-deck-dropdown');
+  if (dropdown) {
+    dropdown.classList.toggle('open');
+  }
+}
+
+document.addEventListener('click', (e) => {
+  const dropdown = document.getElementById('nav-deck-dropdown');
+  if (dropdown && !dropdown.contains(e.target)) {
+    dropdown.classList.remove('open');
+  }
+});
 
 window.addEventListener('hashchange', () => {
   const hash = window.location.hash.replace('#', '');

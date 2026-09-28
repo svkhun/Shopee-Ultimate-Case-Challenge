@@ -33,18 +33,85 @@
       </div>
     </a>
 
-    <!-- Multi-Page Navigation Tabs -->
-    <nav class="main-nav">
-      <button class="nav-tab-btn active" data-target="overview" onclick="switchTab('overview')">Overview</button>
-      <button class="nav-tab-btn" data-target="slide1" onclick="switchTab('slide1')">1. Root Cause</button>
-      <button class="nav-tab-btn" data-target="slide2" onclick="switchTab('slide2')">2. 4-Tier Policy</button>
-      <button class="nav-tab-btn" data-target="slide3" onclick="switchTab('slide3')">3. Score & EasySell</button>
-      <button class="nav-tab-btn" data-target="slide4" onclick="switchTab('slide4')">4. Preferred Window</button>
-      <button class="nav-tab-btn" data-target="slide5" onclick="switchTab('slide5')">5. Financial Impact</button>
-      <button class="nav-tab-btn nav-tab-btn--simulator" data-target="simulator" onclick="switchTab('simulator')">Live App Simulator</button>
-      <button class="nav-tab-btn" data-target="dataset" onclick="switchTab('dataset')">Dataset</button>
-      <button class="nav-tab-btn" data-target="tutorial" onclick="switchTab('tutorial')">Tutorial</button>
-      <button class="nav-tab-btn" data-target="team" onclick="switchTab('team')">Team Members</button>
+    <!-- Reorganized Navigation Bar -->
+    <nav class="main-nav-container">
+      <!-- Group 1: Core Navigation & Case Slides -->
+      <div class="nav-group nav-group--primary">
+        <button class="nav-tab-btn active" data-target="overview" onclick="switchTab('overview')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Overview
+        </button>
+
+        <!-- Dropdown: Case Slides (1-5) -->
+        <div class="nav-dropdown-wrapper" id="nav-deck-dropdown">
+          <button class="nav-tab-btn nav-dropdown-btn" id="nav-deck-trigger" onclick="toggleDeckDropdown(event)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <span id="nav-deck-label">Case Slides</span>
+            <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          
+          <div class="nav-dropdown-menu" id="nav-dropdown-menu">
+            <div class="nav-dropdown-header">Competition Case Deck</div>
+            <a href="#slide1" class="dropdown-item" data-target="slide1" onclick="switchTab('slide1')">
+              <span class="dropdown-item-num">01</span>
+              <div class="dropdown-item-content">
+                <strong>1. Root Cause Analysis</strong>
+                <span>10.6× COD Failure Disparity & 85% RTO Waste</span>
+              </div>
+            </a>
+            <a href="#slide2" class="dropdown-item" data-target="slide2" onclick="switchTab('slide2')">
+              <span class="dropdown-item-num">02</span>
+              <div class="dropdown-item-content">
+                <strong>2. 4-Tier Risk Policy</strong>
+                <span>Frictionless Low Risk to ฿40 Deposit Collateral</span>
+              </div>
+            </a>
+            <a href="#slide3" class="dropdown-item" data-target="slide3" onclick="switchTab('slide3')">
+              <span class="dropdown-item-num">03</span>
+              <div class="dropdown-item-content">
+                <strong>3. Score & EasySell</strong>
+                <span>+8/-20 Reliability Flywheel & C2C Seller Trust</span>
+              </div>
+            </a>
+            <a href="#slide4" class="dropdown-item" data-target="slide4" onclick="switchTab('slide4')">
+              <span class="dropdown-item-num">04</span>
+              <div class="dropdown-item-content">
+                <strong>4. Preferred Window</strong>
+                <span>+24.0% Delivery Uplift via Guaranteed Presence</span>
+              </div>
+            </a>
+            <a href="#slide5" class="dropdown-item" data-target="slide5" onclick="switchTab('slide5')">
+              <span class="dropdown-item-num">05</span>
+              <div class="dropdown-item-content">
+                <strong>5. Financial Impact</strong>
+                <span>58% RTO Reduction & ฿42.9M Annual EBITDA Shield</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Simulator & Dataset -->
+        <button class="nav-tab-btn nav-tab-btn--simulator" data-target="simulator" onclick="switchTab('simulator')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          Live App Simulator
+        </button>
+        <button class="nav-tab-btn" data-target="dataset" onclick="switchTab('dataset')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          Dataset
+        </button>
+      </div>
+
+      <!-- Group 2: Guides & Team -->
+      <div class="nav-group nav-group--secondary">
+        <button class="nav-tab-btn nav-tab-btn--meta" data-target="tutorial" onclick="switchTab('tutorial')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Tutorial
+        </button>
+        <button class="nav-tab-btn nav-tab-btn--meta" data-target="team" onclick="switchTab('team')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Team Members
+        </button>
+      </div>
     </nav>
   </header>
 
@@ -159,6 +226,41 @@
          PAGE 2: SLIDE 1 - ROOT CAUSE & STATISTICAL EDA
          =================================================================== -->
     <section id="page-slide1" class="page-section">
+      <!-- Unified Slide Stepper Ribbon -->
+      <div class="slide-deck-stepper-ribbon">
+        <div class="stepper-track">
+          <button class="stepper-tab active" onclick="switchTab('slide1')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">1</span>
+            <span class="stepper-title">Root Cause</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide2')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">2</span>
+            <span class="stepper-title">4-Tier Policy</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide3')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">3</span>
+            <span class="stepper-title">Score & EasySell</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide4')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">4</span>
+            <span class="stepper-title">Preferred Window</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide5')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">5</span>
+            <span class="stepper-title">Financial Impact</span>
+          </button>
+        </div>
+        <div class="stepper-controls">
+          <button class="btn-stepper-nav" onclick="switchTab('overview')">‹ Overview</button>
+          <button class="btn-stepper-nav" onclick="switchTab('slide2')">Next: 4-Tier Policy ›</button>
+        </div>
+      </div>
+
       <div class="section-headline">
         <span class="section-tag">Empirical Data Science Proof</span>
         <h2 class="section-h2">Slide 1: Root Cause Analysis & Risk Disparity</h2>
@@ -260,6 +362,41 @@
          PAGE 3: SLIDE 2 - 4-TIER BUYER RISK INTERVENTION POLICY
          =================================================================== -->
     <section id="page-slide2" class="page-section">
+      <!-- Unified Slide Stepper Ribbon -->
+      <div class="slide-deck-stepper-ribbon">
+        <div class="stepper-track">
+          <button class="stepper-tab" onclick="switchTab('slide1')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">1</span>
+            <span class="stepper-title">Root Cause</span>
+          </button>
+          <button class="stepper-tab active" onclick="switchTab('slide2')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">2</span>
+            <span class="stepper-title">4-Tier Policy</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide3')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">3</span>
+            <span class="stepper-title">Score & EasySell</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide4')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">4</span>
+            <span class="stepper-title">Preferred Window</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide5')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">5</span>
+            <span class="stepper-title">Financial Impact</span>
+          </button>
+        </div>
+        <div class="stepper-controls">
+          <button class="btn-stepper-nav" onclick="switchTab('slide1')">‹ Prev: Root Cause</button>
+          <button class="btn-stepper-nav" onclick="switchTab('slide3')">Next: Score & EasySell ›</button>
+        </div>
+      </div>
+
       <div class="section-headline">
         <span class="section-tag">Policy Segmentation Architecture</span>
         <h2 class="section-h2">Slide 2: 4-Tier Buyer Risk Interventions</h2>
@@ -355,6 +492,41 @@
          PAGE 4: SLIDE 3 - DYNAMIC SCORECARD & EASYSELL FRAUD SHIELD
          =================================================================== -->
     <section id="page-slide3" class="page-section">
+      <!-- Unified Slide Stepper Ribbon -->
+      <div class="slide-deck-stepper-ribbon">
+        <div class="stepper-track">
+          <button class="stepper-tab" onclick="switchTab('slide1')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">1</span>
+            <span class="stepper-title">Root Cause</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide2')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">2</span>
+            <span class="stepper-title">4-Tier Policy</span>
+          </button>
+          <button class="stepper-tab active" onclick="switchTab('slide3')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">3</span>
+            <span class="stepper-title">Score & EasySell</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide4')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">4</span>
+            <span class="stepper-title">Preferred Window</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide5')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">5</span>
+            <span class="stepper-title">Financial Impact</span>
+          </button>
+        </div>
+        <div class="stepper-controls">
+          <button class="btn-stepper-nav" onclick="switchTab('slide2')">‹ Prev: 4-Tier Policy</button>
+          <button class="btn-stepper-nav" onclick="switchTab('slide4')">Next: Preferred Window ›</button>
+        </div>
+      </div>
+
       <div class="section-headline">
         <span class="section-tag">Adaptive Buyer Credit & Security</span>
         <h2 class="section-h2">Slide 3: Dynamic Feedback Loop & EasySell Shield</h2>
@@ -438,6 +610,41 @@
          PAGE 5: SLIDE 4 - PREFERRED DELIVERY WINDOW SCHEDULING
          =================================================================== -->
     <section id="page-slide4" class="page-section">
+      <!-- Unified Slide Stepper Ribbon -->
+      <div class="slide-deck-stepper-ribbon">
+        <div class="stepper-track">
+          <button class="stepper-tab" onclick="switchTab('slide1')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">1</span>
+            <span class="stepper-title">Root Cause</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide2')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">2</span>
+            <span class="stepper-title">4-Tier Policy</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide3')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">3</span>
+            <span class="stepper-title">Score & EasySell</span>
+          </button>
+          <button class="stepper-tab active" onclick="switchTab('slide4')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">4</span>
+            <span class="stepper-title">Preferred Window</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide5')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">5</span>
+            <span class="stepper-title">Financial Impact</span>
+          </button>
+        </div>
+        <div class="stepper-controls">
+          <button class="btn-stepper-nav" onclick="switchTab('slide3')">‹ Prev: Score & EasySell</button>
+          <button class="btn-stepper-nav" onclick="switchTab('slide5')">Next: Financial Impact ›</button>
+        </div>
+      </div>
+
       <div class="section-headline">
         <span class="section-tag">Logistics Synchronization</span>
         <h2 class="section-h2">Slide 4: Preferred Delivery Window Impact</h2>
@@ -522,6 +729,41 @@
          PAGE 6: SLIDE 5 - FINANCIAL IMPACT & STRATEGY
          =================================================================== -->
     <section id="page-slide5" class="page-section">
+      <!-- Unified Slide Stepper Ribbon -->
+      <div class="slide-deck-stepper-ribbon">
+        <div class="stepper-track">
+          <button class="stepper-tab" onclick="switchTab('slide1')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">1</span>
+            <span class="stepper-title">Root Cause</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide2')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">2</span>
+            <span class="stepper-title">4-Tier Policy</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide3')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">3</span>
+            <span class="stepper-title">Score & EasySell</span>
+          </button>
+          <button class="stepper-tab" onclick="switchTab('slide4')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">4</span>
+            <span class="stepper-title">Preferred Window</span>
+          </button>
+          <button class="stepper-tab active" onclick="switchTab('slide5')">
+            <span class="stepper-dot"></span>
+            <span class="stepper-num">5</span>
+            <span class="stepper-title">Financial Impact</span>
+          </button>
+        </div>
+        <div class="stepper-controls">
+          <button class="btn-stepper-nav" onclick="switchTab('slide4')">‹ Prev: Preferred Window</button>
+          <button class="btn-stepper-nav" onclick="switchTab('simulator')">Next: Phone Simulator 📱 ›</button>
+        </div>
+      </div>
+
       <div class="section-headline">
         <span class="section-tag">Value Realization & Economics</span>
         <h2 class="section-h2">Slide 5: Business Impact & Reverse Logistics Shield</h2>
