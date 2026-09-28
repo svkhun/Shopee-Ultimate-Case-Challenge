@@ -377,8 +377,10 @@ function updateSmartphoneScreen(result) {
   const score = appState.currentSimScore;
   const tier = result.risk_tier;
   const orderAmount = parseFloat(document.getElementById('input-amount').value) || 1850;
-  const depositAmount = Math.round(orderAmount * 0.30);
-  const remainingAmount = orderAmount - depositAmount;
+  const depositAmountHigh = Math.round(orderAmount * 0.20);
+  const remainingAmountHigh = orderAmount - depositAmountHigh;
+  const depositAmountRep = Math.round(orderAmount * 0.30);
+  const remainingAmountRep = orderAmount - depositAmountRep;
 
   if (tier === 'LOW_RISK') {
     box.innerHTML = `
@@ -401,7 +403,7 @@ function updateSmartphoneScreen(result) {
           ⚠️ Warning: Medium Risk Probation (Score: ${score.toFixed(1)})
         </div>
         <div style="font-size:0.71rem; line-height:1.4; margin-top:3px;">
-          <strong>Buyer Warning:</strong> Your account has previous delivery hiccups. If this parcel fails after re-attempts, your account will enter <strong>High Risk</strong>, requiring a <strong>mandatory 30% seller security deposit</strong> for future COD orders.
+          <strong>Buyer Warning:</strong> Your account has previous delivery hiccups. If this parcel fails after re-attempts, your account will enter <strong>High Risk</strong>, requiring a <strong>mandatory 20% seller security deposit</strong> for future COD orders.
         </div>
         <div style="font-size:0.69rem; color:#854d0e; margin-top:5px; padding:4px 6px; background:rgba(245,158,11,0.12); border-radius:4px;">
           📅 Select a <strong>Preferred Delivery Window</strong> above to ensure you are home for courier arrival.
@@ -415,21 +417,21 @@ function updateSmartphoneScreen(result) {
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-c" style="border-left:3px solid var(--orange);">
         <div style="font-weight:700; display:flex; align-items:center; gap:4px; color:#c2410c;">
-          🔒 High Risk: 30% Seller Deposit Required (Score: ${score.toFixed(1)})
+          🔒 High Risk: 20% Seller Deposit Required (Score: ${score.toFixed(1)})
         </div>
         <div style="font-size:0.71rem; line-height:1.4; margin-top:3px;">
-          Due to elevated delivery failure risk, a <strong>30% seller security deposit (฿${depositAmount.toLocaleString()})</strong> is required to dispatch this COD order.
+          Due to elevated delivery failure risk, a <strong>20% seller security deposit (฿${depositAmountHigh.toLocaleString()})</strong> is required to dispatch this COD order.
         </div>
         <div class="phone-deposit-box" style="margin-top:6px; background:#fff7ed; border:1px solid #fed7aa; padding:8px; border-radius:6px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <strong style="font-size:0.75rem; color:#9a3412;">Seller Security Deposit (30%):</strong>
-            <span class="mono" style="font-size:0.85rem; font-weight:800; color:#ea580c;">฿${depositAmount.toLocaleString()}</span>
+            <strong style="font-size:0.75rem; color:#9a3412;">Seller Security Deposit (20%):</strong>
+            <span class="mono" style="font-size:0.85rem; font-weight:800; color:#ea580c;">฿${depositAmountHigh.toLocaleString()}</span>
           </div>
           <div style="font-size:0.68rem; color:#7c2d12; margin:3px 0 6px;">
-            ✓ 100% credited toward your doorstep COD payment (Remaining ฿${remainingAmount.toLocaleString()} collected upon handover).
+            ✓ 100% credited toward your doorstep COD payment (Remaining ฿${remainingAmountHigh.toLocaleString()} collected upon handover).
           </div>
-          <button class="deposit-action-btn" style="background:#ea580c;" onclick="showPhoneModal('30% Seller Deposit Secured!', 'Your ฿${depositAmount.toLocaleString()} (30%) deposit has been secured for the merchant. Remaining ฿${remainingAmount.toLocaleString()} will be collected upon parcel arrival.')">
-            Authorize 30% Deposit (฿${depositAmount.toLocaleString()}) & Order COD
+          <button class="deposit-action-btn" style="background:#ea580c;" onclick="showPhoneModal('20% Seller Deposit Secured!', 'Your ฿${depositAmountHigh.toLocaleString()} (20%) deposit has been secured for the merchant. Remaining ฿${remainingAmountHigh.toLocaleString()} will be collected upon parcel arrival.')">
+            Authorize 20% Deposit (฿${depositAmountHigh.toLocaleString()}) & Order COD
           </button>
           <div style="border-top:1px dashed #fed7aa; margin:6px 0 2px; padding-top:4px; font-size:0.69rem; color:#666;">
             Or switch to <strong>PromptPay / Credit Card</strong> (No deposit required)
@@ -437,7 +439,7 @@ function updateSmartphoneScreen(result) {
         </div>
       </div>
     `;
-    checkoutBtn.textContent = `Pay 30% Deposit (฿${depositAmount.toLocaleString()}) & Place COD`;
+    checkoutBtn.textContent = `Pay 20% Deposit (฿${depositAmountHigh.toLocaleString()}) & Place COD`;
     checkoutBtn.disabled = false;
     checkoutBtn.style.background = 'var(--orange)';
   } else {
@@ -448,11 +450,11 @@ function updateSmartphoneScreen(result) {
           ⛔ COD Restricted: Chronic RTO (Score: ${score.toFixed(1)})
         </div>
         <div style="font-size:0.71rem; line-height:1.4; margin-top:3px;">
-          Standard COD is locked due to chronic delivery rejections. To place this order, pay an upfront 30% seller deposit (฿${depositAmount.toLocaleString()}) or switch to prepaid.
+          Standard COD is locked due to chronic delivery rejections. To place this order, pay an upfront 30% seller deposit (฿${depositAmountRep.toLocaleString()}) or switch to prepaid.
         </div>
         <div class="phone-deposit-box" style="margin-top:6px;">
-          <button class="deposit-action-btn" onclick="showPhoneModal('30% Seller Deposit Authorized!', 'Your ฿${depositAmount.toLocaleString()} (30%) deposit has been secured for merchant logistics. Dispatched under verified collateral.')">
-            Pay 30% Deposit (฿${depositAmount.toLocaleString()}) & Dispatch
+          <button class="deposit-action-btn" onclick="showPhoneModal('30% Seller Deposit Authorized!', 'Your ฿${depositAmountRep.toLocaleString()} (30%) deposit has been secured for merchant logistics. Dispatched under verified collateral.')">
+            Pay 30% Deposit (฿${depositAmountRep.toLocaleString()}) & Dispatch
           </button>
           <div style="border-top:1px dashed #ddd; margin:6px 0; padding-top:6px; font-size:0.72rem; color:#444;">
             <strong>Preferred:</strong> Switch to PromptPay / Credit Card (0% Extra Fee)
