@@ -2598,3 +2598,70 @@ footer .footer-links a:hover {
   }
 }
 
+/* ==========================================================================
+   Official Shopee Ultimate Case Challenge (SUCC) Branding & Emblem Styles
+   ========================================================================== */
+.header-succ-logo {
+  height: 20px;
+  width: auto;
+  object-fit: contain;
+  vertical-align: middle;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-wrapper:hover .header-succ-logo {
+  transform: scale(1.05);
+}
+
+.hero-brand-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #0f172a;
+  padding: 6px 18px 6px 12px;
+  border-radius: 9999px;
+  border: 1px solid #334155;
+  box-shadow: 0 8px 24px rgba(238, 77, 45, 0.22);
+  margin-bottom: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-brand-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(238, 77, 45, 0.35);
+  border-color: rgba(238, 77, 45, 0.5);
+}
+
+.hero-brand-pill-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(238, 77, 45, 0.6));
+}
+
+.team-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.team-succ-banner {
+  background: #0f172a;
+  padding: 8px 18px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease;
+}
+
+.team-succ-banner:hover {
+  transform: translateY(-1px);
+  border-color: rgba(238, 77, 45, 0.4);
+}
+
