@@ -4,13 +4,9 @@
    Executive Minimalist Warm-Light Theme with Interactive Smartphone Mockup
    =================================================================== */
 
-@import url('/static/fonts/fonts.css');
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@200;300;400;500;600;700;800&family=Geist+Mono:wght@300;400;500;600&display=swap');
 
 :root {
-  --font-geist: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-geist-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-
   --bg-main: #fff9ed;
   --bg-card: rgba(255, 255, 255, 0.88);
   --bg-card-hover: #ffffff;
@@ -48,18 +44,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: var(--font-geist);
-}
-
-html {
-  font-family: var(--font-geist);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  font-family: 'Geist', sans-serif;
 }
 
 body {
-  font-family: var(--font-geist);
+  font-family: 'Geist', sans-serif;
   font-weight: 350;
   letter-spacing: -0.018em;
   background-color: var(--bg-main);
@@ -70,33 +59,17 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
-  text-rendering: optimizeLegibility;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
-/* Slender Geist Headings */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-geist);
-  letter-spacing: -0.035em;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
-  font-weight: 600;
+button, input, select, textarea {
+  font-family: 'Geist', sans-serif;
 }
 
-p, span, div, li, a, label, td, th {
-  letter-spacing: -0.015em;
-}
-
-button, input, select, textarea, optgroup, option {
-  font-family: var(--font-geist) !important;
-  letter-spacing: -0.015em;
-}
-
-code, pre, .mono, kbd, samp {
-  font-family: var(--font-geist-mono) !important;
+code, pre, .mono {
+  font-family: 'Geist Mono', monospace;
   font-weight: 400;
-  letter-spacing: -0.015em;
-  font-feature-settings: 'zero', 'ss01';
+  letter-spacing: -0.01em;
 }
 
 /* Background Ambient Glows */
@@ -286,7 +259,7 @@ main.app-main {
 .hero-title {
   font-size: 3.1rem;
   line-height: 1.12;
-  font-weight: 650;
+  font-weight: 700;
   letter-spacing: -0.035em;
   margin-bottom: 1.25rem;
 }
@@ -425,7 +398,7 @@ main.app-main {
 
 .metric-num {
   font-size: 2.2rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
   margin-bottom: 0.35rem;
@@ -458,7 +431,7 @@ main.app-main {
 
 .stat-number-wrapper .val {
   font-size: 2.4rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
   line-height: 1;
@@ -545,7 +518,7 @@ main.app-main {
 
 .section-h2 {
   font-size: 2rem;
-  font-weight: 650;
+  font-weight: 700;
   letter-spacing: -0.03em;
   margin-bottom: 0.5rem;
 }
@@ -650,8 +623,7 @@ main.app-main {
   overflow-y: auto;
   position: relative;
   color: #111;
-  font-family: var(--font-geist);
-  letter-spacing: -0.015em;
+  font-family: 'Geist', sans-serif;
   display: flex;
   flex-direction: column;
   scrollbar-width: none;
@@ -1144,10 +1116,9 @@ main.app-main {
 }
 
 .form-val-display {
-  font-family: var(--font-geist-mono) !important;
+  font-family: 'Geist Mono', monospace;
   color: var(--shopee-orange);
   font-weight: 600;
-  letter-spacing: -0.015em;
 }
 
 .form-input, .form-select {

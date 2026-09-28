@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/fonts/fonts.css">
   <link rel="stylesheet" href="/static/styles.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ee4d2d'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm1-12c2.21 0 4 1.79 4 4 0 1.28-.59 2.42-1.5 3.16-.48.39-.77.72-.77 1.34h-2.46c0-1.28.59-2.42 1.5-3.16.48-.39.77-.72.77-1.34 0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5H7.5c0-2.21 1.79-4 4-4z'/></svg>">
 </head>
@@ -895,7 +894,7 @@
             </div>
             <div>
               <div style="font-weight:650; font-size:1.05rem; color:var(--text-primary); letter-spacing:-0.02em;">
-                Synthetic Dataset Disclosure & Methodology Notice (ชุดข้อมูลจำลองเพื่อการวิเคราะห์และนำเสนอ)
+                Synthetic Dataset Disclosure & Methodology Notice (Simulated Analytical Benchmark)
               </div>
               <div style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">
                 Synthesized for Shopee Ultimate Case Challenge (SUCC 2026) • 100% Privacy-Preserving (Zero Real PII)
@@ -914,30 +913,30 @@
           <div style="background:#fffcf7; border:1px solid var(--border-subtle); padding:1rem; border-radius:var(--radius-sm);">
             <div style="font-weight:600; font-size:0.84rem; color:var(--shopee-orange); margin-bottom:0.4rem; display:flex; align-items:center; gap:0.4rem;">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              1. ชุดข้อมูลจำลอง 100% (Synthetic Benchmark)
+              1. 100% Synthetic Benchmark Dataset
             </div>
             <p style="font-size:0.81rem; color:var(--text-secondary); line-height:1.55;">
-              ชุดข้อมูลนี้<strong>ถูกจำลองขึ้นมาทั้งหมด (Synthetically Generated)</strong> เพื่อการศึกษาวิจัยและการแข่งขันเคส SUCC 2026 โดยไม่มีการใช้ข้อมูลส่วนบุคคล (PII), เบอร์โทรศัพท์, ที่อยู่ หรือประวัติธุรกรรมจริงของลูกค้า Shopee แต่อย่างใด สอดคล้องตามมาตรฐาน PDPA อย่างเคร่งครัด
+              This dataset is <strong>entirely synthetically generated</strong> for empirical research and the SUCC 2026 Case Challenge. It contains no Personally Identifiable Information (PII), real phone numbers, delivery addresses, or actual customer transaction history, strictly adhering to PDPA data governance standards.
             </p>
           </div>
 
           <div style="background:#fffcf7; border:1px solid var(--border-subtle); padding:1rem; border-radius:var(--radius-sm);">
             <div style="font-weight:600; font-size:0.84rem; color:var(--emerald); margin-bottom:0.4rem; display:flex; align-items:center; gap:0.4rem;">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-              2. ปรับเทียบทางสถิติตามโจทย์จริง (Empirical Calibration)
+              2. Empirically Calibrated to Case Parameters
             </div>
             <p style="font-size:0.81rem; color:var(--text-secondary); line-height:1.55;">
-              คำนวณและกระจายค่าตัวแปรด้วยวิธี Monte Carlo อิงตามโจทย์ทางการของ SUCC: สัดส่วนคำสั่งซื้อ COD 35% / Prepaid 65%, อัตราจัดส่งไม่สำเร็จของ COD สูงกว่า Prepaid 10.6 เท่า และจำลองผลกระทบของ Preferred Delivery Window (+24% first-attempt success)
+              Calibrated and generated via Monte Carlo simulation adhering strictly to official SUCC case metrics: 35% COD / 65% Prepaid order mix, a 10.6x higher non-delivery rate for COD vs. Prepaid, and simulated Preferred Delivery Window impact (+24% first-attempt delivery success).
             </p>
           </div>
 
           <div style="background:#fffcf7; border:1px solid var(--border-subtle); padding:1rem; border-radius:var(--radius-sm);">
             <div style="font-weight:600; font-size:0.84rem; color:var(--cyan); margin-bottom:0.4rem; display:flex; align-items:center; gap:0.4rem;">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-              3. สเปกไฟล์และโครงสร้างข้อมูล (File Schema)
+              3. File Specification & Data Schema
             </div>
             <p style="font-size:0.81rem; color:var(--text-secondary); line-height:1.55;">
-              ไฟล์ <code class="mono" style="font-size:0.75rem;">shopee_cod_orders.csv</code> ขนาด <strong>6.5 MB รวม 50,000 แถว</strong> จากผู้ซื้อจำลอง 12,000 โปรไฟล์ ประกอบด้วย 20 คอลัมน์สำคัญ เช่น reliability score, failed streaks, order amount, category, preferred slot, attempt counts, status
+              The <code class="mono" style="font-size:0.75rem;">shopee_cod_orders.csv</code> file comprises <strong>50,000 rows (6.5 MB)</strong> across 12,000 unique simulated buyer profiles, featuring 20 core operational columns including reliability scores, consecutive failure streaks, order values, categories, preferred delivery slots, attempt counts, and final status.
             </p>
           </div>
         </div>
