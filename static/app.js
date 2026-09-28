@@ -918,60 +918,65 @@ function renderHeroExpansion() {
   const overlay = document.getElementById('hero-media-overlay');
   const leftWord = document.getElementById('hero-split-left');
   const rightWord = document.getElementById('hero-split-right');
-  const cardBadges = document.getElementById('hero-card-badges');
-  const expandedContent = document.getElementById('hero-expanded-content');
+  const cardMeta = document.getElementById('hero-card-meta');
+  const expandedWrapper = document.getElementById('hero-expanded-wrapper');
   const scrollPrompt = document.getElementById('hero-scroll-prompt');
 
   if (!card) return;
 
   const viewportWidth = window.innerWidth;
-  const initialWidth = isMobile ? Math.min(viewportWidth * 0.88, 360) : 380;
-  const finalWidth = isMobile ? viewportWidth * 0.94 : Math.min(viewportWidth * 0.94, 1260);
+  const initialW = isMobile ? 300 : 320;
+  const finalW = isMobile ? Math.min(viewportWidth * 0.94, 750) : Math.min(viewportWidth * 0.95, 1320);
 
-  const initialHeight = isMobile ? 380 : 480;
-  const finalHeight = isMobile ? Math.min(window.innerHeight * 0.82, 600) : Math.min(window.innerHeight * 0.82, 680);
+  const initialH = isMobile ? 380 : 420;
+  const finalH = isMobile ? Math.min(window.innerHeight * 0.84, 620) : Math.min(window.innerHeight * 0.84, 700);
 
-  const cardW = initialWidth + (finalWidth - initialWidth) * p;
-  const cardH = initialHeight + (finalHeight - initialHeight) * p;
-  const cardRadius = 26 - (26 - 16) * p;
+  const cardW = initialW + (finalW - initialW) * p;
+  const cardH = initialH + (finalH - initialH) * p;
+  const cardRadius = 20 - (20 - 16) * p;
 
   card.style.width = `${cardW}px`;
   card.style.height = `${cardH}px`;
   card.style.borderRadius = `${cardRadius}px`;
 
+  // 1. Subtle Parallax on Real Warehouse Photo
   if (mediaImg) {
-    const scale = 1.15 - 0.12 * p;
+    const scale = 1.1 - 0.08 * p;
     mediaImg.style.transform = `scale(${scale})`;
   }
 
+  // 2. Dark Vignette Overlay
   if (overlay) {
-    const overlayOpacity = 0.25 + 0.65 * p;
+    const overlayOpacity = 0.3 + 0.5 * p;
     overlay.style.opacity = overlayOpacity;
   }
 
+  // 3. 21st.dev Title Translates Outward
   if (leftWord && rightWord) {
-    const splitDistance = p * 160;
-    const splitOpacity = Math.max(0, 1 - p * 2.2);
-    leftWord.style.transform = `translateX(-${splitDistance}px)`;
-    rightWord.style.transform = `translateX(${splitDistance}px)`;
-    leftWord.style.opacity = splitOpacity;
-    rightWord.style.opacity = splitOpacity;
+    const textTranslate = p * (isMobile ? 120 : 180);
+    const textOpacity = Math.max(0, 1 - p * 2.0);
+    leftWord.style.transform = `translateX(-${textTranslate}px)`;
+    rightWord.style.transform = `translateX(${textTranslate}px)`;
+    leftWord.style.opacity = textOpacity;
+    rightWord.style.opacity = textOpacity;
   }
 
-  if (cardBadges) {
-    const badgesOpacity = Math.max(0, 1 - p * 2.8);
-    cardBadges.style.opacity = badgesOpacity;
-    cardBadges.style.pointerEvents = p > 0.2 ? 'none' : 'auto';
+  // 4. Initial Card Subtitles
+  if (cardMeta) {
+    const metaOpacity = Math.max(0, 1 - p * 3.0);
+    cardMeta.style.opacity = metaOpacity;
   }
 
-  if (expandedContent) {
-    const contentP = Math.max(0, Math.min(1, (p - 0.35) / 0.5));
-    expandedContent.style.opacity = contentP;
-    const translateY = (1 - contentP) * 35;
-    expandedContent.style.transform = `translateY(${translateY}px)`;
-    expandedContent.style.pointerEvents = contentP > 0.7 ? 'auto' : 'none';
+  // 5. High-Contrast Frosted Glass Card Reveal
+  if (expandedWrapper) {
+    const contentP = Math.max(0, Math.min(1, (p - 0.4) / 0.5));
+    expandedWrapper.style.opacity = contentP;
+    const translateY = (1 - contentP) * 28;
+    expandedWrapper.style.transform = `translateY(${translateY}px)`;
+    expandedWrapper.style.pointerEvents = contentP > 0.75 ? 'auto' : 'none';
   }
 
+  // 6. Scroll Prompt
   if (scrollPrompt) {
     const promptOpacity = Math.max(0, 1 - p * 3.5);
     scrollPrompt.style.opacity = promptOpacity;
@@ -988,20 +993,4 @@ function smoothExpandHero() {
   if (!track) return;
   const targetY = track.offsetTop + (track.offsetHeight - window.innerHeight) * 0.95;
   window.scrollTo({ top: targetY, behavior: 'smooth' });
-}
-
-function toggleHeroHUD(enable) {
-  const hud = document.getElementById('hero-telemetry-hud');
-  const btnWarehouse = document.getElementById('btn-toggle-warehouse');
-  const btnHud = document.getElementById('btn-toggle-hud');
-
-  if (enable) {
-    hud?.classList.add('active');
-    btnHud?.classList.add('active');
-    btnWarehouse?.classList.remove('active');
-  } else {
-    hud?.classList.remove('active');
-    btnWarehouse?.classList.add('active');
-    btnHud?.classList.remove('active');
-  }
 }

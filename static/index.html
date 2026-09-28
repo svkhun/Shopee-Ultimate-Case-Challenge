@@ -125,113 +125,78 @@
       <!-- Scroll Media Expansion Hero Track (21st.dev style) -->
       <div class="hero-expand-track" id="hero-expand-track">
         <div class="hero-expand-sticky" id="hero-expand-sticky">
-          
-          <!-- Top Right Mode Toggles (Warehouse & HUD Telemetry) -->
-          <div class="hero-expand-controls">
-            <button class="hero-toggle-btn active" id="btn-toggle-warehouse" onclick="toggleHeroHUD(false)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-              Smart Warehouse
-            </button>
-            <button class="hero-toggle-btn" id="btn-toggle-hud" onclick="toggleHeroHUD(true)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-              Live Telemetry HUD
-            </button>
-          </div>
 
-          <!-- Split Headline Surrounding the Central Media Card -->
+          <!-- Clean Centered Split Headline (21st.dev Architecture) -->
           <div class="hero-split-container" id="hero-split-container">
-            <span class="hero-split-word hero-split-left" id="hero-split-left">Smart COD</span>
-            <div class="hero-split-spacer"></div>
-            <span class="hero-split-word hero-split-right" id="hero-split-right">Intelligence</span>
+            <h2 class="hero-split-word hero-split-left" id="hero-split-left">Smart COD</h2>
+            <h2 class="hero-split-word hero-split-right" id="hero-split-right">Reliability <span class="highlight">Intelligence</span></h2>
           </div>
 
-          <!-- The Central Expanding Media Card -->
+          <!-- Central Expanding Media Card -->
           <div class="hero-media-card" id="hero-media-card" onclick="smoothExpandHero()">
             
-            <!-- High-Tech Warehouse Image -->
-            <img src="/static/assets/smart_warehouse_hero.jpg" alt="Shopee Smart Automated Fulfillment Center" class="hero-media-img" id="hero-media-img">
+            <!-- Real Logistics Warehouse Image (High Quality Authentic Photography) -->
+            <img src="/static/assets/real_warehouse_hero.jpg" alt="Shopee Real Logistics Distribution Center" class="hero-media-img" id="hero-media-img">
             
-            <!-- Vignette Contrast Overlay for Text Readability -->
+            <!-- Dark Vignette Overlay -->
             <div class="hero-media-overlay" id="hero-media-overlay"></div>
 
-            <!-- Futuristic Telemetry HUD Scanning Grid Overlay -->
-            <div class="hero-telemetry-hud" id="hero-telemetry-hud">
-              <div class="hud-corner hud-corner-tl"></div>
-              <div class="hud-corner hud-corner-tr"></div>
-              <div class="hud-corner hud-corner-bl"></div>
-              <div class="hud-corner hud-corner-br"></div>
-              <div class="hud-grid-lines"></div>
-              <div class="hud-scanner-bar"></div>
-              <div class="hud-telemetry-stream">
-                <span>[LOGISTICS_AI] DISPATCH_ROUTING: OPTIMIZED</span>
-                <span>[COD_SENTINEL] PREDICTIVE_RELIABILITY: 94.2%</span>
-                <span>[WINDOW_SCHED] WINDOW_CONFIRMED: ZONE_C-21B</span>
-              </div>
+            <!-- Card Metadata (Visible in Initial Collapsed State) -->
+            <div class="hero-card-meta" id="hero-card-meta">
+              <span class="meta-date">Shopee Logistics Network</span>
+              <span class="meta-prompt">Scroll to Expand Fulfillment Hub</span>
             </div>
 
-            <!-- Initial State Floating Card Badges -->
-            <div class="hero-card-badges" id="hero-card-badges">
-              <div class="media-live-badge">
-                <span class="pulse-dot"></span>
-                <span>LIVE FULFILLMENT HUB</span>
-              </div>
-              <div class="media-tag-badge">
-                <span>Zone C-21B • 154 AGV Sorters</span>
-              </div>
-              <div class="media-card-caption">
-                <div class="caption-title">Automated Logistics & COD Intelligence</div>
-                <div class="caption-sub">Shopee Automated Sorting & Telemetry Center</div>
-              </div>
-            </div>
-
-            <!-- Fully Expanded Hero Presentation Content -->
-            <div class="hero-expanded-content" id="hero-expanded-content" onclick="event.stopPropagation()">
-              
-              <!-- Official SUCC Badge -->
-              <div class="hero-brand-pill">
-                <img src="/static/assets/succ_glow_logo.png" alt="Shopee Ultimate Case Challenge" class="hero-brand-pill-img">
-                <div class="hero-brand-pill-divider"></div>
-                <div class="hero-brand-pill-text">
-                  <span class="hero-brand-pill-tag">Official Case Submission</span>
-                  <span class="hero-brand-pill-sub">Shopee 2026</span>
+            <!-- Fully Expanded Executive Presentation Card (100% Crisp Readability) -->
+            <div class="hero-expanded-wrapper" id="hero-expanded-wrapper" onclick="event.stopPropagation()">
+              <div class="hero-glass-card">
+                
+                <!-- Official SUCC Badge -->
+                <div class="hero-brand-pill">
+                  <img src="/static/assets/succ_glow_logo.png" alt="Shopee Ultimate Case Challenge" class="hero-brand-pill-img">
+                  <div class="hero-brand-pill-divider"></div>
+                  <div class="hero-brand-pill-text">
+                    <span class="hero-brand-pill-tag">Official Case Submission</span>
+                    <span class="hero-brand-pill-sub">Shopee 2026</span>
+                  </div>
                 </div>
+
+                <!-- Consolidated Title -->
+                <h1 class="hero-title hero-title--dark">
+                  Smart COD Reliability <span class="highlight">Intelligence</span>
+                </h1>
+
+                <!-- Crisp High-Contrast Subheadline -->
+                <p class="hero-lead hero-lead--dark">
+                  A strategic, data-driven framework addressing the <strong class="text-orange">10.6× higher COD delivery failure rate</strong> through dynamic buyer reliability scoring, preferred window scheduling, and risk-calibrated progressive interventions.
+                </p>
+
+                <!-- Action CTAs -->
+                <div class="hero-actions">
+                  <button class="btn-primary" onclick="switchTab('simulator')">
+                    Launch Shopee Phone Simulator
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                  </button>
+                  <button class="btn-secondary btn-secondary--dark" onclick="switchTab('slide1')">
+                    Explore 5 Case Slides
+                  </button>
+                </div>
+
+                <!-- Live KPI Summary Chips -->
+                <div class="hero-kpi-chips">
+                  <span class="hero-chip"><span class="chip-dot emerald"></span> 50,000 Audited Orders</span>
+                  <span class="hero-chip"><span class="chip-dot orange"></span> 10.6× Higher COD Risk</span>
+                  <span class="hero-chip"><span class="chip-dot cyan"></span> 85% Failure Defense</span>
+                </div>
+
               </div>
-
-              <!-- Consolidated Presentation Title -->
-              <h1 class="hero-title hero-title--dark">
-                Smart COD Reliability <span class="highlight">Intelligence</span>
-              </h1>
-
-              <!-- Impactful Subheadline -->
-              <p class="hero-lead hero-lead--dark">
-                A strategic, data-driven framework addressing the <strong>10.6× higher COD delivery failure rate</strong> through dynamic buyer reliability scoring, preferred window scheduling, and risk-calibrated progressive interventions.
-              </p>
-
-              <!-- Action CTAs -->
-              <div class="hero-actions">
-                <button class="btn-primary" onclick="switchTab('simulator')">
-                  Launch Shopee Phone Simulator
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-                </button>
-                <button class="btn-secondary btn-secondary--dark" onclick="switchTab('slide1')">
-                  Explore 5 Case Slides
-                </button>
-              </div>
-
-              <!-- Live KPI Summary Chips -->
-              <div class="hero-kpi-chips">
-                <span class="hero-chip"><span class="chip-dot emerald"></span> 50,000 Audited Orders</span>
-                <span class="hero-chip"><span class="chip-dot orange"></span> 10.6× Higher COD Risk</span>
-                <span class="hero-chip"><span class="chip-dot cyan"></span> 85% Failure Defense</span>
-              </div>
-
             </div>
 
           </div>
 
           <!-- Scroll-to-Expand Prompt at Viewport Bottom -->
           <div class="hero-scroll-prompt" id="hero-scroll-prompt" onclick="smoothExpandHero()">
-            <span class="prompt-text">Scroll to expand smart fulfillment center</span>
+            <span class="prompt-text">Scroll to expand fulfillment hub</span>
             <div class="prompt-mouse">
               <div class="prompt-wheel"></div>
             </div>

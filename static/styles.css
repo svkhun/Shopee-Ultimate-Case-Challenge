@@ -475,12 +475,12 @@ main.app-main {
 }
 
 /* ==========================================================================
-   Scroll Media Expansion Hero (21st.dev Style - Shopee Smart Warehouse)
+   Scroll Media Expansion Hero (21st.dev Style - Real Logistics Fulfillment)
    ========================================================================== */
 
 .hero-expand-track {
   position: relative;
-  height: 175vh;
+  height: 165vh;
   margin-top: 0.25rem;
   margin-bottom: 2rem;
 }
@@ -495,112 +495,69 @@ main.app-main {
   justify-content: center;
   overflow: hidden;
   user-select: none;
-  border-radius: 24px;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 245, 235, 0.7) 0%, rgba(255, 249, 237, 0) 70%);
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% 40%, rgba(255, 245, 235, 0.7) 0%, rgba(255, 249, 237, 0) 70%);
 }
 
-/* Mode Controls (Smart Warehouse & Live Telemetry HUD) */
-.hero-expand-controls {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  padding: 4px;
-  border-radius: 9999px;
-  z-index: 30;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.hero-toggle-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  color: #94a3b8;
-  border: none;
-  font-size: 0.78rem;
-  font-weight: 550;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-toggle-btn.active {
-  background: var(--shopee-gradient);
-  color: #ffffff;
-  box-shadow: 0 2px 10px rgba(238, 77, 45, 0.4);
-}
-
-.hero-toggle-btn:hover:not(.active) {
-  color: #f8fafc;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* Giant Split Text Flanking the Card */
+/* Centered Split Headline (21st.dev Motion Pattern) */
 .hero-split-container {
   position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 2rem;
+  justify-content: center;
+  text-align: center;
   z-index: 5;
   pointer-events: none;
   width: 100%;
+  gap: 0.4rem;
 }
 
 .hero-split-word {
-  font-size: clamp(2.8rem, 5.8vw, 5.8rem);
+  font-size: clamp(2.4rem, 5.2vw, 5rem);
   font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
   white-space: nowrap;
-  transition: transform 0.1s linear, opacity 0.1s linear;
+  will-change: transform, opacity;
+  color: #1e293b;
 }
 
 .hero-split-left {
-  color: #1e293b;
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
-.hero-split-right {
+.hero-split-right span.highlight {
   background: var(--shopee-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 10px 30px rgba(238, 77, 45, 0.25));
+  filter: drop-shadow(0 4px 16px rgba(238, 77, 45, 0.25));
 }
 
-.hero-split-spacer {
-  flex: 1;
-  min-width: 380px;
-}
-
-/* The Expanding Central Media Card */
+/* Central Expanding Media Card */
 .hero-media-card {
   position: relative;
-  width: 380px;
-  height: 480px;
-  border-radius: 26px;
+  width: 320px;
+  height: 420px;
+  border-radius: 20px;
   overflow: hidden;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 25px 60px -12px rgba(238, 77, 45, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(238, 77, 45, 0.35);
-  background: #0b1120;
-  transition: box-shadow 0.3s ease;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(238, 77, 45, 0.3);
+  background: #0f172a;
+  cursor: pointer;
   will-change: width, height, border-radius;
+  transition: box-shadow 0.3s ease;
+}
+
+.hero-media-card:hover {
+  box-shadow: 0 30px 60px -12px rgba(238, 77, 45, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.4);
 }
 
 .hero-media-img {
@@ -610,212 +567,116 @@ main.app-main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 45%;
-  transform: scale(1.08);
-  transition: transform 0.4s ease;
+  object-position: center;
+  transform: scale(1.06);
+  will-change: transform;
 }
 
-/* Deep Vignette Overlay for Text Readability */
+/* Dark Vignette Overlay */
 .hero-media-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.82) 70%, rgba(11, 15, 25, 0.95) 100%);
-  opacity: 0.3;
-  transition: opacity 0.2s ease;
+  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.35) 0%, rgba(15, 23, 42, 0.75) 60%, rgba(11, 15, 25, 0.92) 100%);
+  opacity: 0.35;
+  transition: opacity 0.25s ease;
   z-index: 2;
   pointer-events: none;
 }
 
-/* Interactive Futuristic Telemetry HUD */
-.hero-telemetry-hud {
+/* Card Metadata (Collapsed State) */
+.hero-card-meta {
   position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
-.hero-telemetry-hud.active {
-  opacity: 1;
-}
-
-.hud-corner {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-color: #fb923c;
-  border-style: solid;
-}
-
-.hud-corner-tl { top: 16px; left: 16px; border-width: 2px 0 0 2px; }
-.hud-corner-tr { top: 16px; right: 16px; border-width: 2px 2px 0 0; }
-.hud-corner-bl { bottom: 16px; left: 16px; border-width: 0 0 2px 2px; }
-.hud-corner-br { bottom: 16px; right: 16px; border-width: 0 2px 2px 0; }
-
-.hud-grid-lines {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(238, 77, 45, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(238, 77, 45, 0.08) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-.hud-scanner-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #ee4d2d, #fb923c, transparent);
-  box-shadow: 0 0 14px #ee4d2d;
-  animation: hudScan 3.5s ease-in-out infinite;
-}
-
-@keyframes hudScan {
-  0% { top: 0%; opacity: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
-}
-
-.hud-telemetry-stream {
-  position: absolute;
-  bottom: 20px;
-  left: 24px;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 4px;
-  font-family: 'Geist Mono', monospace;
-  font-size: 0.72rem;
-  color: #38bdf8;
-  letter-spacing: 0.04em;
-  text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
-  background: rgba(15, 23, 42, 0.75);
-  padding: 6px 12px;
-  border-radius: 6px;
-  border-left: 2px solid #38bdf8;
-}
-
-/* Card Badges (Initial Collapsed State) */
-.hero-card-badges {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  z-index: 3;
+  width: 90%;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  pointer-events: none;
   transition: opacity 0.2s ease;
 }
 
-.media-live-badge {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(16, 185, 129, 0.4);
-  padding: 6px 14px;
-  border-radius: 9999px;
-  font-size: 0.72rem;
+.meta-date {
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #34d399;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  color: #fb923c;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.pulse-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 8px #10b981;
-  animation: pulseDot 1.8s infinite;
-}
-
-@keyframes pulseDot {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1.15); box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-}
-
-.media-tag-badge {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 6px 12px;
-  border-radius: 9999px;
-  font-size: 0.7rem;
-  font-weight: 550;
+.meta-prompt {
+  font-size: 0.72rem;
   color: #e2e8f0;
 }
 
-.media-card-caption {
-  background: rgba(15, 23, 42, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
-  padding: 12px 16px;
-  border-radius: 16px;
-  text-align: left;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+/* Fully Expanded Content Wrapper */
+.hero-expanded-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
+  will-change: opacity, transform;
 }
 
-.caption-title {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -0.01em;
-}
-
-.caption-sub {
-  font-size: 0.76rem;
-  color: #94a3b8;
-  margin-top: 2px;
-}
-
-/* Expanded Content (Visible when card expands) */
-.hero-expanded-content {
-  position: relative;
-  z-index: 5;
-  max-width: 900px;
+/* Executive High-Contrast Frosted Glass Card */
+.hero-glass-card {
+  background: rgba(15, 23, 42, 0.93);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  padding: 2.75rem 2.5rem;
+  max-width: 860px;
   width: 100%;
-  padding: 2.5rem 2rem;
-  text-align: center;
+  box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
-  opacity: 0;
-  transform: translateY(35px);
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  text-align: center;
 }
 
 .hero-title--dark {
   color: #ffffff !important;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
-  margin-bottom: 1.25rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.2rem;
+  font-size: 2.7rem;
+  line-height: 1.15;
 }
 
 .hero-lead--dark {
   color: #e2e8f0 !important;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
-  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin-bottom: 1.85rem;
+  max-width: 760px;
 }
 
-.hero-lead--dark strong {
+.text-orange {
   color: #fb923c !important;
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .btn-secondary--dark {
-  background: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
   border: 1px solid rgba(255, 255, 255, 0.28) !important;
   backdrop-filter: blur(12px);
@@ -823,7 +684,7 @@ main.app-main {
 }
 
 .btn-secondary--dark:hover {
-  background: rgba(255, 255, 255, 0.22) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
   border-color: rgba(255, 255, 255, 0.5) !important;
 }
 
@@ -831,8 +692,8 @@ main.app-main {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: 0.85rem;
+  margin-top: 1.85rem;
   flex-wrap: wrap;
 }
 
@@ -843,7 +704,7 @@ main.app-main {
   font-size: 0.78rem;
   font-weight: 550;
   color: #cbd5e1;
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(30, 41, 59, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 5px 14px;
   border-radius: 9999px;
@@ -880,7 +741,7 @@ main.app-main {
 }
 
 .prompt-text {
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -927,16 +788,15 @@ main.app-main {
 
 /* Mobile Adjustments */
 @media (max-width: 900px) {
-  .hero-split-container {
-    display: none;
+  .hero-glass-card {
+    padding: 2rem 1.5rem;
+  }
+  .hero-title--dark {
+    font-size: 2rem;
   }
   .hero-media-card {
-    width: 88vw;
-    height: 60vh;
-  }
-  .hero-expand-controls {
-    top: 0.75rem;
-    right: 0.75rem;
+    width: 86vw;
+    height: 55vh;
   }
 }
 
