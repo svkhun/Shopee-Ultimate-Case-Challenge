@@ -481,8 +481,13 @@ main.app-main {
 .hero-expand-track {
   position: relative;
   height: 165vh;
-  margin-top: 0.25rem;
-  margin-bottom: 2rem;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: -1.25rem;
+  margin-bottom: 2.5rem;
 }
 
 .hero-expand-sticky {
@@ -490,16 +495,16 @@ main.app-main {
   top: 70px;
   height: calc(100vh - 70px);
   min-height: 560px;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   user-select: none;
-  border-radius: 20px;
   background: radial-gradient(circle at 50% 40%, rgba(255, 245, 235, 0.7) 0%, rgba(255, 249, 237, 0) 70%);
 }
 
-/* Centered Split Headline (21st.dev Motion Pattern) */
+/* Centered Split Headline (Floats in FRONT of card with crisp contrast) */
 .hero-split-container {
   position: absolute;
   top: 48%;
@@ -510,46 +515,47 @@ main.app-main {
   align-items: center;
   justify-content: center;
   text-align: center;
-  z-index: 5;
+  z-index: 15; /* In FRONT of the card! */
   pointer-events: none;
   width: 100%;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
 .hero-split-word {
-  font-size: clamp(2.4rem, 5.2vw, 5rem);
+  font-size: clamp(2.6rem, 5.5vw, 5.2rem);
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 1.1;
   white-space: nowrap;
   will-change: transform, opacity;
-  color: #1e293b;
+  color: #ffffff;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.95), 0 2px 8px rgba(0, 0, 0, 0.95);
 }
 
 .hero-split-left {
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.85));
 }
 
 .hero-split-right span.highlight {
-  background: var(--shopee-gradient);
+  background: linear-gradient(135deg, #ff7a59 0%, #ee4d2d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 16px rgba(238, 77, 45, 0.25));
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.9));
 }
 
 /* Central Expanding Media Card */
 .hero-media-card {
   position: relative;
-  width: 320px;
-  height: 420px;
-  border-radius: 20px;
+  width: 340px;
+  height: 460px;
+  border-radius: 22px;
   overflow: hidden;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(238, 77, 45, 0.3);
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(238, 77, 45, 0.35);
   background: #0f172a;
   cursor: pointer;
   will-change: width, height, border-radius;

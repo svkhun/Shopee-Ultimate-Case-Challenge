@@ -925,58 +925,64 @@ function renderHeroExpansion() {
   if (!card) return;
 
   const viewportWidth = window.innerWidth;
-  const initialW = isMobile ? 300 : 320;
-  const finalW = isMobile ? Math.min(viewportWidth * 0.94, 750) : Math.min(viewportWidth * 0.95, 1320);
+  const viewportHeight = window.innerHeight;
+  const availableStickyHeight = viewportHeight - 70; // 70px header offset
 
-  const initialH = isMobile ? 380 : 420;
-  const finalH = isMobile ? Math.min(window.innerHeight * 0.84, 620) : Math.min(window.innerHeight * 0.84, 700);
+  // 1. Initial vs Full-Bleed Final Dimensions (100vw x 100% sticky viewport!)
+  const initialW = isMobile ? Math.min(viewportWidth * 0.86, 320) : 340;
+  const initialH = isMobile ? Math.min(availableStickyHeight * 0.65, 420) : 460;
+
+  const finalW = viewportWidth;
+  const finalH = availableStickyHeight;
 
   const cardW = initialW + (finalW - initialW) * p;
   const cardH = initialH + (finalH - initialH) * p;
-  const cardRadius = 20 - (20 - 16) * p;
+  const cardRadius = Math.max(0, 22 * (1 - p));
 
-  card.style.width = `${cardW}px`;
-  card.style.height = `${cardH}px`;
+  card.style.width = p >= 0.99 ? '100vw' : `${cardW}px`;
+  card.style.height = p >= 0.99 ? `${availableStickyHeight}px` : `${cardH}px`;
   card.style.borderRadius = `${cardRadius}px`;
+  card.style.border = p >= 0.96 ? 'none' : '1px solid rgba(238, 77, 45, 0.35)';
+  card.style.boxShadow = p >= 0.96 ? 'none' : '0 25px 60px -12px rgba(0, 0, 0, 0.45)';
 
-  // 1. Subtle Parallax on Real Warehouse Photo
+  // 2. Parallax zoom on Real Warehouse Photo (Smoothly fills full screen)
   if (mediaImg) {
-    const scale = 1.1 - 0.08 * p;
+    const scale = 1.15 - 0.15 * p;
     mediaImg.style.transform = `scale(${scale})`;
   }
 
-  // 2. Dark Vignette Overlay
+  // 3. Dark Vignette Overlay
   if (overlay) {
-    const overlayOpacity = 0.3 + 0.5 * p;
+    const overlayOpacity = 0.25 + 0.55 * p;
     overlay.style.opacity = overlayOpacity;
   }
 
-  // 3. 21st.dev Title Translates Outward
+  // 4. 21st.dev Title Translates Outward (Floating in FRONT of card)
   if (leftWord && rightWord) {
-    const textTranslate = p * (isMobile ? 120 : 180);
-    const textOpacity = Math.max(0, 1 - p * 2.0);
+    const textTranslate = p * (isMobile ? 140 : 220);
+    const textOpacity = Math.max(0, 1 - p * 2.2);
     leftWord.style.transform = `translateX(-${textTranslate}px)`;
     rightWord.style.transform = `translateX(${textTranslate}px)`;
     leftWord.style.opacity = textOpacity;
     rightWord.style.opacity = textOpacity;
   }
 
-  // 4. Initial Card Subtitles
+  // 5. Initial Card Subtitles
   if (cardMeta) {
     const metaOpacity = Math.max(0, 1 - p * 3.0);
     cardMeta.style.opacity = metaOpacity;
   }
 
-  // 5. High-Contrast Frosted Glass Card Reveal
+  // 6. High-Contrast Frosted Glass Card Reveal (Inside Fullscreen Warehouse)
   if (expandedWrapper) {
-    const contentP = Math.max(0, Math.min(1, (p - 0.4) / 0.5));
+    const contentP = Math.max(0, Math.min(1, (p - 0.35) / 0.5));
     expandedWrapper.style.opacity = contentP;
-    const translateY = (1 - contentP) * 28;
+    const translateY = (1 - contentP) * 32;
     expandedWrapper.style.transform = `translateY(${translateY}px)`;
     expandedWrapper.style.pointerEvents = contentP > 0.75 ? 'auto' : 'none';
   }
 
-  // 6. Scroll Prompt
+  // 7. Scroll Prompt
   if (scrollPrompt) {
     const promptOpacity = Math.max(0, 1 - p * 3.5);
     scrollPrompt.style.opacity = promptOpacity;
