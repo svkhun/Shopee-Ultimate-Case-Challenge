@@ -4,7 +4,7 @@
    Executive Minimalist Warm-Light Theme with Interactive Smartphone Mockup
    =================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@200;300;400;500;600;700;800&family=Geist+Mono:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700&family=Geist+Mono:wght@100;200;300;400;500;600&display=swap');
 
 :root {
   --bg-main: #fff9ed;
@@ -49,8 +49,8 @@
 
 body {
   font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Thai', sans-serif;
-  font-weight: 350;
-  letter-spacing: -0.018em;
+  font-weight: 300;
+  letter-spacing: -0.022em;
   background-color: var(--bg-main);
   color: var(--text-primary);
   min-height: 100vh;
@@ -59,17 +59,53 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* Slender Geist Global Heading Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Geist', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-weight: 550;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+h3 {
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+h4, h5, h6 {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+strong, b, .strong {
+  font-weight: 550;
 }
 
 button, input, select, textarea {
   font-family: 'Geist', sans-serif;
+  font-weight: 450;
+  letter-spacing: -0.015em;
 }
 
 code, pre, .mono {
   font-family: 'Geist Mono', monospace;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-weight: 350;
+  letter-spacing: -0.015em;
 }
 
 /* Background Ambient Glows */
@@ -140,8 +176,8 @@ header.app-header {
 
 .brand-title {
   font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  letter-spacing: -0.025em;
 }
 
 .brand-badge {
@@ -282,7 +318,7 @@ header.app-header {
 
 .nav-dropdown-header {
   font-size: 0.68rem;
-  font-weight: 700;
+  font-weight: 550;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -313,7 +349,7 @@ header.app-header {
 .dropdown-item-num {
   font-family: 'Geist Mono', monospace;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 550;
   color: var(--shopee-orange);
   background: rgba(238, 77, 45, 0.1);
   padding: 2px 5px;
@@ -330,7 +366,7 @@ header.app-header {
 
 .dropdown-item-content strong {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 550;
   color: var(--text-primary);
 }
 
@@ -379,7 +415,7 @@ header.app-header {
   color: var(--text-secondary);
   font-family: inherit;
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 450;
 }
 
 .stepper-tab:hover {
@@ -391,13 +427,13 @@ header.app-header {
   background: #fff5ef;
   border-color: rgba(238, 77, 45, 0.3);
   color: var(--shopee-orange);
-  font-weight: 700;
+  font-weight: 550;
 }
 
 .stepper-num {
   font-family: 'Geist Mono', monospace;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 550;
   color: var(--text-muted);
 }
 
@@ -551,8 +587,8 @@ main.app-main {
 
 .hero-split-word {
   font-size: clamp(2.6rem, 5.5vw, 5.2rem);
-  font-weight: 800;
-  letter-spacing: -0.035em;
+  font-weight: 550;
+  letter-spacing: -0.04em;
   line-height: 1.1;
   white-space: nowrap;
   will-change: transform, opacity;
@@ -671,7 +707,7 @@ main.app-main {
 
 .text-orange {
   color: #fb923c !important;
-  font-weight: 700;
+  font-weight: 550;
 }
 
 .btn-secondary--dark {
@@ -710,7 +746,7 @@ main.app-main {
 
 .prompt-text {
   font-size: 0.74rem;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #64748b;
@@ -805,7 +841,7 @@ main.app-main {
 .hero-title {
   font-size: 3.1rem;
   line-height: 1.12;
-  font-weight: 700;
+  font-weight: 550;
   letter-spacing: -0.035em;
   margin-bottom: 1.25rem;
 }
@@ -950,8 +986,8 @@ main.app-main {
 
 .metric-num {
   font-size: 2.2rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: 550;
+  letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
   margin-bottom: 0.35rem;
   color: var(--text-primary);
@@ -975,7 +1011,7 @@ main.app-main {
   display: flex;
   justify-content: space-between;
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-muted);
   margin-bottom: 4px;
 }
@@ -1016,8 +1052,8 @@ main.app-main {
 
 .stat-number-wrapper .val {
   font-size: 2.4rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: 550;
+  letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
   line-height: 1;
 }
@@ -1103,8 +1139,8 @@ main.app-main {
 
 .section-h2 {
   font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: 500;
+  letter-spacing: -0.035em;
   margin-bottom: 0.5rem;
 }
 
@@ -1153,7 +1189,8 @@ main.app-main {
 
 .tier-score-range {
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.025em;
   font-variant-numeric: tabular-nums;
   margin-bottom: 0.5rem;
 }
@@ -1238,7 +1275,7 @@ main.app-main {
   align-items: center;
   padding: 0 0.85rem;
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 500;
   position: relative;
 }
 
@@ -1280,8 +1317,8 @@ main.app-main {
 
 .phone-header-title {
   font-size: 0.94rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-weight: 550;
+  letter-spacing: -0.015em;
 }
 
 .phone-header-back,
@@ -1313,7 +1350,7 @@ main.app-main {
   border-radius: 6px;
   padding: 5px 8px;
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 500;
   background: rgba(255, 255, 255, 0.22);
   color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
@@ -1333,7 +1370,7 @@ main.app-main {
   background: #ffffff;
   color: var(--shopee-orange);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-  font-weight: 700;
+  font-weight: 550;
 }
 
 /* Scrollable Container (The ONLY scrollable viewport) */
@@ -1375,7 +1412,7 @@ main.app-main {
   background: #d0011b;
   color: #fff;
   font-size: 0.62rem;
-  font-weight: 700;
+  font-weight: 550;
   padding: 1px 5px;
   border-radius: 2px;
   text-transform: uppercase;
@@ -1414,7 +1451,7 @@ main.app-main {
 
 .phone-card-title {
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #666;
   text-transform: uppercase;
   margin-bottom: 0.4rem;
@@ -1458,8 +1495,9 @@ main.app-main {
 
 .phone-prod-price {
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 550;
   color: var(--shopee-orange);
+  font-variant-numeric: tabular-nums;
 }
 
 /* Preferred Delivery Window in Phone */
@@ -1485,7 +1523,7 @@ main.app-main {
   border-color: var(--shopee-orange);
   background: #fff5f2;
   color: var(--shopee-orange);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* Dynamic Intervention Banners inside Phone */
@@ -1548,7 +1586,7 @@ main.app-main {
   border-radius: 6px;
   text-align: center;
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 550;
   color: #222;
   outline: none;
 }
@@ -1574,7 +1612,7 @@ main.app-main {
   padding: 0.5rem;
   border-radius: 6px;
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   margin-top: 0.35rem;
 }
@@ -1599,7 +1637,9 @@ main.app-main {
 
 .phone-total-price {
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
   color: var(--shopee-orange);
 }
 
@@ -1671,7 +1711,7 @@ main.app-main {
 
 .phone-modal-title {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 550;
   color: #1e293b;
   line-height: 1.35;
   margin-bottom: 0.45rem;
@@ -1693,7 +1733,7 @@ main.app-main {
   border-radius: 10px;
   padding: 0.65rem 1rem;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
 }
@@ -1742,7 +1782,7 @@ main.app-main {
   background: #fef2f2;
   color: var(--shopee-orange);
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 550;
   padding: 2px 8px;
   border-radius: 9999px;
   border: 1px solid #fecaca;
@@ -1764,12 +1804,13 @@ main.app-main {
 .tracking-eta {
   font-size: 0.72rem;
   color: #64748b;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .tracking-hero-title {
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.015em;
   color: #1e293b;
   margin-bottom: 2px;
 }
@@ -1806,7 +1847,7 @@ main.app-main {
   align-items: center;
   justify-content: center;
   font-size: 0.65rem;
-  font-weight: 700;
+  font-weight: 550;
 }
 
 .step-item.completed .step-circle {
@@ -1824,7 +1865,7 @@ main.app-main {
 .step-label {
   font-size: 0.6rem;
   color: #64748b;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .step-line {
@@ -1869,7 +1910,7 @@ main.app-main {
 
 .rider-name {
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 550;
   color: #1e293b;
 }
 
@@ -1926,14 +1967,15 @@ main.app-main {
 
 .cod-due-val {
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 600;
+  letter-spacing: -0.03em;
   color: var(--shopee-orange);
   font-variant-numeric: tabular-nums;
 }
 
 .cod-due-chip {
   font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #059669;
   background: #ecfdf5;
   padding: 2px 6px;
@@ -1961,7 +2003,7 @@ main.app-main {
   border-radius: 999px;
   color: #475569;
   font-size: 0.63rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
   padding: 0.32rem 0.55rem;
   white-space: nowrap;
@@ -1988,12 +2030,13 @@ main.app-main {
   display: block;
   margin-bottom: 2px;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .score-pill-val {
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 600;
+  letter-spacing: -0.025em;
   color: #1e293b;
   font-variant-numeric: tabular-nums;
 }
@@ -2048,7 +2091,7 @@ main.app-main {
 .btn-doorstep-reject strong {
   display: block;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 550;
 }
 
 .btn-doorstep-accept small,
@@ -2404,7 +2447,7 @@ footer .footer-links a:hover {
 
 .tutorial-step-badge {
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 550;
   color: var(--shopee-orange);
   background: rgba(238, 77, 45, 0.1);
   border: 1px solid rgba(238, 77, 45, 0.25);
@@ -2433,6 +2476,7 @@ footer .footer-links a:hover {
 
 .tutorial-checklist li strong {
   color: var(--text-primary);
+  font-weight: 550;
 }
 
 .pipeline-flow-container {
@@ -2458,7 +2502,7 @@ footer .footer-links a:hover {
 
 .pipeline-step-num {
   font-size: 1.1rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--shopee-orange);
   font-family: 'Geist Mono', monospace;
 }
@@ -2466,6 +2510,7 @@ footer .footer-links a:hover {
 .pipeline-step-body strong {
   display: block;
   font-size: 0.84rem;
+  font-weight: 550;
   color: var(--text-primary);
   margin-bottom: 0.2rem;
 }
@@ -2482,7 +2527,7 @@ footer .footer-links a:hover {
   justify-content: center;
   font-size: 1.2rem;
   color: var(--shopee-orange);
-  font-weight: 700;
+  font-weight: 500;
   flex-shrink: 0;
 }
 
@@ -2562,7 +2607,7 @@ footer .footer-links a:hover {
 
 .team-avatar-monogram {
   font-size: 1.15rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--shopee-orange);
   font-family: 'Geist Mono', monospace;
 }
@@ -2574,7 +2619,7 @@ footer .footer-links a:hover {
 
 .team-role-badge {
   font-size: 0.68rem;
-  font-weight: 700;
+  font-weight: 550;
   color: var(--shopee-orange);
   background: rgba(238, 77, 45, 0.1);
   border: 1px solid rgba(238, 77, 45, 0.25);
@@ -2588,10 +2633,10 @@ footer .footer-links a:hover {
 
 .team-name {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 550;
   color: var(--text-primary);
   margin: 0 0 2px 0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 .team-title-text {
@@ -2622,7 +2667,7 @@ footer .footer-links a:hover {
   color: var(--text-muted);
   font-size: 0.72rem;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   flex-shrink: 0;
 }
 
@@ -2639,7 +2684,7 @@ footer .footer-links a:hover {
 
 .team-section-title {
   font-size: 0.76rem;
-  font-weight: 700;
+  font-weight: 550;
   color: var(--text-primary);
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -2724,7 +2769,8 @@ footer .footer-links a:hover {
 
 .math-derivation-title {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   display: flex;
   align-items: center;
@@ -2750,7 +2796,7 @@ footer .footer-links a:hover {
 
 .math-step-num {
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 550;
   text-transform: uppercase;
   color: var(--shopee-orange);
   margin-bottom: 0.35rem;
@@ -2760,7 +2806,7 @@ footer .footer-links a:hover {
 .math-step-formula {
   font-family: 'Geist Mono', monospace;
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 550;
   color: var(--text-primary);
   margin: 0.4rem 0;
   background: #ffffff;
@@ -2821,7 +2867,7 @@ footer .footer-links a:hover {
 .window-flow-num {
   font-family: 'Geist Mono', monospace;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 550;
   color: var(--shopee-orange);
   background: #fff5ef;
   border: 1px solid rgba(238, 77, 45, 0.2);
@@ -2833,7 +2879,8 @@ footer .footer-links a:hover {
 
 .window-flow-title {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 0.4rem;
   line-height: 1.35;
@@ -2898,7 +2945,8 @@ footer .footer-links a:hover {
 
 .impact-column-title {
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   margin: 0;
 }
@@ -2913,7 +2961,8 @@ footer .footer-links a:hover {
 
 .impact-item-title {
   font-size: 0.86rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.015em;
   color: var(--text-primary);
   margin-bottom: 0.25rem;
 }
@@ -2998,10 +3047,10 @@ footer .footer-links a:hover {
 
 .hero-brand-pill-tag {
   font-size: 0.68rem;
-  font-weight: 700;
+  font-weight: 550;
   color: #fb923c;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 
 .hero-brand-pill-sub {
@@ -3128,9 +3177,9 @@ footer .footer-links a:hover {
 .overview-tag-pill {
   display: inline-block;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 550;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   color: var(--shopee-orange);
   background: rgba(238, 77, 45, 0.08);
   border: 1px solid rgba(238, 77, 45, 0.25);
@@ -3141,9 +3190,9 @@ footer .footer-links a:hover {
 
 .overview-h3 {
   font-size: 1.45rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--text-primary);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   margin-bottom: 0.25rem;
 }
 
@@ -3168,7 +3217,7 @@ footer .footer-links a:hover {
   background: transparent;
   padding: 7px 16px;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-secondary);
   border-radius: 9999px;
   cursor: pointer;
@@ -3226,7 +3275,8 @@ footer .footer-links a:hover {
 
 .paradigm-box-header h4 {
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-top: 0.4rem;
 }
@@ -3240,7 +3290,7 @@ footer .footer-links a:hover {
 
 .paradigm-badge {
   font-size: 0.68rem;
-  font-weight: 700;
+  font-weight: 550;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   padding: 2px 7px;
@@ -3260,7 +3310,8 @@ footer .footer-links a:hover {
 
 .paradigm-metric-alert {
   font-size: 0.76rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.01em;
   padding: 6px 10px;
   border-radius: 6px;
   display: flex;
@@ -3325,7 +3376,8 @@ footer .footer-links a:hover {
 
 .tier-pill-title {
   font-size: 0.84rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.015em;
   color: var(--text-primary);
 }
 
@@ -3333,6 +3385,7 @@ footer .footer-links a:hover {
   font-size: 0.74rem;
   color: var(--text-muted);
   font-family: 'Geist Mono', monospace;
+  font-weight: 350;
 }
 
 .overview-tier-detail {
@@ -3358,9 +3411,9 @@ footer .footer-links a:hover {
 .tier-badge-pill {
   display: inline-block;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 550;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   padding: 3px 9px;
   border-radius: 9999px;
   margin-bottom: 0.6rem;
@@ -3373,7 +3426,8 @@ footer .footer-links a:hover {
 
 .tier-detail-content h4 {
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.025em;
   color: var(--text-primary);
   margin-bottom: 0.45rem;
 }
@@ -3398,6 +3452,7 @@ footer .footer-links a:hover {
 
 .tier-bullet-list strong {
   color: var(--text-primary);
+  font-weight: 550;
 }
 
 .tier-detail-action-box {
@@ -3428,6 +3483,8 @@ footer .footer-links a:hover {
 .mock-notification strong {
   display: block;
   font-size: 0.86rem;
+  font-weight: 550;
+  letter-spacing: -0.015em;
   color: var(--text-primary);
   margin-bottom: 2px;
 }
@@ -3465,10 +3522,10 @@ footer .footer-links a:hover {
 
 .pipeline-step-badge {
   font-size: 0.68rem;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
   color: var(--shopee-orange);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   margin-bottom: 0.35rem;
   font-family: 'Geist Mono', monospace;
 }
@@ -3480,7 +3537,8 @@ footer .footer-links a:hover {
 
 .pipeline-step-box h5 {
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 0.35rem;
 }
@@ -3495,7 +3553,7 @@ footer .footer-links a:hover {
 .pipeline-arrow {
   color: var(--shopee-orange);
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: 500;
   opacity: 0.75;
   user-select: none;
 }
@@ -3536,7 +3594,7 @@ footer .footer-links a:hover {
 
 .deck-hub-num {
   font-size: 1.4rem;
-  font-weight: 800;
+  font-weight: 600;
   color: rgba(15, 23, 42, 0.2);
   font-family: 'Geist Mono', monospace;
   line-height: 1;
@@ -3544,9 +3602,9 @@ footer .footer-links a:hover {
 
 .deck-hub-tag {
   font-size: 0.68rem;
-  font-weight: 700;
+  font-weight: 550;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   padding: 2px 7px;
   background: #f6efe4;
   color: var(--text-secondary);
@@ -3560,7 +3618,8 @@ footer .footer-links a:hover {
 
 .deck-hub-card h4 {
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.025em;
   color: var(--text-primary);
   line-height: 1.35;
 }
@@ -3577,7 +3636,8 @@ footer .footer-links a:hover {
   align-items: center;
   justify-content: space-between;
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 550;
+  letter-spacing: -0.015em;
   color: var(--shopee-orange);
   padding-top: 0.6rem;
   border-top: 1px solid rgba(0, 0, 0, 0.05);

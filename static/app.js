@@ -391,8 +391,9 @@ function updateSmartphoneScreen(result) {
   if (tier === 'LOW_RISK') {
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-a">
-        <div style="font-weight:700; display:flex; align-items:center; gap:4px; color:#065f46;">
-          ✓ Reliable Buyer (Score: ${score.toFixed(1)})
+        <div style="font-weight:600; display:flex; align-items:center; gap:6px; color:#065f46;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Reliable Buyer (Score: ${score.toFixed(1)})
         </div>
         <div style="font-size:0.71rem; line-height:1.4; margin-top:2px;">
           Standard 1-click Cash on Delivery. Zero checkout friction.
@@ -406,14 +407,15 @@ function updateSmartphoneScreen(result) {
   } else if (tier === 'MEDIUM_RISK') {
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-b">
-        <div style="font-weight:700; display:flex; align-items:center; gap:4px; color:#b45309;">
-          ⚠️ Warning: Medium Risk Probation (Score: ${score.toFixed(1)})
+        <div style="font-weight:600; display:flex; align-items:center; gap:6px; color:#b45309;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Warning: Medium Risk Probation (Score: ${score.toFixed(1)})
         </div>
         <div style="font-size:0.71rem; line-height:1.4; margin-top:3px;">
           <strong>Buyer Warning:</strong> Your account has previous delivery hiccups. If this parcel fails after re-attempts, your account will enter <strong>High Risk</strong>, requiring a <strong>mandatory 20% seller security deposit</strong> for future COD orders.
         </div>
         <div style="font-size:0.69rem; color:#854d0e; margin-top:5px; padding:4px 6px; background:rgba(245,158,11,0.12); border-radius:4px;">
-          📅 Select a <strong>Preferred Delivery Window</strong> above to ensure you are home for courier arrival.
+          Select a <strong>Preferred Delivery Window</strong> above to ensure you are home for courier arrival.
         </div>
       </div>
     `;
@@ -424,8 +426,9 @@ function updateSmartphoneScreen(result) {
   } else if (tier === 'HIGH_RISK') {
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-c" style="border-left:3px solid var(--orange);">
-        <div style="font-weight:700; display:flex; align-items:center; gap:4px; color:#c2410c;">
-          🔒 High Risk: 20% Seller Deposit Required (Score: ${score.toFixed(1)})
+        <div style="font-weight:600; display:flex; align-items:center; gap:6px; color:#c2410c;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          High Risk: 20% Seller Deposit Required (Score: ${score.toFixed(1)})
         </div>
         <div style="font-size:0.71rem; line-height:1.4; margin-top:3px;">
           Due to elevated delivery failure risk, a <strong>20% seller security deposit (฿${depositAmountHigh.toLocaleString()})</strong> is required to dispatch this COD order.
@@ -433,10 +436,10 @@ function updateSmartphoneScreen(result) {
         <div class="phone-deposit-box" style="margin-top:6px; background:#fff7ed; border:1px solid #fed7aa; padding:8px; border-radius:6px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <strong style="font-size:0.75rem; color:#9a3412;">Seller Security Deposit (20%):</strong>
-            <span class="mono" style="font-size:0.85rem; font-weight:800; color:#ea580c;">฿${depositAmountHigh.toLocaleString()}</span>
+            <span class="mono" style="font-size:0.85rem; font-weight:700; color:#ea580c;">฿${depositAmountHigh.toLocaleString()}</span>
           </div>
           <div style="font-size:0.68rem; color:#7c2d12; margin:3px 0 6px;">
-            ✓ 100% credited toward your doorstep COD payment (Remaining ฿${remainingAmountHigh.toLocaleString()} collected upon handover).
+            100% credited toward your doorstep COD payment (Remaining ฿${remainingAmountHigh.toLocaleString()} collected upon handover).
           </div>
           <button class="deposit-action-btn" style="background:#ea580c;" onclick="handleDepositOrder(0.20)">
             Authorize 20% Deposit (฿${depositAmountHigh.toLocaleString()}) & Order COD
@@ -455,8 +458,9 @@ function updateSmartphoneScreen(result) {
     // REPEATED_HIGH_RISK
     box.innerHTML = `
       <div class="phone-intervention-banner banner-grade-d">
-        <div style="font-weight:700; display:flex; align-items:center; gap:4px; color:#be123c;">
-          ⛔ COD Restricted: Chronic RTO (Score: ${score.toFixed(1)})
+        <div style="font-weight:600; display:flex; align-items:center; gap:6px; color:#be123c;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          COD Restricted: Chronic RTO (Score: ${score.toFixed(1)})
         </div>
         <div style="font-size:0.71rem; line-height:1.4; margin-top:3px;">
           Standard COD is locked due to chronic delivery rejections. To place this order, pay an upfront 30% seller deposit (฿${depositAmountRep.toLocaleString()}) or switch to prepaid.
@@ -508,7 +512,7 @@ function updateSmartphoneScreen(result) {
 
 let phoneModalCallback = null;
 
-function showPhoneModal(title, message, onConfirm = null, btnText = 'Track Delivery 🚚') {
+function showPhoneModal(title, message, onConfirm = null, btnText = 'Track Delivery') {
   const overlay = document.getElementById('phone-modal-overlay');
   const titleEl = document.getElementById('phone-modal-title');
   const bodyEl = document.getElementById('phone-modal-body');
@@ -534,7 +538,7 @@ function handleDepositOrder(depositPct) {
     () => {
       switchPhoneView('tracking');
     },
-    'Track Delivery 🚚'
+    'Track Delivery'
   );
 }
 
@@ -568,7 +572,7 @@ function handlePhoneOrderClick() {
       () => {
         switchPhoneView('tracking');
       },
-      'Track Delivery 🚚'
+      'Track Delivery'
     );
   }, 350);
 }
