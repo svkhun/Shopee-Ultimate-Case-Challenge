@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700&family=Geist+Mono:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="/static/styles.css?v=2.1">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23ee4d2d'/><path fill='%23ffffff' transform='translate(4, 4)' d='M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z'/></svg>">
 </head>
 <body>
@@ -1740,20 +1740,20 @@
             <div class="card-title" style="font-size:0.95rem;">Machine Learning Model Diagnostics</div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; font-size:0.83rem;">
               <div>
-                <span style="color:var(--text-secondary);">Model Architecture:</span>
-                <div class="mono" style="font-weight:600; color:var(--text-primary);">Calibrated Random Forest</div>
+                <span style="color:#64748b; font-weight:500;">Model Architecture:</span>
+                <div class="mono" style="font-weight:600; color:#1e293b;">Calibrated Random Forest</div>
               </div>
               <div>
-                <span style="color:var(--text-secondary);">Test ROC-AUC:</span>
-                <div class="mono" style="font-weight:700; color:var(--emerald);">0.8629 (High Discrimination)</div>
+                <span style="color:#64748b; font-weight:500;">Test ROC-AUC:</span>
+                <div class="mono" style="font-weight:700; color:#059669;">0.8629 (High Discrimination)</div>
               </div>
               <div>
-                <span style="color:var(--text-secondary);">Average Precision (PR-AUC):</span>
-                <div class="mono" style="font-weight:600; color:var(--cyan);">0.3722</div>
+                <span style="color:#64748b; font-weight:500;">Average Precision (PR-AUC):</span>
+                <div class="mono" style="font-weight:700; color:#0891b2;">0.3722</div>
               </div>
               <div>
-                <span style="color:var(--text-secondary);">Brier Calibration Loss:</span>
-                <div class="mono" style="font-weight:600; color:var(--text-primary);">0.02087 (Calibrated)</div>
+                <span style="color:#64748b; font-weight:500;">Brier Calibration Loss:</span>
+                <div class="mono" style="font-weight:600; color:#1e293b;">0.02087 (Calibrated)</div>
               </div>
             </div>
 
@@ -2375,6 +2375,6 @@
   </footer>
 
   <!-- Vanilla Application Scripts -->
-  <script src="/static/app.js"></script>
+  <script src="/static/app.js?v=2.1"></script>
 </body>
 </html>
