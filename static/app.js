@@ -171,7 +171,7 @@ async function loadModelSummary() {
         const barHtml = `
           <div class="feat-bar-row">
             <div class="feat-bar-header">
-              <span style="color:#cbd5e1;">${readableName}</span>
+              <span style="color:var(--text-primary); font-weight:550;">${readableName}</span>
               <span class="mono" style="color:var(--shopee-orange); font-weight:600;">${(item.importance * 100).toFixed(1)}%</span>
             </div>
             <div class="feat-bar-track">
